@@ -10,6 +10,7 @@
   "author": "Inon Avramashvili",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "dotenv": "^16.0.0",
     "express": "^4.18.1",
     "helmet": "^5.0.2",
