@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { userInfo } = require("os");
 
 const UserSchema = new mongoose.Schema(
   {
@@ -38,9 +37,17 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
-    followings: {
+    following: {
       type: Array,
       default: [],
+    },
+    country: {
+      type: String,
+      max: 50
+    },
+    city: {
+      type: String,
+      max: 50
     },
   },
   { timestamps: true }

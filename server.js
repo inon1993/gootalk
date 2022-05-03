@@ -3,9 +3,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 const morgan = require("morgan");
-const router = require("./routes/auth");
 
-const routes = require("./routes/auth");
+const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
 
 const app = express();
 
@@ -18,7 +18,8 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
-app.use("/api", routes);
+app.use("/api", authRoutes);
+app.use("/api", userRoutes);
 
 app.listen(8080, () => {
   console.log("Server is running.");

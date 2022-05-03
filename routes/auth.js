@@ -1,7 +1,8 @@
 const User = require("../models/User");
-const bcrypt = require("bcrypt");
 const router = require("express").Router();
+const bcrypt = require("bcrypt");
 
+//--REGISTER--//
 router.post("/register", async (req, res) => {
   try {
     const salt = await bcrypt.genSalt(8);
@@ -21,6 +22,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+//--LOGIN--//
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({email: req.body.email});
