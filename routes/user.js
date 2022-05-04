@@ -41,6 +41,22 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+//--GET ALL USERS--//
+router.get("/", async (req, res) => {
+    try {
+      const users = await User.find();
+      const usersArr = users.map((user) => {
+        const { password, updatedAt, ...other } = user._doc;
+        return other;
+      }).filter((user) => {
+          return user._id != req.body.userId; 
+      })
+      return res.status(200).json(usersArr);
+    } catch (err) {
+      return res.status(500).json(err);
+    }
+  });
+
 //--GET A USER--//
 router.get("/:id", async (req, res) => {
   try {
