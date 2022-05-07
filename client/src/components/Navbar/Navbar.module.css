@@ -1,0 +1,31 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid hsl(206.7, 33.3%, 94.7%);
+  position: sticky;
+}
+
+.logo {
+  flex: 4;
+  margin-left: 1rem;
+}
+
+.navbar-logo {
+  font-family: "Poppins", sans-serif;
+  color: hsl(208.7, 100%, 53.7%);
+  font-weight: 900;
+}
+
+.logo-span {
+  font-family: "Poppins", sans-serif;
+  color: hsl(220.3, 62.5%, 22%);
+}
+
+.search {
+  flex: 4;
+}
+
+.navbar-features {
+  flex: 4;
+}
