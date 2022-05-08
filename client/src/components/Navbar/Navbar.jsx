@@ -1,7 +1,32 @@
+import { useState } from "react";
 import classes from "./Navbar.module.css";
-import {Search} from '@mui/icons-material';
+import { HomeRounded, MessageRounded } from "@mui/icons-material";
+import Search from "./Search/Search";
+import Profile from "./Profile/Profile";
 
 const Navbar = () => {
+  const [isActiveHome, setIsActiveHome] = useState(false);
+  const [isActiveNotification, setIsActiveNotification] = useState(false);
+  const [isActiveProfile, setIsActiveProfile] = useState(false);
+
+  const activateHomeHandler = () => {
+    setIsActiveHome(true);
+    setIsActiveNotification(false);
+    setIsActiveProfile(false);
+  };
+
+  const activateNotificationHandler = () => {
+    setIsActiveHome(false);
+    setIsActiveNotification(true);
+    setIsActiveProfile(false);
+  };
+
+  const activateProfileHandler = () => {
+    setIsActiveHome(false);
+    setIsActiveNotification(false);
+    setIsActiveProfile(true);
+  };
+
   return (
     <div className={classes.navbar}>
       <div className={classes.logo}>
@@ -10,15 +35,26 @@ const Navbar = () => {
         </h1>
       </div>
       <div className={classes.search}>
-        <div className={classes["navbar-search"]}>
-          <Search />
-          <input type="text" />
-        </div>
+        <Search />
       </div>
       <div className={classes["navbar-features"]}>
-        <button>A</button>
-        <button>B</button>
-        <button>C</button>
+        <HomeRounded
+          onClick={activateHomeHandler}
+          className={
+            isActiveHome
+              ? classes["navbar-features-icon-focus"]
+              : classes["navbar-features-icon"]
+          }
+        />
+        <MessageRounded
+          onClick={activateNotificationHandler}
+          className={
+            isActiveNotification
+              ? classes["navbar-features-icon-focus"]
+              : classes["navbar-features-icon"]
+          }
+        />
+        <Profile onClick={activateProfileHandler} activate={isActiveProfile} />
       </div>
     </div>
   );
