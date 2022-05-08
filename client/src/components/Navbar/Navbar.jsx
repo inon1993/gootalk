@@ -1,4 +1,5 @@
 import classes from "./Navbar.module.css";
+import {Search} from '@mui/icons-material';
 
 const Navbar = () => {
   return (
@@ -9,7 +10,10 @@ const Navbar = () => {
         </h1>
       </div>
       <div className={classes.search}>
-        <input type="text" />
+        <div className={classes["navbar-search"]}>
+          <Search />
+          <input type="text" />
+        </div>
       </div>
       <div className={classes["navbar-features"]}>
         <button>A</button>

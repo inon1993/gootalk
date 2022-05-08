@@ -12,12 +12,6 @@
   "author": "Inon Avramashvili",
   "license": "ISC",
   "dependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "@material-ui/core": "^4.12.4",
-    "@material-ui/icons": "^4.11.3",
-    "@mui/icons-material": "^5.6.2",
-    "@mui/material": "^5.6.4",
     "bcrypt": "^5.0.1",
     "concurrently": "^7.1.0",
     "dotenv": "^16.0.0",
@@ -25,5 +19,8 @@
     "helmet": "^5.0.2",
     "mongoose": "^6.3.1",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
   }
 }

@@ -4,17 +4,18 @@
   align-items: center;
   border-bottom: 1px solid hsl(206.7, 33.3%, 94.7%);
   position: sticky;
+  height: 60px;
 }
 
 .logo {
   flex: 4;
-  margin-left: 1rem;
 }
 
 .navbar-logo {
   font-family: "Poppins", sans-serif;
   color: hsl(208.7, 100%, 53.7%);
   font-weight: 900;
+  margin-left: 1rem;
 }
 
 .logo-span {
@@ -24,8 +25,21 @@
 
 .search {
   flex: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-search {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border : 1px solid hsl(206.7, 33.3%, 94.7%);
+  border-radius: 10px;
 }
 
 .navbar-features {
   flex: 4;
 }
+
+/* hsl(206.7, 33.3%, 94.7% */
