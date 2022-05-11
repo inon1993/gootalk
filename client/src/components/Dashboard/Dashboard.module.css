@@ -1,0 +1,28 @@
+.dashboard {
+    display: flex;
+}
+
+.left-menu {
+    flex: 3.5;
+    /* background-color: aqua; */
+    background-attachment: fixed;
+    height: calc(100vh - 61px);
+    overflow-y: scroll;
+}
+
+.feed {
+    flex: 5;
+    background-color: hsl(210,71.4%,97.3%);
+    background-attachment: fixed;
+}
+
+.right-menu {
+    flex: 3.5;
+    background-color: hsl(210,71.4%,97.3%);
+    background-attachment: fixed;
+}
+
+.th1 {
+    font-size: 150px;
+}
+

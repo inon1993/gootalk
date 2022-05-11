@@ -1,0 +1,32 @@
+.menu-wrapper {
+    color: hsl(220.3, 62.5%, 22%);
+    /* padding: 20px; */
+}
+
+.menu-list {
+    margin: 0;
+    padding: 20px 0 0;
+    list-style: none;
+}
+
+.menu-item {
+    padding: 15px 50px;
+    display: flex;
+    align-items: center;
+}
+
+.menu-item:hover {
+    padding-left: 47px;
+    border-left: 3px solid hsl(208.7, 100%, 53.7%);
+    color: hsl(208.7, 100%, 53.7%);
+    cursor: pointer;
+}
+
+.menu-list-icon {
+    font-size: 2rem;
+    margin-right: 15px;
+}
+
+.menu-text {
+    font-weight: 500;
+}
