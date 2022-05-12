@@ -1,6 +1,5 @@
 .menu-wrapper {
-    color: hsl(220.3, 62.5%, 22%);
-    /* padding: 20px; */
+    color: hsl(207.2, 32.5%, 68%);
 }
 
 .menu-list {
@@ -19,6 +18,15 @@
     padding-left: 47px;
     border-left: 3px solid hsl(208.7, 100%, 53.7%);
     color: hsl(208.7, 100%, 53.7%);
+    cursor: pointer;
+}
+
+.menu-item-active {
+    display: flex;
+    align-items: center;
+    padding: 15px 47px;
+    border-left: 3px solid hsl(208.7, 100%, 53.7%);
+    color: hsl(220.3, 62.5%, 22%);
     cursor: pointer;
 }
 

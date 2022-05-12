@@ -3,28 +3,27 @@ import classes from "./Navbar.module.css";
 import { HomeRounded, MessageRounded } from "@mui/icons-material";
 import Search from "./Search/Search";
 import Profile from "./Profile/Profile";
+import { useSelector, useDispatch } from "react-redux";
+import { navbarActions } from "../../store/navbar-slice";
+import { menuActions } from "../../store/menu-slice";
 
 const Navbar = () => {
-  const [isActiveHome, setIsActiveHome] = useState(false);
-  const [isActiveNotification, setIsActiveNotification] = useState(false);
-  const [isActiveProfile, setIsActiveProfile] = useState(false);
+  const isActivated = useSelector(state => state.navbar.activate);
+  const dispatch = useDispatch();
 
   const activateHomeHandler = () => {
-    setIsActiveHome(true);
-    setIsActiveNotification(false);
-    setIsActiveProfile(false);
+    dispatch(navbarActions.activateHome());
+    dispatch(menuActions.deactivate())
   };
 
   const activateNotificationHandler = () => {
-    setIsActiveHome(false);
-    setIsActiveNotification(true);
-    setIsActiveProfile(false);
+    dispatch(navbarActions.activateNotification());
+    dispatch(menuActions.deactivate())
   };
 
   const activateProfileHandler = () => {
-    setIsActiveHome(false);
-    setIsActiveNotification(false);
-    setIsActiveProfile(true);
+    dispatch(navbarActions.activateProfile());
+    dispatch(menuActions.deactivate())
   };
 
   return (
@@ -41,7 +40,7 @@ const Navbar = () => {
         <HomeRounded
           onClick={activateHomeHandler}
           className={
-            isActiveHome
+            isActivated.home
               ? classes["navbar-features-icon-focus"]
               : classes["navbar-features-icon"]
           }
@@ -49,12 +48,12 @@ const Navbar = () => {
         <MessageRounded
           onClick={activateNotificationHandler}
           className={
-            isActiveNotification
+            isActivated.notifications
               ? classes["navbar-features-icon-focus"]
               : classes["navbar-features-icon"]
           }
         />
-        <Profile onClick={activateProfileHandler} activate={isActiveProfile} />
+        <Profile onClick={activateProfileHandler} activate={isActivated} />
       </div>
     </div>
   );

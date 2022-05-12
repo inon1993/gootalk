@@ -8,7 +8,7 @@ const Profile = ({ activate, onClick }) => {
   return (
     <button
       className={
-        activate ? classes["navbar-profile-focus"] : classes["navbar-profile"]
+        activate.profile ? classes["navbar-profile-focus"] : classes["navbar-profile"]
       }
       onClick={clickHandler}
     >
