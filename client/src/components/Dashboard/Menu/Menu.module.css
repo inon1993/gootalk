@@ -1,4 +1,6 @@
 .menu-wrapper {
+    font-family: "Poppins", sans-serif;
+
     color: hsl(207.2, 32.5%, 68%);
 }
 
@@ -12,6 +14,7 @@
     padding: 15px 50px;
     display: flex;
     align-items: center;
+    font-weight: 400;
 }
 
 .menu-item:hover {
@@ -28,6 +31,7 @@
     border-left: 3px solid hsl(208.7, 100%, 53.7%);
     color: hsl(220.3, 62.5%, 22%);
     cursor: pointer;
+    font-weight: 600;
 }
 
 .menu-list-icon {
@@ -36,5 +40,6 @@
 }
 
 .menu-text {
-    font-weight: 500;
+    font-family: "Poppins", sans serif;
+    
 }

@@ -3,28 +3,39 @@ import classes from "./Navbar.module.css";
 import { HomeRounded, MessageRounded } from "@mui/icons-material";
 import Search from "./Search/Search";
 import Profile from "./Profile/Profile";
+import DropdownMenu from "./Profile/DropdownMenu/DropdownMenu";
 import { useSelector, useDispatch } from "react-redux";
 import { navbarActions } from "../../store/navbar-slice";
 import { menuActions } from "../../store/menu-slice";
+import DropdownBackground from "./Profile/DropdownMenu/DropdownBackground";
 
 const Navbar = () => {
+const [isDropdown, setIsDropdown] = useState(false);
+
   const isActivated = useSelector(state => state.navbar.activate);
   const dispatch = useDispatch();
 
   const activateHomeHandler = () => {
     dispatch(navbarActions.activateHome());
     dispatch(menuActions.deactivate())
+    setIsDropdown(false);
   };
 
   const activateNotificationHandler = () => {
     dispatch(navbarActions.activateNotification());
-    dispatch(menuActions.deactivate())
+    dispatch(menuActions.deactivate());
+    setIsDropdown(false);
   };
 
   const activateProfileHandler = () => {
     dispatch(navbarActions.activateProfile());
-    dispatch(menuActions.deactivate())
+    setIsDropdown(!isDropdown);
+    // dispatch(menuActions.deactivate())
   };
+
+  const disabaleDropdownHandler = () => {
+    setIsDropdown(false)
+  }
 
   return (
     <div className={classes.navbar}>
@@ -54,6 +65,11 @@ const Navbar = () => {
           }
         />
         <Profile onClick={activateProfileHandler} activate={isActivated} />
+        {isDropdown && <div className={classes["dropdown-menu"]}>
+          <DropdownBackground onClose={disabaleDropdownHandler} >
+          <DropdownMenu />
+          </DropdownBackground>
+        </div>}
       </div>
     </div>
   );

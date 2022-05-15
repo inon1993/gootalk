@@ -59,4 +59,11 @@
   color: hsl(220.3, 62.5%, 22%);
 }
 
+.dropdown-menu {
+  position: absolute;
+  top: 61px;
+  right: 10px;
+  min-width: 250px;
+}
+
 /* hsl(206.7, 33.3%, 94.7% */
