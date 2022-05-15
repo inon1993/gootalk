@@ -10,14 +10,14 @@ import { menuActions } from "../../store/menu-slice";
 import DropdownBackground from "./Profile/DropdownMenu/DropdownBackground";
 
 const Navbar = () => {
-const [isDropdown, setIsDropdown] = useState(false);
+  const [isDropdown, setIsDropdown] = useState(false);
 
-  const isActivated = useSelector(state => state.navbar.activate);
+  const isActivated = useSelector((state) => state.navbar.activate);
   const dispatch = useDispatch();
 
   const activateHomeHandler = () => {
     dispatch(navbarActions.activateHome());
-    dispatch(menuActions.deactivate())
+    dispatch(menuActions.deactivate());
     setIsDropdown(false);
   };
 
@@ -34,8 +34,9 @@ const [isDropdown, setIsDropdown] = useState(false);
   };
 
   const disabaleDropdownHandler = () => {
-    setIsDropdown(false)
-  }
+    setIsDropdown(false);
+    dispatch(navbarActions.activateProfile());
+  };
 
   return (
     <div className={classes.navbar}>
@@ -65,11 +66,13 @@ const [isDropdown, setIsDropdown] = useState(false);
           }
         />
         <Profile onClick={activateProfileHandler} activate={isActivated} />
-        {isDropdown && <div className={classes["dropdown-menu"]}>
-          <DropdownBackground onClose={disabaleDropdownHandler} >
-          <DropdownMenu />
-          </DropdownBackground>
-        </div>}
+        {isDropdown && (
+          <div className={classes["dropdown-menu"]}>
+            <DropdownBackground onClose={disabaleDropdownHandler}>
+              <DropdownMenu />
+            </DropdownBackground>
+          </div>
+        )}
       </div>
     </div>
   );

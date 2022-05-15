@@ -18,19 +18,19 @@ const navbarSlice = createSlice({
       state.activate.profile = false;
     },
     activateNotification(state) {
-        state.activate.home = false;
-        state.activate.notifications = true;
-        state.activate.profile = false;
+      state.activate.home = false;
+      state.activate.notifications = true;
+      state.activate.profile = false;
     },
     activateProfile(state) {
-        state.activate.home = false;
-        state.activate.notifications = false;
-        state.activate.profile = true;
+      state.activate.home = state.activate.home;
+      state.activate.notifications = state.activate.notifications;
+      state.activate.profile = !state.activate.profile;
     },
     deactivate(state) {
-        state.activate.home = false;
-        state.activate.notifications = false;
-        state.activate.profile = false;
+      state.activate.home = false;
+      state.activate.notifications = false;
+      state.activate.profile = false;
     },
   },
 });

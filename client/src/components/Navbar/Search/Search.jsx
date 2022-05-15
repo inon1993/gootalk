@@ -5,7 +5,11 @@ const Search = () => {
   return (
     <div className={classes["navbar-search"]}>
       <SearchRounded className={classes["search-icon"]} />
-      <input className={classes["search-input"]} type="text" />
+      <input
+        className={classes["search-input"]}
+        type="text"
+        placeholder="Search for friends..."
+      />
     </div>
   );
 };

@@ -4,9 +4,70 @@
   background-color: white;
   padding: 15px;
   border-radius: 15px;
+  color: hsl(220.3, 62.5%, 22%);
 }
 
 .new-post-upper {
   display: flex;
   align-items: center;
+}
+
+.new-post-profile-logo {
+  padding-right: 10px;
+  font-size: 2.5rem;
+}
+
+.new-post-input {
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  width: 100%;
+  font-family: "Poopins", sans-serif;
+}
+
+.new-post-br {
+  border: none;
+  border-bottom: 1px solid hsl(206.7, 33.3%, 94.7%);
+  margin: 10px 0;
+}
+
+.new-post-features {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.new-post-add-img {
+  display: flex;
+  align-items: center;
+}
+
+.new-post-add-img:hover {
+  cursor: pointer;
+}
+
+.new-post-add-img-icon {
+  margin-right: 5px;
+  color: tomato;
+}
+
+.new-post-add-img-text {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+}
+
+.share-post {
+  font-family: "Poppins", sans-serif;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  background-color: hsl(206.7, 33.3%, 94.7%);
+  color: hsl(220.3, 62.5%, 22%);
+  transition: 250ms;
+}
+
+.share-post:hover {
+  background-color: hsl(208.7, 100%, 53.7%);
+  color: white;
+  cursor: pointer;
 }

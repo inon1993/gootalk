@@ -8,15 +8,18 @@ const NewPost = () => {
         <AccountCircleRounded className={classes["new-post-profile-logo"]} />
         <input
           className={classes["new-post-input"]}
-          placeholder="What's on your mind Inon?"
+          placeholder="What's on your mind, Inon?"
         />
       </div>
-
-      <br className={classes["new-post-br"]} />
+      <hr className={classes["new-post-br"]} />
       <div className={classes["new-post-features"]}>
-        <ImageRounded className={classes["new-post-add-img"]} />
+        <div className={classes["new-post-add-img"]}>
+          <ImageRounded className={classes["new-post-add-img-icon"]} />
+          <span className={classes["new-post-add-img-text"]}>Add a Photo</span>
+        </div>
+
+        <button className={classes["share-post"]}>Share</button>
       </div>
-      <button className={classes["share-post"]}>Share</button>
     </div>
   );
 };

@@ -6,15 +6,17 @@ const Profile = ({ activate, onClick }) => {
     onClick();
   };
   return (
-    <button
+    <div
       className={
-        activate.profile ? classes["navbar-profile-focus"] : classes["navbar-profile"]
+        activate.profile
+          ? classes["navbar-profile-focus"]
+          : classes["navbar-profile"]
       }
       onClick={clickHandler}
     >
       <AccountCircleRounded className={classes["navbar-profile-icon"]} />
       <span className={classes["navbar-profile-name"]}>Inon Avramashvili</span>
-    </button>
+    </div>
   );
 };
 
