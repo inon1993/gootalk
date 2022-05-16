@@ -7,34 +7,38 @@ import DropdownMenu from "./Profile/DropdownMenu/DropdownMenu";
 import { useSelector, useDispatch } from "react-redux";
 import { navbarActions } from "../../store/navbar-slice";
 import { menuActions } from "../../store/menu-slice";
+import { dropdownActions } from "../../store/dropdown-slice";
 import DropdownBackground from "./Profile/DropdownMenu/DropdownBackground";
 
 const Navbar = () => {
-  const [isDropdown, setIsDropdown] = useState(false);
-
   const isActivated = useSelector((state) => state.navbar.activate);
+  const isActivatedDropdown = useSelector((state) => state.dropdown.activate);
   const dispatch = useDispatch();
 
   const activateHomeHandler = () => {
     dispatch(navbarActions.activateHome());
     dispatch(menuActions.deactivate());
-    setIsDropdown(false);
+    dispatch(dropdownActions.deactivate());
+    // setIsDropdown(false);
   };
 
   const activateNotificationHandler = () => {
     dispatch(navbarActions.activateNotification());
+    dispatch(dropdownActions.deactivate());
     dispatch(menuActions.deactivate());
-    setIsDropdown(false);
+    // setIsDropdown(false);
   };
 
   const activateProfileHandler = () => {
+    dispatch(dropdownActions.activate());
     dispatch(navbarActions.activateProfile());
-    setIsDropdown(!isDropdown);
+    // setIsDropdown(!isDropdown);
     // dispatch(menuActions.deactivate())
   };
 
   const disabaleDropdownHandler = () => {
-    setIsDropdown(false);
+    // setIsDropdown(false);
+    dispatch(dropdownActions.deactivate());
     dispatch(navbarActions.activateProfile());
   };
 
@@ -66,7 +70,7 @@ const Navbar = () => {
           }
         />
         <Profile onClick={activateProfileHandler} activate={isActivated} />
-        {isDropdown && (
+        {isActivatedDropdown && (
           <div className={classes["dropdown-menu"]}>
             <DropdownBackground onClose={disabaleDropdownHandler}>
               <DropdownMenu />

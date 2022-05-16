@@ -1,45 +1,42 @@
 .menu-wrapper {
-    font-family: "Poppins", sans-serif;
-
-    color: hsl(207.2, 32.5%, 68%);
+  color: hsl(207.2, 32.5%, 68%);
 }
 
 .menu-list {
-    margin: 0;
-    padding: 20px 0 0;
-    list-style: none;
+  margin: 0;
+  padding: 20px 0 0;
+  list-style: none;
 }
 
 .menu-item {
-    padding: 15px 50px;
-    display: flex;
-    align-items: center;
-    font-weight: 400;
+  padding: 15px 50px;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
 }
 
 .menu-item:hover {
-    padding-left: 47px;
-    border-left: 3px solid hsl(208.7, 100%, 53.7%);
-    color: hsl(208.7, 100%, 53.7%);
-    cursor: pointer;
+  padding-left: 47px;
+  border-left: 3px solid hsl(208.7, 100%, 53.7%);
+  color: hsl(208.7, 100%, 53.7%);
+  cursor: pointer;
 }
 
 .menu-item-active {
-    display: flex;
-    align-items: center;
-    padding: 15px 47px;
-    border-left: 3px solid hsl(208.7, 100%, 53.7%);
-    color: hsl(220.3, 62.5%, 22%);
-    cursor: pointer;
-    font-weight: 600;
+  display: flex;
+  align-items: center;
+  padding: 15px 47px;
+  border-left: 3px solid hsl(208.7, 100%, 53.7%);
+  color: hsl(220.3, 62.5%, 22%);
+  cursor: pointer;
+  font-weight: 600;
 }
 
 .menu-list-icon {
-    font-size: 2rem;
-    margin-right: 15px;
+  font-size: 1.6rem !important;
+  margin-right: 15px;
 }
 
 .menu-text {
-    font-family: "Poppins", sans serif;
-    
+  font-family: "Poppins", sans serif;
 }
