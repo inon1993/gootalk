@@ -17,7 +17,7 @@
 .navbar-profile:hover {
   padding-top: 3px;
   /* padding-bottom: -3px; */
-  height: 54.5px;
+  height: 55.5px;
   border-bottom: 3px solid hsl(208.7, 100%, 53.7%);
   cursor: pointer;
 }
@@ -29,7 +29,7 @@
   padding: 0 18.2px;
   border: none;
   border-left: 1px solid hsl(206.7, 33.3%, 94.7%);
-  height: 54.5px;
+  height: 55.5px;
   background-color: white;
   outline: none;
   padding-top: 3px;

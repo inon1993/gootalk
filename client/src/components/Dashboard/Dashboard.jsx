@@ -3,6 +3,7 @@ import Menu from "./Menu/Menu";
 import Feed from "./Feed/Feed";
 import { useDispatch } from "react-redux";
 import { dropdownActions } from "../../store/dropdown-slice";
+import RightMenu from "./RightMenu/RightMenu";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,9 @@ const Dashboard = () => {
       <div className={classes["feed"]}>
         <Feed />
       </div>
-      <div className={classes["right-menu"]}>left menu</div>
+      <div className={classes["right-menu"]}>
+        <RightMenu />
+      </div>
     </div>
   );
 };

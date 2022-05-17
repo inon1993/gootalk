@@ -1,0 +1,58 @@
+.rm-notification {
+  background-color: white;
+  /* padding: 15px; */
+  border-radius: 15px;
+  margin: 15px 0;
+  width: 95%;
+}
+
+.rm-noti-text {
+  font-size: 1rem;
+  padding: 15px;
+}
+
+.rm-noti-name {
+  font-weight: 600;
+}
+
+.rm-noti-generic-text {
+  font-weight: 400;
+}
+
+.rm-noti-buttons {
+  padding: 0 15px 15px 15px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.rm-noti-accept {
+  padding: 0.5rem 1.3rem;
+  border: none;
+  border-radius: 10px;
+  background-color: hsl(206.7, 33.3%, 94.7%);
+  color: hsl(120, 39.3%, 54.1%);
+  font-weight: 500;
+  transition: 150ms;
+}
+
+.rm-noti-accept:hover {
+  background-color: hsl(120, 39.3%, 54.1%);
+  color: white;
+  cursor: pointer;
+}
+
+.rm-noti-reject {
+  padding: 0.5rem 1.3rem;
+  border: none;
+  border-radius: 10px;
+  background-color: hsl(206.7, 33.3%, 94.7%);
+  color: hsl(1.7, 64.5%, 58%);
+  font-weight: 500;
+  transition: 150ms;
+}
+
+.rm-noti-reject:hover {
+  background-color: hsl(1.7, 64.5%, 58%);
+  color: white;
+  cursor: pointer;
+}
