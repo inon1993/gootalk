@@ -1,0 +1,16 @@
+.rm-friend {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    color: 
+}
+
+.rm-friend-img {
+    font-size: 2rem !important;
+    margin-right: 10px;
+}
+
+.rm-friend:hover {
+    border-right: 3px solid hsl(208.7, 100%, 53.7%);
+    cursor: pointer;
+}
