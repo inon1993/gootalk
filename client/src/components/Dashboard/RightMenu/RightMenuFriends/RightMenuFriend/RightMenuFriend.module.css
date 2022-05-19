@@ -1,8 +1,19 @@
 .rm-friend {
+    direction: ltr;
     display: flex;
     align-items: center;
     padding: 15px 0;
-    color: 
+    color: hsl(220.3, 62.5%, 22%);
+    transition: 150ms;
+    padding-left: 10px;
+    margin-left: 3px;
+}
+
+.rm-friend:hover {
+    background-color: white;
+    border-radius: 15px;
+    color: hsl(208.7, 100%, 53.7%);
+    cursor: pointer;
 }
 
 .rm-friend-img {
@@ -10,7 +21,6 @@
     margin-right: 10px;
 }
 
-.rm-friend:hover {
-    border-right: 3px solid hsl(208.7, 100%, 53.7%);
-    cursor: pointer;
+.rm-friend-text {
+    font-size: 0.9rem;
 }

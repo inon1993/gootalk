@@ -1,10 +1,6 @@
 .new-post {
   display: flex;
   flex-direction: column;
-  background-color: white;
-  padding: 15px;
-  border-radius: 15px;
-  color: hsl(220.3, 62.5%, 22%);
   width: 70%;
   margin: 15px 0;
 }

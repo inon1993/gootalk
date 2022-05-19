@@ -1,4 +1,20 @@
 .right-menu-friends {
-    /* margin-top: 15px; */
+    display: flex;
+    flex-direction: column;
     overflow-y: scroll;
+    direction: rtl;
+    max-height: calc(100vh - 61px);
+    margin-top: 15px;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: hsl(210, 71.4%, 97.3%);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: hsl(207.2, 32.5%, 68%);
 }

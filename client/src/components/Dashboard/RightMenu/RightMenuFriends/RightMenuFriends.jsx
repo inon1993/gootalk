@@ -10,6 +10,18 @@ const RightMenuFriends = () => {
             <RightMenuFriend />
             <RightMenuFriend />
             <RightMenuFriend />
+            <RightMenuFriend />
+            <RightMenuFriend />
+            <RightMenuFriend />
+            <RightMenuFriend />
+            <RightMenuFriend />
+            <RightMenuFriend />
+            <RightMenuFriend />
+            <RightMenuFriend />
+            <RightMenuFriend />
+            <RightMenuFriend />
+            <RightMenuFriend />
+            <RightMenuFriend />
         </div>
     )
 }

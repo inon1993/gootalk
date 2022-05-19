@@ -1,7 +1,5 @@
 .rm-notification {
-  background-color: white;
-  /* padding: 15px; */
-  border-radius: 15px;
+  padding: 0 !important;
   margin: 15px 0;
   width: 95%;
 }

@@ -1,9 +1,10 @@
 import classes from "./NewPost.module.css";
 import { AccountCircleRounded, ImageRounded } from "@mui/icons-material";
+import Card from "../../../UI/Card/Card"
 
 const NewPost = () => {
   return (
-    <div className={classes["new-post"]}>
+    <Card className={classes["new-post"]}>
       <div className={classes["new-post-upper"]}>
         <AccountCircleRounded className={classes["new-post-profile-logo"]} />
         <input
@@ -20,7 +21,7 @@ const NewPost = () => {
 
         <button className={classes["share-post"]}>Share</button>
       </div>
-    </div>
+    </Card>
   );
 };
 

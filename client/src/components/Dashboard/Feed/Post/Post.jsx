@@ -1,9 +1,10 @@
 import { AccountCircleRounded, ThumbUp } from "@mui/icons-material";
 import classes from "./Post.module.css";
+import Card from "../../../UI/Card/Card"
 
 const Post = () => {
   return (
-    <div className={classes.post}>
+    <Card className={classes.post}>
       <div className={classes["post-upper"]}>
         <AccountCircleRounded className={classes["post-profile-img"]} />
         <span className={classes["post-name"]}>Racheli Avramashvili</span>
@@ -19,7 +20,7 @@ const Post = () => {
         <ThumbUp className={classes["post-like-icon"]} />
         <span className={classes["post-like-text"]}>23 people like it</span>
       </div>
-    </div>
+    </Card>
   );
 };
 
