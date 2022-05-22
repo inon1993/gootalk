@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialNavbarState = {
   activate: {
-    home: true,
+    home: false,
     notifications: false,
     profile: false,
   },

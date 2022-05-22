@@ -1,11 +1,11 @@
 import Navbar from "../../components/Navbar/Navbar";
-import Dashboard from "../../components/Dashboard/Dashboard"
+import DashboardHome from "../../components/Dashboard/DashboardHome/DashboardHome";
 
 const Home = () => {
   return (
     <div>
       <Navbar />
-      <Dashboard />
+      <DashboardHome />
     </div>
   );
 };

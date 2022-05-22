@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialMenuState = {
   activate: {
-    home: true,
+    home: false,
     profile: false,
     friends: false,
     settings: false,
