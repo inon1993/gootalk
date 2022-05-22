@@ -17,7 +17,7 @@ const Navbar = () => {
 
   const activateHomeHandler = () => {
     dispatch(navbarActions.activateHome());
-    dispatch(menuActions.deactivate());
+    dispatch(menuActions.activateHome());
     dispatch(dropdownActions.deactivate());
     // setIsDropdown(false);
   };

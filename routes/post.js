@@ -73,6 +73,17 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+//--GET ALL USER POST--//
+router.get("/posts/all", async (req, res) => {
+  try {
+    const user = await User.findById(req.body.userId);
+    const userPosts = await Post.find({ userId: user._id });
+    return res.status(200).json(userPosts);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 //--GET POSTS TIMELINE--//
 router.get("/timeline/all", async (req, res) => {
   try {

@@ -1,46 +1,74 @@
 .profile-data {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .profile-images {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 350px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 370px;
 }
 
 .profile-cover {
-    height: 250px;
-    object-fit: cover;
+  height: 250px;
+  object-fit: cover;
 }
 
 .profile-img-text {
-    position: absolute;
-    top: 200px;
-    left: 50px;
-    right: 0;
-    display: flex;
-    align-items: center;
+  position: absolute;
+  top: 200px;
+  left: 50px;
+  right: 0;
+  display: flex;
+  align-items: center;
 }
 
 .profile-pic {
-    height: 150px;
-    width: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 5px solid hsl(210, 71.4%, 97.3%);
-    margin-right: 10px;
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid hsl(210, 71.4%, 97.3%);
+  margin-right: 10px;
 }
 
 .profile-name {
-    font-size: 1.4rem;
-    font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: 700;
 }
 
-.profile-info {
-    display: flex;
-    flex-wrap: wrap;
+.stats {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center;
+  justify-content: center; */
 }
 
+.stats-buttons {
+  display: flex;
+  justify-content: center;
+  /* margin-bottom: 15px; */
+}
+
+.stats-buttons:first-child {
+  margin-bottom: 10px;
+}
+
+.show-stats-button {
+  width: 25%;
+  padding: 0.5rem 1.3rem;
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  color: hsl(220.3, 62.5%, 22%);
+  font-weight: 500;
+  transition: 150ms;
+}
+
+.show-stats-button:hover {
+  background-color: hsl(220.3, 62.5%, 22%);
+  color: white;
+  cursor: pointer;
+}
