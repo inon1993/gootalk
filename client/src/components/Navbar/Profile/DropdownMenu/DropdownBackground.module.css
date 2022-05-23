@@ -7,3 +7,10 @@
   background-color: transparent;
   /* z-index: 20; */
 }
+
+@media only screen and (max-width: 750px) {
+  .backdground {
+    z-index: 80;
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+}

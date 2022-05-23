@@ -21,6 +21,12 @@
   align-items: center;
 }
 
+@media only screen and (max-width: 750px) {
+  .left-menu {
+    display: none;
+  }
+}
+
 /* .right-menu {
     flex: 2.5;
     background-color: hsl(210, 71.4%, 97.3%);
