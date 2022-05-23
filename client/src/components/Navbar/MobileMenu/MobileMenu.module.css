@@ -15,10 +15,20 @@
   padding: 0;
 }
 
-.mm-search {
+.mm-li {
   display: flex;
   justify-content: center;
-  /* width: 100%; */
+  align-items: center;
+  padding: 10px 0;
+}
+
+.mm-f-icon {
+  font-size: 1.5rem !important;
+  margin-right: 10px;
+}
+
+.mm-f-text {
+  font-size: 1rem;
 }
 
 @media only screen and (max-width: 750px) {

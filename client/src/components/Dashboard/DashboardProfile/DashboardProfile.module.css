@@ -21,8 +21,14 @@
   align-items: center;
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 800px) {
   .left-menu {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .right-menu {
     display: none;
   }
 }

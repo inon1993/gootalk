@@ -33,6 +33,8 @@ const Navbar = () => {
     dispatch(navbarActions.activateNotification());
     dispatch(dropdownActions.deactivate());
     dispatch(menuActions.deactivate());
+    setIsMobileMenu(false);
+
   };
 
   const activateProfileHandler = () => {
@@ -47,10 +49,10 @@ const Navbar = () => {
 
   const activateSearchHandler = () => {
     dispatch(navbarActions.activateSearch());
+    setIsMobileMenu(false);
   };
 
   const mobileMenuHandler = () => {
-    dispatch(navbarActions.deactivate());
     setIsMobileMenu(!isMobileMenu);
   };
 

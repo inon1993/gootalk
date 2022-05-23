@@ -40,3 +40,17 @@
 .menu-text {
   font-family: "Poppins", sans serif;
 }
+
+@media only screen and (max-width: 1050px) {
+  .menu-item {
+    padding: 15px 20px;
+  }
+
+  .menu-item:hover {
+    padding: 15px 17px;
+  }
+
+  .menu-item-active {
+    padding: 15px 17px;
+  }
+}

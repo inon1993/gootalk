@@ -54,3 +54,15 @@
   color: white;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 1050px) {
+  .rm-noti-accept, .rm-noti-reject {
+    padding: 0.5rem 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .rm-noti-accept, .rm-noti-reject {
+    padding: 0.5rem 0.5rem;
+  }
+}

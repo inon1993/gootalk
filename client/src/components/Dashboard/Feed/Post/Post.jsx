@@ -14,7 +14,7 @@ const Post = () => {
         <p className={classes["post-body-text"]}>
           Hi, It's my very firsy post!
         </p>
-        <img className={classes["post-img"]} src="#" alt="post img" />
+        <img className={classes["post-img"]} src="https://upload.wikimedia.org/wikipedia/commons/4/41/Arkansas_Black_apples_%28cropped%29.jpg" alt="post img" />
       </div>
       <div className={classes["post-like"]}>
         <ThumbUp className={classes["post-like-icon"]} />

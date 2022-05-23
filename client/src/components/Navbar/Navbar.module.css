@@ -90,7 +90,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 18.2px 0 18.2px 18.2px;
+  padding: 18.2px 0 18.2px 8px;
 }
 
 .mm-icon {
@@ -129,8 +129,13 @@
     padding: 18.2px 8px;
   }
 
+  .navbar-features-icon:hover {
+    border-bottom: none;
+  }
+
   .navbar-features-icon-focus {
-    padding: 18.2px 8px 15.2px;
+    padding: 18.2px 8px 18.2px;
+    border-bottom: none;
     /* padding-bottom: 15.2px; */
   }
 }

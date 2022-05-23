@@ -20,7 +20,7 @@
   outline: none;
   font-size: 1.2rem;
   width: 100%;
-  font-family: "Poopins", sans-serif;
+  /* font-family: "Poopins", sans-serif; */
 }
 
 .new-post-br {
@@ -68,4 +68,11 @@
   background-color: hsl(208.7, 100%, 53.7%);
   color: white;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 650px) {
+  .new-post-input {font-size: 0.9rem;}
+  .new-post-add-img-text {
+    font-size: 0.8rem;
+  }
 }
