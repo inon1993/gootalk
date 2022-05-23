@@ -1,6 +1,12 @@
 import { useState } from "react";
 import classes from "./Navbar.module.css";
-import { Close, HomeRounded, MenuRounded, MessageRounded } from "@mui/icons-material";
+import {
+  Close,
+  HomeRounded,
+  MenuRounded,
+  MessageRounded,
+  SearchRounded,
+} from "@mui/icons-material";
 import Search from "./Search/Search";
 import Profile from "./Profile/Profile";
 import DropdownMenu from "./Profile/DropdownMenu/DropdownMenu";
@@ -9,6 +15,7 @@ import { navbarActions } from "../../store/navbar-slice";
 import { menuActions } from "../../store/menu-slice";
 import { dropdownActions } from "../../store/dropdown-slice";
 import DropdownBackground from "./Profile/DropdownMenu/DropdownBackground";
+import MobileMenu from "./MobileMenu/MobileMenu";
 
 const Navbar = () => {
   const isActivated = useSelector((state) => state.navbar.activate);
@@ -38,13 +45,22 @@ const Navbar = () => {
     dispatch(navbarActions.activateProfile());
   };
 
+  const activateSearchHandler = () => {
+    dispatch(navbarActions.activateSearch());
+  };
+
   const mobileMenuHandler = () => {
+    dispatch(navbarActions.deactivate());
     setIsMobileMenu(!isMobileMenu);
   };
 
   return (
     <>
-      <div className={classes.navbar}>
+      <div
+        className={`${
+          !isMobileMenu ? classes.navbar : classes["navbar-mobile-menu"]
+        }`}
+      >
         <div className={classes.logo}>
           <h1 className={classes["navbar-logo"]}>
             Goo<span className={classes["logo-span"]}>talk</span>
@@ -79,20 +95,34 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        <div className={classes["mobile-menu"]} onClick={mobileMenuHandler}>
-          {!isMobileMenu && <MenuRounded className={classes["mm-icon"]} />}
-          {isMobileMenu && <Close className={classes["mm-icon"]} />}
+        <div className={classes["mobile-menu"]}>
+          <MessageRounded
+            onClick={activateNotificationHandler}
+            className={
+              isActivated.notifications
+                ? classes["navbar-features-icon-focus"]
+                : classes["navbar-features-icon"]
+            }
+          />
+          <SearchRounded
+            onClick={activateSearchHandler}
+            className={
+              isActivated.search
+                ? classes["navbar-features-icon-focus"]
+                : classes["navbar-features-icon"]
+            }
+          />
+          <div className={classes["mm-button"]} onClick={mobileMenuHandler}>
+            {!isMobileMenu && <MenuRounded className={classes["mm-icon"]} />}
+            {isMobileMenu && <Close className={classes["mm-icon"]} />}
+          </div>
         </div>
       </div>
-      {isMobileMenu && <DropdownBackground onClose={mobileMenuHandler}>
-        <div className={classes["mm-features"]}>
-          <ul className={classes["mm-ul"]}>
-            <li className={classes["mm-search"]}>
-              <Search />
-            </li>
-          </ul>
-        </div>
-      </DropdownBackground>}
+      {isMobileMenu && (
+        <DropdownBackground onClose={mobileMenuHandler}>
+          <MobileMenu />
+        </DropdownBackground>
+      )}
     </>
   );
 };
