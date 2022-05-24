@@ -12,5 +12,27 @@
   .backdground {
     z-index: 80;
     background-color: rgba(0, 0, 0, 0.75);
+    animation: slide-down 200ms ease-out forwards;
+    /* animation: hideMe 2s forwards; */
   }
 }
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(0rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* @keyframes hideMe{
+  0%{
+      opacity: 1;
+  }
+  100%{
+      opacity: 0;
+  }
+} */

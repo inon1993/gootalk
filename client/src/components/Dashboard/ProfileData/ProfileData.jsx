@@ -3,7 +3,7 @@ import classes from "./ProfileData.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const ProfileData = () => {
-  const [isStats, setIsStats] = useState(false);
+  const [isStats, setIsStats] = useState(true);
 
   const statsHandler = () => {
     setIsStats(!isStats);
@@ -23,9 +23,9 @@ const ProfileData = () => {
             src="https://expertphotography.b-cdn.net/wp-content/uploads/2020/08/social-media-profile-photos-3.jpg"
             alt="cover"
           />
-          <div>
+          <div className={classes["profile-name-city"]}>
             <h3 className={classes["profile-name"]}>Inon Avramashvili</h3>
-            <span>Lod, Israel</span>
+            <span className={classes["profile-city"]}>Lod, Israel</span>
           </div>
         </div>
       </div>

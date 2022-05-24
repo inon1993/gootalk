@@ -27,10 +27,12 @@
 }
 
 .navbar-logo {
+  display: inline;
   font-family: "Poppins", sans-serif;
   color: hsl(208.7, 100%, 53.7%);
   font-weight: 900;
   margin-left: 1rem;
+  cursor: pointer;
 }
 
 .logo-span {
@@ -106,35 +108,40 @@
     position: absolute;
     display: flex;
     right: 25px;
+    align-items: center;
   }
 
   .search {
     display: none;
   }
 
-  .logo {
+  /* .logo {
     display: flex;
     justify-content: center;
   }
 
   .navbar-logo {
     margin-left: 0;
-  }
+  } */
 
   .navbar-mobile-menu {
     border-bottom: 1px solid white;
   }
 
   .navbar-features-icon {
-    padding: 18.2px 8px;
+    font-size: 1.3rem !important;
+    padding: 0 7px;
   }
 
   .navbar-features-icon:hover {
+    padding: 0 7px;
     border-bottom: none;
   }
 
   .navbar-features-icon-focus {
-    padding: 18.2px 8px 18.2px;
+    font-size: 1.3rem !important;
+    padding: 0 7px;
+    /* padding: 18.2px 8px 18.2px; */
     border-bottom: none;
     /* padding-bottom: 15.2px; */
   }

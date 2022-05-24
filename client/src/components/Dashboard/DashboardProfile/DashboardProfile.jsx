@@ -3,7 +3,6 @@ import Menu from "../Menu/Menu";
 import ProfileData from "../ProfileData/ProfileData";
 import { useDispatch } from "react-redux";
 import { dropdownActions } from "../../../store/dropdown-slice";
-import RightMenu from "../RightMenu/RightMenu";
 import UserPosts from "../UserPosts/UserPosts";
 
 const DashboardProfile = () => {
@@ -19,7 +18,9 @@ const DashboardProfile = () => {
       </div>
       <div className={classes["profile-data"]}>
         <ProfileData />
-        <UserPosts />
+        <div className={classes["profile-user-posts"]}>
+          <UserPosts />
+        </div>
       </div>
       <div className={classes["right-menu"]}></div>
     </div>

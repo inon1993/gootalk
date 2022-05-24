@@ -68,3 +68,13 @@
     width: 90%;
   }
 }
+
+@media only screen and (max-width: 420px) {
+  .post-body-text, .post-name {
+    font-size: 0.8rem;
+  }
+
+  .post-time, .post-like-text {
+    font-size: 0.7rem;
+  }
+}

@@ -1,7 +1,7 @@
 .profile-info {
   display: flex;
   justify-content: space-around;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   margin: 10px 0;
 }
 
@@ -12,7 +12,7 @@
   background-color: white;
   padding: 20px;
   width: 28%;
-  margin: 0 3px 10px;
+  margin: 0 10px 10px;
 }
 
 .friends {
@@ -34,4 +34,14 @@
 .pi-text {
   margin-top: 15px;
   color: hsl(220.3, 62.5%, 22%);
+  text-align: center;
+}
+
+@media only screen and (max-width: 800px) {
+  .profile-info-card {
+    padding: 15px;
+  }
+  .pi-text {
+    font-size: 0.8rem;
+  }
 }

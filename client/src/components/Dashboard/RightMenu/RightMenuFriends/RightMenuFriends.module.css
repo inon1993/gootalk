@@ -3,8 +3,10 @@
     flex-direction: column;
     overflow-y: scroll;
     direction: rtl;
-    max-height: calc(100vh - 61px);
+    max-height: calc(100vh - 500px);
     margin-top: 15px;
+    border-radius: 0 0 15px 15px;
+    /* border-bottom: 1px solid black; */
 }
 
 ::-webkit-scrollbar {
@@ -17,4 +19,5 @@
 
 ::-webkit-scrollbar-thumb {
     background-color: hsl(207.2, 32.5%, 68%);
+    border-radius: 20px;
 }
