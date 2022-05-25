@@ -1,29 +1,67 @@
 .login {
-    height: 100vh;
-    width: 100vw;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: hsl(210, 71.4%, 97.3%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-box {
-    height: 50%;
-    width: 60%;
-    background-color: hsl(220.3, 62.5%, 22%);
-    display: flex;
-    padding: 0;
+  height: 70%;
+  width: 60%;
+  display: flex;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .login-welcome {
-    flex: 1;
-    padding: 20px;
-    color: white;
+  flex: 1;
+  background-color: hsl(220.3, 62.5%, 22%);
+  border-radius: 15px 0 0 15px;
+  padding: 35px;
+  color: white;
+  font-size: 4rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
 }
 
 .login-form-wrapper {
-    flex: 1;
-    padding: 20px;
-    background-color: white;
-    color: hsl(220.3, 62.5%, 22%);
+  flex: 1;
+  padding: 35px;
+  background-color: white;
+  color: hsl(220.3, 62.5%, 22%);
+  border-radius: 0 15px 15px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-top: 25px;
+}
+
+.login-form-text {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 8px 0;
+}
+
+.login-input {
+  border-radius: 10px;
+  border: none;
+  background-color: white;
+  border: 1px solid hsl(207.2, 32.5%, 68%);
+  padding: 5px 8px;
+  outline: none;
+  font-size: 1rem;
 }
