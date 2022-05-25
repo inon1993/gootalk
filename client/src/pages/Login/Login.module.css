@@ -1,0 +1,29 @@
+.login {
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-box {
+    height: 50%;
+    width: 60%;
+    background-color: hsl(220.3, 62.5%, 22%);
+    display: flex;
+    padding: 0;
+}
+
+.login-welcome {
+    flex: 1;
+    padding: 20px;
+    color: white;
+}
+
+.login-form-wrapper {
+    flex: 1;
+    padding: 20px;
+    background-color: white;
+    color: hsl(220.3, 62.5%, 22%);
+}
