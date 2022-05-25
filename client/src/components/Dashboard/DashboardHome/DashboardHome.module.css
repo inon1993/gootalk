@@ -27,13 +27,17 @@
 }
 
 @media only screen and (max-width: 800px) {
-  .left-menu {
+  .right-menu {
     display: none;
+  }
+
+  .left-menu {
+    flex: 2;
   }
 }
 
-@media only screen and (max-width: 600px) {
-  .right-menu {
+@media only screen and (max-width: 700px) {
+  .left-menu {
     display: none;
   }
 }
