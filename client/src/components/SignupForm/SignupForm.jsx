@@ -2,7 +2,10 @@ import classes from "./SignupForm.module.css";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import getLocations from "../../helpers/countries-api/getLocations";
-import {CountrySelector, CitySelector} from "./LocationSelector/LocationSelector";
+import {
+  CountrySelector,
+  CitySelector,
+} from "./LocationSelector/LocationSelector";
 
 const LoginForm = () => {
   const [isPw, setIsPw] = useState({ visable: false, type: "password" });
@@ -61,16 +64,25 @@ const LoginForm = () => {
             }}
           />
           {countryFocus && (
-            <CountrySelector country={country} countries={countries} onSetCountryObj={setCountryObj} onSetCountry={setCountry} />
+            <CountrySelector
+              country={country}
+              countries={countries}
+              onSetCountryObj={setCountryObj}
+              onSetCountry={setCountry}
+            />
           )}
         </div>
         <span className={classes["sr-form-text"]}>City</span>
         <div className={classes["sr-country-wrapper"]}>
           <input
-            className={`${classes["sr-input"]} ${classes["sr-input-country"]}`}
+            className={`${classes["sr-input"]} ${classes["sr-input-country"]} ${
+              country === "" && classes["disabled"]
+            }`}
             type="text"
             value={city}
-            onChange={(e) => {setCity(e.target.value)}}
+            onChange={(e) => {
+              setCity(e.target.value);
+            }}
             onFocus={() => {
               setCityFocus(true);
             }}
@@ -81,8 +93,12 @@ const LoginForm = () => {
             }}
             disabled={country === "" ? true : false}
           />
-          {cityFocus && countryObj &&(
-            <CitySelector city={city} country={countryObj} onSetCity={setCity} />
+          {cityFocus && countryObj && (
+            <CitySelector
+              city={city}
+              country={countryObj}
+              onSetCity={setCity}
+            />
           )}
         </div>
         <span className={classes["sr-form-text"]}>E-Mail</span>

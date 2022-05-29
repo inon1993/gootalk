@@ -5,10 +5,11 @@
   background-color: white;
   padding: 15px;
   border-radius: 15px;
-  width: 40%;
+  width: 60%;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  overflow-y: scroll;
-  max-height: 75vh;
+  /* overflow-y: scroll; */
+  /* flex-wrap: wrap; */
+  max-height: 85vh;
 }
 
 .st-title {
@@ -20,13 +21,14 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 40px;
-  width: 100%;
+  width: 85%;
+  flex-wrap: wrap;
 }
 
 .sr-form-text {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  margin: 8px 0;
+  margin: 5px 0;
 }
 
 .sr-input {
@@ -37,7 +39,7 @@
   border: none;
   background-color: hsl(212.3, 41.9%, 93.9%);
   border: 1px solid hsl(212.3, 41.9%, 93.9%);
-  padding: 8px 8px;
+  padding: 5px;
   outline: none;
   font-size: 0.9rem;
 }
@@ -51,6 +53,12 @@
 
 .sr-input-country:focus {
   border-radius: 10px 10px 0 0;
+}
+
+.disabled {
+  background-color: hsl(207.2, 32.5%, 68%);
+  border-color: hsl(207.2, 32.5%, 68%);
+  color: hsl(212.3, 41.9%, 93.9%);
 }
 
 .sr-input-password {
@@ -95,32 +103,32 @@
     hsl(208.7, 100%, 53.7%, 0.8) 0px 8px 16px -11px;
 }
 
-@media only screen and (max-width: 1250px) {
-  .lr-card {
+/* @media only screen and (max-width: 1250px) {
+  .sr-card {
     width: 50%;
   }
-}
+} */
 
-@media only screen and (max-width: 900px) {
-  .lr-card {
+/* @media only screen and (max-width: 900px) {
+  .sr-card {
     width: 60%;
   }
-}
+} */
 
-@media only screen and (max-width: 730px) {
-  .lr-card {
+@media only screen and (max-width: 850px) {
+  .sr-card {
     width: 70%;
   }
 }
 
 @media only screen and (max-width: 650px) {
-  .lr-card {
-    width: 50%;
+  .sr-card {
+    width: 80%;
   }
 }
 
 @media only screen and (max-width: 460px) {
-  .lr-card {
+  .sr-card {
     width: 80%;
   }
 }

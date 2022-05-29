@@ -1,4 +1,4 @@
-.login-wrapper {
+.signup-wrapper {
   display: flex;
   height: 100vh;
   width: 100vw;
@@ -15,7 +15,43 @@
   text-align: left;
 }
 
-.ll-text {
+.sl-add-pic {
+  position: relative;
+}
+
+.sl-add-pic:hover {
+  color: hsl(208.7, 100%, 53.7%);
+  cursor: pointer;
+  border-color: hsl(208.7, 100%, 53.7%);
+}
+
+.sl-add-pic-icon {
+  font-size: 13rem !important;
+  /* border: 10px solid white;
+  border-radius: 50%; */
+  transition: 200ms;
+}
+
+.sl-add-pic-icon:hover {
+  cursor: pointer;
+  /* color: hsl(208.7, 100%, 53.7%); */
+}
+
+.add-icon {
+  position: absolute;
+  top: 9rem;
+  right: 1rem;
+  font-size: 3.5rem !important;
+  background-color: white;
+  /* border: 5px solid hsl(220.3, 62.5%, 22%); */
+  border-radius: 50%;
+}
+
+/* .add-icon:hover {
+  border-color: hsl(208.7, 100%, 53.7%);
+} */
+
+/* .ll-text {
   font-size: 2rem;
   text-shadow: 40px -30px 70px hsl(220.3, 62.5%, 22%, 0.8),
     40px -60px 80px rgb(30, 87, 202, 0.8);
@@ -46,31 +82,41 @@
 
 .ll-talk {
   color: hsl(208.7, 100%, 53.7%);
-}
+} */
 
 .login-right {
-  flex: 1;
+  flex: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 @media only screen and (max-width: 650px) {
-  .login-wrapper {
+  .signup-wrapper {
     flex-direction: column;
   }
   .login-left {
-    flex: 1;
+    flex: 0.5;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .login-right {
-    flex: 3;
+    flex: 2.5;
     width: 100%;
     display: flex;
   }
-  .ll-text {
+
+  .sl-add-pic-icon {
+    font-size: 5.5rem !important;
+  }
+
+  .add-icon {
+    font-size: 2rem !important;
+    top: 3.5rem;
+    right: 0.3rem;
+  }
+  /* .ll-text {
     font-size: 1rem;
     text-shadow: 40px -30px 60px hsl(220.3, 62.5%, 22%, 0.2),
       40px -60px 60px rgb(30, 87, 202, 0.4);
@@ -80,5 +126,5 @@
     text-shadow: 30px -50px 50px hsl(208.7, 100%, 53.7%, 0.7),
       30px -20px 60px hsl(208.7, 100%, 53.7%, 0.8),
       10px 20px 60px rgba(54, 248, 248, 0.8);
-  }
+  } */
 }
