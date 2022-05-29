@@ -2,13 +2,15 @@ import HomePage from "./pages/Home/HomePage";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import Login from "./pages/Login/Login";
 import "./App.css";
+import Signup from "./pages/Signup/Signup";
 
 function App() {
   return (
     <div className="App">
       {/* <HomePage /> */}
       {/* <ProfilePage /> */}
-      <Login />
+      {/* <Login /> */}
+      <Signup />
     </div>
   );
 }

@@ -1,0 +1,84 @@
+.login-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  background-color: hsl(0, 0%, 96.5%);
+  background-attachment: fixed;
+}
+
+.login-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+}
+
+.ll-text {
+  font-size: 2rem;
+  text-shadow: 40px -30px 70px hsl(220.3, 62.5%, 22%, 0.8),
+    40px -60px 80px rgb(30, 87, 202, 0.8);
+  transition: 2500ms;
+}
+
+.ll-text:hover {
+  text-shadow: 40px -30px 80px hsl(220.3, 62.5%, 22%, 1),
+    40px -60px 100px rgb(30, 87, 202, 1);
+  cursor: default;
+}
+
+.ll-goo {
+  font-size: 4rem;
+  font-weight: 900;
+  text-shadow: 30px -50px 70px hsl(208.7, 100%, 53.7%, 0.4),
+    30px -20px 90px hsl(208.7, 100%, 53.7%, 0.6),
+    10px 20px 90px rgba(54, 248, 248, 0.6);
+  transition: 2500ms;
+}
+
+.ll-goo:hover {
+  text-shadow: 30px 0px 100px hsl(208.7, 100%, 53.7%, 1),
+    30px -20px 1100px hsl(208.7, 100%, 53.7%, 1),
+    10px 20px 120px rgba(54, 248, 248, 1);
+  cursor: default;
+}
+
+.ll-talk {
+  color: hsl(208.7, 100%, 53.7%);
+}
+
+.login-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media only screen and (max-width: 650px) {
+  .login-wrapper {
+    flex-direction: column;
+  }
+  .login-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .login-right {
+    flex: 3;
+    width: 100%;
+    display: flex;
+  }
+  .ll-text {
+    font-size: 1rem;
+    text-shadow: 40px -30px 60px hsl(220.3, 62.5%, 22%, 0.2),
+      40px -60px 60px rgb(30, 87, 202, 0.4);
+  }
+  .ll-goo {
+    font-size: 2rem;
+    text-shadow: 30px -50px 50px hsl(208.7, 100%, 53.7%, 0.7),
+      30px -20px 60px hsl(208.7, 100%, 53.7%, 0.8),
+      10px 20px 60px rgba(54, 248, 248, 0.8);
+  }
+}
