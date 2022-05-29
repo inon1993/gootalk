@@ -1,9 +1,14 @@
 import classes from "./LocationSelector.module.css";
 
-export const CountrySelector = ({ countries, onSetCountry, onSetCountryObj }) => {
+export const CountrySelector = ({ country, countries, onSetCountry, onSetCountryObj }) => {
   return (
     <div className={classes["sr-country"]}>
-      {countries.map((country) => {
+      {countries.filter((c) => {
+        if(c.country.toLowerCase().includes(country)) {
+          return c
+        }
+      })
+      .map((country) => {
         return (
           <span
             key={`${country.iso2}${country.iso3}${Math.random()}`}
@@ -21,10 +26,29 @@ export const CountrySelector = ({ countries, onSetCountry, onSetCountryObj }) =>
   );
 };
 
-export const CitySelector = ({ country, onSetCity }) => {
+export const CitySelector = ({ city, country, onSetCity }) => {
     return (
       <div className={classes["sr-country"]}>
-        {country.cities.map((city) => {
+        {country.cities.filter((c) => {
+          if(c.toLowerCase().includes(city)) {
+            return c
+          }
+        })
+        .map((city) => {
+          return (
+            <span
+              key={`${country.iso2}${country.iso3}${Math.random()}`}
+              className={classes["sr-country-name"]}
+              onClick={() => {
+                onSetCity(city);
+              }}
+            >
+              {city}
+            </span>
+          )
+        })
+        }
+        {/* {country.cities.map((city) => {
           return (
             <span
               key={`${country.iso2}${country.iso3}${Math.random()}`}
@@ -36,7 +60,7 @@ export const CitySelector = ({ country, onSetCity }) => {
               {city}
             </span>
           );
-        })}
+        })} */}
       </div>
     );
   };

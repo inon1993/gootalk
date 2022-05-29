@@ -37,17 +37,17 @@ const LoginForm = () => {
   };
 
   return (
-    <div className={classes["lr-card"]}>
-      <h2 className={classes["lr-title"]}>Sign Up</h2>
-      <form className={classes["lr-form"]} onSubmit={(e) => e.preventDefault()}>
-        <span className={classes["lr-form-text"]}>First name</span>
-        <input className={classes["lr-input"]} type="text" />
-        <span className={classes["lr-form-text"]}>Last name</span>
-        <input className={classes["lr-input"]} type="text" />
-        <span className={classes["lr-form-text"]}>Country</span>
+    <div className={classes["sr-card"]}>
+      <h2 className={classes["sr-title"]}>Sign Up</h2>
+      <form className={classes["sr-form"]} onSubmit={(e) => e.preventDefault()}>
+        <span className={classes["sr-form-text"]}>First name</span>
+        <input className={classes["sr-input"]} type="text" />
+        <span className={classes["sr-form-text"]}>Last name</span>
+        <input className={classes["sr-input"]} type="text" />
+        <span className={classes["sr-form-text"]}>Country</span>
         <div className={classes["sr-country-wrapper"]}>
           <input
-            className={`${classes["lr-input"]} ${classes["sr-input-country"]}`}
+            className={`${classes["sr-input"]} ${classes["sr-input-country"]}`}
             type="text"
             value={country}
             onChange={countryHandler}
@@ -61,13 +61,13 @@ const LoginForm = () => {
             }}
           />
           {countryFocus && (
-            <CountrySelector countries={countries} onSetCountryObj={setCountryObj} onSetCountry={setCountry} />
+            <CountrySelector country={country} countries={countries} onSetCountryObj={setCountryObj} onSetCountry={setCountry} />
           )}
         </div>
-        <span className={classes["lr-form-text"]}>City</span>
+        <span className={classes["sr-form-text"]}>City</span>
         <div className={classes["sr-country-wrapper"]}>
           <input
-            className={`${classes["lr-input"]} ${classes["sr-input-country"]}`}
+            className={`${classes["sr-input"]} ${classes["sr-input-country"]}`}
             type="text"
             value={city}
             onChange={(e) => {setCity(e.target.value)}}
@@ -77,33 +77,33 @@ const LoginForm = () => {
             onBlur={() => {
               setTimeout(() => {
                 setCityFocus(false);
-              }, 200);
+              }, 100);
             }}
             disabled={country === "" ? true : false}
           />
-          {cityFocus && countryObj !== null && countryObj !== undefined &&(
-            <CitySelector country={countryObj} onSetCity={setCity} />
+          {cityFocus && countryObj &&(
+            <CitySelector city={city} country={countryObj} onSetCity={setCity} />
           )}
         </div>
-        <span className={classes["lr-form-text"]}>E-Mail</span>
-        <input className={classes["lr-input"]} type="text" />
-        <span className={classes["lr-form-text"]}>Password</span>
-        <div className={classes["lr-input"]}>
-          <input className={classes["lr-input-password"]} type={isPw.type} />
+        <span className={classes["sr-form-text"]}>E-Mail</span>
+        <input className={classes["sr-input"]} type="text" />
+        <span className={classes["sr-form-text"]}>Password</span>
+        <div className={classes["sr-input"]}>
+          <input className={classes["sr-input-password"]} type={isPw.type} />
           {!isPw.visable && (
             <Visibility
-              className={classes["lr-visibility"]}
+              className={classes["sr-visibility"]}
               onClick={visibilityHandler}
             />
           )}
           {isPw.visable && (
             <VisibilityOff
-              className={classes["lr-visibility"]}
+              className={classes["sr-visibility"]}
               onClick={visibilityOffHandler}
             />
           )}
         </div>
-        <button className={classes["lr-login-button"]}>Sign Up</button>
+        <button className={classes["sr-signup-button"]}>Sign Up</button>
       </form>
     </div>
   );
