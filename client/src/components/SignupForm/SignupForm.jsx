@@ -2,12 +2,17 @@ import classes from "./SignupForm.module.css";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import getLocations from "../../helpers/countries-api/getLocations";
+import {CountrySelector, CitySelector} from "./LocationSelector/LocationSelector";
 
 const LoginForm = () => {
   const [isPw, setIsPw] = useState({ visable: false, type: "password" });
   const [countries, setCountries] = useState([]);
   const [countryFocus, setCountryFocus] = useState(false);
+  const [countryObj, setCountryObj] = useState({});
   const [country, setCountry] = useState("");
+
+  const [cityFocus, setCityFocus] = useState(false);
+  const [city, setCity] = useState("");
 
   useEffect(() => {
     const getCountriesList = async () => {
@@ -20,6 +25,7 @@ const LoginForm = () => {
 
   const countryHandler = (e) => {
     setCountry(e.target.value);
+    setCountryObj(null);
   };
 
   const visibilityHandler = () => {
@@ -51,29 +57,34 @@ const LoginForm = () => {
             onBlur={() => {
               setTimeout(() => {
                 setCountryFocus(false);
-              }, 50);
+              }, 200);
             }}
           />
           {countryFocus && (
-            <div className={classes["sr-country"]}>
-              {countries.map((country) => {
-                return (
-                  <span
-                    key={`${country.iso2}${country.iso3}${Math.random()}`}
-                    className={classes["sr-country-name"]}
-                    onClick={() => {
-                      setCountry(country.country);
-                    }}
-                  >
-                    {country.country}
-                  </span>
-                );
-              })}
-            </div>
+            <CountrySelector countries={countries} onSetCountryObj={setCountryObj} onSetCountry={setCountry} />
           )}
         </div>
         <span className={classes["lr-form-text"]}>City</span>
-        <input className={classes["lr-input"]} type="text" />
+        <div className={classes["sr-country-wrapper"]}>
+          <input
+            className={`${classes["lr-input"]} ${classes["sr-input-country"]}`}
+            type="text"
+            value={city}
+            onChange={(e) => {setCity(e.target.value)}}
+            onFocus={() => {
+              setCityFocus(true);
+            }}
+            onBlur={() => {
+              setTimeout(() => {
+                setCityFocus(false);
+              }, 200);
+            }}
+            disabled={country === "" ? true : false}
+          />
+          {cityFocus && countryObj !== null && countryObj !== undefined &&(
+            <CitySelector country={countryObj} onSetCity={setCity} />
+          )}
+        </div>
         <span className={classes["lr-form-text"]}>E-Mail</span>
         <input className={classes["lr-input"]} type="text" />
         <span className={classes["lr-form-text"]}>Password</span>

@@ -1,0 +1,50 @@
+.lr-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    border: none;
+    background-color: hsl(212.3, 41.9%, 93.9%);
+    border: 1px solid hsl(212.3, 41.9%, 93.9%);
+    padding: 8px 8px;
+    outline: none;
+    font-size: 0.9rem;
+  }
+  
+  .sr-country-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sr-input-country {
+    /* width: 95%; */
+  }
+  
+  .sr-input-country:focus {
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .sr-country {
+    position: absolute;
+    top: 39px;
+    max-height: 150px;
+    overflow-y: scroll;
+    background-color: white;
+    border: 1px solid hsl(212.3, 41.9%, 93.9%);
+    border-top: none;
+    border-radius: 0 0 15px 15px;
+    z-index: 10;
+  }
+  
+  .sr-country-name {
+    display: block;
+    font-size: 0.8rem;
+    padding: 5px;
+  }
+  
+  .sr-country-name:hover {
+    cursor: pointer;
+    background-color: hsl(212.3, 41.9%, 93.9%);
+  }
