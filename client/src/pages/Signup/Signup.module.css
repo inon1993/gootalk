@@ -17,6 +17,7 @@
 
 .sl-add-pic {
   position: relative;
+  transition: 200ms;
 }
 
 .sl-add-pic:hover {

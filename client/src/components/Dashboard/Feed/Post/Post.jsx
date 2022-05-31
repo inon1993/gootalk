@@ -1,24 +1,39 @@
 import { AccountCircleRounded, ThumbUp } from "@mui/icons-material";
 import classes from "./Post.module.css";
 import Card from "../../../UI/Card/Card"
+import {useState, useEffect} from "react";
+import axios from "axios";
+import {format} from "timeago.js";
 
-const Post = () => {
+const Post = ({post}) => {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const getPostUser = async () => {
+      const postUser = await axios.get(`/user/${post.userId}`);
+      console.log(postUser);
+      setUser(postUser.data);
+    }
+
+    getPostUser();
+  }, [])
+
   return (
     <Card className={classes.post}>
       <div className={classes["post-upper"]}>
-        <AccountCircleRounded className={classes["post-profile-img"]} />
-        <span className={classes["post-name"]}>Racheli Avramashvili</span>
-        <span className={classes["post-time"]}>2 minutes ago</span>
+        <img className={classes["post-profile-img"]} src={user.profilePicture} />
+        <span className={classes["post-name"]}>{`${user.firstname} ${user.lastname}`}</span>
+        <span className={classes["post-time"]}>{format(post.createdAt)}</span>
       </div>
       <div className={classes["post-body"]}>
         <p className={classes["post-body-text"]}>
-          Hi, It's my very firsy post!
+          {post.desc}
         </p>
         <img className={classes["post-img"]} src="https://upload.wikimedia.org/wikipedia/commons/4/41/Arkansas_Black_apples_%28cropped%29.jpg" alt="post img" />
       </div>
       <div className={classes["post-like"]}>
         <ThumbUp className={classes["post-like-icon"]} />
-        <span className={classes["post-like-text"]}>23 people like it</span>
+        <span className={classes["post-like-text"]}>{post.likes.length} people like it</span>
       </div>
     </Card>
   );

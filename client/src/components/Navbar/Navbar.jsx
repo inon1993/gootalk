@@ -16,6 +16,7 @@ import { menuActions } from "../../store/menu-slice";
 import { dropdownActions } from "../../store/dropdown-slice";
 import DropdownBackground from "./Profile/DropdownMenu/DropdownBackground";
 import MobileMenu from "./MobileMenu/MobileMenu";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const isActivated = useSelector((state) => state.navbar.activate);
@@ -63,11 +64,13 @@ const Navbar = () => {
           !isMobileMenu ? classes.navbar : classes["navbar-mobile-menu"]
         }`}
       >
+        <Link to={"/"} style={{textDecoration:"none"}}>
         <div className={classes.logo}>
           <h1 className={classes["navbar-logo"]}>
             Goo<span className={classes["logo-span"]}>talk</span>
           </h1>
         </div>
+        </Link>
         <div className={classes.search}>
           <Search />
         </div>
