@@ -35,7 +35,6 @@ const Navbar = () => {
     dispatch(dropdownActions.deactivate());
     dispatch(menuActions.deactivate());
     setIsMobileMenu(false);
-
   };
 
   const activateProfileHandler = () => {
@@ -64,13 +63,13 @@ const Navbar = () => {
           !isMobileMenu ? classes.navbar : classes["navbar-mobile-menu"]
         }`}
       >
-        <Link to={"/"} style={{textDecoration:"none"}}>
         <div className={classes.logo}>
-          <h1 className={classes["navbar-logo"]}>
-            Goo<span className={classes["logo-span"]}>talk</span>
-          </h1>
+          <Link to={"/"} style={{ textDecoration: "none" }}>
+            <h1 className={classes["navbar-logo"]}>
+              Goo<span className={classes["logo-span"]}>talk</span>
+            </h1>
+          </Link>
         </div>
-        </Link>
         <div className={classes.search}>
           <Search />
         </div>

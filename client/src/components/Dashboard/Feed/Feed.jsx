@@ -9,21 +9,20 @@ const Feed = () => {
 
   useEffect(() => {
     const getPosts = async () => {
-      const postsArray = await axios.get("/post/timeline/6271122e246c91208cbd93b2");
-      // console.log(postsArray);
+      const postsArray = await axios.get(
+        "/post/timeline/62718b658c0e64cfd71c2208"
+      );
       setPosts(postsArray.data);
-    }
+    };
 
     getPosts();
-  }, [])
+  }, []);
 
   return (
-    <div className={classes.feed}>
+    <div className={posts.length === 0 ? classes["empty-feed"] : classes.feed}>
       <NewPost />
       {posts.map((post) => {
-        return (
-          <Post post={post}/>
-        )
+        return <Post post={post} />;
       })}
     </div>
   );
