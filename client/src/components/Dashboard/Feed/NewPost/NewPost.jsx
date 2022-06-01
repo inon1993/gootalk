@@ -7,9 +7,10 @@ const NewPost = () => {
     <Card className={classes["new-post"]}>
       <div className={classes["new-post-upper"]}>
         <AccountCircleRounded className={classes["new-post-profile-logo"]} />
-        <input
+        <textarea
           className={classes["new-post-input"]}
           placeholder="What's on your mind, Inon?"
+          wrap="soft"
         />
       </div>
       <hr className={classes["new-post-br"]} />

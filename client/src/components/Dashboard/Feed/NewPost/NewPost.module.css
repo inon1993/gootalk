@@ -21,6 +21,8 @@
   font-size: 1.2rem;
   width: 100%;
   /* font-family: "Poopins", sans-serif; */
+  /* overflow:hidden; */
+  resize:none;
 }
 
 .new-post-br {
@@ -74,5 +76,20 @@
   .new-post-input {font-size: 0.9rem;}
   .new-post-add-img-text {
     font-size: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .new-post-input {
+    font-size: 0.75rem;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  /* .new-post-input {
+    font-size: 0.7rem;
+  } */
+  .new-post-add-img-text {
+    font-size: 0.65rem;
   }
 }

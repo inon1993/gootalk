@@ -147,4 +147,10 @@
   }
 }
 
+@media only screen and (max-width: 320px) {
+  .navbar-logo {
+    font-size: 1.4rem;
+  }
+}
+
 /* hsl(206.7, 33.3%, 94.7% */

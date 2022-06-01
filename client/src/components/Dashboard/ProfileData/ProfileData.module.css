@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  align-items: center;
 }
 
 .profile-images {
@@ -9,6 +10,7 @@
   display: flex;
   flex-direction: column;
   height: 370px;
+  width: 100%;
 }
 
 .profile-cover {
@@ -34,9 +36,16 @@
   margin-right: 10px;
 }
 
+.profile-name-city {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .profile-name {
   font-size: 1.4rem;
   font-weight: 700;
+  margin: 0 !important;
 }
 
 .profile-city {
@@ -46,8 +55,9 @@
 .stats {
   display: flex;
   flex-direction: column;
-  /* align-items: center;
-  justify-content: center; */
+  /* align-items: center; */
+  justify-content: center;
+  width: 100%;
 }
 
 .stats-buttons {
@@ -61,7 +71,7 @@
 }
 
 .show-stats-button {
-  width: 25%;
+  /* width: 18%; */
   padding: 0.5rem 1.3rem;
   border: none;
   border-radius: 10px;

@@ -9,7 +9,6 @@ import ProfilePage from "./pages/Profile/ProfilePage";
 import Login from "./pages/Login/Login";
 import "./App.css";
 import Signup from "./pages/Signup/Signup";
-import Home from "./pages/Home/HomePage";
 
 function App() {
   return (

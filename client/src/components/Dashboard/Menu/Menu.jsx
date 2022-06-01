@@ -8,6 +8,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { menuActions } from "../../../store/menu-slice";
 import { navbarActions } from "../../../store/navbar-slice";
+import {Link} from "react-router-dom"
 
 const Menu = () => {
   const isActivated = useSelector((state) => state.menu.activate);
@@ -47,6 +48,7 @@ const Menu = () => {
           <HomeRounded className={classes["menu-list-icon"]} />
           <span className={classes["menu-text"]}>Home</span>
         </li>
+        <Link to={"/profile/:username"} style={{ textDecoration: "none" }}>
         <li
           className={
             isActivated.profile
@@ -58,6 +60,7 @@ const Menu = () => {
           <PersonRounded className={classes["menu-list-icon"]} />
           <span className={classes["menu-text"]}>My Profile</span>
         </li>
+          </Link>
         <li
           className={
             isActivated.friends

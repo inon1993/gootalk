@@ -74,9 +74,10 @@ router.get("/:id", async (req, res) => {
 });
 
 //--GET ALL USER POST--//
-router.get("/posts/all", async (req, res) => {
+router.get("/posts/:userId", async (req, res) => {
   try {
-    const user = await User.findById(req.body.userId);
+    const user = await User.findById(req.params.userId);
+    console.log(user);
     const userPosts = await Post.find({ userId: user._id });
     return res.status(200).json(userPosts);
   } catch (err) {

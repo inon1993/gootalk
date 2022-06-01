@@ -10,7 +10,7 @@ const Feed = () => {
   useEffect(() => {
     const getPosts = async () => {
       const postsArray = await axios.get(
-        "/post/timeline/62718b658c0e64cfd71c2208"
+        "/post/timeline/629617d8d6ee461537147858"
       );
       setPosts(postsArray.data);
     };
@@ -19,7 +19,7 @@ const Feed = () => {
   }, []);
 
   return (
-    <div className={posts.length === 0 ? classes["empty-feed"] : classes.feed}>
+    <div className={classes.feed}>
       <NewPost />
       {posts.map((post) => {
         return <Post post={post} />;

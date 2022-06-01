@@ -10,6 +10,10 @@ body {
   -moz-osx-font-smoothing: grayscale; */
 }
 
+a {
+  color: hsl(207.2, 32.5%, 68%);
+}
+
 /* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
