@@ -16,6 +16,18 @@ const LoginForm = () => {
 
   const [cityFocus, setCityFocus] = useState(false);
   const [city, setCity] = useState("");
+  const [user, setUser] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    profilePicture: "",
+    coverPicture: "",
+    followers: [],
+    following: [],
+    country: "",
+    city: "",
+    createdAt: null,
+  });
 
   useEffect(() => {
     const getCountriesList = async () => {
@@ -28,6 +40,12 @@ const LoginForm = () => {
 
   const countryHandler = (e) => {
     setCountry(e.target.value);
+    setUser(prevState => {
+      return{
+        ...prevState,
+        country: e.target.value
+      }
+    })
     setCountryObj(null);
   };
 
@@ -39,18 +57,35 @@ const LoginForm = () => {
     setIsPw({ visable: false, type: "password" });
   };
 
+  const signupHandler = (e) => {
+    e.preventDefault();
+    console.log(user);
+  };
+
+  const setUserHandler = e => {
+    console.log(e);
+    setUser(prevState => {
+      // const field = e.target.name
+      return {
+        ...prevState,
+        [e.target.name]: e.target.value
+      }
+    })
+  }
+
   return (
     <div className={classes["sr-card"]}>
       <h2 className={classes["sr-title"]}>Sign Up</h2>
-      <form className={classes["sr-form"]} onSubmit={(e) => e.preventDefault()}>
+      <form className={classes["sr-form"]} onSubmit={signupHandler}>
         <span className={classes["sr-form-text"]}>First name</span>
-        <input className={classes["sr-input"]} type="text" />
+        <input className={classes["sr-input"]} name="firstname" type="text" onChange={setUserHandler} />
         <span className={classes["sr-form-text"]}>Last name</span>
-        <input className={classes["sr-input"]} type="text" />
+        <input className={classes["sr-input"]} name="lastname" type="text" onChange={setUserHandler} />
         <span className={classes["sr-form-text"]}>Country</span>
         <div className={classes["sr-country-wrapper"]}>
           <input
             className={`${classes["sr-input"]} ${classes["sr-input-country"]}`}
+            name="country"
             type="text"
             value={country}
             onChange={countryHandler}
@@ -69,6 +104,7 @@ const LoginForm = () => {
               countries={countries}
               onSetCountryObj={setCountryObj}
               onSetCountry={setCountry}
+              onSetUser={setUser}
             />
           )}
         </div>
@@ -78,6 +114,7 @@ const LoginForm = () => {
             className={`${classes["sr-input"]} ${classes["sr-input-country"]} ${
               country === "" && classes["disabled"]
             }`}
+            name="city"
             type="text"
             value={city}
             onChange={(e) => {
@@ -102,7 +139,7 @@ const LoginForm = () => {
           )}
         </div>
         <span className={classes["sr-form-text"]}>E-Mail</span>
-        <input className={classes["sr-input"]} type="text" />
+        <input className={classes["sr-input"]} name="email" type="email" onChange={setUserHandler} />
         <span className={classes["sr-form-text"]}>Password</span>
         <div className={classes["sr-input"]}>
           <input className={classes["sr-input-password"]} type={isPw.type} />
@@ -119,7 +156,7 @@ const LoginForm = () => {
             />
           )}
         </div>
-        <button className={classes["sr-signup-button"]}>Sign Up</button>
+        <button className={classes["sr-signup-button"]} type="submit">Sign Up</button>
       </form>
     </div>
   );

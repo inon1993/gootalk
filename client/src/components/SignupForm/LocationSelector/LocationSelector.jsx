@@ -1,6 +1,6 @@
 import classes from "./LocationSelector.module.css";
 
-export const CountrySelector = ({ country, countries, onSetCountry, onSetCountryObj }) => {
+export const CountrySelector = ({ country, countries, onSetCountry, onSetCountryObj, onSetUser }) => {
   return (
     <div className={classes["sr-country"]}>
       {countries.filter((c) => {
