@@ -16,6 +16,12 @@ export const CountrySelector = ({ country, countries, onSetCountry, onSetCountry
             onClick={() => {
               onSetCountryObj(country);
               onSetCountry(country.country);
+              onSetUser(prevState => {
+                return {
+                  ...prevState,
+                  country: country.country
+                }
+              })
             }}
           >
             {country.country}
@@ -26,7 +32,7 @@ export const CountrySelector = ({ country, countries, onSetCountry, onSetCountry
   );
 };
 
-export const CitySelector = ({ city, country, onSetCity }) => {
+export const CitySelector = ({ city, country, onSetCity, onSetUser }) => {
     return (
       <div className={classes["sr-country"]}>
         {country.cities.filter((c) => {
@@ -41,6 +47,12 @@ export const CitySelector = ({ city, country, onSetCity }) => {
               className={classes["sr-country-name"]}
               onClick={() => {
                 onSetCity(city);
+                onSetUser(prevState => {
+                  return {
+                    ...prevState,
+                    city: city
+                  }
+                })
               }}
             >
               {city}

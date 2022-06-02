@@ -87,7 +87,7 @@ const LoginForm = () => {
             className={`${classes["sr-input"]} ${classes["sr-input-country"]}`}
             name="country"
             type="text"
-            value={country}
+            value={country || user.country}
             onChange={countryHandler}
             onFocus={() => {
               setCountryFocus(true);
@@ -119,6 +119,12 @@ const LoginForm = () => {
             value={city}
             onChange={(e) => {
               setCity(e.target.value);
+              setUser(prevState => {
+                return {
+                  ...prevState,
+                  city: e.target.value
+                }
+              })
             }}
             onFocus={() => {
               setCityFocus(true);
@@ -132,9 +138,10 @@ const LoginForm = () => {
           />
           {cityFocus && countryObj && (
             <CitySelector
-              city={city}
+              city={city || user.city}
               country={countryObj}
               onSetCity={setCity}
+              onSetUser={setUser}
             />
           )}
         </div>
