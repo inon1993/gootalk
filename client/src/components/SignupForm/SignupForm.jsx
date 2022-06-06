@@ -2,10 +2,9 @@ import classes from "./SignupForm.module.css";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import getLocations from "../../helpers/countries-api/getLocations";
-import {
-  CountrySelector,
-  CitySelector,
-} from "./LocationSelector/LocationSelector";
+import { CountrySelector,CitySelector } from "./LocationSelector/LocationSelector";
+import { signup } from "../../api/auth/authRoutes";
+import { userActions } from "../../store/user-slice";
 
 const LoginForm = () => {
   const [isPw, setIsPw] = useState({ visable: false, type: "password" });
@@ -27,6 +26,7 @@ const LoginForm = () => {
     country: "",
     city: "",
     createdAt: null,
+    password: ""
   });
 
   useEffect(() => {
@@ -57,15 +57,20 @@ const LoginForm = () => {
     setIsPw({ visable: false, type: "password" });
   };
 
-  const signupHandler = (e) => {
+  const signupHandler = async (e) => {
     e.preventDefault();
-    console.log(user);
+    try {
+      await signup(user);
+      // setUser()
+    } catch (error) {
+      throw new Error(error);
+    }
+    
   };
 
   const setUserHandler = e => {
     console.log(e);
     setUser(prevState => {
-      // const field = e.target.name
       return {
         ...prevState,
         [e.target.name]: e.target.value
@@ -149,7 +154,7 @@ const LoginForm = () => {
         <input className={classes["sr-input"]} name="email" type="email" onChange={setUserHandler} />
         <span className={classes["sr-form-text"]}>Password</span>
         <div className={classes["sr-input"]}>
-          <input className={classes["sr-input-password"]} type={isPw.type} />
+          <input className={classes["sr-input-password"]} type={isPw.type} onChange={setUserHandler} />
           {!isPw.visable && (
             <Visibility
               className={classes["sr-visibility"]}

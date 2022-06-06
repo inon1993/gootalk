@@ -4,10 +4,13 @@ const bcrypt = require("bcrypt");
 
 //--REGISTER--//
 router.post("/register", async (req, res) => {
+  console.log(req.body);
   const date = new Date();
   try {
     const salt = await bcrypt.genSalt(8);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+    console.log(22);
 
     const newUser = new User({
       firstname: req.body.firstname,
@@ -16,6 +19,8 @@ router.post("/register", async (req, res) => {
       password: hashedPassword,
       createdAt: date,
     });
+
+    console.log(33);
 
     const user = await newUser.save();
     return res.status(200).json(user);
