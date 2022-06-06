@@ -2,8 +2,12 @@ import classes from "./SignupForm.module.css";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import getLocations from "../../helpers/countries-api/getLocations";
-import { CountrySelector,CitySelector } from "./LocationSelector/LocationSelector";
+import {
+  CountrySelector,
+  CitySelector,
+} from "./LocationSelector/LocationSelector";
 import { signup } from "../../api/auth/authRoutes";
+import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/user-slice";
 
 const LoginForm = () => {
@@ -26,7 +30,7 @@ const LoginForm = () => {
     country: "",
     city: "",
     createdAt: null,
-    password: ""
+    password: "",
   });
 
   useEffect(() => {
@@ -38,14 +42,17 @@ const LoginForm = () => {
     getCountriesList();
   }, []);
 
+  const userCheck = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
   const countryHandler = (e) => {
     setCountry(e.target.value);
-    setUser(prevState => {
-      return{
+    setUser((prevState) => {
+      return {
         ...prevState,
-        country: e.target.value
-      }
-    })
+        country: e.target.value,
+      };
+    });
     setCountryObj(null);
   };
 
@@ -60,32 +67,51 @@ const LoginForm = () => {
   const signupHandler = async (e) => {
     e.preventDefault();
     try {
-      await signup(user);
-      // setUser()
+      const newUser = await signup(user);
+      const userData = newUser.data;
+      const newUserToSet = {
+        firstname: userData.firstname,
+        lastname: userData.lastname,
+        email: userData.email,
+        country: userData.country,
+        city: userData.city,
+        profilePicture: userData.profilePicture,
+      };
+      dispatch(userActions.setUser(newUserToSet));
+      console.log(userCheck);
     } catch (error) {
       throw new Error(error);
     }
-    
   };
 
-  const setUserHandler = e => {
+  const setUserHandler = (e) => {
     console.log(e);
-    setUser(prevState => {
+    setUser((prevState) => {
       return {
         ...prevState,
-        [e.target.name]: e.target.value
-      }
-    })
-  }
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
 
   return (
     <div className={classes["sr-card"]}>
       <h2 className={classes["sr-title"]}>Sign Up</h2>
       <form className={classes["sr-form"]} onSubmit={signupHandler}>
         <span className={classes["sr-form-text"]}>First name</span>
-        <input className={classes["sr-input"]} name="firstname" type="text" onChange={setUserHandler} />
+        <input
+          className={classes["sr-input"]}
+          name="firstname"
+          type="text"
+          onChange={setUserHandler}
+        />
         <span className={classes["sr-form-text"]}>Last name</span>
-        <input className={classes["sr-input"]} name="lastname" type="text" onChange={setUserHandler} />
+        <input
+          className={classes["sr-input"]}
+          name="lastname"
+          type="text"
+          onChange={setUserHandler}
+        />
         <span className={classes["sr-form-text"]}>Country</span>
         <div className={classes["sr-country-wrapper"]}>
           <input
@@ -124,12 +150,12 @@ const LoginForm = () => {
             value={city}
             onChange={(e) => {
               setCity(e.target.value);
-              setUser(prevState => {
+              setUser((prevState) => {
                 return {
                   ...prevState,
-                  city: e.target.value
-                }
-              })
+                  city: e.target.value,
+                };
+              });
             }}
             onFocus={() => {
               setCityFocus(true);
@@ -151,10 +177,20 @@ const LoginForm = () => {
           )}
         </div>
         <span className={classes["sr-form-text"]}>E-Mail</span>
-        <input className={classes["sr-input"]} name="email" type="email" onChange={setUserHandler} />
+        <input
+          className={classes["sr-input"]}
+          name="email"
+          type="email"
+          onChange={setUserHandler}
+        />
         <span className={classes["sr-form-text"]}>Password</span>
         <div className={classes["sr-input"]}>
-          <input className={classes["sr-input-password"]} type={isPw.type} onChange={setUserHandler} />
+          <input
+            className={classes["sr-input-password"]}
+            name="password"
+            type={isPw.type}
+            onChange={setUserHandler}
+          />
           {!isPw.visable && (
             <Visibility
               className={classes["sr-visibility"]}
@@ -168,7 +204,9 @@ const LoginForm = () => {
             />
           )}
         </div>
-        <button className={classes["sr-signup-button"]} type="submit">Sign Up</button>
+        <button className={classes["sr-signup-button"]} type="submit">
+          Sign Up
+        </button>
       </form>
     </div>
   );

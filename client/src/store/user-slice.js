@@ -10,24 +10,23 @@ const initialUserState = {
   following: [],
   country: "",
   city: "",
-  createdAt: null  
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState: initialUserState,
   reducers: {
-    setUser(state, payload) {
-      state.firstname = payload.username;
-      state.lastname = payload.lastname;
-      state.email = payload.email;
-      state.profilePicture = payload.profilePicture;
-      state.coverPicture = payload.coverPicture;
-      state.followers = payload.followers;
-      state.following = payload.following;
-      state.country = payload.country;
-      state.city = payload.city;
-      state.createdAt = payload.createdAt;
+    setUser(state, action) {
+      console.log(action.payload);
+      state.firstname = action.payload.firstname;
+      state.lastname = action.payload.lastname;
+      state.email = action.payload.email;
+      state.profilePicture = action.payload.profilePicture;
+      state.coverPicture = action.payload.coverPicture;
+      state.followers = action.payload.followers;
+      state.following = action.payload.following;
+      state.country = action.payload.country;
+      state.city = action.payload.city;
     },
   },
 });
