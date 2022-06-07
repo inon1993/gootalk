@@ -24,12 +24,8 @@ const LoginForm = () => {
     lastname: "",
     email: "",
     profilePicture: "",
-    coverPicture: "",
-    followers: [],
-    following: [],
     country: "",
     city: "",
-    createdAt: null,
     password: "",
   });
 
@@ -68,7 +64,8 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const newUser = await signup(user);
-      const userData = newUser.data;
+      const userData = newUser.data.user;
+      console.log(userData);
       const newUserToSet = {
         firstname: userData.firstname,
         lastname: userData.lastname,

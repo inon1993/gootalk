@@ -1,9 +1,10 @@
 const User = require("../models/User");
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
+const auth = require("../middleware/auth-mid");
 
 //--UPDATE USER--//
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
   if (req.body.userId === req.params.id) {
     if (req.body.password) {
       try {
@@ -28,7 +29,7 @@ router.put("/:id", async (req, res) => {
 });
 
 //--DELETE USER--//
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   if (req.body.userId === req.params.id) {
     try {
       const user = await User.findByIdAndDelete(req.params.id);
@@ -42,23 +43,25 @@ router.delete("/:id", async (req, res) => {
 });
 
 //--GET ALL USERS--//
-router.get("/", async (req, res) => {
-    try {
-      const users = await User.find();
-      const usersArr = users.map((user) => {
+router.get("/", auth, async (req, res) => {
+  try {
+    const users = await User.find();
+    const usersArr = users
+      .map((user) => {
         const { password, updatedAt, ...other } = user._doc;
         return other;
-      }).filter((user) => {
-          return user._id != req.body.userId; 
       })
-      return res.status(200).json(usersArr);
-    } catch (err) {
-      return res.status(500).json(err);
-    }
-  });
+      .filter((user) => {
+        return user._id != req.body.userId;
+      });
+    return res.status(200).json(usersArr);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
 
 //--GET A USER--//
-router.get("/:id", async (req, res) => {
+router.get("/:id", auth, async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     const { password, updatedAt, ...other } = user._doc;
@@ -69,7 +72,7 @@ router.get("/:id", async (req, res) => {
 });
 
 //--FOLLOW A USER--//
-router.put("/:id/follow", async (req, res) => {
+router.put("/:id/follow", auth, async (req, res) => {
   if (req.body.userId !== req.params.id) {
     try {
       const user = await User.findById(req.params.id);
@@ -90,7 +93,7 @@ router.put("/:id/follow", async (req, res) => {
   }
 });
 //--UNFOLLOW A USER--//
-router.put("/:id/unfollow", async (req, res) => {
+router.put("/:id/unfollow", auth, async (req, res) => {
   if (req.body.userId !== req.params.id) {
     try {
       const user = await User.findById(req.params.id);

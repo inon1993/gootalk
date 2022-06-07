@@ -4,27 +4,25 @@ const bcrypt = require("bcrypt");
 
 //--REGISTER--//
 router.post("/register", async (req, res) => {
-  console.log(req.body);
-  console.log(req.body.password);
-  const date = new Date();
+  // const date = new Date();
   try {
     const salt = await bcrypt.genSalt(8);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
-
-    console.log(22);
 
     const newUser = new User({
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email,
       password: hashedPassword,
-      createdAt: date,
+      country: req.body.country,
+      city: req.body.city,
+      profilePicture: req.body.profilePicture,
+      // createdAt: date,
     });
 
-    console.log(33);
-
     const user = await newUser.save();
-    return res.status(200).json(user);
+    const token = await user.generateAuthToken();
+    return res.status(200).json({ user, token });
   } catch (err) {
     return res.status(500).json(err);
   }
@@ -46,7 +44,9 @@ router.post("/login", async (req, res) => {
       return res.status(400).json("Wrong password.");
     }
 
-    return res.status(200).json(user);
+    const token = await user.generateAuthToken();
+
+    return res.status(200).json({ user, token });
   } catch (err) {
     return res.status(500).json(err);
   }

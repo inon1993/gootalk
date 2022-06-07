@@ -1,9 +1,10 @@
 const Post = require("../models/Post");
 const User = require("../models/User");
 const router = require("express").Router();
+const auth = require("../middleware/auth-mid");
 
 //--CREATE NEW POST--//
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const newPost = new Post(req.body);
   try {
     const savedPost = await newPost.save();
@@ -14,7 +15,7 @@ router.post("/", async (req, res) => {
 });
 
 //--UPDATE A POST--//
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (post.userId === req.body.userId) {
@@ -29,7 +30,7 @@ router.put("/:id", async (req, res) => {
 });
 
 //--DELETE POST--//
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (post.userId === req.body.userId) {
@@ -44,7 +45,7 @@ router.delete("/:id", async (req, res) => {
 });
 
 //--LIKE/DISLIKE A POST--//
-router.put("/:id/like", async (req, res) => {
+router.put("/:id/like", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (post.userId !== req.body.userId) {
@@ -64,7 +65,7 @@ router.put("/:id/like", async (req, res) => {
 });
 
 //--GET A POST--//
-router.get("/:id", async (req, res) => {
+router.get("/:id", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     return res.status(200).json(post);
@@ -74,7 +75,7 @@ router.get("/:id", async (req, res) => {
 });
 
 //--GET ALL USER POST--//
-router.get("/posts/:userId", async (req, res) => {
+router.get("/posts/:userId", auth, async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
     console.log(user);
@@ -86,7 +87,7 @@ router.get("/posts/:userId", async (req, res) => {
 });
 
 //--GET POSTS TIMELINE--//
-router.get("/timeline/:userId", async (req, res) => {
+router.get("/timeline/:userId", auth, async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
     const userPosts = await Post.find({ userId: user._id });
