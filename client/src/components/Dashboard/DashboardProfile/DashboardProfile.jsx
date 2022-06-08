@@ -13,7 +13,11 @@ const DashboardProfile = () => {
 
   useEffect(() => {
     const getUserPosts = async () => {
-      const userPostsArray = await axios.get("/post/posts/6271122e246c91208cbd93b2");
+      const userPostsArray = await axios.get("/post/posts/62a081329f5d1a674c7c39d2", {
+        headers: {
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmEwODEzMjlmNWQxYTY3NGM3YzM5ZDIiLCJpYXQiOjE2NTQ2ODYwMDJ9.tPaj5MGb1zyuthjl6GYsHjwQYGIB4JlDQwDH6BBFn2M'
+        }
+      });
       console.log(userPostsArray.data);
       setUserPosts(userPostsArray.data);
     }

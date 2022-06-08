@@ -65,7 +65,7 @@ const Navbar = () => {
       >
         <div className={classes.logo}>
           <Link to={"/"} style={{ textDecoration: "none" }}>
-            <h1 className={classes["navbar-logo"]}>
+            <h1 className={classes["navbar-logo"]} onClick={activateHomeHandler}>
               Goo<span className={classes["logo-span"]}>talk</span>
             </h1>
           </Link>

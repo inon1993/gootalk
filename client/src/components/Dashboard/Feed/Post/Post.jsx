@@ -10,7 +10,11 @@ const Post = ({post}) => {
 
   useEffect(() => {
     const getPostUser = async () => {
-      const postUser = await axios.get(`/user/${post.userId}`);
+      const postUser = await axios.get(`/user/${post.userId}`, {
+        headers: {
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmEwODEzMjlmNWQxYTY3NGM3YzM5ZDIiLCJpYXQiOjE2NTQ2ODYwMDJ9.tPaj5MGb1zyuthjl6GYsHjwQYGIB4JlDQwDH6BBFn2M'
+        }
+      });
       console.log(postUser);
       setUser(postUser.data);
     }

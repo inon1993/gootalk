@@ -144,7 +144,7 @@ const LoginForm = () => {
             }`}
             name="city"
             type="text"
-            value={city}
+            value={city || user.city}
             onChange={(e) => {
               setCity(e.target.value);
               setUser((prevState) => {
@@ -160,7 +160,7 @@ const LoginForm = () => {
             onBlur={() => {
               setTimeout(() => {
                 setCityFocus(false);
-              }, 100);
+              }, 200);
             }}
             disabled={country === "" ? true : false}
           />
