@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Redirect,
+  Navigate,
 } from "react-router-dom";
 import HomePage from "./pages/Home/HomePage";
 import ProfilePage from "./pages/Profile/ProfilePage";
@@ -18,11 +18,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        {user !== "" ? (
-          <Route path="/" element={<HomePage />} />
-        ) : (
-          <Redirect to="/login" />
-        )}
+        <Route path="/" element={user !== "" ? <HomePage /> : <Navigate replace to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile/:username" element={<ProfilePage />} />

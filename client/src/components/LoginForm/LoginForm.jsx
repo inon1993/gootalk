@@ -1,6 +1,7 @@
 import classes from "./LoginForm.module.css";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
     const [isVisiblePw, setISVisiblePw] = useState(false);
@@ -47,7 +48,9 @@ const LoginForm = () => {
             <span className={classes["lr-s-text"]}>
               Don't have an account yet?
             </span>
+            <Link to={"/signup"} style={{ textDecoration: "none", width: "100%" }}>
             <button className={classes["lr-signup-button"]}>Sign Up</button>
+            </Link>
           </div>
         </div>
     )
