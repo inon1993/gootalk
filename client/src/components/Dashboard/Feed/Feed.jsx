@@ -3,16 +3,19 @@ import NewPost from "./NewPost/NewPost";
 import Post from "./Post/Post";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const Feed = () => {
+  const user = useSelector((state) => state.user);
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const getPosts = async () => {
+      console.log(user);
       const postsArray = await axios.get(
-        "/post/timeline/62a081329f5d1a674c7c39d2", {
+        `/post/timeline/${user.userId}`, {
           headers: {
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmEwODEzMjlmNWQxYTY3NGM3YzM5ZDIiLCJpYXQiOjE2NTQ2ODYwMDJ9.tPaj5MGb1zyuthjl6GYsHjwQYGIB4JlDQwDH6BBFn2M'
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmE4NjlkYzFkMjhiNmRmMWQ2YTNlY2EiLCJpYXQiOjE2NTUyMDQzMTZ9.F3IL4syKcEDTlh-yNCGf3fnWDgd2jIcOCVgBtMCl7C0'
           }
         });
       setPosts(postsArray.data);

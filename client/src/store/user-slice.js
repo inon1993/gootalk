@@ -1,15 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialUserState = {
-  firstname: "",
-  lastname: "",
-  email: "",
-  profilePicture: "",
-  coverPicture: "",
-  followers: [],
-  following: [],
-  country: "",
-  city: "",
+  user: {
+    userId: "",
+    firstname: "",
+    lastname: "",
+    email: "",
+    profilePicture: "",
+    coverPicture: "",
+    followers: [],
+    following: [],
+    country: "",
+    city: "",
+  },
 };
 
 const userSlice = createSlice({
@@ -18,15 +21,16 @@ const userSlice = createSlice({
   reducers: {
     setUser(state, action) {
       console.log(action.payload);
-      state.firstname = action.payload.firstname;
-      state.lastname = action.payload.lastname;
-      state.email = action.payload.email;
-      state.profilePicture = action.payload.profilePicture;
-      state.coverPicture = action.payload.coverPicture;
-      state.followers = action.payload.followers;
-      state.following = action.payload.following;
-      state.country = action.payload.country;
-      state.city = action.payload.city;
+      state.user.userId = action.payload.userId;
+      state.user.firstname = action.payload.firstname;
+      state.user.lastname = action.payload.lastname;
+      state.user.email = action.payload.email;
+      state.user.profilePicture = action.payload.profilePicture;
+      state.user.coverPicture = action.payload.coverPicture;
+      state.user.followers = action.payload.followers;
+      state.user.following = action.payload.following;
+      state.user.country = action.payload.country;
+      state.user.city = action.payload.city;
     },
   },
 });

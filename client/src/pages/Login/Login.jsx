@@ -1,7 +1,14 @@
+import { useEffect } from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import classes from "./Login.module.css";
+import { useSelector } from "react-redux";
+
 
 const Login = () => {
+  const user = useSelector((state) => state.user);
+useEffect(() => {
+  console.log(user);
+}, [])
   return (
     <div className={classes["login-wrapper"]}>
       <div className={classes["login-left"]}>

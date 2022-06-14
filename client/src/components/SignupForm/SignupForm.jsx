@@ -9,6 +9,7 @@ import {
 import { signup } from "../../api/auth/authRoutes";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/user-slice";
+import { Navigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [isPw, setIsPw] = useState({ visable: false, type: "password" });
@@ -67,6 +68,7 @@ const LoginForm = () => {
       const userData = newUser.data.user;
       console.log(userData);
       const newUserToSet = {
+        userId: userData._id,
         firstname: userData.firstname,
         lastname: userData.lastname,
         email: userData.email,
@@ -204,6 +206,7 @@ const LoginForm = () => {
         <button className={classes["sr-signup-button"]} type="submit">
           Sign Up
         </button>
+        {userCheck.user.email !== "" ? <Navigate to={'/'} /> : <span>Not</span>}
       </form>
     </div>
   );
