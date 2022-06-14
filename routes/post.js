@@ -1,105 +1,26 @@
-const Post = require("../models/Post");
-const User = require("../models/User");
 const router = require("express").Router();
 const auth = require("../middleware/auth-mid");
+const postCtr = require("../controllers/post-controllers");
 
 //--CREATE NEW POST--//
-router.post("/", auth, async (req, res) => {
-  const newPost = new Post(req.body);
-  try {
-    const savedPost = await newPost.save();
-    res.status(200).json(savedPost);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+router.post("/", auth, postCtr.newPostCtr);
 
 //--UPDATE A POST--//
-router.put("/:id", auth, async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if (post.userId === req.body.userId) {
-      await post.updateOne({ $set: req.body });
-      return res.status(200).json("Post has benn updated.");
-    } else {
-      return res.status(403).json("You can only update your posts.");
-    }
-  } catch (err) {
-    return res.status(500).json(err);
-  }
-});
+router.put("/:id", auth, postCtr.postUpdateCtr);
 
 //--DELETE POST--//
-router.delete("/:id", auth, async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if (post.userId === req.body.userId) {
-      await post.deleteOne();
-      return res.status(200).json("Post has benn deleted.");
-    } else {
-      return res.status(403).json("You can only delete your posts.");
-    }
-  } catch (err) {
-    return res.status(500).json(err);
-  }
-});
+router.delete("/:id", auth, postCtr.deletePostCtr);
 
 //--LIKE/DISLIKE A POST--//
-router.put("/:id/like", auth, async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if (post.userId !== req.body.userId) {
-      if (!post.likes.includes(req.body.userId)) {
-        await Post.updateOne({ $push: { likes: req.body.userId } });
-        return res.status(200).json("Post has been liked.");
-      } else {
-        await Post.updateOne({ $pull: { likes: req.body.userId } });
-        return res.status(200).json("Post has been disliked.");
-      }
-    } else {
-      return res.status(403).json("You can't like your own posts.");
-    }
-  } catch (err) {
-    return res.status(500).json(err);
-  }
-});
+router.put("/:id/like", auth, postCtr.likePostCtr);
 
 //--GET A POST--//
-router.get("/:id", auth, async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    return res.status(200).json(post);
-  } catch (err) {
-    return res.status(500).json(err);
-  }
-});
+router.get("/:id", auth, postCtr.getPostCtr);
 
 //--GET ALL USER POST--//
-router.get("/posts/:userId", auth, async (req, res) => {
-  try {
-    const user = await User.findById(req.params.userId);
-    console.log(user);
-    const userPosts = await Post.find({ userId: user._id });
-    return res.status(200).json(userPosts);
-  } catch (err) {
-    return res.status(500).json(err);
-  }
-});
+router.get("/posts/:userId", auth, postCtr.getAllUserPostsCtr);
 
 //--GET POSTS TIMELINE--//
-router.get("/timeline/:userId", auth, async (req, res) => {
-  try {
-    const user = await User.findById(req.params.userId);
-    const userPosts = await Post.find({ userId: user._id });
-    const friendsPosts = await Promise.all(
-      user.following.map((friendId) => {
-        return Post.find({ userId: friendId });
-      })
-    );
-    return res.status(200).json(userPosts.concat(...friendsPosts));
-  } catch (err) {
-    return res.status(500).json(err);
-  }
-});
+router.get("/timeline/:userId", auth, postCtr.getTimelineCtr);
 
 module.exports = router;
