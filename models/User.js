@@ -50,9 +50,17 @@ const UserSchema = new mongoose.Schema(
       type: String,
       max: 50,
     },
-    tokens: [
+    /*accessTokens: [
       {
-        token: {
+        accessToken: {
+          type: String,
+          require: true,
+        },
+      },
+    ],*/
+    refreshTokens: [
+      {
+        refreshToken: {
           type: String,
           require: true,
         },
@@ -64,10 +72,21 @@ const UserSchema = new mongoose.Schema(
 
 UserSchema.methods.generateAuthToken = async function () {
   const user = this;
-  const token = jwt.sign({ _id: user._id.toString() }, process.env.ACCESS_TOKEN_SECRET);
-  user.tokens = user.tokens.concat({ token });
+  const accessToken = jwt.sign(
+    { _id: user._id.toString() },
+    process.env.ACCESS_TOKEN_SECRET,
+    { expiresIn: "1m" }
+  );
+  // user.accessTokens = user.accessTokens.concat({ accessToken });
+
+  const refreshToken = jwt.sign(
+    { _id: user._id.toString() },
+    process.env.REFRESH_TOKEN_SECRET,
+    { expiresIn: "1d" }
+  );
+  user.refreshTokens = user.refreshTokens.concat({ refreshToken });
   await user.save();
-  return token;
+  return { accessToken, refreshToken };
 };
 
 const User = mongoose.model("User", UserSchema);

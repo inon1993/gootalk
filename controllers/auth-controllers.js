@@ -17,8 +17,13 @@ const registerCtr = async (req, res) => {
     });
 
     const user = await newUser.save();
-    const token = await user.generateAuthToken();
-    return res.status(200).json({ user, token });
+    const tokens = await user.generateAuthToken();
+    const accessToken = tokens.accessToken;
+    res.cookie("jwt", tokens.refreshToken, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+    res.status(200).json({ user, accessToken });
   } catch (err) {
     return res.status(500).json(err);
   }
@@ -39,9 +44,15 @@ const loginCtr = async (req, res) => {
       return res.status(400).json("Wrong password.");
     }
 
-    const token = await user.generateAuthToken();
+    const tokens = await user.generateAuthToken();
+    const accessToken = tokens.accessToken;
+    res.cookie("jwt", tokens.refreshToken, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+    res.status(200).json({ user, accessToken });
 
-    return res.status(200).json({ user, token });
+    // return res.status(200).json({ user, token });
   } catch (err) {
     return res.status(500).json(err);
   }

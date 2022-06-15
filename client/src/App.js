@@ -13,12 +13,17 @@ import Signup from "./pages/Signup/Signup";
 import { useSelector } from "react-redux";
 
 function App() {
-  const user = useSelector((state) => state.user.email);
+  const user = useSelector((state) => state.user.user.email);
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={user !== "" ? <HomePage /> : <Navigate replace to="/login" />} />
+        <Route
+          path="/"
+          element={
+            user !== "" ? <HomePage /> : <Navigate replace to="/login" />
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile/:username" element={<ProfilePage />} />
