@@ -9,6 +9,7 @@ const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const postRoutes = require("./routes/post");
 const refreshRoute = require("./routes/refresh");
+const logoutRoute = require("./routes/logout");
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
 app.use("/api/refresh", refreshRoute);
+app.use("/api/logout", logoutRoute);
 
 app.listen(8080, () => {
   console.log("Server is running.");

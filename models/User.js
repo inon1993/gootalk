@@ -75,7 +75,7 @@ UserSchema.methods.generateAuthToken = async function () {
   const accessToken = jwt.sign(
     { _id: user._id.toString() },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "1m" }
+    { expiresIn: "10m" }
   );
   // user.accessTokens = user.accessTokens.concat({ accessToken });
 

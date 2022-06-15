@@ -21,6 +21,8 @@ const registerCtr = async (req, res) => {
     const accessToken = tokens.accessToken;
     res.cookie("jwt", tokens.refreshToken, {
       httpOnly: true,
+      sameSite: "None",
+      secure: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
     res.status(200).json({ user, accessToken });
@@ -48,6 +50,8 @@ const loginCtr = async (req, res) => {
     const accessToken = tokens.accessToken;
     res.cookie("jwt", tokens.refreshToken, {
       httpOnly: true,
+      sameSite: "None",
+      secure: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
     res.status(200).json({ user, accessToken });
