@@ -9,7 +9,7 @@ import {
 import { signup } from "../../api/auth/authRoutes";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/user-slice";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [isPw, setIsPw] = useState({ visable: false, type: "password" });
@@ -39,8 +39,9 @@ const LoginForm = () => {
     getCountriesList();
   }, []);
 
-  const userCheck = useSelector((state) => state.user);
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const countryHandler = (e) => {
     setCountry(e.target.value);
@@ -65,8 +66,9 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const newUser = await signup(user);
+      const accessToken = newUser.data.accessToken;
+      console.log(accessToken);
       const userData = newUser.data.user;
-      console.log(userData);
       const newUserToSet = {
         userId: userData._id,
         firstname: userData.firstname,
@@ -75,9 +77,10 @@ const LoginForm = () => {
         country: userData.country,
         city: userData.city,
         profilePicture: userData.profilePicture,
+        accessToken: accessToken,
       };
       dispatch(userActions.setUser(newUserToSet));
-      console.log(userCheck);
+      navigate("/");
     } catch (error) {
       throw new Error(error);
     }
@@ -97,12 +100,18 @@ const LoginForm = () => {
     <div className={classes["sr-card"]}>
       <h2 className={classes["sr-title"]}>Sign Up</h2>
       <form className={classes["sr-form"]} onSubmit={signupHandler}>
+        <input
+          autoComplete="on"
+          style={{ display: "none" }}
+          id="fake-hidden-input-to-stop-google-address-lookup"
+        />
         <span className={classes["sr-form-text"]}>First name</span>
         <input
           className={classes["sr-input"]}
           name="firstname"
           type="text"
           onChange={setUserHandler}
+          autoComplete="new-off"
         />
         <span className={classes["sr-form-text"]}>Last name</span>
         <input
@@ -110,6 +119,7 @@ const LoginForm = () => {
           name="lastname"
           type="text"
           onChange={setUserHandler}
+          autoComplete="none"
         />
         <span className={classes["sr-form-text"]}>Country</span>
         <div className={classes["sr-country-wrapper"]}>
@@ -127,6 +137,7 @@ const LoginForm = () => {
                 setCountryFocus(false);
               }, 200);
             }}
+            autoComplete="none"
           />
           {countryFocus && (
             <CountrySelector
@@ -164,6 +175,7 @@ const LoginForm = () => {
                 setCityFocus(false);
               }, 200);
             }}
+            autoComplete="none"
             disabled={country === "" ? true : false}
           />
           {cityFocus && countryObj && (
@@ -181,6 +193,7 @@ const LoginForm = () => {
           name="email"
           type="email"
           onChange={setUserHandler}
+          autoComplete="none"
         />
         <span className={classes["sr-form-text"]}>Password</span>
         <div className={classes["sr-input"]}>
@@ -206,7 +219,6 @@ const LoginForm = () => {
         <button className={classes["sr-signup-button"]} type="submit">
           Sign Up
         </button>
-        {userCheck.user.email !== "" ? <Navigate to={'/'} /> : <span>Not</span>}
       </form>
     </div>
   );

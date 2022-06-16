@@ -12,6 +12,7 @@ const initialUserState = {
     following: [],
     country: "",
     city: "",
+    accessToken: "",
   },
 };
 
@@ -31,6 +32,20 @@ const userSlice = createSlice({
       state.user.following = action.payload.following;
       state.user.country = action.payload.country;
       state.user.city = action.payload.city;
+      state.user.accessToken = action.payload.accessToken;
+    },
+    logoutUser(state) {
+      state.user.userId = "";
+      state.user.firstname = "";
+      state.user.lastname = "";
+      state.user.email = "";
+      state.user.profilePicture = "";
+      state.user.coverPicture = "";
+      state.user.followers = [];
+      state.user.following = [];
+      state.user.country = "";
+      state.user.city = "";
+      state.user.accessToken = "";
     },
   },
 });

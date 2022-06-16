@@ -119,6 +119,18 @@
   color: white;
 }
 
+.no-error {
+  display: none;
+}
+
+.error {
+  display: block;
+  text-align: center;
+  margin-top: 0.5rem;
+  color: tomato;
+  font-size: 0.8rem;
+}
+
 @media only screen and (max-width: 1250px) {
   .lr-card {
     width: 50%;
@@ -149,8 +161,7 @@
   }
 }
 
-input[type=password]::-ms-reveal,
-input[type=password]::-ms-clear
-{
-    display: none;
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
 }

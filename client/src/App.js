@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -11,9 +11,15 @@ import Login from "./pages/Login/Login";
 import "./App.css";
 import Signup from "./pages/Signup/Signup";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 function App() {
-  const user = useSelector((state) => state.user.user.email);
+  const user = useSelector((state) => state.user.accessToken);
+  // const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   user === "" && navigate("/login");
+  // }, []);
 
   return (
     <Router>
