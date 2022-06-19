@@ -7,12 +7,14 @@ const Authenticated = () => {
   const user = useSelector((state) => state.user.user.accessToken);
   const location = useLocation();
 
+  const from = location.state?.from?.pathname || "/"
+
   useEffect(() => {
       console.log(user);
   }, [])
 
   return (
-    !user ? <Outlet /> : <Navigate to={state} state={{from: location}} replace />
+    !user ? <Outlet /> : <Navigate to={from} state={{from: location}} replace />
   )
 }
 

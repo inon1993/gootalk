@@ -21,31 +21,20 @@ const DropdownMenu = () => {
   const logoutHandler = async () => {
     try {
       await logout(accessToken);
+      localStorage.removeItem("persist:root");
+      dispatch(userActions.logoutUser());
+      dispatch(menuActions.deactivate());
+      dispatch(dropdownActions.deactivate());
+
+      navigate("/login");
     } catch (error) {
       localStorage.removeItem("persist:root");
-    dispatch(userActions.logoutUser());
-    dispatch(menuActions.deactivate());
-    dispatch(dropdownActions.deactivate());
+      dispatch(userActions.logoutUser());
+      dispatch(menuActions.deactivate());
+      dispatch(dropdownActions.deactivate());
 
-    navigate("/login");
-
-    // window.history.pushState(null, document.title, window.location.href);
-    // window.addEventListener("popstate", function (event) {
-    //   window.history.pushState(null, document.title, window.location.href);
-    // });
+      navigate("/login");
     }
-    
-    localStorage.removeItem("persist:root");
-    dispatch(userActions.logoutUser());
-    dispatch(menuActions.deactivate());
-    dispatch(dropdownActions.deactivate());
-
-    navigate("/login");
-
-    // window.history.pushState(null, document.title, window.location.href);
-    // window.addEventListener("popstate", function (event) {
-    //   window.history.pushState(null, document.title, window.location.href);
-    // });
   };
 
   return (

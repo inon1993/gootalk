@@ -67,6 +67,7 @@ const LoginForm = () => {
             setEmail(e.target.value);
             setErrMsg(null);
           }}
+          autoComplete="none"
           required
         />
         <span className={classes["lr-form-text"]}>Password</span>
@@ -75,6 +76,7 @@ const LoginForm = () => {
             className={classes["lr-input-password"]}
             type={isPwInput}
             onChange={(e) => setPassword(e.target.value)}
+            autoComplete="none"
             required
           />
           {!isVisiblePw && (
