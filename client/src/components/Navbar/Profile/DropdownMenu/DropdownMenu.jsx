@@ -19,7 +19,22 @@ const DropdownMenu = () => {
   const navigate = useNavigate();
   const accessToken = useSelector((state) => state.user.accessToken);
   const logoutHandler = async () => {
-    await logout(accessToken);
+    try {
+      await logout(accessToken);
+    } catch (error) {
+      localStorage.removeItem("persist:root");
+    dispatch(userActions.logoutUser());
+    dispatch(menuActions.deactivate());
+    dispatch(dropdownActions.deactivate());
+
+    navigate("/login");
+
+    // window.history.pushState(null, document.title, window.location.href);
+    // window.addEventListener("popstate", function (event) {
+    //   window.history.pushState(null, document.title, window.location.href);
+    // });
+    }
+    
     localStorage.removeItem("persist:root");
     dispatch(userActions.logoutUser());
     dispatch(menuActions.deactivate());
@@ -27,10 +42,10 @@ const DropdownMenu = () => {
 
     navigate("/login");
 
-    window.history.pushState(null, document.title, window.location.href);
-    window.addEventListener("popstate", function (event) {
-      window.history.pushState(null, document.title, window.location.href);
-    });
+    // window.history.pushState(null, document.title, window.location.href);
+    // window.addEventListener("popstate", function (event) {
+    //   window.history.pushState(null, document.title, window.location.href);
+    // });
   };
 
   return (

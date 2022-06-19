@@ -1,40 +1,23 @@
-import React, { useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
 import HomePage from "./pages/Home/HomePage";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import Login from "./pages/Login/Login";
-import "./App.css";
 import Signup from "./pages/Signup/Signup";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { Routes, Route } from "react-router-dom";
+import RequireAuth from "./components/RoutingComponents/RequireAuth";
+import Authenticated from "./components/RoutingComponents/Authenticated";
 
 function App() {
-  const user = useSelector((state) => state.user.accessToken);
-  // const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   user === "" && navigate("/login");
-  // }, []);
-
   return (
-    <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            user !== "" ? <HomePage /> : <Navigate replace to="/login" />
-          }
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+    <Routes>
+      <Route element={<Authenticated />}>
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      </Route>
+      <Route element={<RequireAuth />}>
+        <Route path="/" element={<HomePage />} />
         <Route path="/profile/:username" element={<ProfilePage />} />
-      </Routes>
-    </Router>
+      </Route>
+    </Routes>
   );
 }
 
