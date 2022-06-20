@@ -3,14 +3,13 @@ import { useSelector } from "react-redux";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 export const useGetPosts = () => {
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState([]);
   const axiosPrivate = useAxiosPrivate();
   const user = useSelector((state) => state.user.user);
-  console.log(11);
   const controller = new AbortController();
 
   useEffect(() => {
-    const getPosts = async () => {
+    const getPostsPromise = async () => {
       try {
         const postsArray = await axiosPrivate.get(
           `/post/timeline/${user.userId}`,
@@ -18,17 +17,20 @@ export const useGetPosts = () => {
             signal: controller.signal,
           }
         );
-        console.log(postsArray.data);
 
         return postsArray.data;
       } catch (e) {
-        console.log(e);
-        throw new Error(e);
+        console.log(e.request.status);
+        return e.request.status;
       }
     };
 
-    const p = getPosts();
-    setPosts(p)
+    const getPosts = async () => {
+      const postsArray = await getPostsPromise();
+      console.log(postsArray);
+      setPosts(postsArray);
+    };
+    getPosts();
   }, []);
 
   return posts;
