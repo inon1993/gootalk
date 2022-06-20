@@ -2,44 +2,43 @@ import classes from "./Feed.module.css";
 import NewPost from "./NewPost/NewPost";
 import Post from "./Post/Post";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useSelector } from "react-redux";
-import useRefreshToken from "../../../hooks/useRefreshToken";
-import { Refresh } from "@mui/icons-material";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import { useGetPosts } from "../../../api/posts/useGetPosts";
 
 const Feed = () => {
-  const user = useSelector((state) => state.user);
+  const axiosPrivate = useAxiosPrivate();
+  const user = useSelector((state) => state.user.user);
   const [posts, setPosts] = useState([]);
-
-  const refresh = useRefreshToken();
+  const pp = useGetPosts();
 
   useEffect(() => {
+    const controller = new AbortController();
     const getPosts = async () => {
       console.log(user);
-      const postsArray = await axios.get(`/post/timeline/${user.userId}`, {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmE4NjlkYzFkMjhiNmRmMWQ2YTNlY2EiLCJpYXQiOjE2NTUyMDQzMTZ9.F3IL4syKcEDTlh-yNCGf3fnWDgd2jIcOCVgBtMCl7C0",
-        },
-      });
+      const postsArray = await axiosPrivate.get(
+        `/post/timeline/${user.userId}`,
+        {
+          signal: controller.signal,
+        }
+      );
+      console.log(postsArray);
       setPosts(postsArray.data);
     };
 
-    getPosts();
-  }, []);
+    // getPosts();
+  // JSON.stringify(pp);
+
+    console.log(pp);
+    console.log(pp.data);
+    setPosts(pp)
+  }, [pp]);
 
   return (
     <div className={classes.feed}>
       <NewPost />
-      <button
-        onClick={() => {
-          refresh();
-        }}
-      >
-        Refresh
-      </button>
-      {posts.map((post) => {
-        return <Post post={post} />;
+      {posts.map((post, i) => {
+        return <Post key={i} post={post} />;
       })}
     </div>
   );

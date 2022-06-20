@@ -50,14 +50,6 @@ const UserSchema = new mongoose.Schema(
       type: String,
       max: 50,
     },
-    /*accessTokens: [
-      {
-        accessToken: {
-          type: String,
-          require: true,
-        },
-      },
-    ],*/
     refreshTokens: [
       {
         refreshToken: {
@@ -75,9 +67,8 @@ UserSchema.methods.generateAuthToken = async function () {
   const accessToken = jwt.sign(
     { _id: user._id.toString() },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "10m" }
+    { expiresIn: "20s" }
   );
-  // user.accessTokens = user.accessTokens.concat({ accessToken });
 
   const refreshToken = jwt.sign(
     { _id: user._id.toString() },
