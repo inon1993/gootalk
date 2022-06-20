@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const useGetPosts = () => {
+  const navigate = useNavigate();
+  const location = useLocation()
   const [posts, setPosts] = useState([]);
   const axiosPrivate = useAxiosPrivate();
   const user = useSelector((state) => state.user.user);
@@ -20,14 +23,12 @@ export const useGetPosts = () => {
 
         return postsArray.data;
       } catch (e) {
-        console.log(e.request.status);
         return e.request.status;
       }
     };
 
     const getPosts = async () => {
       const postsArray = await getPostsPromise();
-      console.log(postsArray);
       setPosts(postsArray);
     };
     getPosts();

@@ -6,8 +6,11 @@ import { useSelector } from "react-redux";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useGetPosts } from "../../../api/posts/useGetPosts";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../../store/user-slice";
 
 const Feed = () => {
+  const dispach = useDispatch()
   // const axiosPrivate = useAxiosPrivate();
   // const user = useSelector((state) => state.user.user);
   const [posts, setPosts] = useState([]);
@@ -31,11 +34,11 @@ const Feed = () => {
     // };
     console.log(postsArray);
     if (postsArray === 401) {
-      console.log(99);
-      navigate("/login", { state: { from: location }, replace: true });
+      dispach(userActions.logoutUser())
+      navigate('/login', { state: { from: location }, replace: true });
     }
     setPosts(postsArray);
-  }, []);
+  }, [postsArray]);
 
   return (
     <div className={classes.feed}>

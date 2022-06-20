@@ -9,10 +9,6 @@ const Authenticated = () => {
 
   const from = location.state?.from?.pathname || "/"
 
-  useEffect(() => {
-      console.log(user);
-  }, [])
-
   return (
     !user ? <Outlet /> : <Navigate to={from} state={{from: location}} replace />
   )
