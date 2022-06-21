@@ -112,6 +112,7 @@ const LoginForm = () => {
           type="text"
           onChange={setUserHandler}
           autoComplete="new-off"
+          required
         />
         <span className={classes["sr-form-text"]}>Last name</span>
         <input
@@ -120,6 +121,7 @@ const LoginForm = () => {
           type="text"
           onChange={setUserHandler}
           autoComplete="none"
+          required
         />
         <span className={classes["sr-form-text"]}>Country</span>
         <div className={classes["sr-country-wrapper"]}>
@@ -194,6 +196,7 @@ const LoginForm = () => {
           type="email"
           onChange={setUserHandler}
           autoComplete="none"
+          required
         />
         <span className={classes["sr-form-text"]}>Password</span>
         <div className={classes["sr-input"]}>
@@ -202,6 +205,7 @@ const LoginForm = () => {
             name="password"
             type={isPw.type}
             onChange={setUserHandler}
+            required
           />
           {!isPw.visable && (
             <Visibility
@@ -216,9 +220,12 @@ const LoginForm = () => {
             />
           )}
         </div>
-        <button className={classes["sr-signup-button"]} type="submit">
-          Sign Up
-        </button>
+        <div className={classes["sr-buttons"]}>
+          <button className={classes["sr-signup-button"]} type="submit">
+            Sign Up
+          </button>
+          <button className={classes["sr-cancel-button"]} type="button">Cancel</button>
+        </div>
       </form>
     </div>
   );

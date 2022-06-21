@@ -75,11 +75,11 @@
 }
 
 .sr-signup-button {
-  margin-top: 50px;
+  width: 45%;
   background-color: hsl(208.7, 100%, 53.7%);
   border: 1px solid hsl(208.7, 100%, 53.7%);
   border-radius: 10px;
-  padding: 8px 0;
+  /* padding: 8px 0; */
   color: white;
   font-weight: 600;
   box-shadow: hsl(208.7, 100%, 53.7%, 0.75) 0px 13px 27px -8px,
@@ -101,6 +101,30 @@
   border: 1px solid hsl(220.3, 62.5%, 22%);
   box-shadow: hsl(220.3, 62.5%, 22%, 0.75) 0px 13px 27px -8px,
     hsl(208.7, 100%, 53.7%, 0.8) 0px 8px 16px -11px;
+}
+
+.sr-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.sr-cancel-button {
+  width: 45%;
+  background-color: white;
+  border: 1px solid hsl(0,0%,13.3%);
+  border-radius: 10px;
+  /* padding: 8px 0; */
+  color: hsl(0,0%,13.3%);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 200ms;
+}
+
+.sr-cancel-button:hover {
+  background-color: hsl(0,0%,13.3%);
+  border: 1px solid hsl(0,0%,13.3%);
+  color: white;
 }
 
 /* @media only screen and (max-width: 1250px) {
@@ -130,6 +154,21 @@
 @media only screen and (max-width: 460px) {
   .sr-card {
     width: 80%;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .sr-buttons {
+    flex-direction: column;
+  }
+
+  .sr-signup-button {
+    margin-bottom: 25px;
+  }
+
+  .sr-cancel-button, .sr-signup-button {
+    padding: 8px 0;
+    width: 100%;
   }
 }
 

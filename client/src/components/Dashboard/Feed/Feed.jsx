@@ -20,6 +20,7 @@ const Feed = () => {
     const getPosts = async () => {
       try {
         const postsArray = await postsArrayPromise();
+        console.log(postsArray);
         setPosts(postsArray);
       } catch (error) {
         dispach(userActions.logoutUser());
@@ -33,7 +34,7 @@ const Feed = () => {
   return (
     <div className={classes.feed}>
       <NewPost />
-      {posts !== [] ? (
+      {posts.length !== 0 ? (
         posts.map((post, i) => {
           return <Post key={i} post={post} />;
         })

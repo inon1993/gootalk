@@ -1,7 +1,10 @@
 import { AccountCircleRounded } from "@mui/icons-material";
 import classes from "./Profile.module.css";
+import { useSelector } from "react-redux";
 
 const Profile = ({ activate, onClick }) => {
+  const user = useSelector((state) => state.user.user);
+
   const clickHandler = () => {
     onClick();
   };
@@ -15,7 +18,7 @@ const Profile = ({ activate, onClick }) => {
       onClick={clickHandler}
     >
       <AccountCircleRounded className={classes["navbar-profile-icon"]} />
-      <span className={classes["navbar-profile-name"]}>Inon Avramashvili</span>
+      <span className={classes["navbar-profile-name"]}>{`${user.firstname} ${user.lastname}`}</span>
     </div>
   );
 };
