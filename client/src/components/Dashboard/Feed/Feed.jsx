@@ -33,9 +33,13 @@ const Feed = () => {
   return (
     <div className={classes.feed}>
       <NewPost />
-      {posts.map((post, i) => {
-        return <Post key={i} post={post} />;
-      })}
+      {posts !== [] ? (
+        posts.map((post, i) => {
+          return <Post key={i} post={post} />;
+        })
+      ) : (
+        <span>No posts...</span>
+      )}
     </div>
   );
 };
