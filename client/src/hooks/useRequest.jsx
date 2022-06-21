@@ -1,6 +1,6 @@
 import useAxiosPrivate from "./useAxiosPrivate";
 
-export const useRequest = ({endpoint}) => {
+export const useRequest = (endpoint) => {
   const axiosPrivate = useAxiosPrivate();
   const controller = new AbortController();
 

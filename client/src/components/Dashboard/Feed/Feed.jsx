@@ -2,24 +2,24 @@ import classes from "./Feed.module.css";
 import NewPost from "./NewPost/NewPost";
 import Post from "./Post/Post";
 import { useState, useEffect } from "react";
-import { useGetPosts } from "../../../api/posts/useGetPosts";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../../store/user-slice";
+import useRequest from "../../../hooks/useRequest";
 
 const Feed = () => {
   const dispach = useDispatch();
   const [posts, setPosts] = useState([]);
-  const postsArrayPromise = useGetPosts();
+  const user = useSelector((state) => state.user.user);
+  const endpoint = `/post/timeline/${user.userId}`;
+  const postsArrayPromise = useRequest(endpoint);
   const navigate = useNavigate();
   const location = useLocation();
-  const user = useSelector((state) => state.user.user);
 
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const endpoint = `/post/timeline/${user.userId}`;
-        const postsArray = await postsArrayPromise(endpoint);
+        const postsArray = await postsArrayPromise();
         setPosts(postsArray);
       } catch (error) {
         dispach(userActions.logoutUser());

@@ -5,7 +5,6 @@ import {
   Logout,
   Settings,
 } from "@mui/icons-material";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
