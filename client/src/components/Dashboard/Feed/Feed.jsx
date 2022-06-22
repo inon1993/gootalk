@@ -11,12 +11,14 @@ const Feed = () => {
   const dispach = useDispatch();
   const [posts, setPosts] = useState([]);
   const user = useSelector((state) => state.user.user);
+  const access = useSelector((state) => state.accessToken.accessToken);
   const endpoint = `/post/timeline/${user.userId}`;
   const postsArrayPromise = useRequest(endpoint);
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
+    console.log(access);
     const getPosts = async () => {
       try {
         const postsArray = await postsArrayPromise();

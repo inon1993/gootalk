@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../api/auth/authRoutes";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user-slice";
+import { accessTokenActions } from "../../store/access-token-slice";
 
 const LoginForm = () => {
   const [isVisiblePw, setISVisiblePw] = useState(false);
@@ -40,9 +41,10 @@ const LoginForm = () => {
         country: userData.country,
         city: userData.city,
         profilePicture: userData.profilePicture,
-        accessToken: accessToken,
+        // accessToken: accessToken,
       };
       dispatch(userActions.setUser(newUserToSet));
+      dispatch(accessTokenActions.setAccessToken(accessToken));
       navigate("/");
     } catch (err) {
       if (err.response.status === 404) {

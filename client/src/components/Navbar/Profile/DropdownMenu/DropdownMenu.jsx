@@ -10,13 +10,14 @@ import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../../../store/user-slice";
 import { menuActions } from "../../../../store/menu-slice";
+import { accessTokenActions } from "../../../../store/access-token-slice";
 import { dropdownActions } from "../../../../store/dropdown-slice";
 import { logout } from "../../../../api/auth/authRoutes";
 
 const DropdownMenu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const accessToken = useSelector((state) => state.user.accessToken);
+  const accessToken = useSelector((state) => state.accessToken.accessToken);
   const logoutHandler = async () => {
     try {
       await logout(accessToken);
@@ -24,6 +25,7 @@ const DropdownMenu = () => {
       dispatch(userActions.logoutUser());
       dispatch(menuActions.deactivate());
       dispatch(dropdownActions.deactivate());
+      dispatch(accessTokenActions.removeAccessToken());
 
       navigate("/login");
     } catch (error) {
@@ -31,6 +33,7 @@ const DropdownMenu = () => {
       dispatch(userActions.logoutUser());
       dispatch(menuActions.deactivate());
       dispatch(dropdownActions.deactivate());
+      dispatch(accessTokenActions.removeAccessToken());
 
       navigate("/login");
     }

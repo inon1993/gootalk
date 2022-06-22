@@ -7,8 +7,9 @@ import {
   CitySelector,
 } from "./LocationSelector/LocationSelector";
 import { signup } from "../../api/auth/authRoutes";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user-slice";
+import { accessTokenActions } from "../../store/access-token-slice";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
@@ -77,9 +78,10 @@ const LoginForm = () => {
         country: userData.country,
         city: userData.city,
         profilePicture: userData.profilePicture,
-        accessToken: accessToken,
+        // accessToken: accessToken,
       };
       dispatch(userActions.setUser(newUserToSet));
+      dispatch(accessTokenActions.setAccessToken(accessToken));
       navigate("/");
     } catch (error) {
       throw new Error(error);

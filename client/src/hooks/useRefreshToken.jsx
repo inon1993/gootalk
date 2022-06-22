@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../store/user-slice";
+import { accessTokenActions } from "../store/access-token-slice";
 
 const useRefreshToken = () => {
   const user = useSelector((state) => state.user.user);
@@ -21,9 +22,11 @@ const useRefreshToken = () => {
         following: user.following,
         country: user.country,
         city: user.city,
-        accessToken: response.data.accessToken,
+        // accessToken: response.data.accessToken,
       })
     );
+    dispatch(accessTokenActions.setAccessToken(response.data.accessToken))
+
     return response.data.accessToken;
   };
   return refresh;
