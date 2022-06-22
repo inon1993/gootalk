@@ -6,6 +6,7 @@ import { login } from "../../api/auth/authRoutes";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user-slice";
 import { accessTokenActions } from "../../store/access-token-slice";
+import { CircularProgress } from "@mui/material";
 
 const LoginForm = () => {
   const [isVisiblePw, setISVisiblePw] = useState(false);
@@ -13,6 +14,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [errMsg, setErrMsg] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -29,6 +31,7 @@ const LoginForm = () => {
 
   const loginSubmitHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const newUser = await login(email, password);
       const accessToken = newUser.data.accessToken;
@@ -41,11 +44,11 @@ const LoginForm = () => {
         country: userData.country,
         city: userData.city,
         profilePicture: userData.profilePicture,
-        // accessToken: accessToken,
       };
       dispatch(userActions.setUser(newUserToSet));
       dispatch(accessTokenActions.setAccessToken(accessToken));
       navigate("/");
+      setIsLoading(false);
     } catch (err) {
       if (err.response.status === 404) {
         setErrMsg("User not found.");
@@ -54,6 +57,7 @@ const LoginForm = () => {
       } else {
         setErrMsg("Login failed.");
       }
+      setIsLoading(false);
     }
   };
 
@@ -101,7 +105,13 @@ const LoginForm = () => {
         >
           {errMsg}
         </span>
-        <button className={classes["lr-login-button"]}>Login</button>
+        <button className={classes["lr-login-button"]}>
+          {isLoading ? (
+            <CircularProgress style={{ color: "white" }} size="20px" />
+          ) : (
+            "Login"
+          )}
+        </button>
       </form>
       <div className={classes["lr-signup"]}>
         <span className={classes["lr-s-text"]}>Don't have an account yet?</span>

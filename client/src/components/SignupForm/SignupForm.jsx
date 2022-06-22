@@ -11,7 +11,6 @@ import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user-slice";
 import { accessTokenActions } from "../../store/access-token-slice";
 import { useNavigate } from "react-router-dom";
-import SmallLoader from "../UI/Loader/SmallLoader";
 import { CircularProgress } from "@mui/material";
 
 const LoginForm = () => {
@@ -72,7 +71,6 @@ const LoginForm = () => {
     try {
       const newUser = await signup(user);
       const accessToken = newUser.data.accessToken;
-      console.log(accessToken);
       const userData = newUser.data.user;
       const newUserToSet = {
         userId: userData._id,
@@ -105,7 +103,9 @@ const LoginForm = () => {
 
   return (
     <div className={classes["sr-card"]}>
-      <h2 className={classes["sr-title"]}>Sign Up</h2>
+      <div className={classes["sr-title-wrapper"]}>
+        <h2 className={classes["sr-title"]}>Sign Up</h2>
+      </div>
       <form className={classes["sr-form"]} onSubmit={signupHandler}>
         <input
           autoComplete="on"
@@ -229,7 +229,11 @@ const LoginForm = () => {
         </div>
         <div className={classes["sr-buttons"]}>
           <button className={classes["sr-signup-button"]} type="submit">
-            {isLoading ? <CircularProgress /> : "Sign Up"}
+            {isLoading ? (
+              <CircularProgress style={{ color: "white" }} size="20px" />
+            ) : (
+              "Sign Up"
+            )}
           </button>
           <button
             className={classes["sr-cancel-button"]}

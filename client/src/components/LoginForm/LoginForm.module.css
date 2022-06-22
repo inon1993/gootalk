@@ -17,7 +17,7 @@
 .lr-form {
   display: flex;
   flex-direction: column;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   width: 100%;
 }
 
@@ -38,7 +38,7 @@
   padding: 8px 8px;
   outline: none;
   font-size: 0.9rem;
-  font-family: 'Poppins', sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
 }
 
 .lr-input-password {
@@ -47,7 +47,7 @@
   background-color: hsl(212.3, 41.9%, 93.9%);
   width: 90%;
   font-size: 0.9rem;
-  font-family: 'Poppins', sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
 }
 
 .lr-visibility {
@@ -56,7 +56,7 @@
 }
 
 .lr-login-button {
-  margin-top: 50px;
+  margin-top: 40px;
   background-color: hsl(208.7, 100%, 53.7%);
   border: 1px solid hsl(208.7, 100%, 53.7%);
   border-radius: 10px;
@@ -67,7 +67,10 @@
     hsl(208.7, 100%, 53.7%, 0.8) 0px 8px 16px -11px;
   cursor: pointer;
   transition: 200ms;
-  font-family: 'Poppins', sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .lr-login-button:hover {
@@ -107,7 +110,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: 200ms;
-  font-family: 'Poppins', sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
 }
 
 .lr-signup-button:hover {

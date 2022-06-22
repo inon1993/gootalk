@@ -9,7 +9,7 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   /* overflow-y: scroll; */
   /* flex-wrap: wrap; */
-  max-height: 85vh;
+  /* min-height: 85vh; */
 }
 
 .st-title {
@@ -87,6 +87,10 @@
   cursor: pointer;
   transition: 200ms;
   font-size: 0.8rem;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sr-signup-button:hover {
@@ -107,39 +111,28 @@
 .sr-buttons {
   display: flex;
   justify-content: space-between;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .sr-cancel-button {
   width: 45%;
   background-color: white;
-  border: 1px solid hsl(0,0%,13.3%);
+  border: 1px solid hsl(0, 0%, 13.3%);
   border-radius: 10px;
   /* padding: 8px 0; */
-  color: hsl(0,0%,13.3%);
+  color: hsl(0, 0%, 13.3%);
   font-weight: 600;
   cursor: pointer;
   transition: 200ms;
   font-size: 0.8rem;
+  height: 40px;
 }
 
 .sr-cancel-button:hover {
-  background-color: hsl(0,0%,13.3%);
-  border: 1px solid hsl(0,0%,13.3%);
+  background-color: hsl(0, 0%, 13.3%);
+  border: 1px solid hsl(0, 0%, 13.3%);
   color: white;
 }
-
-/* @media only screen and (max-width: 1250px) {
-  .sr-card {
-    width: 50%;
-  }
-} */
-
-/* @media only screen and (max-width: 900px) {
-  .sr-card {
-    width: 60%;
-  }
-} */
 
 @media only screen and (max-width: 850px) {
   .sr-card {
@@ -151,6 +144,20 @@
   .sr-card {
     width: 80%;
   }
+
+  .sr-form {
+    margin-bottom: 10px;
+  }
+
+  .sr-title-wrapper {
+    width: 85%;
+    display: flex;
+    justify-content: right;
+  }
+
+  .sr-title {
+    margin-bottom: 20px;
+  }
 }
 
 @media only screen and (max-width: 460px) {
@@ -160,22 +167,26 @@
 }
 
 @media only screen and (max-width: 375px) {
+  .sr-card {
+    padding: 8px;
+  }
+
   .sr-buttons {
     flex-direction: column;
   }
 
   .sr-signup-button {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
   }
 
-  .sr-cancel-button, .sr-signup-button {
+  .sr-cancel-button,
+  .sr-signup-button {
     padding: 8px 0;
     width: 100%;
   }
 }
 
-input[type=password]::-ms-reveal,
-input[type=password]::-ms-clear
-{
-    display: none;
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
 }
