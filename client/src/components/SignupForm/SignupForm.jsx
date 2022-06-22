@@ -11,6 +11,8 @@ import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user-slice";
 import { accessTokenActions } from "../../store/access-token-slice";
 import { useNavigate } from "react-router-dom";
+import SmallLoader from "../UI/Loader/SmallLoader";
+import { CircularProgress } from "@mui/material";
 
 const LoginForm = () => {
   const [isPw, setIsPw] = useState({ visable: false, type: "password" });
@@ -30,6 +32,7 @@ const LoginForm = () => {
     city: "",
     password: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getCountriesList = async () => {
@@ -65,6 +68,7 @@ const LoginForm = () => {
 
   const signupHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const newUser = await signup(user);
       const accessToken = newUser.data.accessToken;
@@ -82,7 +86,9 @@ const LoginForm = () => {
       dispatch(userActions.setUser(newUserToSet));
       dispatch(accessTokenActions.setAccessToken(accessToken));
       navigate("/");
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       throw new Error(error);
     }
   };
@@ -223,7 +229,7 @@ const LoginForm = () => {
         </div>
         <div className={classes["sr-buttons"]}>
           <button className={classes["sr-signup-button"]} type="submit">
-            Sign Up
+            {isLoading ? <CircularProgress /> : "Sign Up"}
           </button>
           <button
             className={classes["sr-cancel-button"]}

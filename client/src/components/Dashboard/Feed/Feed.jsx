@@ -18,11 +18,9 @@ const Feed = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(access);
     const getPosts = async () => {
       try {
         const postsArray = await postsArrayPromise();
-        console.log(postsArray);
         setPosts(postsArray);
       } catch (error) {
         dispach(userActions.logoutUser());

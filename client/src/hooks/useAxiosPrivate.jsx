@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 const useAxiosPrivate = () => {
     const refresh = useRefreshToken();
-    const accessToken = useSelector(state => state.user.user.accessToken);
+    const accessToken = useSelector(state => state.accessToken.accessToken);
 
     useEffect(() => {
         const requestIntercept = axiosPrivate.interceptors.request.use(

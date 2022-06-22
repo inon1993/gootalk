@@ -6,12 +6,9 @@ export const useRequest = (endpoint) => {
 
   const getRequest = async () => {
     try {
-      const postsArray = await axiosPrivate.get(
-        endpoint,
-        {
-          signal: controller.signal,
-        }
-      );
+      const postsArray = await axiosPrivate.get(endpoint, {
+        signal: controller.signal,
+      });
       return postsArray.data;
     } catch (e) {
       throw new Error(e);

@@ -1,10 +1,11 @@
+const { cookie } = require("express/lib/response");
 const User = require("../models/User");
 
 const handleLogout = async (req, res) => {
   const cookies = req.cookies;
 
   try {
-    if (!cookies?.jwt) {
+    if (!cookies?.jwt || cookies.jwt === "" || cookies.jwt === null || cookies.jwt === undefined) {
       return res.sendStatus(204);
     }
 
