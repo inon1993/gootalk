@@ -5,38 +5,16 @@ import {
   Logout,
   Settings,
 } from "@mui/icons-material";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
-import { userActions } from "../../../../store/user-slice";
-import { menuActions } from "../../../../store/menu-slice";
-import { accessTokenActions } from "../../../../store/access-token-slice";
-import { dropdownActions } from "../../../../store/dropdown-slice";
-import { logout } from "../../../../api/auth/authRoutes";
+import useLogout from "../../../../hooks/useLogout";
 
 const DropdownMenu = () => {
-  const dispatch = useDispatch();
+  const logout = useLogout();
   const navigate = useNavigate();
-  const accessToken = useSelector((state) => state.accessToken.accessToken);
+  
   const logoutHandler = async () => {
-    try {
-      await logout(accessToken);
-      localStorage.removeItem("persist:root");
-      dispatch(userActions.logoutUser());
-      dispatch(menuActions.deactivate());
-      dispatch(dropdownActions.deactivate());
-      dispatch(accessTokenActions.removeAccessToken());
-
-      navigate("/login");
-    } catch (error) {
-      localStorage.removeItem("persist:root");
-      dispatch(userActions.logoutUser());
-      dispatch(menuActions.deactivate());
-      dispatch(dropdownActions.deactivate());
-      dispatch(accessTokenActions.removeAccessToken());
-
-      navigate("/login");
-    }
+    await logout();
+    navigate("/login");
   };
 
   return (

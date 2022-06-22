@@ -86,6 +86,7 @@
     hsl(208.7, 100%, 53.7%, 0.8) 0px 8px 16px -11px;
   cursor: pointer;
   transition: 200ms;
+  font-size: 0.8rem;
 }
 
 .sr-signup-button:hover {
@@ -119,6 +120,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: 200ms;
+  font-size: 0.8rem;
 }
 
 .sr-cancel-button:hover {

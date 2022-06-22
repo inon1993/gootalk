@@ -5,7 +5,7 @@ const handleLogout = async (req, res) => {
 
   try {
     if (!cookies?.jwt) {
-      throw new Error();
+      return res.sendStatus(204);
     }
 
     const refreshToken = cookies.jwt;
@@ -36,7 +36,7 @@ const handleLogout = async (req, res) => {
     });
     return res.status(204).send("Cookie deleted successfully.");
   } catch (e) {
-    return res.status(401).send("Please authenticate.");
+    return res.status(204).send("Please authenticate.");
   }
 };
 

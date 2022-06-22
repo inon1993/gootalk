@@ -22,11 +22,9 @@ const useRefreshToken = () => {
         following: user.following,
         country: user.country,
         city: user.city,
-        // accessToken: response.data.accessToken,
       })
     );
     dispatch(accessTokenActions.setAccessToken(response.data.accessToken))
-
     return response.data.accessToken;
   };
   return refresh;
