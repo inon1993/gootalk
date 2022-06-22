@@ -67,13 +67,13 @@ UserSchema.methods.generateAuthToken = async function () {
   const accessToken = jwt.sign(
     { _id: user._id.toString() },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "10s" }
+    { expiresIn: "5m" }
   );
 
   const refreshToken = jwt.sign(
     { _id: user._id.toString() },
     process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: "20s" }
+    { expiresIn: "1d" }
   );
   user.refreshTokens = user.refreshTokens.concat({ refreshToken });
   await user.save();

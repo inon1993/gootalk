@@ -78,7 +78,6 @@ const LoginForm = () => {
         country: userData.country,
         city: userData.city,
         profilePicture: userData.profilePicture,
-        // accessToken: accessToken,
       };
       dispatch(userActions.setUser(newUserToSet));
       dispatch(accessTokenActions.setAccessToken(accessToken));
@@ -226,7 +225,13 @@ const LoginForm = () => {
           <button className={classes["sr-signup-button"]} type="submit">
             Sign Up
           </button>
-          <button className={classes["sr-cancel-button"]} type="button">Cancel</button>
+          <button
+            className={classes["sr-cancel-button"]}
+            type="button"
+            onClick={() => navigate("/login")}
+          >
+            Cancel
+          </button>
         </div>
       </form>
     </div>
