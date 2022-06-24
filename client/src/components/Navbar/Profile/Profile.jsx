@@ -17,8 +17,18 @@ const Profile = ({ activate, onClick }) => {
       }
       onClick={clickHandler}
     >
-      <AccountCircleRounded className={classes["navbar-profile-icon"]} />
-      <span className={classes["navbar-profile-name"]}>{`${user.firstname} ${user.lastname}`}</span>
+      {user.profilePicture ? (
+        <img
+          className={classes["navbar-profile-pic"]}
+          src={user.profilePicture}
+          alt="profile"
+        />
+      ) : (
+        <AccountCircleRounded className={classes["navbar-profile-icon"]} />
+      )}
+      <span
+        className={classes["navbar-profile-name"]}
+      >{`${user.firstname} ${user.lastname}`}</span>
     </div>
   );
 };

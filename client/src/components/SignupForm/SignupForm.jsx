@@ -6,14 +6,14 @@ import {
   CountrySelector,
   CitySelector,
 } from "./LocationSelector/LocationSelector";
-import { signup } from "../../api/auth/authRoutes";
+import { signup, uploadImage } from "../../api/auth/authRoutes";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user-slice";
 import { accessTokenActions } from "../../store/access-token-slice";
 import { useNavigate } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 
-const LoginForm = () => {
+const LoginForm = ({ profilePicture }) => {
   const [isPw, setIsPw] = useState({ visable: false, type: "password" });
   const [countries, setCountries] = useState([]);
   const [countryFocus, setCountryFocus] = useState(false);
@@ -69,9 +69,11 @@ const LoginForm = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const newUser = await signup(user);
+      const imgUrl = await profilePictureUrl(profilePicture);
+      const newUser = await signup(user, imgUrl);
       const accessToken = newUser.data.accessToken;
       const userData = newUser.data.user;
+      console.log(userData);
       const newUserToSet = {
         userId: userData._id,
         firstname: userData.firstname,
@@ -79,7 +81,7 @@ const LoginForm = () => {
         email: userData.email,
         country: userData.country,
         city: userData.city,
-        profilePicture: userData.profilePicture,
+        profilePicture: imgUrl?.data?.url || userData.profilePicture,
       };
       dispatch(userActions.setUser(newUserToSet));
       dispatch(accessTokenActions.setAccessToken(accessToken));
@@ -88,6 +90,15 @@ const LoginForm = () => {
     } catch (error) {
       setIsLoading(false);
       throw new Error(error);
+    }
+  };
+
+  const profilePictureUrl = async (profilePicture) => {
+    if (profilePicture) {
+      const imgUrl = await uploadImage(profilePicture);
+      return imgUrl;
+    } else {
+      return null;
     }
   };
 

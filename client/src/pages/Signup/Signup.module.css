@@ -26,10 +26,26 @@
   border-color: hsl(208.7, 100%, 53.7%);
 }
 
+.sl-form > input {
+  display: none;
+}
+
+.sl-preview-pic {
+  height: 11.2rem;
+  width: 11.2rem;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid white;
+  cursor: pointer;
+}
+
 .sl-add-pic-icon {
-  font-size: 13rem !important;
-  /* border: 10px solid white;
-  border-radius: 50%; */
+  /* font-size: 13rem !important; */
+  height: 11.2rem;
+  width: 11.2rem;
+  border: 5px solid white;
+  border-radius: 50%;
+  /* background-color: white; */
   transition: 200ms;
 }
 
@@ -46,44 +62,8 @@
   background-color: white;
   /* border: 5px solid hsl(220.3, 62.5%, 22%); */
   border-radius: 50%;
+  cursor: pointer;
 }
-
-/* .add-icon:hover {
-  border-color: hsl(208.7, 100%, 53.7%);
-} */
-
-/* .ll-text {
-  font-size: 2rem;
-  text-shadow: 40px -30px 70px hsl(220.3, 62.5%, 22%, 0.8),
-    40px -60px 80px rgb(30, 87, 202, 0.8);
-  transition: 2500ms;
-}
-
-.ll-text:hover {
-  text-shadow: 40px -30px 80px hsl(220.3, 62.5%, 22%, 1),
-    40px -60px 100px rgb(30, 87, 202, 1);
-  cursor: default;
-}
-
-.ll-goo {
-  font-size: 4rem;
-  font-weight: 900;
-  text-shadow: 30px -50px 70px hsl(208.7, 100%, 53.7%, 0.4),
-    30px -20px 90px hsl(208.7, 100%, 53.7%, 0.6),
-    10px 20px 90px rgba(54, 248, 248, 0.6);
-  transition: 2500ms;
-}
-
-.ll-goo:hover {
-  text-shadow: 30px 0px 100px hsl(208.7, 100%, 53.7%, 1),
-    30px -20px 1100px hsl(208.7, 100%, 53.7%, 1),
-    10px 20px 120px rgba(54, 248, 248, 1);
-  cursor: default;
-}
-
-.ll-talk {
-  color: hsl(208.7, 100%, 53.7%);
-} */
 
 .login-right {
   flex: 2;
@@ -120,14 +100,21 @@
     top: calc(50vh - 300px);
   }
 
+  .sl-preview-pic {
+    height: 4.9rem;
+    width: 4.9rem;
+  }
+
   .sl-add-pic-icon {
-    font-size: 5.5rem !important;
+    /* font-size: 5.5rem !important;
     background-color: white;
-    border-radius: 50%;
+    border-radius: 50%; */
+    height: 4.9rem;
+    width: 4.9rem;
   }
 
   .add-icon {
-    font-size: 2rem !important;
+    font-size: 1.8rem !important;
     top: 3.5rem;
     right: 0.3rem;
   }
@@ -137,16 +124,24 @@
   .sl-add-pic {
     top: calc(50vh - 320px);
   }
+
+  .sl-preview-pic {
+    height: 3.4rem;
+    width: 3.4rem;
+  }
+
   .sl-add-pic-icon {
-    font-size: 4rem !important;
+    /* font-size: 4rem !important;
     background-color: white;
-    border-radius: 50%;
+    border-radius: 50%; */
+    height: 3.4rem;
+    width: 3.4rem;
   }
 
   .add-icon {
-    font-size: 1rem !important;
-    top: 3rem;
-    right: 0.5rem;
+    font-size: 1.2rem !important;
+    top: 2.9rem;
+    right: 0.2rem;
   }
 }
 
