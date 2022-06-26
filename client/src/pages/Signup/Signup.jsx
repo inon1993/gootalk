@@ -1,11 +1,11 @@
-import { AccountCircleRounded, AddCircleOutline } from "@mui/icons-material";
+import { AddCircleOutline } from "@mui/icons-material";
 import ppIcon from "../../images/pp-icon.png";
 import { useState } from "react";
 import SignupForm from "../../components/SignupForm/SignupForm";
 import classes from "./Signup.module.css";
 
 const Signup = () => {
-  const [fileInputState, setFileInputState] = useState("");
+  // const [fileInputState, setFileInputState] = useState("");
   const [previewSource, setPreviewSource] = useState();
 
   const handleFileInputChange = (e) => {
@@ -47,9 +47,8 @@ const Signup = () => {
               type="file"
               name="image"
               onChange={handleFileInputChange}
-              value={fileInputState}
+              value=""
             />
-            {/* <button type="submit"></button> */}
           </form>
         </div>
       </div>

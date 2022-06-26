@@ -32,6 +32,12 @@ const LoginForm = ({ profilePicture }) => {
     password: "",
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [isValid, setIsValid] = useState({
+    firstname: null,
+    lastname: true,
+    email: true,
+    password: true
+  })
 
   useEffect(() => {
     const getCountriesList = async () => {
@@ -43,7 +49,6 @@ const LoginForm = ({ profilePicture }) => {
   }, []);
 
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   const countryHandler = (e) => {
@@ -103,14 +108,68 @@ const LoginForm = ({ profilePicture }) => {
   };
 
   const setUserHandler = (e) => {
-    console.log(e);
     setUser((prevState) => {
       return {
         ...prevState,
         [e.target.name]: e.target.value,
       };
     });
+
+    
   };
+
+  useEffect(() => {
+    // if(e.target.name === "firstname") {
+      console.log(user.firstname);
+      user.firstname.trim().length === 0 ? setIsValid((prev) => {
+        console.log(user.firstname);
+        return {
+          ...prev, firstname: false
+        }
+      }) : setIsValid((prev) => {
+        console.log(user.firstname);
+        return {
+          ...prev, firstname: true
+        }
+      })
+
+      console.log(111);
+    // }
+
+    // if(e.target.name === "lastname") {
+      user.lastname.trim().length === 0 && setIsValid((prev) => {
+        return {
+          ...prev, lastname: false
+        }
+      })
+    // }
+
+    // if(e.target.name === "email") {
+      user.email.trim().length < 5 && !user.email.includes("@") && setIsValid((prev) => {
+        return {
+          ...prev, email: false
+        }
+      })
+    // }
+
+    // if(e.target.name === "password") {
+      user.password.trim().length < 6 && setIsValid((prev) => {
+        return {
+          ...prev, password: false
+        }
+      })
+    // }
+
+    return () => {
+      console.log(2);
+    }
+  }, [user])
+
+  // useEffect(() => {
+  //   setIsValid({
+  //     firstname: true
+  //   }, [])
+  // })
 
   return (
     <div className={classes["sr-card"]}>
@@ -119,16 +178,17 @@ const LoginForm = ({ profilePicture }) => {
       </div>
       <form className={classes["sr-form"]} onSubmit={signupHandler}>
         <input
-          autoComplete="on"
+          autoComplete="new-off"
           style={{ display: "none" }}
           id="fake-hidden-input-to-stop-google-address-lookup"
         />
         <span className={classes["sr-form-text"]}>First name</span>
         <input
-          className={classes["sr-input"]}
+          className={`${classes["sr-input"]} ${isValid.firstname === false && classes["sr-invalid-input"]}`}
           name="firstname"
           type="text"
           onChange={setUserHandler}
+          // value={user.firstname}
           autoComplete="new-off"
           required
         />
