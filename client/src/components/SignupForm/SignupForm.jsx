@@ -1,6 +1,6 @@
 import classes from "./SignupForm.module.css";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import getLocations from "../../helpers/countries-api/getLocations";
 import {
   CountrySelector,
@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 
 const LoginForm = ({ profilePicture }) => {
+  const firstnameRef = useRef();
   const [isPw, setIsPw] = useState({ visable: false, type: "password" });
   const [countries, setCountries] = useState([]);
   const [countryFocus, setCountryFocus] = useState(false);
@@ -38,6 +39,11 @@ const LoginForm = ({ profilePicture }) => {
     email: true,
     password: true,
   });
+  const [errorMsg, setErrorMsg] = useState({ code: null, msg: "" });
+
+  useEffect(() => {
+    firstnameRef.current.focus();
+  }, []);
 
   useEffect(() => {
     const getCountriesList = async () => {
@@ -80,6 +86,7 @@ const LoginForm = ({ profilePicture }) => {
     )
       return;
     setIsLoading(true);
+    setErrorMsg({ code: null, msg: "" });
     try {
       const imgUrl = await profilePictureUrl(profilePicture);
       const newUser = await signup(user, imgUrl);
@@ -102,6 +109,17 @@ const LoginForm = ({ profilePicture }) => {
     } catch (error) {
       console.log(error);
       setIsLoading(false);
+      if (error.response.status === 409) {
+        setErrorMsg({
+          code: 409,
+          msg: "E-Mail address is already registered.",
+        });
+      } else {
+        setErrorMsg({
+          code: 500,
+          msg: "Something went wrong. Please try again.",
+        });
+      }
       throw new Error(error);
     }
   };
@@ -116,6 +134,9 @@ const LoginForm = ({ profilePicture }) => {
   };
 
   const setUserHandler = (e) => {
+    if (e.target.name === "email") {
+      setErrorMsg({ code: null, msg: "" });
+    }
     setUser((prevState) => {
       return {
         ...prevState,
@@ -222,10 +243,11 @@ const LoginForm = ({ profilePicture }) => {
           onChange={setUserHandler}
           autoComplete="new-off"
           required
+          ref={firstnameRef}
         />
         <div className={classes["sr-field-text"]}>
-        <span className={classes["sr-form-text"]}>Last name</span>
-        {isValid.lastname === false && (
+          <span className={classes["sr-form-text"]}>Last name</span>
+          {isValid.lastname === false && (
             <span className={classes["sr-err-instructions"]}>
               (At least 2 characters.)
             </span>
@@ -308,8 +330,8 @@ const LoginForm = ({ profilePicture }) => {
           )}
         </div>
         <div className={classes["sr-field-text"]}>
-        <span className={classes["sr-form-text"]}>E-Mail</span>
-        {isValid.email === false && (
+          <span className={classes["sr-form-text"]}>E-Mail</span>
+          {isValid.email === false && (
             <span className={classes["sr-err-instructions"]}>
               (A valid E-Mail address is required.)
             </span>
@@ -325,9 +347,12 @@ const LoginForm = ({ profilePicture }) => {
           autoComplete="none"
           required
         />
+        {errorMsg.code === 409 && (
+          <span className={classes["sr-err"]}>{errorMsg.msg}</span>
+        )}
         <div className={classes["sr-field-text"]}>
-        <span className={classes["sr-form-text"]}>Password</span>
-        {isValid.password === false && (
+          <span className={classes["sr-form-text"]}>Password</span>
+          {isValid.password === false && (
             <span className={classes["sr-err-instructions"]}>
               (At least 6 characters.)
             </span>
@@ -374,6 +399,9 @@ const LoginForm = ({ profilePicture }) => {
             Cancel
           </button>
         </div>
+        {errorMsg.code === 500 && (
+          <span className={classes["sr-err"]}>{errorMsg.msg}</span>
+        )}
       </form>
     </div>
   );

@@ -20,11 +20,11 @@
   transition: 200ms;
 }
 
-.sl-add-pic:hover {
+/* .sl-add-pic:hover {
   color: hsl(208.7, 100%, 53.7%);
   cursor: pointer;
   border-color: hsl(208.7, 100%, 53.7%);
-}
+} */
 
 .sl-form > input {
   display: none;
@@ -63,6 +63,27 @@
   /* border: 5px solid hsl(220.3, 62.5%, 22%); */
   border-radius: 50%;
   cursor: pointer;
+  transition: 200ms;
+}
+
+.add-icon:hover {
+  color: hsl(208.7, 100%, 53.7%);
+}
+
+.remove-icon {
+  position: absolute;
+  top: 9rem;
+  right: 1rem;
+  font-size: 3.5rem !important;
+  background-color: white;
+  /* border: 5px solid hsl(220.3, 62.5%, 22%); */
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 200ms;
+}
+
+.remove-icon:hover {
+  color: tomato;
 }
 
 .signup-right {
@@ -113,7 +134,8 @@
     width: 4.9rem;
   }
 
-  .add-icon {
+  .add-icon,
+  .remove-icon {
     font-size: 1.8rem !important;
     top: 3.5rem;
     right: 0.3rem;
@@ -122,7 +144,7 @@
 
 @media only screen and (max-width: 375px) {
   .sl-add-pic {
-    top: calc(50vh - 320px);
+    top: calc(50vh - 307px);
   }
 
   .sl-preview-pic {
@@ -138,14 +160,15 @@
     width: 3.4rem;
   }
 
-  .add-icon {
+  .add-icon,
+  .remove-icon {
     font-size: 1.2rem !important;
     top: 2.9rem;
     right: 0.2rem;
   }
 }
 
-@media only screen and (max-height: 650px) {
+@media only screen and (max-height: 550px) {
   .sl-add-pic {
     top: calc(50vh - 307px);
   }

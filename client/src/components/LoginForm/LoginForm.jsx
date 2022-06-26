@@ -1,6 +1,6 @@
 import classes from "./LoginForm.module.css";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../api/auth/authRoutes";
 import { useDispatch } from "react-redux";
@@ -9,6 +9,7 @@ import { accessTokenActions } from "../../store/access-token-slice";
 import { CircularProgress } from "@mui/material";
 
 const LoginForm = () => {
+  const emailRef = useRef();
   const [isVisiblePw, setISVisiblePw] = useState(false);
   const [isPwInput, setIsPwInput] = useState("password");
   const [email, setEmail] = useState();
@@ -18,6 +19,10 @@ const LoginForm = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    emailRef.current.focus();
+  }, []);
 
   const visibilityHandler = () => {
     setISVisiblePw(true);
@@ -75,6 +80,7 @@ const LoginForm = () => {
           }}
           autoComplete="none"
           required
+          ref={emailRef}
         />
         <span className={classes["lr-form-text"]}>Password</span>
         <div className={classes["lr-input"]}>

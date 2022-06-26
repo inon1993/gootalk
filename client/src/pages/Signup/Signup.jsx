@@ -1,4 +1,4 @@
-import { AddCircleOutline } from "@mui/icons-material";
+import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
 import ppIcon from "../../images/pp-icon.png";
 import { useState } from "react";
 import SignupForm from "../../components/SignupForm/SignupForm";
@@ -40,7 +40,19 @@ const Signup = () => {
                   alt="profile icon"
                 />
               )}
-              <AddCircleOutline className={classes["add-icon"]} />
+              {!previewSource && (
+                <AddCircleOutline className={classes["add-icon"]} />
+              )}
+            </label>
+            <label>
+              {previewSource && (
+                <RemoveCircleOutline
+                  className={classes["remove-icon"]}
+                  onClick={() => {
+                    setPreviewSource();
+                  }}
+                />
+              )}
             </label>
             <input
               id="file-input"

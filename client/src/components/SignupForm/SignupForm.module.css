@@ -150,6 +150,16 @@
   margin-left: 5px;
 }
 
+.sr-err {
+  background-color: pink;
+  border: 1px solid red;
+  border-radius: 5px;
+  color: red;
+  font-size: 0.8rem;
+  padding: 3px;
+  margin-top: 5px;
+}
+
 @media only screen and (max-width: 850px) {
   .sr-card {
     width: 70%;

@@ -18,9 +18,7 @@ const registerCtr = async (req, res) => {
       profilePicture: req.body.profilePicture?.data?.url || "",
     });
 
-    console.log(1);
     const user = await newUser.save();
-    console.log(2);
     const tokens = await user.generateAuthToken();
     const accessToken = tokens.accessToken;
     res.cookie("jwt", tokens.refreshToken, {
@@ -32,6 +30,9 @@ const registerCtr = async (req, res) => {
     res.status(200).json({ user, accessToken });
   } catch (err) {
     console.log(err);
+    if (err.code === 11000) {
+      return res.status(409).send("e-mail is already registered.");
+    }
     return res.status(500).json(err);
   }
 };
