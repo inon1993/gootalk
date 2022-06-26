@@ -20,12 +20,6 @@
   transition: 200ms;
 }
 
-/* .sl-add-pic:hover {
-  color: hsl(208.7, 100%, 53.7%);
-  cursor: pointer;
-  border-color: hsl(208.7, 100%, 53.7%);
-} */
-
 .sl-form > input {
   display: none;
 }
@@ -40,18 +34,15 @@
 }
 
 .sl-add-pic-icon {
-  /* font-size: 13rem !important; */
   height: 11.2rem;
   width: 11.2rem;
   border: 5px solid white;
   border-radius: 50%;
-  /* background-color: white; */
   transition: 200ms;
 }
 
 .sl-add-pic-icon:hover {
   cursor: pointer;
-  /* color: hsl(208.7, 100%, 53.7%); */
 }
 
 .add-icon {
@@ -60,7 +51,6 @@
   right: 1rem;
   font-size: 3.5rem !important;
   background-color: white;
-  /* border: 5px solid hsl(220.3, 62.5%, 22%); */
   border-radius: 50%;
   cursor: pointer;
   transition: 200ms;
@@ -76,7 +66,6 @@
   right: 1rem;
   font-size: 3.5rem !important;
   background-color: white;
-  /* border: 5px solid hsl(220.3, 62.5%, 22%); */
   border-radius: 50%;
   cursor: pointer;
   transition: 200ms;
@@ -98,15 +87,11 @@
     flex-direction: column;
   }
   .signup-left {
-    /* flex: 0.5; */
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .signup-right {
-    /* position: absolute; */
-    /* top: 7.5%; */
-    /* flex: 2.5; */
     width: 100%;
     display: flex;
     align-items: center;
@@ -127,9 +112,6 @@
   }
 
   .sl-add-pic-icon {
-    /* font-size: 5.5rem !important;
-    background-color: white;
-    border-radius: 50%; */
     height: 4.9rem;
     width: 4.9rem;
   }
@@ -153,9 +135,6 @@
   }
 
   .sl-add-pic-icon {
-    /* font-size: 4rem !important;
-    background-color: white;
-    border-radius: 50%; */
     height: 3.4rem;
     width: 3.4rem;
   }

@@ -29,7 +29,6 @@ const registerCtr = async (req, res) => {
     });
     res.status(200).json({ user, accessToken });
   } catch (err) {
-    console.log(err);
     if (err.code === 11000) {
       return res.status(409).send("e-mail is already registered.");
     }
