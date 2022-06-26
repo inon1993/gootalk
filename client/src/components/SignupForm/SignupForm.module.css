@@ -135,7 +135,7 @@
 }
 
 .sr-invalid-input {
-  background-color: tomato;
+  border-bottom: 1px solid red;
   color: red;
 }
 

@@ -36,8 +36,8 @@ const LoginForm = ({ profilePicture }) => {
     firstname: null,
     lastname: true,
     email: true,
-    password: true
-  })
+    password: true,
+  });
 
   useEffect(() => {
     const getCountriesList = async () => {
@@ -72,6 +72,13 @@ const LoginForm = ({ profilePicture }) => {
 
   const signupHandler = async (e) => {
     e.preventDefault();
+    if (
+      !isValid.firstname ||
+      !isValid.lastname ||
+      !isValid.email ||
+      !isValid.password
+    )
+      return;
     setIsLoading(true);
     try {
       const imgUrl = await profilePictureUrl(profilePicture);
@@ -114,62 +121,78 @@ const LoginForm = ({ profilePicture }) => {
         [e.target.name]: e.target.value,
       };
     });
-
-    
   };
 
   useEffect(() => {
-    // if(e.target.name === "firstname") {
+    if (user.firstname.trim().length !== 0) {
       console.log(user.firstname);
-      user.firstname.trim().length === 0 ? setIsValid((prev) => {
-        console.log(user.firstname);
-        return {
-          ...prev, firstname: false
-        }
-      }) : setIsValid((prev) => {
-        console.log(user.firstname);
-        return {
-          ...prev, firstname: true
-        }
-      })
+      user.firstname.trim().length < 2
+        ? setIsValid((prev) => {
+            return {
+              ...prev,
+              firstname: false,
+            };
+          })
+        : setIsValid((prev) => {
+            return {
+              ...prev,
+              firstname: true,
+            };
+          });
 
       console.log(111);
-    // }
-
-    // if(e.target.name === "lastname") {
-      user.lastname.trim().length === 0 && setIsValid((prev) => {
-        return {
-          ...prev, lastname: false
-        }
-      })
-    // }
-
-    // if(e.target.name === "email") {
-      user.email.trim().length < 5 && !user.email.includes("@") && setIsValid((prev) => {
-        return {
-          ...prev, email: false
-        }
-      })
-    // }
-
-    // if(e.target.name === "password") {
-      user.password.trim().length < 6 && setIsValid((prev) => {
-        return {
-          ...prev, password: false
-        }
-      })
-    // }
-
-    return () => {
-      console.log(2);
     }
-  }, [user])
 
-  // useEffect(() => {
-  //   setIsValid({
-  //     firstname: true
-  //   }, [])
-  // })
+    if (user.lastname.trim().length !== 0) {
+      user.lastname.trim().length < 2
+        ? setIsValid((prev) => {
+            return {
+              ...prev,
+              lastname: false,
+            };
+          })
+        : setIsValid((prev) => {
+            return {
+              ...prev,
+              lastname: true,
+            };
+          });
+    }
+
+    if (user.email.trim().length !== 0) {
+      user.email.trim().length < 5 ||
+      !user.email.includes("@") ||
+      !user.email.includes(".")
+        ? setIsValid((prev) => {
+            return {
+              ...prev,
+              email: false,
+            };
+          })
+        : setIsValid((prev) => {
+            return {
+              ...prev,
+              email: true,
+            };
+          });
+    }
+
+    if (user.password.trim().length !== 0) {
+      user.password.trim().length < 6
+        ? setIsValid((prev) => {
+            return {
+              ...prev,
+              password: false,
+            };
+          })
+        : setIsValid((prev) => {
+            return {
+              ...prev,
+              password: true,
+            };
+          });
+    }
+  }, [user]);
 
   return (
     <div className={classes["sr-card"]}>
@@ -184,17 +207,20 @@ const LoginForm = ({ profilePicture }) => {
         />
         <span className={classes["sr-form-text"]}>First name</span>
         <input
-          className={`${classes["sr-input"]} ${isValid.firstname === false && classes["sr-invalid-input"]}`}
+          className={`${classes["sr-input"]} ${
+            isValid.firstname === false && classes["sr-invalid-input"]
+          }`}
           name="firstname"
           type="text"
           onChange={setUserHandler}
-          // value={user.firstname}
           autoComplete="new-off"
           required
         />
         <span className={classes["sr-form-text"]}>Last name</span>
         <input
-          className={classes["sr-input"]}
+          className={`${classes["sr-input"]} ${
+            isValid.lastname === false && classes["sr-invalid-input"]
+          }`}
           name="lastname"
           type="text"
           onChange={setUserHandler}
@@ -269,7 +295,9 @@ const LoginForm = ({ profilePicture }) => {
         </div>
         <span className={classes["sr-form-text"]}>E-Mail</span>
         <input
-          className={classes["sr-input"]}
+          className={`${classes["sr-input"]} ${
+            isValid.email === false && classes["sr-invalid-input"]
+          }`}
           name="email"
           type="email"
           onChange={setUserHandler}
@@ -277,7 +305,11 @@ const LoginForm = ({ profilePicture }) => {
           required
         />
         <span className={classes["sr-form-text"]}>Password</span>
-        <div className={classes["sr-input"]}>
+        <div
+          className={`${classes["sr-input"]} ${
+            isValid.password === false && classes["sr-invalid-input"]
+          }`}
+        >
           <input
             className={classes["sr-input-password"]}
             name="password"
