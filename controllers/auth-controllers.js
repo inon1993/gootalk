@@ -31,6 +31,7 @@ const registerCtr = async (req, res) => {
     });
     res.status(200).json({ user, accessToken });
   } catch (err) {
+    console.log(err);
     return res.status(500).json(err);
   }
 };

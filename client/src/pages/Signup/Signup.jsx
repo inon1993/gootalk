@@ -23,7 +23,7 @@ const Signup = () => {
 
   return (
     <div className={classes["signup-wrapper"]}>
-      <div className={classes["login-left"]}>
+      <div className={classes["signup-left"]}>
         <div className={classes["sl-add-pic"]}>
           <form className={classes["sl-form"]}>
             <label htmlFor="file-input">
@@ -52,7 +52,7 @@ const Signup = () => {
           </form>
         </div>
       </div>
-      <div className={classes["login-right"]}>
+      <div className={classes["signup-right"]}>
         <SignupForm profilePicture={previewSource} />
       </div>
     </div>

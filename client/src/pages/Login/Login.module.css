@@ -81,3 +81,15 @@
       10px 20px 60px rgba(54, 248, 248, 0.8);
   }
 }
+
+@media only screen and (max-height: 650px) {
+  .login-wrapper {
+    overflow-y: scroll;
+    align-items: flex-start;
+  }
+
+  .login-left {
+    min-height: 100vh;
+    justify-content: center;
+  }
+}

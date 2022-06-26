@@ -100,6 +100,7 @@ const LoginForm = ({ profilePicture }) => {
       navigate("/");
       setIsLoading(false);
     } catch (error) {
+      console.log(error);
       setIsLoading(false);
       throw new Error(error);
     }
@@ -139,8 +140,6 @@ const LoginForm = ({ profilePicture }) => {
               firstname: true,
             };
           });
-
-      console.log(111);
     }
 
     if (user.lastname.trim().length !== 0) {
@@ -205,7 +204,15 @@ const LoginForm = ({ profilePicture }) => {
           style={{ display: "none" }}
           id="fake-hidden-input-to-stop-google-address-lookup"
         />
-        <span className={classes["sr-form-text"]}>First name</span>
+        <div className={classes["sr-field-text"]}>
+          <span className={classes["sr-form-text"]}>First name</span>
+          {isValid.firstname === false && (
+            <span className={classes["sr-err-instructions"]}>
+              (At least 2 characters.)
+            </span>
+          )}
+        </div>
+
         <input
           className={`${classes["sr-input"]} ${
             isValid.firstname === false && classes["sr-invalid-input"]
@@ -216,7 +223,14 @@ const LoginForm = ({ profilePicture }) => {
           autoComplete="new-off"
           required
         />
+        <div className={classes["sr-field-text"]}>
         <span className={classes["sr-form-text"]}>Last name</span>
+        {isValid.lastname === false && (
+            <span className={classes["sr-err-instructions"]}>
+              (At least 2 characters.)
+            </span>
+          )}
+        </div>
         <input
           className={`${classes["sr-input"]} ${
             isValid.lastname === false && classes["sr-invalid-input"]
@@ -293,7 +307,14 @@ const LoginForm = ({ profilePicture }) => {
             />
           )}
         </div>
+        <div className={classes["sr-field-text"]}>
         <span className={classes["sr-form-text"]}>E-Mail</span>
+        {isValid.email === false && (
+            <span className={classes["sr-err-instructions"]}>
+              (A valid E-Mail address is required.)
+            </span>
+          )}
+        </div>
         <input
           className={`${classes["sr-input"]} ${
             isValid.email === false && classes["sr-invalid-input"]
@@ -304,7 +325,14 @@ const LoginForm = ({ profilePicture }) => {
           autoComplete="none"
           required
         />
+        <div className={classes["sr-field-text"]}>
         <span className={classes["sr-form-text"]}>Password</span>
+        {isValid.password === false && (
+            <span className={classes["sr-err-instructions"]}>
+              (At least 6 characters.)
+            </span>
+          )}
+        </div>
         <div
           className={`${classes["sr-input"]} ${
             isValid.password === false && classes["sr-invalid-input"]

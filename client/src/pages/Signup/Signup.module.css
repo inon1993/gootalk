@@ -7,7 +7,7 @@
   background-attachment: fixed;
 }
 
-.login-left {
+.signup-left {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -65,7 +65,7 @@
   cursor: pointer;
 }
 
-.login-right {
+.signup-right {
   flex: 2;
   display: flex;
   flex-direction: column;
@@ -76,13 +76,13 @@
   .signup-wrapper {
     flex-direction: column;
   }
-  .login-left {
+  .signup-left {
     /* flex: 0.5; */
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .login-right {
+  .signup-right {
     /* position: absolute; */
     /* top: 7.5%; */
     /* flex: 2.5; */
@@ -148,5 +148,15 @@
 @media only screen and (max-height: 650px) {
   .sl-add-pic {
     top: calc(50vh - 307px);
+  }
+
+  .signup-wrapper {
+    overflow-y: scroll;
+    align-items: flex-start;
+  }
+
+  .signup-left {
+    min-height: 100vh;
+    justify-content: end;
   }
 }
