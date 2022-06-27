@@ -13,7 +13,7 @@ const Feed = () => {
   const user = useSelector((state) => state.user.user);
   const access = useSelector((state) => state.accessToken.accessToken);
   const endpoint = `/post/timeline/${user.userId}`;
-  const postsArrayPromise = useRequest(endpoint);
+  const postsArrayPromise = useRequest(endpoint, "GET");
   const navigate = useNavigate();
   const location = useLocation();
 

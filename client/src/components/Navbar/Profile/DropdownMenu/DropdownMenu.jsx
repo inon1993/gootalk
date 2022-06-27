@@ -33,9 +33,9 @@ const DropdownMenu = () => {
           <span className={classes["dropdown-item-text"]}>Settings</span>
         </div>
       </div>
-      <div className={classes["dropdown-item"]}>
+      <div className={classes["dropdown-item"]} onClick={logoutHandler}>
         <Logout className={classes["dropdown-item-icon"]} />
-        <span className={classes["dropdown-item-text"]} onClick={logoutHandler}>
+        <span className={classes["dropdown-item-text"]} >
           Log Out
         </span>
       </div>
