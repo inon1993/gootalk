@@ -1,27 +1,20 @@
 import classes from "./NewPost.module.css";
 import { AccountCircleRounded, ImageRounded } from "@mui/icons-material";
-import Card from "../../../UI/Card/Card"
-import { useRef } from "react";
+import Card from "../../../UI/Card/Card";
+import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import useRequest from "../../../../hooks/useRequest";
 
 const NewPost = () => {
   const user = useSelector((state) => state.user.user);
+  console.log(user);
+  const [post, setPost] = useState({ userId: user.userId, desc: "" });
   const textRef = useRef();
-  const sendPost = useRequest();
+  const sendPost = useRequest("/post", "POST", post);
 
-  const sharePostHandler = async() => {
-    const endpoint = "/post/"
-    const sharePost = async () => {
-      const post = {
-        userId: user.userId.toString(),
-        desc: textRef.current.value
-      }
-      await sendPost(endpoint, "POST", post);
-    }
-
-    sharePost();
-  }
+  const sharePostHandler = async () => {
+    await sendPost();
+  };
 
   return (
     <Card className={classes["new-post"]}>
@@ -32,6 +25,14 @@ const NewPost = () => {
           placeholder="What's on your mind, Inon?"
           wrap="soft"
           ref={textRef}
+          onChange={(e) =>
+            setPost((prev) => {
+              return {
+                ...prev,
+                desc: e.target.value,
+              };
+            })
+          }
         />
       </div>
       <hr className={classes["new-post-br"]} />
@@ -41,7 +42,9 @@ const NewPost = () => {
           <span className={classes["new-post-add-img-text"]}>Add a Photo</span>
         </div>
 
-        <button className={classes["share-post"]} onClick={sharePostHandler}>Share</button>
+        <button className={classes["share-post"]} onClick={sharePostHandler}>
+          Share
+        </button>
       </div>
     </Card>
   );

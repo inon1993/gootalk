@@ -10,7 +10,10 @@
 }
 
 .post-profile-img {
-  font-size: 2rem !important;
+  /* font-size: 2rem !important; */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   margin-right: 5px;
 }
 
