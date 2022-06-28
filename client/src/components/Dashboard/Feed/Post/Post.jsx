@@ -3,18 +3,18 @@ import ppIcon from "../../../../images/pp-icon.png";
 import classes from "./Post.module.css";
 import Card from "../../../UI/Card/Card";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { format } from "timeago.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useRequest from "../../../../hooks/useRequest";
 import { userActions } from "../../../../store/user-slice";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Post = ({ post }) => {
   const [user, setUser] = useState({});
-  // const user = useSelector((state) => state.user.user);
-  const endpoint = `/user/${post.userId}`;
-  const postUserPromise = useRequest(endpoint);
+  const [liked, setLiked] = useState(false)
+  const loggedInUser = useSelector((state) => state.user.user);
+  const postUserPromise = useRequest(`/user/${post.userId}`, "GET");
+  const like = useRequest(`/post/${post._id}/like`, "PUT", {userId: loggedInUser.userId});
   const dispach = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -31,6 +31,11 @@ const Post = ({ post }) => {
     };
     getPostUser();
   }, []);
+
+  const likeHandler = async () => {
+    await like();
+    setLiked(true)
+  }
 
   return (
     user && (
@@ -54,12 +59,12 @@ const Post = ({ post }) => {
             alt="post img"
           />
         </div>
-        <div className={classes["post-like"]}>
-          <ThumbUp className={classes["post-like-icon"]} />
+        {post.userId !== loggedInUser.userId && <div className={classes["post-like"]}>
+          <ThumbUp className={classes["post-like-icon"]} onClick={likeHandler} />
           <span className={classes["post-like-text"]}>
             {post.likes.length} people like it
           </span>
-        </div>
+        </div>}
       </Card>
     )
   );
