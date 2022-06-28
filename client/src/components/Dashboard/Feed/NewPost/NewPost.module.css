@@ -11,8 +11,11 @@
 }
 
 .new-post-profile-logo {
-  padding-right: 10px;
-  font-size: 2.5rem !important;
+  margin-right: 10px;
+  /* font-size: 2.5rem !important; */
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
 }
 
 .new-post-input {
@@ -22,7 +25,7 @@
   width: 100%;
   font-family: "Poppins", sans-serif;
   /* overflow:hidden; */
-  resize:none;
+  resize: none;
 }
 
 .new-post-br {
@@ -64,6 +67,7 @@
   background-color: hsl(206.7, 33.3%, 94.7%);
   color: hsl(220.3, 62.5%, 22%);
   transition: 250ms;
+  outline: none;
 }
 
 .share-post:hover {
@@ -73,7 +77,9 @@
 }
 
 @media only screen and (max-width: 650px) {
-  .new-post-input {font-size: 0.9rem;}
+  .new-post-input {
+    font-size: 0.9rem;
+  }
   .new-post-add-img-text {
     font-size: 0.8rem;
   }

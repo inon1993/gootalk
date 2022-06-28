@@ -87,7 +87,13 @@ const getTimelineCtr = async (req, res) => {
         return Post.find({ userId: friendId });
       })
     );
-    return res.status(200).json(userPosts.concat(...friendsPosts));
+    const sortedArray = userPosts
+      .concat(...friendsPosts)
+      .sort((a, b) => {
+        return a.createdAt - b.createdAt;
+      })
+      .reverse();
+    return res.status(200).json(sortedArray);
   } catch (err) {
     return res.status(500).json(err);
   }

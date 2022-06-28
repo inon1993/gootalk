@@ -11,8 +11,8 @@
 
 .post-profile-img {
   /* font-size: 2rem !important; */
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   margin-right: 5px;
 }
@@ -79,11 +79,13 @@
 }
 
 @media only screen and (max-width: 420px) {
-  .post-body-text, .post-name {
+  .post-body-text,
+  .post-name {
     font-size: 0.8rem;
   }
 
-  .post-time, .post-like-text {
+  .post-time,
+  .post-like-text {
     font-size: 0.7rem;
   }
 }

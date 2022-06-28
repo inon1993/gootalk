@@ -1,25 +1,30 @@
 import classes from "./NewPost.module.css";
-import { AccountCircleRounded, ImageRounded } from "@mui/icons-material";
+import { ImageRounded } from "@mui/icons-material";
+import ppIcon from "../../../../images/pp-icon.png";
 import Card from "../../../UI/Card/Card";
 import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import useRequest from "../../../../hooks/useRequest";
 
-const NewPost = () => {
+const NewPost = ({ onReload }) => {
   const user = useSelector((state) => state.user.user);
-  console.log(user);
   const [post, setPost] = useState({ userId: user.userId, desc: "" });
   const textRef = useRef();
   const sendPost = useRequest("/post", "POST", post);
 
   const sharePostHandler = async () => {
     await sendPost();
+    onReload();
   };
 
   return (
     <Card className={classes["new-post"]}>
       <div className={classes["new-post-upper"]}>
-        <AccountCircleRounded className={classes["new-post-profile-logo"]} />
+        <img
+          className={classes["new-post-profile-logo"]}
+          src={user?.profilePicture || ppIcon}
+          alt="profile"
+        />
         <textarea
           className={classes["new-post-input"]}
           placeholder="What's on your mind, Inon?"

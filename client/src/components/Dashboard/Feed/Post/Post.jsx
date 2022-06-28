@@ -1,4 +1,5 @@
-import { AccountCircleRounded, ThumbUp } from "@mui/icons-material";
+import { ThumbUp } from "@mui/icons-material";
+import ppIcon from "../../../../images/pp-icon.png";
 import classes from "./Post.module.css";
 import Card from "../../../UI/Card/Card";
 import { useState, useEffect } from "react";
@@ -22,7 +23,6 @@ const Post = ({ post }) => {
     const getPostUser = async () => {
       try {
         const postUser = await postUserPromise();
-        console.log(postUser);
         setUser(postUser);
       } catch (error) {
         dispach(userActions.logoutUser());
@@ -30,7 +30,6 @@ const Post = ({ post }) => {
       }
     };
     getPostUser();
-    console.log(user);
   }, []);
 
   return (
@@ -39,7 +38,8 @@ const Post = ({ post }) => {
         <div className={classes["post-upper"]}>
           <img
             className={classes["post-profile-img"]}
-            src={user?.profilePicture}
+            src={user?.profilePicture || ppIcon}
+            alt={"profile"}
           />
           <span
             className={classes["post-name"]}

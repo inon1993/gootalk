@@ -18,22 +18,22 @@ const Feed = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const getPosts = async () => {
-      try {
-        const postsArray = await postsArrayPromise();
-        setPosts(postsArray);
-      } catch (error) {
-        dispach(userActions.logoutUser());
-        navigate("/login", { state: { from: location }, replace: true });
-      }
-    };
-
     getPosts();
   }, []);
 
+  const getPosts = async () => {
+    try {
+      const postsArray = await postsArrayPromise();
+      setPosts(postsArray);
+    } catch (error) {
+      dispach(userActions.logoutUser());
+      navigate("/login", { state: { from: location }, replace: true });
+    }
+  };
+
   return (
     <div className={classes.feed}>
-      <NewPost />
+      <NewPost onReload={getPosts} />
       {posts.length !== 0 ? (
         posts.map((post, i) => {
           return <Post key={i} post={post} />;
