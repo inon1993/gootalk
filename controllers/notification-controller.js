@@ -14,8 +14,10 @@ const friendshipRequest = async (req, res) => {
     if (
       user.notifications.filter(
         (n) => n.senderUserId === newNotification.senderUserId
-      )
+      ).length > 0
     ) {
+        console.log(user.notifications);
+        console.log(newNotification.senderUserId);
       return res.status(409).send("Request has already been sent.");
     }
     await newNotification.save();
