@@ -16,8 +16,8 @@ const friendshipRequest = async (req, res) => {
         (n) => n.senderUserId === newNotification.senderUserId
       ).length > 0
     ) {
-        console.log(user.notifications);
-        console.log(newNotification.senderUserId);
+      console.log(user.notifications);
+      console.log(newNotification.senderUserId);
       return res.status(409).send("Request has already been sent.");
     }
     await newNotification.save();
@@ -28,24 +28,29 @@ const friendshipRequest = async (req, res) => {
   }
 };
 
-const acceptReqest = async (req, res) => {
+const responseReqest = async (req, res) => {
   try {
     const currentUser = await User.findById(req.body.currentUserId);
-    if (user.friends.includes(req.body.userId)) {
+    if (currentUser.friends.includes(req.body.userId)) {
+      await Notification.findByIdAndUpdate(req.body.notificationId, {
+        status: true,
+      });
       return res.status(409).send("You are already friends.");
     }
     const user = await User.findById(req.body.userId);
-    const notification = await Notification.findByIdAndUpdate(req.body.notificationId, {status: true})
-    if(!notification) {
-        throw new Error()
+    await Notification.findByIdAndUpdate(req.body.notificationId, {
+      status: true,
+    });
+    if (req.body.response === false) {
+      return res.status(403).send("Request has been rejected successfully.");
     }
     await currentUser.updateOne({ $push: { friends: req.body.userId } });
-    // await currentUser.updateOne({ notifications: { friends: req.body.userId } });
     await user.updateOne({ $push: { friends: req.body.currentUserId } });
-    // await user.updateOne({ $push: { friends: req.body.currentUserId } });
+    return res.status(200).send("Request has been accepted successfully.");
   } catch (error) {
     return res.status(500).send("Internal server error.");
   }
 };
 
 module.exports.friendshipRequest = friendshipRequest;
+module.exports.responseReqest = responseReqest;
