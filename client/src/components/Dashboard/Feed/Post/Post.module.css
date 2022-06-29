@@ -57,6 +57,10 @@
   transition: 100ms !important;
 }
 
+.post-liked-icon {
+  color: hsl(208.7, 100%, 53.7%);
+}
+
 .post-like-icon:hover {
   color: hsl(208.7, 100%, 53.7%);
 }

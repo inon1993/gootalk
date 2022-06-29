@@ -40,14 +40,15 @@ const deletePostCtr = async (req, res) => {
 };
 
 const likePostCtr = async (req, res) => {
+  console.log(req.body);
   try {
     const post = await Post.findById(req.params.id);
     if (post.userId !== req.body.userId) {
       if (!post.likes.includes(req.body.userId)) {
-        await Post.updateOne({ $push: { likes: req.body.userId } });
+        await post.updateOne({ $push: { likes: req.body.userId } });
         return res.status(200).json("Post has been liked.");
       } else {
-        await Post.updateOne({ $pull: { likes: req.body.userId } });
+        await post.updateOne({ $pull: { likes: req.body.userId } });
         return res.status(200).json("Post has been disliked.");
       }
     } else {

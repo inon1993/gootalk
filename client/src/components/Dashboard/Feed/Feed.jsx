@@ -10,6 +10,7 @@ import useRequest from "../../../hooks/useRequest";
 const Feed = () => {
   const dispach = useDispatch();
   const [posts, setPosts] = useState([]);
+  const [update, setUpdate] = useState(0)
   const user = useSelector((state) => state.user.user);
   const access = useSelector((state) => state.accessToken.accessToken);
   const endpoint = `/post/timeline/${user.userId}`;
@@ -18,6 +19,7 @@ const Feed = () => {
   const location = useLocation();
 
   useEffect(() => {
+    console.log(access);
     getPosts();
   }, []);
 
@@ -36,7 +38,7 @@ const Feed = () => {
       <NewPost onReload={getPosts} />
       {posts.length !== 0 ? (
         posts.map((post, i) => {
-          return <Post key={i} post={post} />;
+          return <Post key={i} post={post} update={setUpdate} />;
         })
       ) : (
         <span>No posts...</span>

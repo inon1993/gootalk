@@ -2,19 +2,24 @@ import classes from "./NewPost.module.css";
 import { ImageRounded } from "@mui/icons-material";
 import ppIcon from "../../../../images/pp-icon.png";
 import Card from "../../../UI/Card/Card";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import useRequest from "../../../../hooks/useRequest";
 
 const NewPost = ({ onReload }) => {
   const user = useSelector((state) => state.user.user);
   const [post, setPost] = useState({ userId: user.userId, desc: "" });
-  const textRef = useRef();
   const sendPost = useRequest("/post", "POST", post);
 
   const sharePostHandler = async () => {
     await sendPost();
     onReload();
+    setPost((prev) => {
+      return {
+        ...prev,
+        desc: "",
+      };
+    })
   };
 
   return (
@@ -29,7 +34,7 @@ const NewPost = ({ onReload }) => {
           className={classes["new-post-input"]}
           placeholder="What's on your mind, Inon?"
           wrap="soft"
-          ref={textRef}
+          value={post.desc}
           onChange={(e) =>
             setPost((prev) => {
               return {
