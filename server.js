@@ -10,6 +10,7 @@ const userRoutes = require("./routes/user");
 const postRoutes = require("./routes/post");
 const refreshRoute = require("./routes/refresh");
 const logoutRoute = require("./routes/logout");
+const notificationsRoute = require("./routes/notifications");
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
 app.use("/api/refresh", refreshRoute);
 app.use("/api/logout", logoutRoute);
+app.use("/api/notifications", notificationsRoute);
 
 app.listen(8080, () => {
   console.log("Server is running.");

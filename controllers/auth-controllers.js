@@ -3,7 +3,6 @@ const User = require("../models/User");
 const { cloudinary } = require("../utils/cloudinary");
 
 const registerCtr = async (req, res) => {
-  console.log(0);
   try {
     const salt = await bcrypt.genSalt(8);
     const hashedPassword = await bcrypt.hash(req.body.data.password, salt);
