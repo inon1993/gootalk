@@ -5,6 +5,11 @@
   border: 1px solid hsl(206.7, 33.3%, 94.7%);
   border-radius: 10px;
   width: 70%;
+  position: relative;
+}
+
+.navbar-search-text {
+  border-radius: 10px 10px 0 0;
 }
 
 .search-icon {
@@ -29,4 +34,69 @@
 
 .search-input::placeholder {
   color: hsl(207.2, 32.5%, 68%);
+}
+
+.search-results {
+  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+  border: 1px solid hsl(206.7, 33.3%, 94.7%);
+  border-top: none;
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+  position: absolute;
+  top: 41.75px;
+  left: -1px;
+}
+
+.search-users {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  border-bottom: 1px solid hsl(206.7, 33.3%, 94.7%);
+  cursor: pointer;
+  transition: 200ms;
+}
+
+.search-users:hover {
+  background-color: hsl(206.7, 33.3%, 94.7%);
+}
+
+.search-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  margin: 5px 10px;
+}
+
+.search-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.search-firstname {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.search-lastname {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.search-expend {
+  text-align: center;
+  font-size: 0.7rem;
+  margin: 0;
+  padding: 0.5rem;
+  border-radius: 0 0 10px 10px;
+  background-color: white;
+  cursor: pointer;
+  transition: 200ms;
+}
+
+.search-expend:hover {
+  background-color: hsl(206.7, 33.3%, 94.7%);
 }
