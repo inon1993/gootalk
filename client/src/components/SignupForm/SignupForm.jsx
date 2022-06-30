@@ -274,11 +274,7 @@ const LoginForm = ({ profilePicture }) => {
             onFocus={() => {
               setCountryFocus(true);
             }}
-            onBlur={() => {
-              setTimeout(() => {
-                setCountryFocus(false);
-              }, 200);
-            }}
+            onBlur={() => setCountryFocus(false)}
             autoComplete="none"
           />
           {countryFocus && (
@@ -309,18 +305,12 @@ const LoginForm = ({ profilePicture }) => {
                 };
               });
             }}
-            onFocus={() => {
-              setCityFocus(true);
-            }}
-            onBlur={() => {
-              setTimeout(() => {
-                setCityFocus(false);
-              }, 200);
-            }}
+            onFocus={() => setCityFocus(true)}
+            onBlur={() => setCityFocus(false)}
             autoComplete="none"
             disabled={country === "" ? true : false}
           />
-          {cityFocus && countryObj && (
+          {cityFocus && countryObj && city !== "" && (
             <CitySelector
               city={city || user.city}
               country={countryObj}

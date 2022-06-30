@@ -12,6 +12,7 @@ import {Link} from "react-router-dom"
 
 const Menu = () => {
   const isActivated = useSelector((state) => state.menu.activate);
+  const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
 
   const activateHome = () => {
@@ -48,7 +49,7 @@ const Menu = () => {
           <HomeRounded className={classes["menu-list-icon"]} />
           <span className={classes["menu-text"]}>Home</span>
         </li>
-        <Link to={"/profile/:username"} style={{ textDecoration: "none" }}>
+        <Link to={`/profile/${user.firstname}-${user.lastname}`} style={{ textDecoration: "none" }}>
         <li
           className={
             isActivated.profile

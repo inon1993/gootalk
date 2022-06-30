@@ -1,5 +1,6 @@
 import { SearchRounded } from "@mui/icons-material";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useRequest from "../../../hooks/useRequest";
 import ppIcon from "../../../images/pp-icon.png";
 import classes from "./Search.module.css";
@@ -10,6 +11,7 @@ const Search = () => {
   const [isExpended, setIsExpended] = useState(false);
   const [focus, setFocus] = useState(false);
   const fetchUsers = useRequest("/user/", "GET");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getUsers = async () => {
@@ -20,6 +22,7 @@ const Search = () => {
   }, []);
 
   const expendHandler = () => {
+    navigate(`/search?query=${query}`, {state: {usersList: users, query: query}})
     setIsExpended(true);
   };
 
@@ -38,8 +41,12 @@ const Search = () => {
         onChange={(e) => {
           setQuery(e.target.value);
         }}
-        onFocus={() => setFocus(true)}
-        // onBlur={() => blur && setFocus(false)}
+        onFocus={() => {
+          setFocus(true)
+        }}
+        onBlur={() => {
+          setFocus(false);
+        }}
       />
       {focus && query !== "" && isExpended === false && (
         <div className={classes["search-results"]}>
@@ -58,9 +65,8 @@ const Search = () => {
                 <div
                   key={i}
                   className={classes["search-users"]}
-                  onClick={() => {
+                  onMouseDown={() => {
                     // do something
-                    setFocus(false);
                   }}
                 >
                   <img
@@ -79,11 +85,12 @@ const Search = () => {
                 </div>
               );
             })}
-          <p className={classes["search-expend"]} onClick={expendHandler}>
+          <p className={classes["search-expend"]} onMouseDown={expendHandler}>
             Show More
           </p>
         </div>
       )}
+      {/* {isExpended && query !== "" && <ExpendedUsers usersList={users} query={query}/>} */}
     </div>
   );
 };

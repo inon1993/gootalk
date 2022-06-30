@@ -13,7 +13,7 @@ export const CountrySelector = ({ country, countries, onSetCountry, onSetCountry
           <span
             key={`${country.iso2}${country.iso3}${Math.random()}`}
             className={classes["sr-country-name"]}
-            onClick={() => {
+            onMouseDown={() => {
               onSetCountryObj(country);
               onSetCountry(country.country);
               onSetUser(prevState => {
@@ -45,7 +45,7 @@ export const CitySelector = ({ city, country, onSetCity, onSetUser }) => {
             <span
               key={`${country.iso2}${country.iso3}${Math.random()}`}
               className={classes["sr-country-name"]}
-              onClick={() => {
+              onMouseDown={() => {
                 onSetCity(city);
                 onSetUser(prevState => {
                   return {
@@ -60,21 +60,6 @@ export const CitySelector = ({ city, country, onSetCity, onSetUser }) => {
           )
         })
         }
-        {/* {country.cities.map((city) => {
-          return (
-            <span
-              key={`${country.iso2}${country.iso3}${Math.random()}`}
-              className={classes["sr-country-name"]}
-              onClick={() => {
-                onSetCity(city);
-              }}
-            >
-              {city}
-            </span>
-          );
-        })} */}
       </div>
     );
   };
-
-// export default CountrySelector;
