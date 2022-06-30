@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Menu from "../../components/Dashboard/Menu/Menu";
 import Navbar from "../../components/Navbar/Navbar";
 import ppIcon from "../../images/pp-icon.png";
@@ -9,25 +9,22 @@ const ExpendedUsers = () => {
   const [numButtons, setNumButtons] = useState([]);
   const [sliceVal, setSliceVal] = useState({ start: 0, end: 10 });
   const location = useLocation();
+  const navigate = useNavigate();
   const [query, setQuery] = useState(location?.state?.query);
   const [usersList, setUsers] = useState(location?.state?.usersList);
 
   useEffect(() => {
-    console.log(query);
     let a = usersList.filter((user) => {
       if (user.firstname.toLowerCase().includes(query)) {
         return user;
       }
     });
     let length = a.length;
-    console.log(length);
     let numOfButtons = Math.ceil(length / 10);
-    console.log(numOfButtons);
     let arr = [];
     for (let i = 1; i <= numOfButtons; i++) {
       arr.push(i);
     }
-    console.log(arr);
     setNumButtons(arr);
   }, [usersList, query]);
 
@@ -45,6 +42,7 @@ const ExpendedUsers = () => {
   const submitSearchHandler = (e) => {
     e.preventDefault();
     setQuery(e.target[0].value);
+    navigate(`/search?query=${e.target[0].value}`, {state: {usersList: usersList, query: e.target[0].value}})
   };
 
   return (
@@ -63,11 +61,8 @@ const ExpendedUsers = () => {
               <input
                 className={classes["search-expended"]}
                 type="text"
-                placeholder="Search"
+                placeholder="Search for friends..."
                 defaultValue={query}
-                // onChange={(e) => {
-                //   setQuery(e.target.value);
-                // }}
               />
             </form>
             <div className={classes["results-expended"]}>

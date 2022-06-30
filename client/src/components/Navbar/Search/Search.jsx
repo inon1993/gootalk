@@ -1,9 +1,12 @@
 import { SearchRounded } from "@mui/icons-material";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useSelector, useNavigate } from "react-router-dom";
 import useRequest from "../../../hooks/useRequest";
 import ppIcon from "../../../images/pp-icon.png";
 import classes from "./Search.module.css";
+import { navbarActions } from "../../../store/navbar-slice";
+import { menuActions } from "../../../store/menu-slice";
 
 const Search = () => {
   const [users, setUsers] = useState([]);
@@ -12,6 +15,7 @@ const Search = () => {
   const [focus, setFocus] = useState(false);
   const fetchUsers = useRequest("/user/", "GET");
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const getUsers = async () => {
@@ -23,6 +27,9 @@ const Search = () => {
 
   const expendHandler = () => {
     navigate(`/search?query=${query}`, {state: {usersList: users, query: query}})
+    dispatch(navbarActions.toggleSearchInput())
+    dispatch(navbarActions.deactivate())
+    dispatch(menuActions.deactivate())
     setIsExpended(true);
   };
 

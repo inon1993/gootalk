@@ -71,7 +71,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className={classes.search}>
-          <Search />
+          {isActivated.searchInput && <Search />}
         </div>
         <div className={classes["navbar-features"]}>
           <HomeRounded

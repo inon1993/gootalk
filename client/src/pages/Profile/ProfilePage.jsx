@@ -15,6 +15,7 @@ const Profile = () => {
     const activateProfile = () => {
       dispatch(menuActions.activateProfile());
       dispatch(navbarActions.deactivate());
+      dispatch(navbarActions.activateSearchInput())
   }
   activateProfile();
   }, [])

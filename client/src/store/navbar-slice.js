@@ -6,6 +6,7 @@ const initialNavbarState = {
     notifications: false,
     profile: false,
     search: false,
+    searchInput: true,
   },
 };
 
@@ -18,30 +19,49 @@ const navbarSlice = createSlice({
       state.activate.notifications = false;
       state.activate.profile = false;
       state.activate.search = false;
+      state.activate.searchInput = true;
     },
     activateNotification(state) {
       state.activate.home = false;
       state.activate.notifications = true;
       state.activate.profile = false;
       state.activate.search = false;
+      state.activate.searchInput = true;
     },
     activateProfile(state) {
       state.activate.home = state.activate.home;
       state.activate.notifications = state.activate.notifications;
       state.activate.profile = !state.activate.profile;
       state.activate.search = false;
+      state.activate.searchInput = state.activate.searchInput;
     },
     activateSearch(state) {
       state.activate.home = false;
       state.activate.notifications = false;
       state.activate.profile = false;
       state.activate.search = true;
+      state.activate.searchInput = true;
+    },
+    toggleSearchInput(state) {
+      state.activate.home = state.activate.home;
+      state.activate.notifications = state.activate.notifications;
+      state.activate.profile = state.activate.profile;
+      state.activate.search = state.activate.search;
+      state.activate.searchInput = !state.activate.searchInput;
+    },
+    activateSearchInput(state) {
+      state.activate.home = state.activate.home;
+      state.activate.notifications = state.activate.notifications;
+      state.activate.profile = state.activate.profile;
+      state.activate.search = state.activate.search;
+      state.activate.searchInput = true;
     },
     deactivate(state) {
       state.activate.home = false;
       state.activate.notifications = false;
       state.activate.profile = false;
       state.activate.search = false;
+      state.activate.searchInput = state.activate.searchInput;
     },
   },
 });

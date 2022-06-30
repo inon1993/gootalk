@@ -11,8 +11,8 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  /* background-color: hsl(210, 71.4%, 97.3%); */
-  background-color: red;
+  background-color: hsl(210, 71.4%, 97.3%);
+  /* background-color: red; */
   background-attachment: fixed;
 }
 
@@ -64,8 +64,7 @@
 }
 
 .users-expended:hover {
-  /* background-color: rgb(238, 250, 255); */
-  background-color: blue;
+  background-color: hsl(206.7, 33.3%, 94.7%);
 }
 
 .users-expended:first-child {
