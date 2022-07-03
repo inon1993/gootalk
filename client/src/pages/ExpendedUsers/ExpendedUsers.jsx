@@ -11,7 +11,9 @@ const ExpendedUsers = () => {
   const [sliceVal, setSliceVal] = useState({ start: 0, end: 10 });
   const location = useLocation();
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams({
+    query: location?.state?.query,
+  });
   const [query, setQuery] = useState(location?.state?.query || "");
   const [usersList, setUsers] = useState([]);
   const fetchUsers = useRequest("/user/", "GET");
@@ -20,18 +22,21 @@ const ExpendedUsers = () => {
   useEffect(() => {
     console.log(query);
     console.log(searchParams);
-    if(query === "") {
-      setQuery(searchParams.get('query'))
+    if (query === "") {
+      setQuery(searchParams.get("query"));
     }
-    setSearchParams({query: query})
+    // setSearchParams({ query: query });
     const getUsers = async () => {
       const fetchedUsers = await fetchUsers();
       setUsers(fetchedUsers);
     };
     getUsers();
-  }, [])
+  }, []);
 
   useEffect(() => {
+    // if (query !== "" && !searchParams.get({ query })) {
+    //   setSearchParams({ query: query });
+    // }
     let a = usersList.filter((user) => {
       if (user.firstname.toLowerCase().includes(query)) {
         return user;
@@ -60,7 +65,7 @@ const ExpendedUsers = () => {
   const submitSearchHandler = (e) => {
     e.preventDefault();
     setQuery(e.target[0].value);
-    setSearchParams({query: e.target[0].value})
+    setSearchParams({ query: e.target[0].value });
     // navigate(`/search`, {state: {usersList: usersList, query: e.target[0].value}})
   };
 
@@ -81,7 +86,7 @@ const ExpendedUsers = () => {
                 className={classes["search-expended"]}
                 type="text"
                 placeholder="Search for friends..."
-                defaultValue={query || searchParams.get('query')}
+                defaultValue={query || searchParams.get("query")}
               />
             </form>
             <div className={classes["results-expended"]}>
@@ -90,8 +95,16 @@ const ExpendedUsers = () => {
                   if (
                     user.firstname
                       .toLowerCase()
-                      .includes(query.toLowerCase() || searchParams.get('query').toLowerCase()) ||
-                    user.lastname.toLowerCase().includes(query.toLowerCase() || searchParams.get('query').toLowerCase())
+                      .includes(
+                        query.toLowerCase() ||
+                          searchParams.get("query").toLowerCase()
+                      ) ||
+                    user.lastname
+                      .toLowerCase()
+                      .includes(
+                        query.toLowerCase() ||
+                          searchParams.get("query").toLowerCase()
+                      )
                   ) {
                     return user;
                   }

@@ -1,7 +1,13 @@
 import { SearchRounded } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useSelector, useNavigate } from "react-router-dom";
+import {
+  useSelector,
+  useNavigate,
+  useLocation,
+  useSearchParams,
+  createSearchParams,
+} from "react-router-dom";
 import useRequest from "../../../hooks/useRequest";
 import ppIcon from "../../../images/pp-icon.png";
 import classes from "./Search.module.css";
@@ -15,7 +21,9 @@ const Search = () => {
   const [focus, setFocus] = useState(false);
   const fetchUsers = useRequest("/user/", "GET");
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const [search, setSearch] = useSearchParams();
 
   useEffect(() => {
     const getUsers = async () => {
@@ -26,10 +34,20 @@ const Search = () => {
   }, []);
 
   const expendHandler = () => {
-    navigate(`/search`, {state: {/*usersList: users,*/ query: query}})
-    dispatch(navbarActions.toggleSearchInput())
-    dispatch(navbarActions.deactivate())
-    dispatch(menuActions.deactivate())
+    setSearch({ query: query });
+    // navigate(`/search`, {
+    //   state: { from: location, query: query },
+    //   replace: true,
+    // });
+    navigate({
+      pathname: "search",
+      search: `?${createSearchParams({
+        query: query,
+      })}`,
+    });
+    dispatch(navbarActions.toggleSearchInput());
+    dispatch(navbarActions.deactivate());
+    dispatch(menuActions.deactivate());
     setIsExpended(true);
   };
 
@@ -49,7 +67,7 @@ const Search = () => {
           setQuery(e.target.value);
         }}
         onFocus={() => {
-          setFocus(true)
+          setFocus(true);
         }}
         onBlur={() => {
           setFocus(false);

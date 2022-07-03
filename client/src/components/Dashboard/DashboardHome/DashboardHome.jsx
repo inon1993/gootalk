@@ -10,7 +10,7 @@ const DashboardHome = () => {
   const dispatch = useDispatch();
 
   const deactivateDropdownHandler = () => {
-    dispatch(navbarActions.activateSearchInput())
+    // dispatch(navbarActions.activateSearchInput())
     dispatch(dropdownActions.deactivate());
   };
   return (
