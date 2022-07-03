@@ -1,17 +1,35 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import Menu from "../../components/Dashboard/Menu/Menu";
 import Navbar from "../../components/Navbar/Navbar";
 import ppIcon from "../../images/pp-icon.png";
 import classes from "./ExpendedUsers.module.css";
+import useRequest from "../../hooks/useRequest";
 
 const ExpendedUsers = () => {
   const [numButtons, setNumButtons] = useState([]);
   const [sliceVal, setSliceVal] = useState({ start: 0, end: 10 });
   const location = useLocation();
   const navigate = useNavigate();
-  const [query, setQuery] = useState(location?.state?.query);
-  const [usersList, setUsers] = useState(location?.state?.usersList);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [query, setQuery] = useState(location?.state?.query || "");
+  const [usersList, setUsers] = useState([]);
+  const fetchUsers = useRequest("/user/", "GET");
+  // const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    console.log(query);
+    console.log(searchParams);
+    if(query === "") {
+      setQuery(searchParams.get('query'))
+    }
+    setSearchParams({query: query})
+    const getUsers = async () => {
+      const fetchedUsers = await fetchUsers();
+      setUsers(fetchedUsers);
+    };
+    getUsers();
+  }, [])
 
   useEffect(() => {
     let a = usersList.filter((user) => {
@@ -26,7 +44,7 @@ const ExpendedUsers = () => {
       arr.push(i);
     }
     setNumButtons(arr);
-  }, [usersList, query]);
+  }, [query, searchParams]);
 
   const sliceHandler = (e) => {
     if (e.target.innerText === 1) {
@@ -42,7 +60,8 @@ const ExpendedUsers = () => {
   const submitSearchHandler = (e) => {
     e.preventDefault();
     setQuery(e.target[0].value);
-    navigate(`/search?query=${e.target[0].value}`, {state: {usersList: usersList, query: e.target[0].value}})
+    setSearchParams({query: e.target[0].value})
+    // navigate(`/search`, {state: {usersList: usersList, query: e.target[0].value}})
   };
 
   return (
@@ -62,7 +81,7 @@ const ExpendedUsers = () => {
                 className={classes["search-expended"]}
                 type="text"
                 placeholder="Search for friends..."
-                defaultValue={query}
+                defaultValue={query || searchParams.get('query')}
               />
             </form>
             <div className={classes["results-expended"]}>
@@ -71,8 +90,8 @@ const ExpendedUsers = () => {
                   if (
                     user.firstname
                       .toLowerCase()
-                      .includes(query.toLowerCase()) ||
-                    user.lastname.toLowerCase().includes(query.toLowerCase())
+                      .includes(query.toLowerCase() || searchParams.get('query').toLowerCase()) ||
+                    user.lastname.toLowerCase().includes(query.toLowerCase() || searchParams.get('query').toLowerCase())
                   ) {
                     return user;
                   }

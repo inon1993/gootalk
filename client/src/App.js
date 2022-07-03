@@ -22,6 +22,7 @@ function App() {
           <Route path="/search" element={<ExpendedUsers />} />
         </Route>
       </Route>
+      {/* <Route path="*" element={<Error />} /> */}
     </Routes>
   );
 }

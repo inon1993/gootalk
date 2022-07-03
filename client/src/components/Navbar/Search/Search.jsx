@@ -26,7 +26,7 @@ const Search = () => {
   }, []);
 
   const expendHandler = () => {
-    navigate(`/search?query=${query}`, {state: {usersList: users, query: query}})
+    navigate(`/search`, {state: {/*usersList: users,*/ query: query}})
     dispatch(navbarActions.toggleSearchInput())
     dispatch(navbarActions.deactivate())
     dispatch(menuActions.deactivate())
