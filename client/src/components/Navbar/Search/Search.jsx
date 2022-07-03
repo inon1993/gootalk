@@ -35,16 +35,12 @@ const Search = () => {
 
   const expendHandler = () => {
     setSearch({ query: query });
-    // navigate(`/search`, {
-    //   state: { from: location, query: query },
-    //   replace: true,
-    // });
     navigate({
-      pathname: "search",
+      pathname: "/search",
       search: `?${createSearchParams({
         query: query,
       })}`,
-    });
+    }, {state: {from: location}, replace: true});
     dispatch(navbarActions.toggleSearchInput());
     dispatch(navbarActions.deactivate());
     dispatch(menuActions.deactivate());
@@ -115,7 +111,6 @@ const Search = () => {
           </p>
         </div>
       )}
-      {/* {isExpended && query !== "" && <ExpendedUsers usersList={users} query={query}/>} */}
     </div>
   );
 };

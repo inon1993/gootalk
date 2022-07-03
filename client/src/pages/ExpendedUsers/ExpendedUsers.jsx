@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import Menu from "../../components/Dashboard/Menu/Menu";
 import Navbar from "../../components/Navbar/Navbar";
 import ppIcon from "../../images/pp-icon.png";
@@ -9,23 +9,11 @@ import useRequest from "../../hooks/useRequest";
 const ExpendedUsers = () => {
   const [numButtons, setNumButtons] = useState([]);
   const [sliceVal, setSliceVal] = useState({ start: 0, end: 10 });
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams({
-    query: location?.state?.query,
-  });
-  const [query, setQuery] = useState(location?.state?.query || "");
+  const [searchParams, setSearchParams] = useSearchParams();
   const [usersList, setUsers] = useState([]);
   const fetchUsers = useRequest("/user/", "GET");
-  // const [users, setUsers] = useState([])
 
   useEffect(() => {
-    console.log(query);
-    console.log(searchParams);
-    if (query === "") {
-      setQuery(searchParams.get("query"));
-    }
-    // setSearchParams({ query: query });
     const getUsers = async () => {
       const fetchedUsers = await fetchUsers();
       setUsers(fetchedUsers);
@@ -34,22 +22,19 @@ const ExpendedUsers = () => {
   }, []);
 
   useEffect(() => {
-    // if (query !== "" && !searchParams.get({ query })) {
-    //   setSearchParams({ query: query });
-    // }
-    let a = usersList.filter((user) => {
-      if (user.firstname.toLowerCase().includes(query)) {
+    let filteredUsers = usersList.filter((user) => {
+      if (user.firstname.toLowerCase().includes(searchParams.get("query"))) {
         return user;
       }
     });
-    let length = a.length;
+    let length = filteredUsers.length;
     let numOfButtons = Math.ceil(length / 10);
     let arr = [];
     for (let i = 1; i <= numOfButtons; i++) {
       arr.push(i);
     }
     setNumButtons(arr);
-  }, [query, searchParams]);
+  }, [searchParams]);
 
   const sliceHandler = (e) => {
     if (e.target.innerText === 1) {
@@ -64,9 +49,7 @@ const ExpendedUsers = () => {
 
   const submitSearchHandler = (e) => {
     e.preventDefault();
-    setQuery(e.target[0].value);
     setSearchParams({ query: e.target[0].value });
-    // navigate(`/search`, {state: {usersList: usersList, query: e.target[0].value}})
   };
 
   return (
@@ -86,33 +69,23 @@ const ExpendedUsers = () => {
                 className={classes["search-expended"]}
                 type="text"
                 placeholder="Search for friends..."
-                defaultValue={query || searchParams.get("query")}
+                defaultValue={searchParams.get("query")}
               />
             </form>
             <div className={classes["results-expended"]}>
               {usersList
                 .filter((user) => {
                   if (
-                    user.firstname
-                      .toLowerCase()
-                      .includes(
-                        query.toLowerCase() ||
-                          searchParams.get("query").toLowerCase()
-                      ) ||
-                    user.lastname
-                      .toLowerCase()
-                      .includes(
-                        query.toLowerCase() ||
-                          searchParams.get("query").toLowerCase()
-                      )
+                    user.firstname.includes(searchParams.get("query").toLowerCase()) ||
+                    user.lastname.includes(searchParams.get("query").toLowerCase())
                   ) {
                     return user;
                   }
                 })
                 .slice(sliceVal.start, sliceVal.end)
-                .map((res) => {
+                .map((res, i) => {
                   return (
-                    <div className={classes["users-expended"]}>
+                    <div className={classes["users-expended"]} key={i}>
                       <img
                         className={classes["pic-expended"]}
                         src={res.pictureProfile || ppIcon}
@@ -128,9 +101,9 @@ const ExpendedUsers = () => {
           </div>
 
           <div className={classes["page-buttons"]}>
-            {numButtons.map((buttonNum) => {
+            {numButtons.map((buttonNum, i) => {
               return (
-                <button className={classes["page-num"]} onClick={sliceHandler}>
+                <button className={classes["page-num"]} key={i} onClick={sliceHandler}>
                   {buttonNum}
                 </button>
               );
