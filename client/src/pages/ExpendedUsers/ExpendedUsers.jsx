@@ -12,6 +12,8 @@ const ExpendedUsers = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [usersList, setUsers] = useState([]);
   const fetchUsers = useRequest("/user/", "GET");
+  const [filteredList, setFilteredList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -22,8 +24,12 @@ const ExpendedUsers = () => {
   }, []);
 
   useEffect(() => {
+    console.log(usersList);
     let filteredUsers = usersList.filter((user) => {
-      if (user.firstname.toLowerCase().includes(searchParams.get("query"))) {
+      if (
+        user.firstname.toLowerCase().includes(searchParams.get("query")) ||
+        user.lastname.toLowerCase().includes(searchParams.get("query"))
+      ) {
         return user;
       }
     });
@@ -33,8 +39,11 @@ const ExpendedUsers = () => {
     for (let i = 1; i <= numOfButtons; i++) {
       arr.push(i);
     }
+    console.log(filteredUsers);
+    setFilteredList(filteredUsers);
     setNumButtons(arr);
-  }, [searchParams]);
+    setLoading(false);
+  }, [searchParams, usersList]);
 
   const sliceHandler = (e) => {
     if (e.target.innerText === 1) {
@@ -72,38 +81,41 @@ const ExpendedUsers = () => {
                 defaultValue={searchParams.get("query")}
               />
             </form>
-            <div className={classes["results-expended"]}>
-              {usersList
-                .filter((user) => {
-                  if (
-                    user.firstname.includes(searchParams.get("query").toLowerCase()) ||
-                    user.lastname.includes(searchParams.get("query").toLowerCase())
-                  ) {
-                    return user;
-                  }
-                })
-                .slice(sliceVal.start, sliceVal.end)
-                .map((res, i) => {
-                  return (
-                    <div className={classes["users-expended"]} key={i}>
-                      <img
-                        className={classes["pic-expended"]}
-                        src={res.pictureProfile || ppIcon}
-                      />
-                      <div className={classes["name-expended"]}>
-                        <h3>{res.firstname}</h3>
-                        <h4>{res.lastname}</h4>
+            {searchParams.get("query") && filteredList.length !== 0 ? (
+              <div className={classes["results-expended"]}>
+                {filteredList
+                  .slice(sliceVal.start, sliceVal.end)
+                  .map((res, i) => {
+                    return (
+                      <div className={classes["users-expended"]} key={i}>
+                        <img
+                          className={classes["pic-expended"]}
+                          src={res.pictureProfile || ppIcon}
+                          alt="profile"
+                        />
+                        <div className={classes["name-expended"]}>
+                          <h3>{res.firstname}</h3>
+                          <h4>{res.lastname}</h4>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
-            </div>
+                    );
+                  })}
+              </div>
+            ) : (
+              <span className={classes["no-users"]}>
+                {loading ? "Loading..." : "No users found..."}
+              </span>
+            )}
           </div>
 
           <div className={classes["page-buttons"]}>
             {numButtons.map((buttonNum, i) => {
               return (
-                <button className={classes["page-num"]} key={i} onClick={sliceHandler}>
+                <button
+                  className={classes["page-num"]}
+                  key={i}
+                  onClick={sliceHandler}
+                >
                   {buttonNum}
                 </button>
               );
