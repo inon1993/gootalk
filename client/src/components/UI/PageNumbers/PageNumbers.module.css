@@ -1,23 +1,30 @@
 .page-buttons {
-    display: flex;
-    flex-direction: row;
-    margin: 1rem;
-  }
-  
-  .page-num {
-    margin: 0.2rem;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  input[type="radio"]:checked + label {
-    margin: 0.2rem;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    color: #131313;
-    border-bottom: 3px solid #ccc;
-  }
+  display: flex;
+  flex-direction: row;
+  margin: 1rem;
+  /* border: 1px solid black; */
+  /* padding: 0.4rem; */
+}
+
+.page-num {
+  padding: 6px 12px;
+  background-color: red;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  border: 1px solid black;
+  /* border-right: 1px solid black; */
+  margin-left: -1px;
+}
+
+input[type="radio"]:checked + label {
+  padding: 6px 12px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: hsl(208.7, 100%, 53.7%);
+  border: 1px solid black;
+  margin-left: -1px;
+  /* border-bottom: 2px solid #ccc; */
+}

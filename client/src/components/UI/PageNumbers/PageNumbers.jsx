@@ -3,7 +3,7 @@ import classes from "./PageNumbers.module.css";
 
 const PageNumbers = ({ list, sliceVal }) => {
   const [numButtons, setNumButtons] = useState([]);
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState(1);
 
   useEffect(() => {
     let length = list.length;
@@ -16,10 +16,8 @@ const PageNumbers = ({ list, sliceVal }) => {
   }, [list]);
 
   const sliceHandler = (e) => {
-      e.preventDefault();
-      console.log('click');
-      console.log(e.target);
-      setClicked(true)
+    e.preventDefault();
+    setClicked(e.target.innerText);
     if (e.target.innerText === 1) {
       sliceVal({ start: 0, end: 10 });
       return;
@@ -30,24 +28,32 @@ const PageNumbers = ({ list, sliceVal }) => {
     });
   };
 
+  const handleChange = (e) => {
+    setClicked(e.target.value);
+  };
+
   return (
     <div className={classes["page-buttons"]}>
       {numButtons.map((buttonNum, i) => {
         return (
-        //   <div
-        //     className={`${!clicked && classes["page-num"]} ${clicked && classes["page-num-focus"]}`}
-        //     key={i}
-        //     onClick={sliceHandler}
-        //     // onFocus={() => setClicked(true)}
-        //     // onBlur={() => setClicked(false)}
-        //   >
-        //     {buttonNum}
-        //   </div>
-            <div  key={i}>
-        <input type="radio" id={i} name="fav_language" value="HTML" /*onChange={sliceHandler}*/ checked={clicked} style={{display: "none"}} />
-        <label className={classes["page-num"]} htmlFor={i} onClick={sliceHandler}>{buttonNum} </label>
-            {/* <button type="submit">send</button> */}
-        </div>
+          <div key={i}>
+            <input
+              type="radio"
+              id={i}
+              name="fav_language"
+              value={i + 1}
+              checked={clicked == i + 1}
+              // onChange={handleChange}
+              style={{ display: "none" }}
+            />
+            <label
+              className={classes["page-num"]}
+              htmlFor={i}
+              onClick={sliceHandler}
+            >
+              {buttonNum}
+            </label>
+          </div>
         );
       })}
     </div>
