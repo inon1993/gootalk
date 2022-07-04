@@ -34,7 +34,7 @@ const Search = () => {
   }, []);
 
   const expendHandler = () => {
-    setSearch({ query: query });
+    setSearch();
     navigate({
       pathname: "/search",
       search: `?${createSearchParams({

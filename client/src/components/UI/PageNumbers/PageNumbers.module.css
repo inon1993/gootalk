@@ -1,0 +1,23 @@
+.page-buttons {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+  }
+  
+  .page-num {
+    margin: 0.2rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  input[type="radio"]:checked + label {
+    margin: 0.2rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #131313;
+    border-bottom: 3px solid #ccc;
+  }

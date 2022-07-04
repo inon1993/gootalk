@@ -5,9 +5,9 @@ import Navbar from "../../components/Navbar/Navbar";
 import ppIcon from "../../images/pp-icon.png";
 import classes from "./ExpendedUsers.module.css";
 import useRequest from "../../hooks/useRequest";
+import PageNumbers from "../../components/UI/PageNumbers/PageNumbers";
 
 const ExpendedUsers = () => {
-  const [numButtons, setNumButtons] = useState([]);
   const [sliceVal, setSliceVal] = useState({ start: 0, end: 10 });
   const [searchParams, setSearchParams] = useSearchParams();
   const [usersList, setUsers] = useState([]);
@@ -24,7 +24,6 @@ const ExpendedUsers = () => {
   }, []);
 
   useEffect(() => {
-    console.log(usersList);
     let filteredUsers = usersList.filter((user) => {
       if (
         user.firstname.toLowerCase().includes(searchParams.get("query")) ||
@@ -33,28 +32,9 @@ const ExpendedUsers = () => {
         return user;
       }
     });
-    let length = filteredUsers.length;
-    let numOfButtons = Math.ceil(length / 10);
-    let arr = [];
-    for (let i = 1; i <= numOfButtons; i++) {
-      arr.push(i);
-    }
-    console.log(filteredUsers);
     setFilteredList(filteredUsers);
-    setNumButtons(arr);
     setLoading(false);
   }, [searchParams, usersList]);
-
-  const sliceHandler = (e) => {
-    if (e.target.innerText === 1) {
-      setSliceVal({ start: 0, end: 10 });
-      return;
-    }
-    setSliceVal({
-      start: (+e.target.innerText - 1) * 10,
-      end: (+e.target.innerText - 1) * 10 + 10,
-    });
-  };
 
   const submitSearchHandler = (e) => {
     e.preventDefault();
@@ -107,20 +87,7 @@ const ExpendedUsers = () => {
               </span>
             )}
           </div>
-
-          <div className={classes["page-buttons"]}>
-            {numButtons.map((buttonNum, i) => {
-              return (
-                <button
-                  className={classes["page-num"]}
-                  key={i}
-                  onClick={sliceHandler}
-                >
-                  {buttonNum}
-                </button>
-              );
-            })}
-          </div>
+          <PageNumbers list={filteredList} sliceVal={setSliceVal} />
         </div>
       </div>
     </>
