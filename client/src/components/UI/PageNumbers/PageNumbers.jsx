@@ -16,7 +16,6 @@ const PageNumbers = ({ list, sliceVal }) => {
   }, [list]);
 
   const sliceHandler = (e) => {
-    e.preventDefault();
     setClicked(e.target.innerText);
     if (e.target.innerText === 1) {
       sliceVal({ start: 0, end: 10 });
@@ -28,31 +27,12 @@ const PageNumbers = ({ list, sliceVal }) => {
     });
   };
 
-  const handleChange = (e) => {
-    setClicked(e.target.value);
-  };
-
   return (
     <div className={classes["page-buttons"]}>
       {numButtons.map((buttonNum, i) => {
         return (
-          <div key={i}>
-            <input
-              type="radio"
-              id={i}
-              name="fav_language"
-              value={i + 1}
-              checked={clicked == i + 1}
-              // onChange={handleChange}
-              style={{ display: "none" }}
-            />
-            <label
-              className={classes["page-num"]}
-              htmlFor={i}
-              onClick={sliceHandler}
-            >
+          <div className={`${classes["page-button"]} ${clicked == i + 1 && classes['page-button-checked']}`} key={i} onClick={sliceHandler}>
               {buttonNum}
-            </label>
           </div>
         );
       })}

@@ -2,29 +2,35 @@
   display: flex;
   flex-direction: row;
   margin: 1rem;
-  /* border: 1px solid black; */
-  /* padding: 0.4rem; */
+}
+
+.page-button {
+    background-color: white;
+  border: 1px solid hsl(206.7, 33.3%, 94.7%);
+  margin-left: -1px;
+  font-size: 1.1rem;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.page-button:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.page-button:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+.page-button:only-child {
+    border-radius: 5px;
 }
 
 .page-num {
-  padding: 6px 12px;
-  background-color: red;
+  background-color: white;
   border: none;
-  cursor: pointer;
-  font-size: 1.1rem;
-  border: 1px solid black;
-  /* border-right: 1px solid black; */
-  margin-left: -1px;
 }
 
-input[type="radio"]:checked + label {
-  padding: 6px 12px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 1.1rem;
-  color: hsl(208.7, 100%, 53.7%);
-  border: 1px solid black;
-  margin-left: -1px;
-  /* border-bottom: 2px solid #ccc; */
+.page-button-checked {
+    background-color: hsl(208.7, 100%, 53.7%);
+    color: white;
 }
