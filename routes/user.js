@@ -12,7 +12,7 @@ router.delete("/:id", auth, userCtr.deleteUserCtr);
 router.get("/", auth, userCtr.getAllUsersCtr);
 
 //--GET A USER--//
-router.get("/:id", auth, userCtr.getUserCtr);
+router.get("/:id", userCtr.getUserCtr);
 
 //--FOLLOW A USER--//
 router.put("/:id/follow", auth, userCtr.followUserCtr);

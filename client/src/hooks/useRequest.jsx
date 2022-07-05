@@ -14,6 +14,7 @@ export const useRequest = (endpoint, method, data) => {
       });
       return result.data;
     } catch (e) {
+      console.log(e);
       throw new Error(e);
     }
   };

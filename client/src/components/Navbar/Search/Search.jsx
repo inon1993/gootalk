@@ -36,12 +36,15 @@ const Search = () => {
 
   const expendHandler = () => {
     setSearch();
-    navigate({
-      pathname: "/search",
-      search: `?${createSearchParams({
-        query: query,
-      })}`,
-    }, {state: {from: location}, replace: true});
+    navigate(
+      {
+        pathname: "/search",
+        search: `?${createSearchParams({
+          query: query,
+        })}`,
+      },
+      { state: { from: location }, replace: true }
+    );
     dispatch(navbarActions.toggleSearchInput());
     dispatch(navbarActions.deactivate());
     dispatch(menuActions.deactivate());
@@ -92,12 +95,14 @@ const Search = () => {
                   key={i}
                   className={classes["search-users"]}
                   onMouseDown={() => {
-                    navigate(`/users/${res._id}/${res.firstname}-${res.lastname}`)
+                    navigate(
+                      `/users/${res._id}/${res.firstname}-${res.lastname}`
+                    );
                   }}
                 >
                   <img
                     className={classes["search-pic"]}
-                    src={res.pictureProfile || ppIcon}
+                    src={res.profilePicture || ppIcon}
                     alt="profile"
                   />
                   <div className={classes["search-name"]}>

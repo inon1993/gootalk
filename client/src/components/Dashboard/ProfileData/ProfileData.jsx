@@ -23,22 +23,24 @@ const ProfileData = () => {
         <div className={classes["profile-img-text"]}>
           <img
             className={classes["profile-pic"]}
-            src={userLoggedIn.profilePicture || ppIcon}
+            src={user.profilePicture || ppIcon}
             alt="cover"
           />
           <div className={classes["profile-name-city"]}>
             <h3
               className={classes["profile-name"]}
             >{`${user.firstname} ${user.lastname}`}</h3>
-            {/* {user.country && user.city ? (
+            {user.country && user.city ? (
               <span
                 className={classes["profile-city"]}
               >{`${user.city}, ${user.country}`}</span>
             ) : (
-              {user.country || user.city ? <span className={classes["profile-city"]}>{`${
-                user.city || user.country
-              }`}</span>}
-            )} */}
+              (user.country || user.city) && (
+                <span className={classes["profile-city"]}>{`${
+                  user.city || user.country
+                }`}</span>
+              )
+            )}
           </div>
         </div>
       </div>

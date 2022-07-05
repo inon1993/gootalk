@@ -79,7 +79,7 @@ const ExpendedUsers = () => {
                       >
                         <img
                           className={classes["pic-expended"]}
-                          src={res.pictureProfile || ppIcon}
+                          src={res.profilePicture || ppIcon}
                           alt="profile"
                         />
                         <div className={classes["name-expended"]}>
