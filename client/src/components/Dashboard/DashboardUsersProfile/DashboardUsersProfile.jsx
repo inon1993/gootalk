@@ -15,7 +15,7 @@ const DashboardUsersProfile = () => {
   const [posts, setPosts] = useState([]);
   const { userid } = useParams();
   const [loading, setLoading] = useState(true);
-  const [errMsg, setErrMsg] = useState("err");
+  const [errMsg, setErrMsg] = useState("");
   const getPostRequest = useRequest(`/post/posts/${userid}`, "GET");
 
   useEffect(() => {
@@ -35,10 +35,7 @@ const DashboardUsersProfile = () => {
         const res = await getPostRequest();
         setPosts(res);
       } catch (error) {
-        console.log(1);
-        console.log(error);
-        if (error === 401) {
-          console.log(1);
+        if (error.response.status === 401) {
           setErrMsg("Log in to see user's posts.");
         } else {
           setErrMsg("Something went wrong...");
