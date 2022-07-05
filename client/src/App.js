@@ -3,6 +3,7 @@ import ProfilePage from "./pages/Profile/ProfilePage";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import ExpendedUsers from "./pages/ExpendedUsers/ExpendedUsers";
+import UsersProfile from "./pages/UsersProfile/UsersProfile";
 import { Routes, Route } from "react-router-dom";
 import PersistAuth from "./components/RoutingComponents/PersistAuth";
 import RequireAuth from "./components/RoutingComponents/RequireAuth";
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Route>
+      <Route path="/users/:userid/:username" element={<UsersProfile />} />
       <Route element={<PersistAuth />}>
         <Route element={<RequireAuth />}>
           <Route path="/" element={<HomePage />} />

@@ -7,6 +7,7 @@ import {
   useLocation,
   useSearchParams,
   createSearchParams,
+  Link,
 } from "react-router-dom";
 import useRequest from "../../../hooks/useRequest";
 import ppIcon from "../../../images/pp-icon.png";
@@ -46,6 +47,10 @@ const Search = () => {
     dispatch(menuActions.deactivate());
     setIsExpended(true);
   };
+
+  // const userSearchHandler = () => {
+  //   navigate("/")
+  // }
 
   return (
     <div
@@ -87,7 +92,7 @@ const Search = () => {
                   key={i}
                   className={classes["search-users"]}
                   onMouseDown={() => {
-                    // do something
+                    navigate(`/users/${res._id}/${res.firstname}-${res.lastname}`)
                   }}
                 >
                   <img

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Menu from "../../components/Dashboard/Menu/Menu";
 import Navbar from "../../components/Navbar/Navbar";
 import ppIcon from "../../images/pp-icon.png";
@@ -14,6 +14,7 @@ const ExpendedUsers = () => {
   const fetchUsers = useRequest("/user/", "GET");
   const [filteredList, setFilteredList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getUsers = async () => {
@@ -67,7 +68,15 @@ const ExpendedUsers = () => {
                   .slice(sliceVal.start, sliceVal.end)
                   .map((res, i) => {
                     return (
-                      <div className={classes["users-expended"]} key={i}>
+                      <div
+                        className={classes["users-expended"]}
+                        key={i}
+                        onClick={() => {
+                          navigate(
+                            `/users/${res._id}/${res.firstname}-${res.lastname}`
+                          );
+                        }}
+                      >
                         <img
                           className={classes["pic-expended"]}
                           src={res.pictureProfile || ppIcon}

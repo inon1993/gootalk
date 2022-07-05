@@ -1,9 +1,12 @@
 import { useState } from "react";
 import classes from "./ProfileData.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import { useSelector } from "react-redux";
+import ppIcon from "../../../images/pp-icon.png";
 
 const ProfileData = () => {
   const [isStats, setIsStats] = useState(true);
+  const user = useSelector((state) => state.user.user);
 
   const statsHandler = () => {
     setIsStats(!isStats);
@@ -20,12 +23,22 @@ const ProfileData = () => {
         <div className={classes["profile-img-text"]}>
           <img
             className={classes["profile-pic"]}
-            src="https://expertphotography.b-cdn.net/wp-content/uploads/2020/08/social-media-profile-photos-3.jpg"
+            src={userLoggedIn.profilePicture || ppIcon}
             alt="cover"
           />
           <div className={classes["profile-name-city"]}>
-            <h3 className={classes["profile-name"]}>Inon Avramashvili</h3>
-            <span className={classes["profile-city"]}>Lod, Israel</span>
+            <h3
+              className={classes["profile-name"]}
+            >{`${user.firstname} ${user.lastname}`}</h3>
+            {/* {user.country && user.city ? (
+              <span
+                className={classes["profile-city"]}
+              >{`${user.city}, ${user.country}`}</span>
+            ) : (
+              {user.country || user.city ? <span className={classes["profile-city"]}>{`${
+                user.city || user.country
+              }`}</span>}
+            )} */}
           </div>
         </div>
       </div>
