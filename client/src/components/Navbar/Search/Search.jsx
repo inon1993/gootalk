@@ -14,6 +14,8 @@ import ppIcon from "../../../images/pp-icon.png";
 import classes from "./Search.module.css";
 import { navbarActions } from "../../../store/navbar-slice";
 import { menuActions } from "../../../store/menu-slice";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import { userActions } from "../../../store/user-slice";
 
 const Search = () => {
   const [users, setUsers] = useState([]);
@@ -25,13 +27,29 @@ const Search = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const [search, setSearch] = useSearchParams();
+  const req = useAxiosPrivate();
+  const dispach = useDispatch();
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const getUsers = async () => {
-      const fetchedUsers = await fetchUsers();
-      setUsers(fetchedUsers);
+      // const fetchedUsers = await fetchUsers();
+      try {
+        const fetchedUsers = await req.get("/user/");
+        setUsers(fetchedUsers);
+      } catch (error) {
+        dispach(userActions.logoutUser());
+        navigate("/login", { state: { from: location }, replace: true });
+      }
+      
     };
     getUsers();
+
+    return () => {
+      // isMounted = false;
+      controller.abort();
+    };
   }, []);
 
   const expendHandler = () => {

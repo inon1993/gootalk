@@ -3,16 +3,32 @@ import { ImageRounded } from "@mui/icons-material";
 import ppIcon from "../../../../images/pp-icon.png";
 import Card from "../../../UI/Card/Card";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import useRequest from "../../../../hooks/useRequest";
+import { useNavigate, useLocation } from "react-router-dom";
+import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
+import { userActions } from "../../../../store/user-slice"
 
 const NewPost = ({ onReload }) => {
   const user = useSelector((state) => state.user.user);
   const [post, setPost] = useState({ userId: user.userId, desc: "" });
   const sendPost = useRequest("/post", "POST", post);
+  const req = useAxiosPrivate();
+  const navigate = useNavigate();
+  const dispach = useDispatch();
+  const location = useLocation();
 
   const sharePostHandler = async () => {
-    await sendPost();
+    const controller = new AbortController();
+    controller.abort()
+
+    // await sendPost();
+    try {
+      await req.post("/post", post, {
+      signal: controller.signal
+    });
+    // controller.abort();
+
     onReload();
     setPost((prev) => {
       return {
@@ -20,6 +36,15 @@ const NewPost = ({ onReload }) => {
         desc: "",
       };
     })
+    } catch (error) {
+      console.log(9);
+    // controller.abort();
+    console.log(8);
+      dispach(userActions.logoutUser());
+      console.log(7);
+        navigate("/login", { state: { from: location }, replace: true });
+    }
+    
   };
 
   return (
