@@ -8,6 +8,7 @@ import useRequest from "../../../../hooks/useRequest";
 import { useNavigate, useLocation } from "react-router-dom";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import { userActions } from "../../../../store/user-slice"
+import useLogout from "../../../../hooks/useLogout";
 
 const NewPost = ({ onReload }) => {
   const user = useSelector((state) => state.user.user);
@@ -17,10 +18,11 @@ const NewPost = ({ onReload }) => {
   const navigate = useNavigate();
   const dispach = useDispatch();
   const location = useLocation();
+  const controller = new AbortController();
+  const logout = useLogout();
 
   const sharePostHandler = async () => {
-    const controller = new AbortController();
-    controller.abort()
+    // controller.abort()
 
     // await sendPost();
     try {
@@ -37,12 +39,13 @@ const NewPost = ({ onReload }) => {
       };
     })
     } catch (error) {
-      console.log(9);
-    // controller.abort();
-    console.log(8);
-      dispach(userActions.logoutUser());
-      console.log(7);
-        navigate("/login", { state: { from: location }, replace: true });
+      // console.log(9);
+    controller.abort();
+    // console.log(8);
+    //   // await logout();
+    // navigate("/login", { state: { from: location }, replace: true });
+    //   dispach(userActions.logoutUser());
+    //   console.log(7);
     }
     
   };

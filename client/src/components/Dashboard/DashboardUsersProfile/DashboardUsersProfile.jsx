@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import useRequest from "../../../hooks/useRequest";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 
 const DashboardUsersProfile = () => {
   const [user, setUser] = useState({});
@@ -17,6 +18,7 @@ const DashboardUsersProfile = () => {
   const [loading, setLoading] = useState(true);
   const [errMsg, setErrMsg] = useState("");
   const getPostRequest = useRequest(`/post/posts/${userid}`, "GET");
+  const req = useAxiosPrivate();
 
   useEffect(() => {
     const getUserPosts = async () => {

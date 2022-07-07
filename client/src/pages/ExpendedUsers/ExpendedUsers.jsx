@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import Menu from "../../components/Dashboard/Menu/Menu";
 import Navbar from "../../components/Navbar/Navbar";
 import ppIcon from "../../images/pp-icon.png";
 import classes from "./ExpendedUsers.module.css";
 import useRequest from "../../hooks/useRequest";
 import PageNumbers from "../../components/UI/PageNumbers/PageNumbers";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../store/user-slice";
 
 const ExpendedUsers = () => {
   const [sliceVal, setSliceVal] = useState({ start: 0, end: 10 });
@@ -15,15 +18,47 @@ const ExpendedUsers = () => {
   const [filteredList, setFilteredList] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const req = useAxiosPrivate();
+  const location = useLocation();
+  const dispach = useDispatch();
+
+  // useEffect(() => {
+  //   const getUsers = async () => {
+  //     const fetchedUsers = await fetchUsers();
+  //     setUsers(fetchedUsers);
+  //   };
+  //   getUsers();
+  // }, []);
+
+  const controller = new AbortController();
 
   useEffect(() => {
+
+
+    let isMounted = true;
     const getUsers = async () => {
-      const fetchedUsers = await fetchUsers();
-      setUsers(fetchedUsers);
+      // const fetchedUsers = await fetchUsers();
+      try {
+        console.log(11);
+        const fetchedUsers = await req.get("/user/");
+        // console.log(fe);
+        isMounted && setUsers(fetchedUsers.data);
+      } catch (error) {
+        console.log(22);
+        navigate("/login", { state: { from: location }, replace: true });
+        dispach(userActions.logoutUser());
+      }
+      
     };
     getUsers();
-  }, []);
 
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+
+  }, [])
+  
   useEffect(() => {
     let filteredUsers = usersList.filter((user) => {
       if (

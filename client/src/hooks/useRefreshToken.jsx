@@ -10,20 +10,20 @@ const useRefreshToken = () => {
     const response = await axios.get("/refresh", {
       withCredentials: true,
     });
-    dispatch(
-      userActions.setUser({
-        userId: user.userId,
-        firstname: user.firstname,
-        lastname: user.lastname,
-        email: user.email,
-        profilePicture: user.profilePicture,
-        coverPicture: user.coverPicture,
-        followers: user.followers,
-        following: user.following,
-        country: user.country,
-        city: user.city,
-      })
-    );
+    // dispatch(
+    //   userActions.setUser({
+    //     userId: user.userId,
+    //     firstname: user.firstname,
+    //     lastname: user.lastname,
+    //     email: user.email,
+    //     profilePicture: user.profilePicture,
+    //     coverPicture: user.coverPicture,
+    //     followers: user.followers,
+    //     following: user.following,
+    //     country: user.country,
+    //     city: user.city,
+    //   })
+    // );
     dispatch(accessTokenActions.setAccessToken(response.data.accessToken))
     return response.data.accessToken;
   };

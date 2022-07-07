@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../../store/user-slice";
 import useRequest from "../../../hooks/useRequest";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import useLogout from "../../../hooks/useLogout";
 
 const Feed = () => {
   const dispach = useDispatch();
@@ -19,12 +20,13 @@ const Feed = () => {
   const req = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
+  const logout = useLogout();
 
   useEffect(() => {
     console.log(access);
     // getPosts();
 
-    // let isMounted = true;
+    let isMounted = true;
     const controller = new AbortController();
 
     const getPosts = async () => {
@@ -34,17 +36,19 @@ const Feed = () => {
           signal: controller.signal,
         });
         console.log(postsArray);
-        /*isMounted && */ setPosts(postsArray.data);
+        isMounted &&  setPosts(postsArray.data);
       } catch (error) {
-        dispach(userActions.logoutUser());
-        navigate("/login", { state: { from: location }, replace: true });
+        console.log(456);
+        // await logout();
+        // navigate("/login", { state: { from: location }, replace: true });
+        // dispach(userActions.logoutUser());
       }
     };
 
     getPosts();
 
     return () => {
-      // isMounted = false;
+      isMounted = false;
       controller.abort();
     };
   }, []);

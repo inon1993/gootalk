@@ -37,10 +37,11 @@ const Search = () => {
       // const fetchedUsers = await fetchUsers();
       try {
         const fetchedUsers = await req.get("/user/");
-        setUsers(fetchedUsers);
+        // console.log(fe);
+        setUsers(fetchedUsers.data);
       } catch (error) {
-        dispach(userActions.logoutUser());
         navigate("/login", { state: { from: location }, replace: true });
+        dispach(userActions.logoutUser());
       }
       
     };
@@ -95,7 +96,7 @@ const Search = () => {
           setFocus(false);
         }}
       />
-      {focus && query !== "" && isExpended === false && (
+      {focus && query !== "" && isExpended === false && users && (
         <div className={classes["search-results"]}>
           {users
             .filter((user) => {
