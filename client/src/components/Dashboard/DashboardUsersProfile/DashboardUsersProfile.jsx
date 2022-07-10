@@ -36,9 +36,10 @@ const DashboardUsersProfile = () => {
       if (currUser.userId !== getUser.data._id) {
         setSendReqBtn(true);
       }
+      const match = getUser.data.notifications.filter({userId: currUser.userId, status: false})
+      console.log(match);
       if (
-        getUser.data.notifications.userId === currUser.userId &&
-        getUser.data.notifications.status === false
+        match
       ) {
         setDisableReqBtn(true);
       }
@@ -88,7 +89,7 @@ const DashboardUsersProfile = () => {
       senderUserId: currUser.userId,
     };
     try {
-      await req.put("/notifications", { payload });
+      await req.put("/notifications", payload );
       setDisableReqBtn(true);
     } catch (error) {
       console.log(error);
