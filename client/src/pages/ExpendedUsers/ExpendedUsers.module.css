@@ -1,5 +1,4 @@
 .search-dashboard {
-  min-width: 100vw;
   min-height: calc(100vh - 61px);
   display: flex;
 }
@@ -22,6 +21,7 @@
   position: sticky;
   top: 61px;
   z-index: 60;
+  border-right: 1px solid hsl(206.7, 33.3%, 89.7%);
 }
 
 .search-upper {
@@ -37,7 +37,8 @@
   border-radius: 10px;
   margin-top: 10px;
   outline: none;
-  border: 1px solid hsl(206.7, 33.3%, 94.7%);
+  border: 1px solid hsl(206.7, 33.3%, 89.7%);
+  box-sizing: border-box;
 }
 
 .search-bar-expended {
@@ -49,6 +50,7 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   width: 80%;
   border-radius: 10px;
+  border: 1px solid hsl(206.7, 33.3%, 89.7%);
 }
 
 .users-expended {
@@ -64,7 +66,7 @@
 }
 
 .users-expended:hover {
-  background-color: hsl(206.7, 33.3%, 94.7%);
+  background-color: hsl(206.7, 33.3%, 96.7%);
 }
 
 .users-expended:first-child {
@@ -100,4 +102,31 @@
 
 .no-users {
   margin-top: 30px;
+}
+
+@media only screen and (max-width: 800px) {
+  .search-menu {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .results-expended {
+    width: 95%;
+  }
+
+  .search-bar-expended {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .pic-expended {
+    width: 35px;
+    height: 35px;
+  }
+
+  .search-bar-expended {
+    width: 95%;
+  }
 }

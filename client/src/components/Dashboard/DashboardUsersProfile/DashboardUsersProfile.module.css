@@ -10,6 +10,7 @@
   position: sticky;
   top: 61px;
   z-index: 60;
+  border-right: 1px solid hsl(206.7, 33.3%, 89.7%);
 }
 
 .profile-data-wrapper {
@@ -88,6 +89,35 @@
   text-align: center;
 }
 
+.add-friend-btn {
+  margin-left: 20px;
+  font-family: "Poppins", sans-serif;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: hsl(208.7, 100%, 53.7%);
+  color: white;
+  transition: 250ms;
+  outline: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.add-friend-btn:hover {
+  /* background-color: hsl(220.3, 62.5%, 22%); */
+  background-color: hsl(120, 39.3%, 54.1%);
+}
+
+.add-friend-btn:disabled {
+  background-color: rgba(19, 141, 255, 0.6);
+  cursor: auto;
+}
+
+.add-friend-icon {
+  margin-right: 10px;
+}
+
 @media only screen and (max-width: 1100px) {
   .profile-images {
     height: 300px;
@@ -143,5 +173,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .add-friend-btn {
+    margin-left: 0;
+  }
+
+  .profile-user-posts {
+    margin-top: 40px;
   }
 }

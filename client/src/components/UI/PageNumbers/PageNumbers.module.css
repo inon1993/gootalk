@@ -5,8 +5,8 @@
 }
 
 .page-button {
-    background-color: white;
-  border: 1px solid hsl(206.7, 33.3%, 94.7%);
+  background-color: white;
+  border: 1px solid hsl(206.7, 33.3%, 89.7%);
   margin-left: -1px;
   font-size: 1.1rem;
   padding: 6px 12px;
@@ -22,7 +22,7 @@
 }
 
 .page-button:only-child {
-    border-radius: 5px;
+  border-radius: 5px;
 }
 
 .page-num {
@@ -31,6 +31,6 @@
 }
 
 .page-button-checked {
-    background-color: hsl(208.7, 100%, 53.7%);
-    color: white;
+  background-color: hsl(208.7, 100%, 53.7%);
+  color: white;
 }

@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: 1px solid hsl(206.7, 33.3%, 94.7%);
+  border-bottom: 1px solid hsl(206.7, 33.3%, 89.7%);
   position: sticky;
   top: 0;
   background-color: white;
@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: 1px solid hsl(206.7, 33.3%, 94.7%);
+  border-bottom: 1px solid hsl(206.7, 33.3%, 89.7%);
   position: sticky;
   top: 0;
   background-color: white;
@@ -99,6 +99,38 @@
   font-size: 1.8rem;
 }
 
+.navber-sign-buttons {
+  margin-right: 1rem;
+}
+
+.navber-signin-btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: hsl(220.3, 62.5%, 22%);
+  font-family: "Poppins", sans-serif;
+  margin-right: 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.navber-signup-btn {
+  background-color: hsl(208.7, 100%, 53.7%);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 200ms;
+}
+
+.navber-signup-btn:hover {
+  background-color: hsl(220.3, 62.5%, 22%);
+}
+
 @media only screen and (max-width: 750px) {
   .navbar-features {
     display: none;
@@ -144,6 +176,17 @@
     /* padding: 18.2px 8px 18.2px; */
     border-bottom: none;
     /* padding-bottom: 15.2px; */
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .navber-signin-btn,
+  .navber-signup-btn {
+    font-size: 0.7rem;
+  }
+
+  .navber-signin-btn {
+    margin-right: 0.5rem;
   }
 }
 

@@ -1,6 +1,5 @@
 import classes from "./DashboardUsersProfile.module.css";
 import Menu from "../Menu/Menu";
-import ProfileData from "../ProfileData/ProfileData";
 import { useDispatch, useSelector } from "react-redux";
 import { dropdownActions } from "../../../store/dropdown-slice";
 import UserPosts from "../UserPosts/UserPosts";
@@ -8,7 +7,6 @@ import ppIcon from "../../../images/pp-icon.png";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-import useRequest from "../../../hooks/useRequest";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { PersonAdd } from "@mui/icons-material";
 
@@ -19,7 +17,6 @@ const DashboardUsersProfile = () => {
   const [loading, setLoading] = useState(true);
   const [errMsg, setErrMsg] = useState("");
   const [noPostsMsg, setNoPostsMsg] = useState("");
-  const getPostRequest = useRequest(`/post/posts/${userid}`, "GET");
   const req = useAxiosPrivate();
   const currUser = useSelector((state) => state.user.user);
   const [sendReqBtn, setSendReqBtn] = useState(false);
@@ -36,14 +33,13 @@ const DashboardUsersProfile = () => {
       if (currUser.userId !== getUser.data._id) {
         setSendReqBtn(true);
       }
-      const match = getUser.data.notifications.filter({userId: currUser.userId, status: false})
+      const match = getUser.data.notifications.filter(
+        (n) => n.senderUserId === currUser.userId && n.status === false
+      );
       console.log(match);
-      if (
-        match
-      ) {
+      if (match.length > 0) {
         setDisableReqBtn(true);
       }
-      // setLoading(false);
     };
 
     getUserPosts();
@@ -89,7 +85,7 @@ const DashboardUsersProfile = () => {
       senderUserId: currUser.userId,
     };
     try {
-      await req.put("/notifications", payload );
+      await req.put("/notifications", payload);
       setDisableReqBtn(true);
     } catch (error) {
       console.log(error);
@@ -107,7 +103,6 @@ const DashboardUsersProfile = () => {
         </div>
         {!loading && (
           <div className={classes["profile-data-wrapper"]}>
-            {/* <ProfileData user={user} /> */}
             <div className={classes["profile-data"]}>
               <div className={classes["profile-images"]}>
                 <img
@@ -137,9 +132,14 @@ const DashboardUsersProfile = () => {
                       )
                     )}
                   </div>
-                  {sendReqBtn && (
-                    <button disabled={disableReqBtn} onClick={addFriendHandler}>
-                      <PersonAdd /> Add Friend
+                  {sendReqBtn && currUser.userId !== "" && (
+                    <button
+                      className={classes["add-friend-btn"]}
+                      disabled={disableReqBtn}
+                      onClick={addFriendHandler}
+                    >
+                      <PersonAdd className={classes["add-friend-icon"]} />
+                      {!disableReqBtn ? "Add Friend" : "Pending..."}
                     </button>
                   )}
                 </div>

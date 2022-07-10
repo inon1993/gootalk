@@ -53,6 +53,7 @@
 .lr-visibility {
   color: hsl(207.2, 32.5%, 68%);
   cursor: pointer;
+  font-size: 1.3rem !important;
 }
 
 .lr-login-button {

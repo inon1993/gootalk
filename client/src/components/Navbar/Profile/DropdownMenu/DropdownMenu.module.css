@@ -8,12 +8,12 @@
   background-color: white;
   border-radius: 10px;
   color: hsl(220.3, 62.5%, 22%);
-  border: 1px solid hsl(206.7, 33.3%, 94.7%);
+  border: 1px solid hsl(206.7, 33.3%, 89.7%);
   animation: slide-down 200ms ease-out forwards;
 }
 
 .dropdown-options {
-  border-bottom: 1px solid hsl(206.7, 33.3%, 94.7%);
+  border-bottom: 1px solid hsl(206.7, 33.3%, 89.7%);
 }
 
 .dropdown-item {
@@ -49,4 +49,3 @@
     transform: translateY(0);
   }
 }
-

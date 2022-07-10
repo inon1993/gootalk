@@ -17,12 +17,16 @@ import { dropdownActions } from "../../store/dropdown-slice";
 import DropdownBackground from "./Profile/DropdownMenu/DropdownBackground";
 import MobileMenu from "./MobileMenu/MobileMenu";
 import { Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router";
 
 const Navbar = () => {
+  const user = useSelector((state) => state.user.user);
   const isActivated = useSelector((state) => state.navbar.activate);
   const isActivatedDropdown = useSelector((state) => state.dropdown.activate);
   const dispatch = useDispatch();
   const [isMobileMenu, setIsMobileMenu] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const activateHomeHandler = () => {
     dispatch(navbarActions.activateHome());
@@ -56,6 +60,14 @@ const Navbar = () => {
     setIsMobileMenu(!isMobileMenu);
   };
 
+  const signinHandler = () => {
+    navigate("/login", { state: { from: location }, replace: true });
+  };
+
+  const signupHandler = () => {
+    navigate("/signup", { state: { from: location }, replace: true });
+  };
+
   return (
     <>
       <div
@@ -65,62 +77,86 @@ const Navbar = () => {
       >
         <div className={classes.logo}>
           <Link to={"/"} style={{ textDecoration: "none" }}>
-            <h1 className={classes["navbar-logo"]} onClick={activateHomeHandler}>
+            <h1
+              className={classes["navbar-logo"]}
+              onClick={activateHomeHandler}
+            >
               Goo<span className={classes["logo-span"]}>talk</span>
             </h1>
           </Link>
         </div>
-        <div className={classes.search}>
-          {isActivated.searchInput && <Search />}
-        </div>
-        <div className={classes["navbar-features"]}>
-          <HomeRounded
-            onClick={activateHomeHandler}
-            className={
-              isActivated.home
-                ? classes["navbar-features-icon-focus"]
-                : classes["navbar-features-icon"]
-            }
-          />
-          <MessageRounded
-            onClick={activateNotificationHandler}
-            className={
-              isActivated.notifications
-                ? classes["navbar-features-icon-focus"]
-                : classes["navbar-features-icon"]
-            }
-          />
-          <Profile onClick={activateProfileHandler} activate={isActivated} />
-          {isActivatedDropdown && (
-            <div className={classes["dropdown-menu"]}>
-              <DropdownBackground onClose={disabaleDropdownHandler}>
-                <DropdownMenu />
-              </DropdownBackground>
-            </div>
-          )}
-        </div>
-        <div className={classes["mobile-menu"]}>
-          <MessageRounded
-            onClick={activateNotificationHandler}
-            className={
-              isActivated.notifications
-                ? classes["navbar-features-icon-focus"]
-                : classes["navbar-features-icon"]
-            }
-          />
-          <SearchRounded
-            onClick={activateSearchHandler}
-            className={
-              isActivated.search
-                ? classes["navbar-features-icon-focus"]
-                : classes["navbar-features-icon"]
-            }
-          />
-          <div className={classes["mm-button"]} onClick={mobileMenuHandler}>
-            {!isMobileMenu && <MenuRounded className={classes["mm-icon"]} />}
-            {isMobileMenu && <Close className={classes["mm-icon"]} />}
+        {user.userId !== "" && (
+          <div className={classes.search}>
+            {isActivated.searchInput && <Search />}
           </div>
-        </div>
+        )}
+        {user.userId !== "" && (
+          <div className={classes["navbar-features"]}>
+            <HomeRounded
+              onClick={activateHomeHandler}
+              className={
+                isActivated.home
+                  ? classes["navbar-features-icon-focus"]
+                  : classes["navbar-features-icon"]
+              }
+            />
+            <MessageRounded
+              onClick={activateNotificationHandler}
+              className={
+                isActivated.notifications
+                  ? classes["navbar-features-icon-focus"]
+                  : classes["navbar-features-icon"]
+              }
+            />
+            <Profile onClick={activateProfileHandler} activate={isActivated} />
+            {isActivatedDropdown && (
+              <div className={classes["dropdown-menu"]}>
+                <DropdownBackground onClose={disabaleDropdownHandler}>
+                  <DropdownMenu />
+                </DropdownBackground>
+              </div>
+            )}
+          </div>
+        )}
+        {user.userId !== "" ? (
+          <div className={classes["mobile-menu"]}>
+            <MessageRounded
+              onClick={activateNotificationHandler}
+              className={
+                isActivated.notifications
+                  ? classes["navbar-features-icon-focus"]
+                  : classes["navbar-features-icon"]
+              }
+            />
+            <SearchRounded
+              onClick={activateSearchHandler}
+              className={
+                isActivated.search
+                  ? classes["navbar-features-icon-focus"]
+                  : classes["navbar-features-icon"]
+              }
+            />
+            <div className={classes["mm-button"]} onClick={mobileMenuHandler}>
+              {!isMobileMenu && <MenuRounded className={classes["mm-icon"]} />}
+              {isMobileMenu && <Close className={classes["mm-icon"]} />}
+            </div>
+          </div>
+        ) : (
+          <div className={classes["navber-sign-buttons"]}>
+            <button
+              className={classes["navber-signin-btn"]}
+              onClick={signinHandler}
+            >
+              Sign In
+            </button>
+            <button
+              className={classes["navber-signup-btn"]}
+              onClick={signupHandler}
+            >
+              Sign Up
+            </button>
+          </div>
+        )}
       </div>
       {isMobileMenu && (
         <DropdownBackground onClose={mobileMenuHandler}>
