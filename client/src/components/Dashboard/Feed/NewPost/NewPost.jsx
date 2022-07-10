@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import useRequest from "../../../../hooks/useRequest";
 import { useNavigate, useLocation } from "react-router-dom";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
-import { userActions } from "../../../../store/user-slice"
+import { userActions } from "../../../../store/user-slice";
 import useLogout from "../../../../hooks/useLogout";
 
 const NewPost = ({ onReload }) => {
@@ -27,27 +27,26 @@ const NewPost = ({ onReload }) => {
     // await sendPost();
     try {
       await req.post("/post", post, {
-      signal: controller.signal
-    });
-    // controller.abort();
+        signal: controller.signal,
+      });
+      // controller.abort();
 
-    onReload();
-    setPost((prev) => {
-      return {
-        ...prev,
-        desc: "",
-      };
-    })
+      onReload();
+      setPost((prev) => {
+        return {
+          ...prev,
+          desc: "",
+        };
+      });
     } catch (error) {
       // console.log(9);
-    controller.abort();
-    // console.log(8);
-    //   // await logout();
-    // navigate("/login", { state: { from: location }, replace: true });
-    //   dispach(userActions.logoutUser());
-    //   console.log(7);
+      controller.abort();
+      // console.log(8);
+      //   // await logout();
+      // navigate("/login", { state: { from: location }, replace: true });
+      //   dispach(userActions.logoutUser());
+      //   console.log(7);
     }
-    
   };
 
   return (
@@ -60,7 +59,7 @@ const NewPost = ({ onReload }) => {
         />
         <textarea
           className={classes["new-post-input"]}
-          placeholder="What's on your mind, Inon?"
+          placeholder={`What's on your mind, ${user?.firstname}?`}
           wrap="soft"
           value={post.desc}
           onChange={(e) =>

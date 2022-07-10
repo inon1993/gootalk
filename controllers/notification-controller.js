@@ -2,6 +2,8 @@ const User = require("../models/User");
 const Notification = require("../models/Notification");
 
 const friendshipRequest = async (req, res) => {
+  console.log(1);
+  console.log(req.body);
   try {
     const newNotification = new Notification(req.body);
     if (newNotification.userId === newNotification.senderUserId) {
