@@ -7,7 +7,7 @@ const UserPosts = ({posts}) => {
   
   return (
     <div className={classes["profile-posts"]}>
-      {posts.map((post) => {
+      {posts?.map((post) => {
         return (
           <Post post={post} />
         )

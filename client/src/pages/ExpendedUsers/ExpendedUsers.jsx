@@ -118,8 +118,8 @@ const ExpendedUsers = () => {
                           alt="profile"
                         />
                         <div className={classes["name-expended"]}>
-                          <h3>{res.firstname}</h3>
-                          <h4>{res.lastname}</h4>
+                          <span className={classes["ue-name"]}>{res.firstname}</span>
+                          <span className={classes["ue-name"]}>{res.lastname}</span>
                         </div>
                       </div>
                     );

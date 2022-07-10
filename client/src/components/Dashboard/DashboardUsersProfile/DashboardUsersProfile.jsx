@@ -1,7 +1,7 @@
 import classes from "./DashboardUsersProfile.module.css";
 import Menu from "../Menu/Menu";
 import ProfileData from "../ProfileData/ProfileData";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { dropdownActions } from "../../../store/dropdown-slice";
 import UserPosts from "../UserPosts/UserPosts";
 import ppIcon from "../../../images/pp-icon.png";
@@ -17,25 +17,36 @@ const DashboardUsersProfile = () => {
   const { userid } = useParams();
   const [loading, setLoading] = useState(true);
   const [errMsg, setErrMsg] = useState("");
+  const [noPostsMsg, setNoPostsMsg] = useState("");
   const getPostRequest = useRequest(`/post/posts/${userid}`, "GET");
   const req = useAxiosPrivate();
+  const currUser = useSelector(state => state.user.user);
 
   useEffect(() => {
+    console.log(posts.length);
     const getUserPosts = async () => {
       const getUser = await axios.get(`/user/${userid}`);
       console.log(getUser.data);
       setUser(getUser.data);
-      setLoading(false);
+      // setLoading(false);
     };
 
     getUserPosts();
   }, [userid]);
 
   useEffect(() => {
+    setNoPostsMsg("")
     const getPosts = async () => {
       try {
-        const res = await getPostRequest();
-        setPosts(res);
+        // const res = await getPostRequest();
+        const res = await req.get(`/post/posts/${userid}`)
+        if(res.data.length === 0) {
+          console.log(res.data.length);
+          setNoPostsMsg("This user hasn't posted yet...")
+          // setLoading(false)
+          // return
+        }
+        setPosts(res.data);
       } catch (error) {
         if (error.response.status === 401) {
           setErrMsg("Log in to see user's posts.");
@@ -45,8 +56,9 @@ const DashboardUsersProfile = () => {
         setLoading(false);
       }
     };
-    getPosts();
-  }, []);
+    currUser.userId !== "" ? getPosts() : setErrMsg("Log in to see user's posts."); 
+    setLoading(false);
+  }, [user]);
 
   const dispatch = useDispatch();
 
@@ -54,7 +66,7 @@ const DashboardUsersProfile = () => {
     dispatch(dropdownActions.deactivate());
   };
   return (
-    <div className={classes["dashboard-profile"]}>
+    !loading && <div className={classes["dashboard-profile"]}>
       <div className={classes["left-menu"]} onClick={deactivateDropdownHandler}>
         <Menu />
       </div>
@@ -95,7 +107,7 @@ const DashboardUsersProfile = () => {
           </div>
           {errMsg === "" ? (
             <div className={classes["profile-user-posts"]}>
-              <UserPosts posts={posts} />
+              {noPostsMsg === "" ? <UserPosts posts={posts}/> : <span className={classes["no-posts-msg"]}>{noPostsMsg}</span> }
             </div>
           ) : (
             <span>{errMsg}</span>

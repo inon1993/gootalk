@@ -4,11 +4,14 @@ import useRefreshToken from "./useRefreshToken";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import useLogout from "./useLogout";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const useAxiosPrivate = () => {
   const refresh = useRefreshToken();
   const logout = useLogout();
   const accessToken = useSelector((state) => state.accessToken.accessToken);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const requestIntercept = axiosPrivate.interceptors.request.use(
@@ -26,13 +29,20 @@ const useAxiosPrivate = () => {
       async (error) => {
         const prevRequest = error?.config;
         console.log(prevRequest);
-        if(prevRequest.url === '/refresh') {
+        if (prevRequest.url === "/refresh" || prevRequest.url === "/logout") {
           console.log(8888);
-          await logout();
-          window.location.href = '/login';
+          try {
+            await logout();
+            navigate("/login", { state: { from: location }, replace: true });
+          } catch (error) {
+            return Promise.reject(error);
+          }
+          // window.location.href = '/login';
           return Promise.reject(error);
-        }
-        else if (error?.response?.status === 401 && prevRequest.url !== '/refresh' /*prevRequest?.sent !== true*/) {
+        } else if (
+          error?.response?.status === 401 &&
+          prevRequest.url !== "/refresh" /*prevRequest?.sent !== true*/
+        ) {
           console.log(1);
           console.log(accessToken);
           // prevRequest.sent = true;

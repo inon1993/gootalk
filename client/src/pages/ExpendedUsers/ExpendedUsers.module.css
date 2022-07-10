@@ -89,6 +89,13 @@
 
 .name-expended {
   margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ue-name {
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .no-users {
