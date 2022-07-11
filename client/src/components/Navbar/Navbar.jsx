@@ -92,25 +92,28 @@ const Navbar = () => {
         )}
         {user.userId !== "" && (
           <div className={classes["navbar-features"]}>
-          <Link to={"/"} style={{ textDecoration: "none" }}>
-            <HomeRounded
-              onClick={activateHomeHandler}
-              className={
-                isActivated.home
-                  ? classes["navbar-features-icon-focus"]
-                  : classes["navbar-features-icon"]
-              }
-            />
+            <Link to={"/"} style={{ textDecoration: "none", display: "flex" }}>
+              <HomeRounded
+                onClick={activateHomeHandler}
+                className={
+                  isActivated.home
+                    ? classes["navbar-features-icon-focus"]
+                    : classes["navbar-features-icon"]
+                }
+              />
             </Link>
-          <Link to={"/notifications"} style={{ textDecoration: "none" }}>
-            <MessageRounded
-              onClick={activateNotificationHandler}
-              className={
-                isActivated.notifications
-                  ? classes["navbar-features-icon-focus"]
-                  : classes["navbar-features-icon"]
-              }
-            />
+            <Link
+              to={"/notifications"}
+              style={{ textDecoration: "none", display: "flex" }}
+            >
+              <MessageRounded
+                onClick={activateNotificationHandler}
+                className={
+                  isActivated.notifications
+                    ? classes["navbar-features-icon-focus"]
+                    : classes["navbar-features-icon"]
+                }
+              />
             </Link>
             <Profile onClick={activateProfileHandler} activate={isActivated} />
             {isActivatedDropdown && (
@@ -124,25 +127,31 @@ const Navbar = () => {
         )}
         {user.userId !== "" ? (
           <div className={classes["mobile-menu"]}>
-          <Link to={"/notifications"} style={{ textDecoration: "none" }}>
-            <MessageRounded
-              onClick={activateNotificationHandler}
-              className={
-                isActivated.notifications
-                  ? classes["navbar-features-icon-focus"]
-                  : classes["navbar-features-icon"]
-              }
-            />
+            <Link
+              to={"/notifications"}
+              style={{ textDecoration: "none", display: "flex" }}
+            >
+              <MessageRounded
+                onClick={activateNotificationHandler}
+                className={
+                  isActivated.notifications
+                    ? classes["navbar-features-icon-focus"]
+                    : classes["navbar-features-icon"]
+                }
+              />
             </Link>
-          <Link to={"/search"} style={{ textDecoration: "none" }}>
-            <SearchRounded
-              onClick={activateSearchHandler}
-              className={
-                isActivated.search
-                  ? classes["navbar-features-icon-focus"]
-                  : classes["navbar-features-icon"]
-              }
-            />
+            <Link
+              to={"/search"}
+              style={{ textDecoration: "none", display: "flex" }}
+            >
+              <SearchRounded
+                onClick={activateSearchHandler}
+                className={
+                  isActivated.search
+                    ? classes["navbar-features-icon-focus"]
+                    : classes["navbar-features-icon"]
+                }
+              />
             </Link>
             <div className={classes["mm-button"]} onClick={mobileMenuHandler}>
               {!isMobileMenu && <MenuRounded className={classes["mm-icon"]} />}

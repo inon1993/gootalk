@@ -58,6 +58,7 @@
   font-size: 1.6rem !important;
   color: hsl(207.2, 32.5%, 68%);
   padding: 18.2px;
+  /* display: flex !important; */
 }
 
 .navbar-features-icon:hover {

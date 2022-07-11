@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import { PersonAdd } from "@mui/icons-material";
+import { Done, PersonAdd } from "@mui/icons-material";
 
 const DashboardUsersProfile = () => {
   const [user, setUser] = useState({});
@@ -23,7 +23,6 @@ const DashboardUsersProfile = () => {
   useEffect(() => {
     setSendReqBtn(false);
     setDisableReqBtn(false);
-    console.log(posts.length);
     const getUserPosts = async () => {
       const getUser = await axios.get(`/user/${userid}`);
       console.log(getUser.data);
@@ -34,8 +33,9 @@ const DashboardUsersProfile = () => {
       const match = getUser.data.notifications.filter(
         (n) => n.senderUserId === currUser.userId && n.status === false
       );
+
       console.log(match);
-      if (match.length > 0) {
+      if (match.length > 0 || getUser.data.friends.includes(currUser.userId)) {
         setDisableReqBtn(true);
       }
     };
@@ -120,8 +120,16 @@ const DashboardUsersProfile = () => {
                     disabled={disableReqBtn}
                     onClick={addFriendHandler}
                   >
-                    <PersonAdd className={classes["add-friend-icon"]} />
-                    {!disableReqBtn ? "Add Friend" : "Pending..."}
+                    {user && user?.friends?.includes(currUser.userId) ? (
+                      <Done className={classes["add-friend-icon"]} />
+                    ) : (
+                      <PersonAdd className={classes["add-friend-icon"]} />
+                    )}
+                    {!disableReqBtn
+                      ? "Add Friend"
+                      : user && user?.friends?.includes(currUser.userId)
+                      ? "Friends!"
+                      : "Pending..."}
                   </button>
                 )}
               </div>

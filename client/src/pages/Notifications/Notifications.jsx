@@ -14,7 +14,7 @@ const Notifications = () => {
   useEffect(() => {
     const activateProfile = () => {
       dispatch(menuActions.deactivate());
-      dispatch(navbarActions.deactivate());
+      dispatch(navbarActions.activateNotification());
       dispatch(navbarActions.activateSearchInput());
     };
     activateProfile();
