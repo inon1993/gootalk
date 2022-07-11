@@ -92,6 +92,7 @@ const Navbar = () => {
         )}
         {user.userId !== "" && (
           <div className={classes["navbar-features"]}>
+          <Link to={"/"} style={{ textDecoration: "none" }}>
             <HomeRounded
               onClick={activateHomeHandler}
               className={
@@ -100,6 +101,8 @@ const Navbar = () => {
                   : classes["navbar-features-icon"]
               }
             />
+            </Link>
+          <Link to={"/notifications"} style={{ textDecoration: "none" }}>
             <MessageRounded
               onClick={activateNotificationHandler}
               className={
@@ -108,6 +111,7 @@ const Navbar = () => {
                   : classes["navbar-features-icon"]
               }
             />
+            </Link>
             <Profile onClick={activateProfileHandler} activate={isActivated} />
             {isActivatedDropdown && (
               <div className={classes["dropdown-menu"]}>
@@ -120,6 +124,7 @@ const Navbar = () => {
         )}
         {user.userId !== "" ? (
           <div className={classes["mobile-menu"]}>
+          <Link to={"/notifications"} style={{ textDecoration: "none" }}>
             <MessageRounded
               onClick={activateNotificationHandler}
               className={
@@ -128,6 +133,8 @@ const Navbar = () => {
                   : classes["navbar-features-icon"]
               }
             />
+            </Link>
+          <Link to={"/search"} style={{ textDecoration: "none" }}>
             <SearchRounded
               onClick={activateSearchHandler}
               className={
@@ -136,6 +143,7 @@ const Navbar = () => {
                   : classes["navbar-features-icon"]
               }
             />
+            </Link>
             <div className={classes["mm-button"]} onClick={mobileMenuHandler}>
               {!isMobileMenu && <MenuRounded className={classes["mm-icon"]} />}
               {isMobileMenu && <Close className={classes["mm-icon"]} />}

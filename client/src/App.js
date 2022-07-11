@@ -8,6 +8,7 @@ import { Routes, Route } from "react-router-dom";
 import PersistAuth from "./components/RoutingComponents/PersistAuth";
 import RequireAuth from "./components/RoutingComponents/RequireAuth";
 import Authenticated from "./components/RoutingComponents/Authenticated";
+import Notifications from "./pages/Notifications/Notifications";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/profile/:username" element={<ProfilePage />} />
           <Route path="/search" element={<ExpendedUsers />} />
+          <Route path="/notifications" element={<Notifications />} />
         </Route>
       </Route>
       {/* <Route path="*" element={<Error />} /> */}

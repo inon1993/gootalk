@@ -14,17 +14,19 @@ const DashboardHome = () => {
     dispatch(dropdownActions.deactivate());
   };
   return (
-    <div className={classes["dashboard-home"]}>
-      <div className={classes["left-menu"]} onClick={deactivateDropdownHandler}>
+    <>
+    {/* // <div className={classes["dashboard-home"]}> */}
+      {/* <div className={classes["left-menu"]} onClick={deactivateDropdownHandler}>
         <Menu />
-      </div>
+      </div> */}
       <div className={classes["feed"]}>
         <Feed />
       </div>
       <div className={classes["right-menu"]}>
         <RightMenu />
       </div>
-    </div>
+    {/* // </div> */}
+    </>
   );
 };
 

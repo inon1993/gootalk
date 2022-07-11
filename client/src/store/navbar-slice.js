@@ -42,12 +42,12 @@ const navbarSlice = createSlice({
       state.activate.search = true;
       state.activate.searchInput = true;
     },
-    toggleSearchInput(state) {
+    deactivateSearchInput(state) {
       state.activate.home = state.activate.home;
       state.activate.notifications = state.activate.notifications;
       state.activate.profile = state.activate.profile;
       state.activate.search = state.activate.search;
-      state.activate.searchInput = !state.activate.searchInput;
+      state.activate.searchInput = false;
     },
     activateSearchInput(state) {
       state.activate.home = state.activate.home;

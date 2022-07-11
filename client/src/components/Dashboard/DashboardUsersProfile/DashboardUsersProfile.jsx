@@ -1,7 +1,5 @@
 import classes from "./DashboardUsersProfile.module.css";
-import Menu from "../Menu/Menu";
-import { useDispatch, useSelector } from "react-redux";
-import { dropdownActions } from "../../../store/dropdown-slice";
+import { useSelector } from "react-redux";
 import UserPosts from "../UserPosts/UserPosts";
 import ppIcon from "../../../images/pp-icon.png";
 import { useState, useEffect } from "react";
@@ -49,13 +47,10 @@ const DashboardUsersProfile = () => {
     setNoPostsMsg("");
     const getPosts = async () => {
       try {
-        // const res = await getPostRequest();
         const res = await req.get(`/post/posts/${userid}`);
         if (res.data.length === 0) {
           console.log(res.data.length);
           setNoPostsMsg("This user hasn't posted yet...");
-          // setLoading(false)
-          // return
         }
         setPosts(res.data);
       } catch (error) {
@@ -73,12 +68,6 @@ const DashboardUsersProfile = () => {
     setLoading(false);
   }, [user]);
 
-  const dispatch = useDispatch();
-
-  const deactivateDropdownHandler = () => {
-    dispatch(dropdownActions.deactivate());
-  };
-
   const addFriendHandler = async () => {
     const payload = {
       userId: user._id,
@@ -93,74 +82,66 @@ const DashboardUsersProfile = () => {
   };
 
   return (
-    !loading && (
-      <div className={classes["dashboard-profile"]}>
-        <div
-          className={classes["left-menu"]}
-          onClick={deactivateDropdownHandler}
-        >
-          <Menu />
-        </div>
-        {!loading && (
-          <div className={classes["profile-data-wrapper"]}>
-            <div className={classes["profile-data"]}>
-              <div className={classes["profile-images"]}>
+    <>
+      {!loading && (
+        <div className={classes["profile-data-wrapper"]}>
+          <div className={classes["profile-data"]}>
+            <div className={classes["profile-images"]}>
+              <img
+                className={classes["profile-cover"]}
+                src="https://img.wallpapersafari.com/desktop/800/450/20/1/MPCYk3.jpg"
+                alt="cover"
+              />
+              <div className={classes["profile-img-text"]}>
                 <img
-                  className={classes["profile-cover"]}
-                  src="https://img.wallpapersafari.com/desktop/800/450/20/1/MPCYk3.jpg"
+                  className={classes["profile-pic"]}
+                  src={user.profilePicture || ppIcon}
                   alt="cover"
                 />
-                <div className={classes["profile-img-text"]}>
-                  <img
-                    className={classes["profile-pic"]}
-                    src={user.profilePicture || ppIcon}
-                    alt="cover"
-                  />
-                  <div className={classes["profile-name-city"]}>
-                    <h3
-                      className={classes["profile-name"]}
-                    >{`${user.firstname} ${user.lastname}`}</h3>
-                    {user.country && user.city ? (
-                      <span
-                        className={classes["profile-city"]}
-                      >{`${user.city}, ${user.country}`}</span>
-                    ) : (
-                      (user.country || user.city) && (
-                        <span className={classes["profile-city"]}>{`${
-                          user.city || user.country
-                        }`}</span>
-                      )
-                    )}
-                  </div>
-                  {sendReqBtn && currUser.userId !== "" && (
-                    <button
-                      className={classes["add-friend-btn"]}
-                      disabled={disableReqBtn}
-                      onClick={addFriendHandler}
-                    >
-                      <PersonAdd className={classes["add-friend-icon"]} />
-                      {!disableReqBtn ? "Add Friend" : "Pending..."}
-                    </button>
+                <div className={classes["profile-name-city"]}>
+                  <h3
+                    className={classes["profile-name"]}
+                  >{`${user.firstname} ${user.lastname}`}</h3>
+                  {user.country && user.city ? (
+                    <span
+                      className={classes["profile-city"]}
+                    >{`${user.city}, ${user.country}`}</span>
+                  ) : (
+                    (user.country || user.city) && (
+                      <span className={classes["profile-city"]}>{`${
+                        user.city || user.country
+                      }`}</span>
+                    )
                   )}
                 </div>
-              </div>
-            </div>
-            {errMsg === "" ? (
-              <div className={classes["profile-user-posts"]}>
-                {noPostsMsg === "" ? (
-                  <UserPosts posts={posts} />
-                ) : (
-                  <span className={classes["no-posts-msg"]}>{noPostsMsg}</span>
+                {sendReqBtn && currUser.userId !== "" && (
+                  <button
+                    className={classes["add-friend-btn"]}
+                    disabled={disableReqBtn}
+                    onClick={addFriendHandler}
+                  >
+                    <PersonAdd className={classes["add-friend-icon"]} />
+                    {!disableReqBtn ? "Add Friend" : "Pending..."}
+                  </button>
                 )}
               </div>
-            ) : (
-              <span>{errMsg}</span>
-            )}
+            </div>
           </div>
-        )}
-        <div className={classes["right-menu"]}></div>
-      </div>
-    )
+          {errMsg === "" ? (
+            <div className={classes["profile-user-posts"]}>
+              {noPostsMsg === "" ? (
+                <UserPosts posts={posts} />
+              ) : (
+                <span className={classes["no-posts-msg"]}>{noPostsMsg}</span>
+              )}
+            </div>
+          ) : (
+            <span>{errMsg}</span>
+          )}
+        </div>
+      )}
+      <div className={classes["right-menu"]}></div>
+    </>
   );
 };
 

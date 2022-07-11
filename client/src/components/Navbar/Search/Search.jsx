@@ -34,21 +34,17 @@ const Search = () => {
     const controller = new AbortController();
 
     const getUsers = async () => {
-      // const fetchedUsers = await fetchUsers();
       try {
         const fetchedUsers = await req.get("/user/");
-        // console.log(fe);
         setUsers(fetchedUsers.data);
       } catch (error) {
         navigate("/login", { state: { from: location }, replace: true });
         dispach(userActions.logoutUser());
       }
-      
     };
     getUsers();
 
     return () => {
-      // isMounted = false;
       controller.abort();
     };
   }, []);
@@ -64,9 +60,9 @@ const Search = () => {
       },
       { state: { from: location }, replace: true }
     );
-    dispatch(navbarActions.toggleSearchInput());
-    dispatch(navbarActions.deactivate());
-    dispatch(menuActions.deactivate());
+    // dispatch(navbarActions.toggleSearchInput());
+    // dispatch(navbarActions.deactivate());
+    // dispatch(menuActions.deactivate());
     setIsExpended(true);
   };
 

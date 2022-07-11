@@ -54,5 +54,17 @@ const responseReqest = async (req, res) => {
   }
 };
 
+const getNotifications = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    console.log(user);
+    const notifications = await Notification.find({ userId: user._id });
+    return res.status(200).json(notifications);
+  } catch (error) {
+    return res.status(500).send("Internal server error.");
+  }
+} 
+
 module.exports.friendshipRequest = friendshipRequest;
 module.exports.responseReqest = responseReqest;
+module.exports.getNotifications = getNotifications;

@@ -1,6 +1,5 @@
-.dashboard-profile {
+.dashboard-home {
     display: flex;
-    min-height: calc(100vh - 61px);
   }
   
   .left-menu {
@@ -12,20 +11,19 @@
     z-index: 60;
     border-right: 1px solid hsl(206.7, 33.3%, 89.7%);
   }
-  
-  .dashboard-profile-wrapper {
+
+  .dashboard-home-wrapper {
     flex: 9.5;
-    width: 100%;
-    /* height: calc(100vh - 61px); */
-    background-color: hsl(210, 71.4%, 97.3%);
-    background-attachment: fixed;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
   }
 
   @media only screen and (max-width: 800px) {
+    .left-menu {
+      flex: 2;
+    }
+  }
+  
+  @media only screen and (max-width: 700px) {
     .left-menu {
       display: none;
     }
