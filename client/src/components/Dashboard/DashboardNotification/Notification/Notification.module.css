@@ -1,0 +1,54 @@
+.notification {
+  margin-bottom: 10px;
+}
+
+.noti-img-text {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.noti-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.noti-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.noti-accept-button {
+  padding: 0.5rem 1.3rem;
+  border: none;
+  border-radius: 10px;
+  background-color: hsl(206.7, 33.3%, 94.7%);
+  color: hsl(120, 39.3%, 54.1%);
+  font-weight: 500;
+  transition: 150ms;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.noti-accept-button:hover {
+  background-color: hsl(120, 39.3%, 54.1%);
+  color: white;
+}
+
+.noti-reject-button {
+  padding: 0.5rem 1.3rem;
+  border: none;
+  border-radius: 10px;
+  background-color: hsl(206.7, 33.3%, 94.7%);
+  color: hsl(1.7, 64.5%, 58%);
+  font-weight: 500;
+  transition: 150ms;
+  cursor: pointer;
+}
+
+.noti-reject-button:hover {
+  background-color: hsl(1.7, 64.5%, 58%);
+  color: white;
+}

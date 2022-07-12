@@ -5,29 +5,36 @@ import { useSelector } from "react-redux";
 import Notification from "./Notification/Notification";
 
 const DashboardNotification = () => {
-    const req = useAxiosPrivate();
-    const [notifications, setNotifications] = useState([]);
-    const user = useSelector(state => state.user.user);
+  const req = useAxiosPrivate();
+  const [notifications, setNotifications] = useState([]);
+  const [response, setResponse] = useState();
+  const user = useSelector((state) => state.user.user);
 
-    useEffect(() => {
-        const getNoti = async () => {
-            try {
-                const res = await req.get(`/notifications/${user.userId}`)
-                setNotifications(res.data);
-            } catch (error) {
-                console.log(error);
-            }
-        }
+  useEffect(() => {
+    getNoti();
+  }, []);
 
-        getNoti();
-    }, []);
+  const getNoti = async () => {
+    try {
+      const res = await req.get(`/notifications/${user.userId}`);
+      setNotifications(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
-    <div className={classes.feed}>
+    <div className={classes["notification-wrapper"]}>
       {notifications.length !== 0 ? (
-        notifications.map((noti, i) => {
-          return <Notification key={i} notification={noti} /*update={setUpdate}*/ />;
-        // return <span>{noti.userId}</span>
+        notifications.reverse().map((noti, i) => {
+          return (
+            <Notification
+              key={i}
+              notification={noti}
+              onReload={getNoti} /*update={setUpdate}*/
+            />
+          );
+          // return <span>{noti.userId}</span>
         })
       ) : (
         <span>No notifications...</span>

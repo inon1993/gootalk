@@ -6,8 +6,8 @@ import axios from "axios";
 const UserPosts = ({ posts }) => {
   return (
     <div className={classes["profile-posts"]}>
-      {posts?.reverse().map((post) => {
-        return <Post post={post} />;
+      {posts?.reverse().map((post, i) => {
+        return <Post key={i} post={post} />;
       })}
     </div>
   );

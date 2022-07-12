@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Post = require("../models/Post");
 const bcrypt = require("bcrypt");
 
 const updateUserCtr = async (req, res) => {
@@ -107,9 +108,31 @@ const unfollowUserCtr = async (req, res) => {
   }
 };
 
+const userStats = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    const friendsLen = user.friends.length;
+    const posts = await Post.find({ userId: req.params.id });
+    const postsLen = posts.length;
+    const date = new Date(user.createdAt);
+
+    console.log(date.getFullYear());
+    return res.status(200).json({
+      friends: friendsLen,
+      posts: postsLen,
+      createdAt: `${
+        date.getMonth() + 1
+      }.${date.getDate()}.${date.getFullYear()}`,
+    });
+  } catch (error) {
+    return res.status(500).send("Internal server error.");
+  }
+};
+
 module.exports.updateUserCtr = updateUserCtr;
 module.exports.deleteUserCtr = deleteUserCtr;
 module.exports.getAllUsersCtr = getAllUsersCtr;
 module.exports.getUserCtr = getUserCtr;
 module.exports.followUserCtr = followUserCtr;
 module.exports.unfollowUserCtr = unfollowUserCtr;
+module.exports.userStats = userStats;

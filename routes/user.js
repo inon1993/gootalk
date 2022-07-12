@@ -20,4 +20,6 @@ router.put("/:id/follow", auth, userCtr.followUserCtr);
 //--UNFOLLOW A USER--//
 router.put("/:id/unfollow", auth, userCtr.unfollowUserCtr);
 
+router.get("/stats/:id", auth, userCtr.userStats);
+
 module.exports = router;
