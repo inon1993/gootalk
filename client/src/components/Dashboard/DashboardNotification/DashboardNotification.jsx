@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react";
 import classes from "./DashboardNotification.module.css";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Notification from "./Notification/Notification";
+import { userActions } from "../../../store/user-slice";
 
 const DashboardNotification = () => {
   const req = useAxiosPrivate();
   const [notifications, setNotifications] = useState([]);
   const [response, setResponse] = useState();
   const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    getNoti();
-  }, []);
+  // useEffect(() => {
+  //   getNoti();
+  // }, []);
 
   const getNoti = async () => {
     try {
       const res = await req.get(`/notifications/${user.userId}`);
-      setNotifications(res.data);
+      dispatch(userActions.setNotifications({notifications: res.data}))
     } catch (error) {
       console.log(error);
     }
@@ -25,8 +27,9 @@ const DashboardNotification = () => {
 
   return (
     <div className={classes["notification-wrapper"]}>
-      {notifications.length !== 0 ? (
-        notifications.reverse().map((noti, i) => {
+      {/* {notifications.length !== 0 ? ( */}
+      {user.notifications.length > 0 ? (
+        user.notifications.map((noti, i) => {
           return (
             <Notification
               key={i}

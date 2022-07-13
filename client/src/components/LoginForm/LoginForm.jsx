@@ -1,6 +1,7 @@
 import classes from "./LoginForm.module.css";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useState, useEffect, useRef } from "react";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../api/auth/authRoutes";
 import { useDispatch } from "react-redux";
@@ -16,6 +17,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState();
   const [errMsg, setErrMsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const req = useAxiosPrivate();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -52,6 +54,8 @@ const LoginForm = () => {
       };
       dispatch(userActions.setUser(newUserToSet));
       dispatch(accessTokenActions.setAccessToken(accessToken));
+      const notifications = await req.get(`/notifications/${userData._id}`);
+      dispatch(userActions.setNotifications({notifications: notifications.data}));
       navigate("/");
       setIsLoading(false);
     } catch (err) {

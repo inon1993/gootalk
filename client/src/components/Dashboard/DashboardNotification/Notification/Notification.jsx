@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import { userActions } from "../../../../store/user-slice";
 import { useLocation } from "react-router-dom";
+import { format } from "timeago.js";
 import ppIcon from "../../../../images/pp-icon.png";
 import classes from "./Notification.module.css";
 
@@ -95,6 +96,7 @@ const Notification = ({ notification, onReload }) => {
           's friendship request.
         </span>
       )}
+      <span className={classes["notification-date"]}>{format(notification.createdAt)}</span>
     </Card>
   );
 };

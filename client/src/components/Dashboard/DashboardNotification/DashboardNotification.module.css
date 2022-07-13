@@ -2,3 +2,9 @@
   margin-top: 1rem;
   width: 80%;
 }
+
+@media only screen and (max-width: 350px) {
+  .notification-wrapper {
+    width: 95%;
+  }
+}

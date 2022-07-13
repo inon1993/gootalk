@@ -55,6 +55,7 @@
 }
 
 .navbar-features-icon {
+  /* position: relative; */
   font-size: 1.6rem !important;
   color: hsl(207.2, 32.5%, 68%);
   padding: 18.2px;
@@ -75,6 +76,19 @@
   border-bottom: 3px solid hsl(208.7, 100%, 53.7%);
   cursor: pointer;
   color: hsl(220.3, 62.5%, 22%);
+}
+
+.notification-badge {
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 0.6rem;
+  color: white;
+  background-color: red;
+  padding: 4px 7px;
+  border-radius: 50%;
+  border: 2px solid white;
 }
 
 .dropdown-menu {

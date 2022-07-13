@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import classes from "./Navbar.module.css";
 import {
   Close,
@@ -18,6 +18,7 @@ import DropdownBackground from "./Profile/DropdownMenu/DropdownBackground";
 import MobileMenu from "./MobileMenu/MobileMenu";
 import { Link } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const Navbar = () => {
   const user = useSelector((state) => state.user.user);
@@ -25,8 +26,27 @@ const Navbar = () => {
   const isActivatedDropdown = useSelector((state) => state.dropdown.activate);
   const dispatch = useDispatch();
   const [isMobileMenu, setIsMobileMenu] = useState(false);
+  const [notiBadge, setNotiBadge] = useState(0)
   const navigate = useNavigate();
   const location = useLocation();
+  const req = useAxiosPrivate();
+  const filtered = user.notifications.filter(n => {return !n.status});
+  useEffect(() => {
+    // const getNotiBadge = async () => {
+    //   try {
+    //     const res = await req.get(`/notifications/${user.userId}`);
+    //     const filtered = res.data.filter(n => {return !n.status});
+    //     setNotiBadge(filtered.length)
+    //   } catch (error) {
+    //    console.log(error); 
+    //   }
+    // }
+
+    // getNotiBadge()
+    console.log(user);
+    
+    setNotiBadge(filtered.length)
+  }, [filtered])
 
   const activateHomeHandler = () => {
     dispatch(navbarActions.activateHome());
@@ -106,6 +126,7 @@ const Navbar = () => {
               to={"/notifications"}
               style={{ textDecoration: "none", display: "flex" }}
             >
+              <div style={{position: "relative", display: "flex"}}>
               <MessageRounded
                 onClick={activateNotificationHandler}
                 className={
@@ -114,6 +135,8 @@ const Navbar = () => {
                     : classes["navbar-features-icon"]
                 }
               />
+              {notiBadge > 0 && <span className={classes["notification-badge"]}>{notiBadge}</span>}
+              </div>
             </Link>
             <Profile onClick={activateProfileHandler} activate={isActivated} />
             {isActivatedDropdown && (
