@@ -55,7 +55,10 @@ const LoginForm = () => {
       dispatch(userActions.setUser(newUserToSet));
       dispatch(accessTokenActions.setAccessToken(accessToken));
       const notifications = await req.get(`/notifications/${userData._id}`);
-      dispatch(userActions.setNotifications({notifications: notifications.data}));
+      dispatch(
+        userActions.setNotifications({ notifications: notifications.data })
+      );
+      dispatch(userActions.setFriends({ friends: userData.friends }));
       navigate("/");
       setIsLoading(false);
     } catch (err) {

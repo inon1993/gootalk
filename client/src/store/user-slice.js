@@ -8,6 +8,7 @@ const initialUserState = {
     email: "",
     profilePicture: "",
     coverPicture: "",
+    friends: [],
     // followers: [],
     // following: [],
     country: "",
@@ -38,6 +39,9 @@ const userSlice = createSlice({
     setNotifications(state, action) {
       state.user.notifications = action.payload.notifications;
     },
+    setFriends(state, action) {
+      state.user.friends = action.payload.friends;
+    },
     logoutUser(state) {
       state.user.userId = "";
       state.user.firstname = "";
@@ -45,6 +49,7 @@ const userSlice = createSlice({
       state.user.email = "";
       state.user.profilePicture = "";
       state.user.coverPicture = "";
+      state.user.friends = [];
       // state.user.followers = [];
       // state.user.following = [];
       state.user.country = "";

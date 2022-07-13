@@ -9,6 +9,7 @@ import PersistAuth from "./components/RoutingComponents/PersistAuth";
 import RequireAuth from "./components/RoutingComponents/RequireAuth";
 import Authenticated from "./components/RoutingComponents/Authenticated";
 import Notifications from "./pages/Notifications/Notifications";
+import FriendsPage from "./pages/FriendsPage/FriendsPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/profile/:username" element={<ProfilePage />} />
           <Route path="/search" element={<ExpendedUsers />} />
           <Route path="/notifications" element={<Notifications />} />
+          <Route path="/friends" element={<FriendsPage />} />
         </Route>
       </Route>
       {/* <Route path="*" element={<Error />} /> */}

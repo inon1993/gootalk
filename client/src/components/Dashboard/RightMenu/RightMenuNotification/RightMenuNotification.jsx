@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../../../store/user-slice";
 
 const RightMenuNotification = ({ notification, onReload }) => {
-  const currUser = useSelector(state => state.user.user);
+  const currUser = useSelector((state) => state.user.user);
   const [user, setUser] = useState();
   const req = useAxiosPrivate();
   const dispatch = useDispatch();
@@ -17,8 +17,8 @@ const RightMenuNotification = ({ notification, onReload }) => {
       setUser(res.data);
     };
 
-    getUser()
-  }, []);
+    getUser();
+  }, [notification]);
 
   const responseRequest = async (e) => {
     const payload = {
@@ -48,8 +48,20 @@ const RightMenuNotification = ({ notification, onReload }) => {
           </span>
         </div>
         <div className={classes["rm-noti-buttons"]}>
-          <button className={classes["rm-noti-accept"]} value={true} onClick={responseRequest}>Accept</button>
-          <button className={classes["rm-noti-reject"]} value={false} onClick={responseRequest}>Reject</button>
+          <button
+            className={classes["rm-noti-accept"]}
+            value={true}
+            onClick={responseRequest}
+          >
+            Accept
+          </button>
+          <button
+            className={classes["rm-noti-reject"]}
+            value={false}
+            onClick={responseRequest}
+          >
+            Reject
+          </button>
         </div>
       </Card>
     )

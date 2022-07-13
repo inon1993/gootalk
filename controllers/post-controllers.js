@@ -73,7 +73,7 @@ const getAllUserPostsCtr = async (req, res) => {
     const user = await User.findById(req.params.userId);
     console.log(user);
     const userPosts = await Post.find({ userId: user._id });
-    return res.status(200).json(userPosts);
+    return res.status(200).json(userPosts.reverse());
   } catch (err) {
     return res.status(500).json(err);
   }

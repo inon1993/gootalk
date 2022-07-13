@@ -16,9 +16,8 @@ const RightMenu = () => {
     const firstNotification = user.notifications.find((n) => {
       return n.status === false;
     });
-    console.log(firstNotification);
     setNotification(firstNotification);
-  }, [user]);
+  }, [user, notification]);
 
   const getNotifications = async () => {
     try {
@@ -31,13 +30,16 @@ const RightMenu = () => {
 
   return (
     <div className={classes["right-menu"]}>
-      <div style={{marginBottom: "15px"}}>{notification ? (
-        <RightMenuNotification notification={notification} onReload={getNotifications} />
-      ) : (
-        <span>
-          No new notifications.
-        </span>
-      )}</div>
+      <div style={{ marginBottom: "15px" }}>
+        {notification ? (
+          <RightMenuNotification
+            notification={notification}
+            onReload={getNotifications}
+          />
+        ) : (
+          <span>No new notifications.</span>
+        )}
+      </div>
       <hr className={classes["rm-hr"]} />
       <RightMenuFriends />
     </div>
