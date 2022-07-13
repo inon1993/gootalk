@@ -5,16 +5,18 @@ import { navbarActions } from "../../store/navbar-slice";
 import { dropdownActions } from "../../store/dropdown-slice";
 import { useEffect } from "react";
 import Menu from "../../components/Dashboard/Menu/Menu";
-import classes from "./HomePage.module.css"
+import classes from "./HomePage.module.css";
+import { menuActions } from "../../store/menu-slice";
 
 const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(navbarActions.activateSearchInput());
+    dispatch(navbarActions.deactivate());
+    dispatch(menuActions.deactivate());
   }, []);
 
   const deactivateDropdownHandler = () => {
-    // dispatch(navbarActions.activateSearchInput())
     dispatch(dropdownActions.deactivate());
   };
 
@@ -22,7 +24,10 @@ const Home = () => {
     <div>
       <Navbar />
       <div className={classes["dashboard-home"]}>
-        <div className={classes["left-menu"]} onClick={deactivateDropdownHandler}>
+        <div
+          className={classes["left-menu"]}
+          onClick={deactivateDropdownHandler}
+        >
           <Menu />
         </div>
         <div className={classes["dashboard-home-wrapper"]}>
