@@ -60,7 +60,7 @@ const responseReqest = async (req, res) => {
       //   { notifications: { $elemMatch: { _id: req.body.notificationId } } },
       //   { $set: { status: true } }
       // );
-      return res.status(403).send("Request has been rejected successfully.");
+      return res.status(200).send("Request has been rejected successfully.");
     }
     await Notification.findByIdAndUpdate(req.body.notificationId, {
       status: true,
