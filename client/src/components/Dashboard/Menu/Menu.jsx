@@ -38,6 +38,7 @@ const Menu = () => {
   return (
     <div className={classes["menu-wrapper"]}>
       <ul className={classes["menu-list"]}>
+      <Link to={'/'} style={{ textDecoration: "none" }}>
         <li
           className={
             isActivated.home
@@ -49,6 +50,7 @@ const Menu = () => {
           <HomeRounded className={classes["menu-list-icon"]} />
           <span className={classes["menu-text"]}>Home</span>
         </li>
+        </Link>
         <Link to={`/profile/${user.firstname}-${user.lastname}`} style={{ textDecoration: "none" }}>
         <li
           className={
@@ -62,6 +64,7 @@ const Menu = () => {
           <span className={classes["menu-text"]}>My Profile</span>
         </li>
           </Link>
+        <Link to={'/friends'} style={{ textDecoration: "none" }}>
         <li
           className={
             isActivated.friends
@@ -73,6 +76,7 @@ const Menu = () => {
           <PeopleRounded className={classes["menu-list-icon"]} />
           <span className={classes["menu-text"]}>My Friends</span>
         </li>
+        </Link>
         <li
           className={
             isActivated.settings

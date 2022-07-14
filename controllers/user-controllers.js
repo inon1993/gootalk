@@ -129,6 +129,15 @@ const userStats = async (req, res) => {
   }
 };
 
+const getUserFriends = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    return res.status(200).send(user.friends)
+  } catch (error) {
+    return res.status(500).send("Internal server error.")
+  }
+}
+
 module.exports.updateUserCtr = updateUserCtr;
 module.exports.deleteUserCtr = deleteUserCtr;
 module.exports.getAllUsersCtr = getAllUsersCtr;
@@ -136,3 +145,4 @@ module.exports.getUserCtr = getUserCtr;
 module.exports.followUserCtr = followUserCtr;
 module.exports.unfollowUserCtr = unfollowUserCtr;
 module.exports.userStats = userStats;
+module.exports.getUserFriends = getUserFriends;

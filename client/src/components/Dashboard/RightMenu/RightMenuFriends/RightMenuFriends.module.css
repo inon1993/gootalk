@@ -9,6 +9,10 @@
   /* border-bottom: 1px solid black; */
 }
 
+.no-notification {
+  max-height: calc(100vh - 150px);
+}
+
 ::-webkit-scrollbar {
   width: 3px;
 }

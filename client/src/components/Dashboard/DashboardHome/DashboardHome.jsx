@@ -6,7 +6,7 @@ import { dropdownActions } from "../../../store/dropdown-slice";
 import { navbarActions } from "../../../store/navbar-slice";
 import RightMenu from "../RightMenu/RightMenu";
 
-const DashboardHome = () => {
+const DashboardHome = ({ friends }) => {
   const dispatch = useDispatch();
 
   const deactivateDropdownHandler = () => {
@@ -23,7 +23,7 @@ const DashboardHome = () => {
         <Feed />
       </div>
       <div className={classes["right-menu"]}>
-        <RightMenu />
+        <RightMenu friends={friends} />
       </div>
     {/* // </div> */}
     </>

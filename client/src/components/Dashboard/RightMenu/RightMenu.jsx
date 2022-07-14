@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { userActions } from "../../../store/user-slice";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 
-const RightMenu = () => {
+const RightMenu = ({ friends }) => {
   const user = useSelector((state) => state.user.user);
   const [notification, setNotification] = useState();
   const req = useAxiosPrivate();
@@ -22,7 +22,9 @@ const RightMenu = () => {
   const getNotifications = async () => {
     try {
       const res = await req.get(`/notifications/${user.userId}`);
+      const friends = await req.get(`/user/friends/${user.userId}`);
       dispatch(userActions.setNotifications({ notifications: res.data }));
+      dispatch(userActions.setFriends({friends: friends.data}));
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +43,7 @@ const RightMenu = () => {
         )}
       </div>
       <hr className={classes["rm-hr"]} />
-      <RightMenuFriends />
+      <RightMenuFriends notification={notification} friends={friends} />
     </div>
   );
 };

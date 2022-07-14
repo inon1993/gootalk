@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import ppIcon from "../../../../images/pp-icon.png";
 import classes from "./Friend.module.css";
@@ -18,7 +17,7 @@ const Friend = ({ friend }) => {
     };
 
     getFriends();
-  }, []);
+  }, [friend]);
 
   return (
     user && (

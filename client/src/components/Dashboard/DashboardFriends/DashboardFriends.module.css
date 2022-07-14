@@ -1,8 +1,17 @@
 .friends-wrapper {
+  flex: 9;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  justify-content: space-between;
+}
+
+.friends-upper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .search-friends {
@@ -24,6 +33,7 @@
   outline: none;
   border: 1px solid hsl(206.7, 33.3%, 89.7%);
   box-sizing: border-box;
+  color: hsl(220.3, 62.5%, 22%);
 }
 
 .friends-results-wrapper {
@@ -61,4 +71,21 @@
 
 .friends-results:only-child {
   border-radius: 10px;
+}
+
+@media only screen and (max-width: 530px) {
+  .friends-results-wrapper {
+    width: 95%;
+  }
+
+  .friends-search-bar {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+
+  .friends-search-bar {
+    width: 95%;
+  }
 }

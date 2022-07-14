@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import classes from "./FriendsPage.module.css";
 import DashboardFriends from "../../components/Dashboard/DashboardFriends/DashboardFriends";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import sortArrayByAlphaBeit from "../../helpers/custom-functions/sortArrayByAlphaBeit";
 
 const FriendsPage = () => {
   const dispatch = useDispatch();
@@ -21,22 +22,23 @@ const FriendsPage = () => {
   }, []);
 
   useEffect(() => {
-    const getUsers = async () => {
-      const sorted = await Promise.all(
+    const getFriendsAndSort = async () => {
+      const friendsNotSorted = await Promise.all(
         user.friends.map(async (f) => {
           return await req.get(`/user/${f}`);
         })
       );
-      sorted.sort((a, b) => {
-        return `${a.data.firstname}${a.data.lastname}` >
-          `${b.data.firstname}${b.data.lastname}`
-          ? 1
-          : -1;
-      });
-      setSortedFriends(sorted);
+      // sorted.sort((a, b) => {
+      //   return `${a.data.firstname}${a.data.lastname}` >
+      //     `${b.data.firstname}${b.data.lastname}`
+      //     ? 1
+      //     : -1;
+      // });
+      const sortedFriends = sortArrayByAlphaBeit(friendsNotSorted)
+      setSortedFriends(sortedFriends);
     };
 
-    getUsers();
+    getFriendsAndSort();
   }, []);
 
   return (
