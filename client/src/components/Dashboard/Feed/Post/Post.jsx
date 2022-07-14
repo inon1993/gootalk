@@ -12,11 +12,14 @@ import { useNavigate, useLocation } from "react-router-dom";
 const Post = ({ post, update }) => {
   const [user, setUser] = useState({});
   const loggedInUser = useSelector((state) => state.user.user);
-  const [liked, setLiked] = useState(post.likes.includes(loggedInUser.userId))
-  const [likes, setLikes] = useState(liked ? post.likes.length - 1 : post.likes.length);
-  console.log(likes);
+  const [liked, setLiked] = useState(post.likes.includes(loggedInUser.userId));
+  const [likes, setLikes] = useState(
+    liked ? post.likes.length - 1 : post.likes.length
+  );
   const postUserPromise = useRequest(`/user/${post.userId}`, "GET");
-  const like = useRequest(`/post/${post._id}/like`, "PUT", {userId: loggedInUser.userId});
+  const like = useRequest(`/post/${post._id}/like`, "PUT", {
+    userId: loggedInUser.userId,
+  });
   const dispach = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,18 +35,16 @@ const Post = ({ post, update }) => {
       }
     };
     getPostUser();
-  }, []);
+  }, [post]);
 
   const likeHandler = async () => {
     try {
       await like();
-      setLikes(post.likes.length)
-      setLiked(!liked)
-    } catch (error) {
-      
-    }
-    update(1)
-  }
+      setLikes(post.likes.length);
+      setLiked(!liked);
+    } catch (error) {}
+    update(1);
+  };
 
   return (
     user && (
@@ -68,9 +69,17 @@ const Post = ({ post, update }) => {
           />
         </div>
         <div className={classes["post-like"]}>
-        {post.userId !== loggedInUser.userId && <ThumbUp className={`${classes["post-like-icon"]} ${liked && classes["post-liked-icon"]}`} onClick={likeHandler} />}
+          {post.userId !== loggedInUser.userId && (
+            <ThumbUp
+              className={`${classes["post-like-icon"]} ${
+                liked && classes["post-liked-icon"]
+              }`}
+              onClick={likeHandler}
+            />
+          )}
           <span className={classes["post-like-text"]}>
-            {liked && "You and "} <span style={{fontWeight: "bold"}}>{likes}</span> people like it
+            {liked && "You and "}{" "}
+            <span style={{ fontWeight: "bold" }}>{likes}</span> people like it
           </span>
         </div>
       </Card>

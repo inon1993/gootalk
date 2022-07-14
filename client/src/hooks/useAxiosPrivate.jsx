@@ -28,9 +28,7 @@ const useAxiosPrivate = () => {
       (response) => response,
       async (error) => {
         const prevRequest = error?.config;
-        console.log(prevRequest);
         if (prevRequest.url === "/refresh" || prevRequest.url === "/logout") {
-          console.log(8888);
           try {
             await logout();
             navigate("/login", { state: { from: location }, replace: true });
@@ -43,12 +41,8 @@ const useAxiosPrivate = () => {
           error?.response?.status === 401 &&
           prevRequest.url !== "/refresh" /*prevRequest?.sent !== true*/
         ) {
-          console.log(1);
-          console.log(accessToken);
           // prevRequest.sent = true;
           const newAccessToken = await refresh();
-          console.log(2);
-          console.log(newAccessToken);
           prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
           return axiosPrivate(prevRequest);
         }

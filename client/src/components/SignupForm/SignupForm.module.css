@@ -92,6 +92,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Poppins", sans-serif;
 }
 
 .sr-signup-button:hover {
@@ -127,9 +128,17 @@
   transition: 200ms;
   font-size: 0.8rem;
   height: 40px;
+  outline: none;
+  font-family: "Poppins", sans-serif;
 }
 
 .sr-cancel-button:hover {
+  background-color: hsl(0, 0%, 13.3%);
+  border: 1px solid hsl(0, 0%, 13.3%);
+  color: white;
+}
+
+.sr-cancel-button:focus {
   background-color: hsl(0, 0%, 13.3%);
   border: 1px solid hsl(0, 0%, 13.3%);
   color: white;

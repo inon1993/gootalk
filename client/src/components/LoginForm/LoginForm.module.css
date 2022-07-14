@@ -112,6 +112,7 @@
   cursor: pointer;
   transition: 200ms;
   font-family: "Poppins", sans-serif !important;
+  outline: none;
 }
 
 .lr-signup-button:hover {

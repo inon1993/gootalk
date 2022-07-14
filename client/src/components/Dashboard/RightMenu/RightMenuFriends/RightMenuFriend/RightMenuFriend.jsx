@@ -1,11 +1,9 @@
 import classes from "./RightMenuFriend.module.css";
-import { AccountCircleRounded } from "@mui/icons-material";
 import ppIcon from "../../../../../images/pp-icon.png";
 import { useNavigate } from "react-router-dom";
 
 const RightMenuFriend = ({ friend }) => {
-    const navigate = useNavigate();
-  console.log(friend);
+  const navigate = useNavigate();
   return (
     <div
       className={classes["rm-friend"]}
@@ -15,8 +13,11 @@ const RightMenuFriend = ({ friend }) => {
         );
       }}
     >
-      {/* <AccountCircleRounded className={classes["rm-friend-img"]} /> */}
-      <img className={classes["rm-friend-img"]} src={friend.data.profilePictire || ppIcon} />
+      <img
+        className={classes["rm-friend-img"]}
+        src={friend.data.profilePicture || ppIcon}
+        alt="profile"
+      />
       <span
         className={classes["rm-friend-text"]}
       >{`${friend.data.firstname} ${friend.data.lastname}`}</span>

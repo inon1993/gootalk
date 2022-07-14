@@ -1,29 +1,31 @@
 .rm-friend {
-    direction: ltr;
-    display: flex;
-    align-items: center;
-    padding: 15px 0;
-    color: hsl(220.3, 62.5%, 22%);
-    transition: 150ms;
-    padding-left: 10px;
-    margin-left: 3px;
+  direction: ltr;
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  color: hsl(220.3, 62.5%, 22%);
+  transition: 150ms;
+  padding-left: 10px;
+  margin-left: 3px;
 }
 
 .rm-friend:hover {
-    background-color: white;
-    border-radius: 15px;
-    color: hsl(208.7, 100%, 53.7%);
-    cursor: pointer;
+  background-color: white;
+  border-radius: 15px;
+  color: hsl(208.7, 100%, 53.7%);
+  cursor: pointer;
 }
 
 .rm-friend-img {
-    /* font-size: 2rem !important; */
-    height: 30px;
-    width: 30px;
-    margin-right: 10px;
+  /* font-size: 2rem !important; */
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
 }
 
 .rm-friend-text {
-    font-size: 0.9rem;
-    margin-right: 3px;
+  font-size: 0.9rem;
+  margin-right: 3px;
 }

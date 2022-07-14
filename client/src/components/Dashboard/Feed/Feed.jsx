@@ -23,20 +23,15 @@ const Feed = () => {
   const logout = useLogout();
 
   useEffect(() => {
-    console.log(access);
-    // getPosts();
-
     let isMounted = true;
     const controller = new AbortController();
 
     const getPosts = async () => {
       try {
-        // const postsArray = await postsArrayPromise();
         const postsArray = await req.get(endpoint, {
           signal: controller.signal,
         });
-        console.log(postsArray);
-        isMounted &&  setPosts(postsArray.data);
+        isMounted && setPosts(postsArray.data);
       } catch (error) {
         console.log(456);
         // await logout();
@@ -51,7 +46,7 @@ const Feed = () => {
       isMounted = false;
       controller.abort();
     };
-  }, []);
+  }, [user]);
 
   const getPosts = async () => {
     const controller = new AbortController();

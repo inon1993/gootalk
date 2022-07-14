@@ -25,7 +25,6 @@ const DashboardUsersProfile = () => {
     setDisableReqBtn(false);
     const getUserPosts = async () => {
       const getUser = await axios.get(`/user/${userid}`);
-      console.log(getUser.data);
       setUser(getUser.data);
       if (currUser.userId !== getUser.data._id) {
         setSendReqBtn(true);
@@ -34,7 +33,6 @@ const DashboardUsersProfile = () => {
         (n) => n.senderUserId === currUser.userId && n.status === false
       );
 
-      console.log(match);
       if (match.length > 0 || getUser.data.friends.includes(currUser.userId)) {
         setDisableReqBtn(true);
       }
@@ -49,13 +47,12 @@ const DashboardUsersProfile = () => {
       try {
         const res = await req.get(`/post/posts/${userid}`);
         if (res.data.length === 0) {
-          console.log(res.data.length);
           setNoPostsMsg("This user hasn't posted yet...");
         }
         setPosts(res.data);
       } catch (error) {
         if (error.response.status === 401) {
-          setErrMsg("Log in to see user's posts.");
+          setErrMsg("Sign in to see user's posts.");
         } else {
           setErrMsg("Something went wrong...");
         }

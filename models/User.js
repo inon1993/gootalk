@@ -46,6 +46,10 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    notifications: {
+      type: Array,
+      default: [],
+    },
     country: {
       type: String,
       max: 50,

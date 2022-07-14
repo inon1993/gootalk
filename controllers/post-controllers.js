@@ -84,7 +84,7 @@ const getTimelineCtr = async (req, res) => {
     const user = await User.findById(req.params.userId);
     const userPosts = await Post.find({ userId: user._id });
     const friendsPosts = await Promise.all(
-      user.following.map((friendId) => {
+      user.friends.map((friendId) => {
         return Post.find({ userId: friendId });
       })
     );

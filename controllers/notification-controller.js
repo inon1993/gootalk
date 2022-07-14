@@ -29,7 +29,7 @@ const friendshipRequest = async (req, res) => {
       return res.status(409).send("Request has already been sent.");
     }
     await newNotification.save();
-    // await user.updateOne({ $push: { notifications: newNotification } });
+    await user.updateOne({ $push: { notifications: newNotification } });
     return res.status(200).send("Request has been sent successfully.");
   } catch (error) {
     return res.status(500).send("Internal server error.");
@@ -89,9 +89,11 @@ const getNotifications = async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
     const notifications = await Notification.find({ userId: user._id });
-    const sortedNotifications = notifications.sort((a, b) => {
-      return a.createdAt - b.createdAt;
-    }).reverse();
+    const sortedNotifications = notifications
+      .sort((a, b) => {
+        return a.createdAt - b.createdAt;
+      })
+      .reverse();
     return res.status(200).json(sortedNotifications);
   } catch (error) {
     return res.status(500).send("Internal server error.");

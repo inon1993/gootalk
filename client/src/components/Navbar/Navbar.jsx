@@ -26,27 +26,16 @@ const Navbar = () => {
   const isActivatedDropdown = useSelector((state) => state.dropdown.activate);
   const dispatch = useDispatch();
   const [isMobileMenu, setIsMobileMenu] = useState(false);
-  const [notiBadge, setNotiBadge] = useState(0)
+  const [notiBadge, setNotiBadge] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
   const req = useAxiosPrivate();
-  const filtered = user.notifications.filter(n => {return !n.status});
+  const filtered = user.notifications.filter((n) => {
+    return !n.status;
+  });
   useEffect(() => {
-    // const getNotiBadge = async () => {
-    //   try {
-    //     const res = await req.get(`/notifications/${user.userId}`);
-    //     const filtered = res.data.filter(n => {return !n.status});
-    //     setNotiBadge(filtered.length)
-    //   } catch (error) {
-    //    console.log(error); 
-    //   }
-    // }
-
-    // getNotiBadge()
-    console.log(user);
-    
-    setNotiBadge(filtered.length)
-  }, [filtered])
+    setNotiBadge(filtered.length);
+  }, [filtered]);
 
   const activateHomeHandler = () => {
     dispatch(navbarActions.activateHome());
@@ -126,16 +115,20 @@ const Navbar = () => {
               to={"/notifications"}
               style={{ textDecoration: "none", display: "flex" }}
             >
-              <div style={{position: "relative", display: "flex"}}>
-              <MessageRounded
-                onClick={activateNotificationHandler}
-                className={
-                  isActivated.notifications
-                    ? classes["navbar-features-icon-focus"]
-                    : classes["navbar-features-icon"]
-                }
-              />
-              {notiBadge > 0 && <span className={classes["notification-badge"]}>{notiBadge}</span>}
+              <div style={{ position: "relative", display: "flex" }}>
+                <MessageRounded
+                  onClick={activateNotificationHandler}
+                  className={
+                    isActivated.notifications
+                      ? classes["navbar-features-icon-focus"]
+                      : classes["navbar-features-icon"]
+                  }
+                />
+                {notiBadge > 0 && (
+                  <span className={classes["notification-badge"]}>
+                    {notiBadge}
+                  </span>
+                )}
               </div>
             </Link>
             <Profile onClick={activateProfileHandler} activate={isActivated} />
