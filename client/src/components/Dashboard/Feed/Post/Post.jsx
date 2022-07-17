@@ -5,9 +5,9 @@ import Card from "../../../UI/Card/Card";
 import { useState, useEffect } from "react";
 import { format } from "timeago.js";
 import { useDispatch, useSelector } from "react-redux";
-import useRequest from "../../../../hooks/useRequest";
 import { userActions } from "../../../../store/user-slice";
 import { useNavigate, useLocation } from "react-router-dom";
+import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 
 const Post = ({ post, update }) => {
   const [user, setUser] = useState({});
@@ -16,10 +16,7 @@ const Post = ({ post, update }) => {
   const [likes, setLikes] = useState(
     liked ? post.likes.length - 1 : post.likes.length
   );
-  const postUserPromise = useRequest(`/user/${post.userId}`, "GET");
-  const like = useRequest(`/post/${post._id}/like`, "PUT", {
-    userId: loggedInUser.userId,
-  });
+  const req = useAxiosPrivate();
   const dispach = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,8 +24,8 @@ const Post = ({ post, update }) => {
   useEffect(() => {
     const getPostUser = async () => {
       try {
-        const postUser = await postUserPromise();
-        setUser(postUser);
+        const postUser = await req.get(`/user/${post.userId}`);
+        setUser(postUser.data);
       } catch (error) {
         dispach(userActions.logoutUser());
         navigate("/login", { state: { from: location }, replace: true });
@@ -39,7 +36,9 @@ const Post = ({ post, update }) => {
 
   const likeHandler = async () => {
     try {
-      await like();
+      await req.put(`/post/${post._id}/like`, {
+        userId: loggedInUser.userId,
+      });
       setLikes(post.likes.length);
       setLiked(!liked);
     } catch (error) {}

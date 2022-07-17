@@ -4,12 +4,19 @@
   width: 100%;
 }
 
+.rm-notification-wrapper {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+}
+
 .rm-hr {
   border: none;
   border-bottom: 1px solid hsl(207.2, 32.5%, 58%);
   width: 95%;
 }
 
-.no-notifications-msg {
-  margin-bottom: 10px;
+.no-noti {
+  font-size: 0.8rem;
+  color: hsl(207.2, 32.5%, 68%);
 }

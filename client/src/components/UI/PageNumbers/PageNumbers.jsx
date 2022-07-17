@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 import classes from "./PageNumbers.module.css";
 
-const PageNumbers = ({ list, sliceVal }) => {
+const PageNumbers = ({ length, sliceVal }) => {
   const [numButtons, setNumButtons] = useState([]);
   const [clicked, setClicked] = useState(1);
 
   useEffect(() => {
-    let length = list.length;
     let numOfButtons = Math.ceil(length / 10);
     let arr = [];
     for (let i = 1; i <= numOfButtons; i++) {
       arr.push(i);
     }
     setNumButtons(arr);
-  }, [list]);
+    setClicked(1);
+  }, [length]);
 
   const sliceHandler = (e) => {
     setClicked(e.target.innerText);
@@ -31,8 +31,14 @@ const PageNumbers = ({ list, sliceVal }) => {
     <div className={classes["page-buttons"]}>
       {numButtons.map((buttonNum, i) => {
         return (
-          <div className={`${classes["page-button"]} ${clicked == i + 1 && classes['page-button-checked']}`} key={i} onClick={sliceHandler}>
-              {buttonNum}
+          <div
+            className={`${classes["page-button"]} ${
+              clicked == i + 1 && classes["page-button-checked"]
+            }`}
+            key={i}
+            onClick={sliceHandler}
+          >
+            {buttonNum}
           </div>
         );
       })}

@@ -8,11 +8,13 @@ import { userActions } from "../../../store/user-slice";
 import useRequest from "../../../hooks/useRequest";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import useLogout from "../../../hooks/useLogout";
+import Loader from "../../UI/Loader/Loader";
 
 const Feed = () => {
   const dispach = useDispatch();
   const [posts, setPosts] = useState([]);
   const [update, setUpdate] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const user = useSelector((state) => state.user.user);
   const access = useSelector((state) => state.accessToken.accessToken);
   const endpoint = `/post/timeline/${user.userId}`;
@@ -33,14 +35,19 @@ const Feed = () => {
         });
         isMounted && setPosts(postsArray.data);
       } catch (error) {
-        console.log(456);
-        // await logout();
-        // navigate("/login", { state: { from: location }, replace: true });
-        // dispach(userActions.logoutUser());
+        await logout();
+        navigate("/login", { state: { from: location }, replace: true });
       }
     };
 
+    // setIsLoading(true);
     getPosts();
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    // getPosts();
+    // setIsLoading(false);
 
     return () => {
       isMounted = false;
@@ -66,12 +73,14 @@ const Feed = () => {
   return (
     <div className={classes.feed}>
       <NewPost onReload={getPosts} />
-      {posts.length !== 0 ? (
+      {!isLoading && posts.length !== 0 ? (
         posts.map((post, i) => {
           return <Post key={i} post={post} update={setUpdate} />;
         })
-      ) : (
+      ) : !isLoading && posts.length === 0 ? (
         <span>No posts...</span>
+      ) : (
+        <Loader />
       )}
     </div>
   );

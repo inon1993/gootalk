@@ -24,17 +24,11 @@ const Home = () => {
   useEffect(() => {
     const getFriendsAndSort = async () => {
       const friendsNotSorted = await Promise.all(
-        user.friends.map(async (f) => {
-          return await req.get(`/user/${f}`);
+        user.friends.map(async (friend) => {
+          return await req.get(`/user/${friend}`);
         })
       );
-      // sorted.sort((a, b) => {
-      //   return `${a.data.firstname}${a.data.lastname}` >
-      //     `${b.data.firstname}${b.data.lastname}`
-      //     ? 1
-      //     : -1;
-      // });
-      const sortedFriends = sortArrayByAlphaBeit(friendsNotSorted)
+      const sortedFriends = sortArrayByAlphaBeit(friendsNotSorted);
       setSortedFriends(sortedFriends);
     };
 

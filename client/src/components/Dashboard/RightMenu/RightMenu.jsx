@@ -24,7 +24,7 @@ const RightMenu = ({ friends }) => {
       const res = await req.get(`/notifications/${user.userId}`);
       const friends = await req.get(`/user/friends/${user.userId}`);
       dispatch(userActions.setNotifications({ notifications: res.data }));
-      dispatch(userActions.setFriends({friends: friends.data}));
+      dispatch(userActions.setFriends({ friends: friends.data }));
     } catch (error) {
       console.log(error);
     }
@@ -32,14 +32,14 @@ const RightMenu = ({ friends }) => {
 
   return (
     <div className={classes["right-menu"]}>
-      <div style={{ marginBottom: "15px" }}>
+      <div className={classes["rm-notification-wrapper"]}>
         {notification ? (
           <RightMenuNotification
             notification={notification}
             onReload={getNotifications}
           />
         ) : (
-          <span>No new notifications.</span>
+          <span className={classes["no-noti"]}>No new notifications.</span>
         )}
       </div>
       <hr className={classes["rm-hr"]} />

@@ -1,12 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import classes from "./DashboardFriends.module.css";
 import Friend from "./Friend/Friend";
 import { useNavigate } from "react-router-dom";
 import PageNumbers from "../../UI/PageNumbers/PageNumbers";
+import { CircularProgress } from "@mui/material";
+import Loader from "../../UI/Loader/Loader";
 
 const DashboardFriends = ({ friends }) => {
+  console.log(friends.length);
   const [sliceVal, setSliceVal] = useState({ start: 0, end: 10 });
+  const [query, setQuery] = useState("");
+  const [listArray, setListArray] = useState(friends);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setLoading(true);
+    const filteredFriends = friends.filter((res) => {
+      if (
+        res.data.firstname.toLowerCase().includes(query.toLowerCase()) ||
+        res.data.lastname.toLowerCase().includes(query.toLowerCase())
+      ) {
+        return res;
+      }
+    });
+    setListArray(filteredFriends);
+    setSliceVal({ start: 0, end: 10 });
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, [query, friends]);
 
   return (
     <div className={classes["friends-wrapper"]}>
@@ -16,19 +40,21 @@ const DashboardFriends = ({ friends }) => {
             <input
               className={classes["friends-search-bar"]}
               placeholder="Search any of your friends."
-              defaultValue=""
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+              }}
             />
           </form>
         </div>
-        {friends.length > 0 ? (
+        {!loading && listArray.length > 0 ? (
           <div className={classes["friends-results-wrapper"]}>
-            {friends.slice(sliceVal.start, sliceVal.end).map((res, i) => {
+            {listArray.slice(sliceVal.start, sliceVal.end).map((res, i) => {
               return (
                 <div
                   className={classes["friends-results"]}
                   key={i}
                   onClick={() => {
-                    console.log(res);
                     navigate(
                       `/users/${res.data._id}/${res.data.firstname}-${res.data.lastname}`
                     );
@@ -39,11 +65,15 @@ const DashboardFriends = ({ friends }) => {
               );
             })}
           </div>
-        ) : (
+        ) : friends.length === 0 ? (
           <span>No friends yet...</span>
+        ) : listArray.length === 0 ? (
+          <span>No results.</span>
+        ) : (
+          <Loader />
         )}
       </div>
-      <PageNumbers list={friends} sliceVal={setSliceVal} />
+      <PageNumbers length={listArray.length} sliceVal={setSliceVal} />
     </div>
   );
 };

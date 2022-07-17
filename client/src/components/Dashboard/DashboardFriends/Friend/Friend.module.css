@@ -9,6 +9,7 @@
   height: 45px;
   border-radius: 50px;
   margin: 10px;
+  object-fit: cover;
 }
 
 .friend-name {

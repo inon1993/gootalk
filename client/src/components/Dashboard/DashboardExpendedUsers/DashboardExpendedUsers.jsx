@@ -110,7 +110,9 @@ const DashboardExpendedUsers = () => {
             </span>
           )}
         </div>
-        <PageNumbers list={filteredList} sliceVal={setSliceVal} />
+        {searchParams.get("query") && (
+          <PageNumbers length={filteredList.length} sliceVal={setSliceVal} />
+        )}
       </div>
     </>
   );
