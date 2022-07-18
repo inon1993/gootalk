@@ -2,17 +2,14 @@ import { ThumbUp } from "@mui/icons-material";
 import ppIcon from "../../../../images/pp-icon.png";
 import classes from "./Post.module.css";
 import Card from "../../../UI/Card/Card";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { format } from "timeago.js";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../../../store/user-slice";
 import { useNavigate, useLocation } from "react-router-dom";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
-import Skeleton from "../../../UI/Skeleton/Skeleton";
 
 const Post = ({ post, postUser, update }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState({});
   const loggedInUser = useSelector((state) => state.user.user);
   const [liked, setLiked] = useState(post.likes.includes(loggedInUser.userId));
   const [likes, setLikes] = useState(
@@ -23,22 +20,6 @@ const Post = ({ post, postUser, update }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // useEffect(() => {
-  //   const getPostUser = async () => {
-  //     try {
-  //       const postUser = await req.get(`/user/${post.userId}`);
-  //       setUser(postUser.data);
-  //     } catch (error) {
-  //       dispach(userActions.logoutUser());
-  //       navigate("/login", { state: { from: location }, replace: true });
-  //     }
-  //   };
-  //   getPostUser();
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 1000);
-  // }, [post]);
-
   const likeHandler = async () => {
     try {
       await req.put(`/post/${post._id}/like`, {
@@ -46,7 +27,10 @@ const Post = ({ post, postUser, update }) => {
       });
       setLikes(post.likes.length);
       setLiked(!liked);
-    } catch (error) {}
+    } catch (error) {
+      dispach(userActions.logoutUser());
+      navigate("/login", { state: { from: location }, replace: true });
+    }
     update(1);
   };
 
