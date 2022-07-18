@@ -8,14 +8,17 @@ import classes from "./FriendsPage.module.css";
 import DashboardFriends from "../../components/Dashboard/DashboardFriends/DashboardFriends";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import sortArrayByAlphaBeit from "../../helpers/custom-functions/sortArrayByAlphaBeit";
+import Loader from "../../components/UI/Loader/Loader";
 
 const FriendsPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
   const req = useAxiosPrivate();
   const [sortedFriends, setSortedFriends] = useState([]);
 
   useEffect(() => {
+    setIsLoading(true);
     dispatch(navbarActions.activateSearchInput());
     dispatch(navbarActions.deactivate());
     dispatch(menuActions.activateFriends());
@@ -28,18 +31,16 @@ const FriendsPage = () => {
           return await req.get(`/user/${f}`);
         })
       );
-      // sorted.sort((a, b) => {
-      //   return `${a.data.firstname}${a.data.lastname}` >
-      //     `${b.data.firstname}${b.data.lastname}`
-      //     ? 1
-      //     : -1;
-      // });
-      const sortedFriends = sortArrayByAlphaBeit(friendsNotSorted)
+      const sortedFriends = sortArrayByAlphaBeit(friendsNotSorted);
       setSortedFriends(sortedFriends);
+
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 200);
     };
 
     getFriendsAndSort();
-  }, []);
+  }, [user]);
 
   return (
     <>
@@ -49,7 +50,11 @@ const FriendsPage = () => {
           <Menu />
         </div>
         <div className={classes["friends-page-wrapper"]}>
-          <DashboardFriends friends={sortedFriends} />
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <DashboardFriends friends={sortedFriends} />
+          )}
         </div>
       </div>
     </>

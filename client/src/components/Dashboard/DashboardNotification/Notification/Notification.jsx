@@ -1,44 +1,23 @@
-import { useEffect, useState } from "react";
 import Card from "../../../UI/Card/Card";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
-import { userActions } from "../../../../store/user-slice";
-import { useLocation } from "react-router-dom";
 import { format } from "timeago.js";
 import ppIcon from "../../../../images/pp-icon.png";
 import classes from "./Notification.module.css";
 
-const Notification = ({ notification, onReload }) => {
-  const [user, setUser] = useState({});
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+const Notification = ({ notificationUser, notification, onReload }) => {
   const req = useAxiosPrivate();
-  const location = useLocation();
   const currUser = useSelector((state) => state.user.user);
-
-  useEffect(() => {
-    const getNotificationUser = async () => {
-      try {
-        const res = await req.get(`user/${notification.senderUserId}`);
-        setUser(res.data);
-      } catch (error) {
-        dispatch(userActions.logoutUser());
-        navigate("/login", { state: { from: location }, replace: true });
-      }
-    };
-    getNotificationUser();
-  }, []);
 
   const responseRequest = async (e) => {
     const payload = {
       currentUserId: currUser.userId,
-      userId: user._id,
+      userId: notificationUser.data._id,
       response: e.target.value === "true",
       notificationId: notification._id,
     };
-    console.log(payload);
     try {
+      console.log(payload);
       await req.put("/notifications/response", payload);
       onReload();
     } catch (error) {
@@ -53,12 +32,13 @@ const Notification = ({ notification, onReload }) => {
           <div className={classes["noti-img-text"]}>
             <img
               className={classes["noti-pic"]}
-              src={user?.profilePicture || ppIcon}
+              src={notificationUser.data.profilePicture || ppIcon}
               alt="profile"
             />
             <span>
               <span style={{ fontWeight: "600" }}>
-                {user.firstname} {user.lastname}
+                {notificationUser.data.firstname}{" "}
+                {notificationUser.data.lastname}
               </span>{" "}
               wants to be your friend.
             </span>
@@ -83,7 +63,7 @@ const Notification = ({ notification, onReload }) => {
       ) : notification.response ? (
         <span>
           <span style={{ fontWeight: "600" }}>
-            {user.firstname} {user.lastname}
+            {notificationUser.data.firstname} {notificationUser.data.lastname}
           </span>{" "}
           is now your friend.
         </span>
@@ -91,12 +71,14 @@ const Notification = ({ notification, onReload }) => {
         <span>
           You've rejected{" "}
           <span style={{ fontWeight: "600" }}>
-            {user.firstname} {user.lastname}
+            {notificationUser.data.firstname} {notificationUser.data.lastname}
           </span>
           's friendship request.
         </span>
       )}
-      <span className={classes["notification-date"]}>{format(notification.createdAt)}</span>
+      <span className={classes["notification-date"]}>
+        {format(notificationUser.data.createdAt)}
+      </span>
     </Card>
   );
 };

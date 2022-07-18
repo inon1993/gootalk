@@ -3,7 +3,6 @@ import classes from "./DashboardFriends.module.css";
 import Friend from "./Friend/Friend";
 import { useNavigate } from "react-router-dom";
 import PageNumbers from "../../UI/PageNumbers/PageNumbers";
-import { CircularProgress } from "@mui/material";
 import Loader from "../../UI/Loader/Loader";
 
 const DashboardFriends = ({ friends }) => {
@@ -15,7 +14,7 @@ const DashboardFriends = ({ friends }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     const filteredFriends = friends.filter((res) => {
       if (
         res.data.firstname.toLowerCase().includes(query.toLowerCase()) ||
@@ -27,9 +26,9 @@ const DashboardFriends = ({ friends }) => {
     setListArray(filteredFriends);
     setSliceVal({ start: 0, end: 10 });
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 1000);
   }, [query, friends]);
 
   return (
@@ -47,31 +46,33 @@ const DashboardFriends = ({ friends }) => {
             />
           </form>
         </div>
-        {!loading && listArray.length > 0 ? (
-          <div className={classes["friends-results-wrapper"]}>
-            {listArray.slice(sliceVal.start, sliceVal.end).map((res, i) => {
-              return (
-                <div
-                  className={classes["friends-results"]}
-                  key={i}
-                  onClick={() => {
-                    navigate(
-                      `/users/${res.data._id}/${res.data.firstname}-${res.data.lastname}`
-                    );
-                  }}
-                >
-                  <Friend friend={res} />
-                </div>
-              );
-            })}
-          </div>
-        ) : friends.length === 0 ? (
-          <span>No friends yet...</span>
-        ) : listArray.length === 0 ? (
-          <span>No results.</span>
-        ) : (
-          <Loader />
-        )}
+        {
+          /*!loading && */ listArray.length > 0 ? (
+            <div className={classes["friends-results-wrapper"]}>
+              {listArray.slice(sliceVal.start, sliceVal.end).map((res, i) => {
+                return (
+                  <div
+                    className={classes["friends-results"]}
+                    key={i}
+                    onClick={() => {
+                      navigate(
+                        `/users/${res.data._id}/${res.data.firstname}-${res.data.lastname}`
+                      );
+                    }}
+                  >
+                    <Friend friend={res} />
+                  </div>
+                );
+              })}
+            </div>
+          ) : friends.length === 0 ? (
+            <span>No friends yet...</span>
+          ) : listArray.length === 0 ? (
+            <span>No results.</span>
+          ) : (
+            <Loader />
+          )
+        }
       </div>
       <PageNumbers length={listArray.length} sliceVal={setSliceVal} />
     </div>

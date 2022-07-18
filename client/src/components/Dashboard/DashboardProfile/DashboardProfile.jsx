@@ -28,7 +28,7 @@ const DashboardProfile = () => {
       <div className={classes["profile-data"]}>
         <ProfileData />
         <div className={classes["profile-user-posts"]}>
-          <UserPosts posts={userPosts} />
+          <UserPosts posts={userPosts} user={user} />
         </div>
       </div>
       <div className={classes["right-menu"]}></div>

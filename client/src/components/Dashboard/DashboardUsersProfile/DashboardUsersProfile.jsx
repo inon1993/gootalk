@@ -135,7 +135,7 @@ const DashboardUsersProfile = () => {
           {errMsg === "" ? (
             <div className={classes["profile-user-posts"]}>
               {noPostsMsg === "" ? (
-                <UserPosts posts={posts} />
+                <UserPosts posts={posts} user={user} />
               ) : (
                 <span className={classes["no-posts-msg"]}>{noPostsMsg}</span>
               )}

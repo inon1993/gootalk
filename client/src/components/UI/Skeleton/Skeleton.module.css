@@ -1,0 +1,76 @@
+.post-skeleton {
+  margin: 0 0 20px;
+  width: 50%;
+  animation: skeleton 0.7s ease infinite alternate;
+}
+
+@keyframes skeleton {
+  to {
+    opacity: 0.5;
+  }
+}
+
+.post-upper-sk {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.post-profile-pic-sk {
+  background-color: hsl(207.2, 32.5%, 68%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.post-name-sk {
+  background-color: hsl(207.2, 32.5%, 68%);
+  height: 1.2rem;
+  width: 85%;
+  border-radius: 5px;
+}
+
+.post-body-sk {
+  padding-bottom: 10px;
+}
+
+.post-body-text-sk {
+  border-radius: 5px;
+  height: 1.2rem;
+  width: 85%;
+  padding-bottom: 10px;
+  margin: 0;
+  background-color: hsl(207.2, 32.5%, 68%);
+  margin-bottom: 10px;
+}
+
+.post-img-sk {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  border-radius: 10px;
+  background-color: hsl(207.2, 32.5%, 68%);
+  margin-bottom: 15px;
+}
+
+.post-like-sk {
+  height: 1.2rem;
+  width: 150px;
+  border-radius: 5px;
+  background-color: hsl(207.2, 32.5%, 68%);
+}
+
+@media only screen and (max-width: 1350px) {
+  .post-skeleton {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .post-skeleton {
+    width: 90%;
+  }
+}
