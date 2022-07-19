@@ -82,21 +82,20 @@ const getAllUserPostsCtr = async (req, res) => {
 const getTimelineCtr = async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
-    const userPosts = await Post.find({ userId: user._id });
-    const friendsPosts = await Promise.all(
-      user.friends.map((friendId) => {
-        return Post.find({ userId: friendId });
-      })
-    );
-    const sortedArray = userPosts
-      .concat(...friendsPosts)
-      .sort((a, b) => {
-        return a.createdAt - b.createdAt;
-      })
-      .reverse();
-    return res.status(200).json(sortedArray);
-  } catch (err) {
-    return res.status(500).json(err);
+    const posts = await Post.find({
+      $or: [{ userId: user._id }, { userId: { $in: user.friends } }],
+    })
+      .sort({ createdAt: -1 })
+      .skip(req.params.pageStart)
+      .limit(5);
+    if (posts.length < 5) {
+      console.log(123);
+      console.log(posts);
+      return res.status(204).send(posts);
+    }
+    res.status(200).send(posts);
+  } catch (error) {
+    return res.status(500).json(error);
   }
 };
 

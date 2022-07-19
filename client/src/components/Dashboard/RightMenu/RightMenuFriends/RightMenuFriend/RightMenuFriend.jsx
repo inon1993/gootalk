@@ -1,5 +1,5 @@
 import classes from "./RightMenuFriend.module.css";
-import ppIcon from "../../../../../images/pp-icon.png";
+import ppIcon from "../../../../../images/pp-icon-small.png";
 import { useNavigate } from "react-router-dom";
 
 const RightMenuFriend = ({ friend }) => {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import classes from "./ProfileData.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import { useSelector } from "react-redux";
-import ppIcon from "../../../images/pp-icon.png";
+import ppIcon from "../../../images/pp-icon-big.png";
 
 const ProfileData = () => {
   const [isStats, setIsStats] = useState(true);

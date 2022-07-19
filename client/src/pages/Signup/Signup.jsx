@@ -1,11 +1,10 @@
 import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
-import ppIcon from "../../images/pp-icon.png";
+import ppIcon from "../../images/pp-icon-biggest.png";
 import { useState } from "react";
 import SignupForm from "../../components/SignupForm/SignupForm";
 import classes from "./Signup.module.css";
 
 const Signup = () => {
-  // const [fileInputState, setFileInputState] = useState("");
   const [previewSource, setPreviewSource] = useState();
 
   const handleFileInputChange = (e) => {

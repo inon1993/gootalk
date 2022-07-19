@@ -1,15 +1,15 @@
 import { ThumbUp } from "@mui/icons-material";
-import ppIcon from "../../../../images/pp-icon.png";
+import ppIcon from "../../../../images/pp-icon-small.png";
 import classes from "./Post.module.css";
 import Card from "../../../UI/Card/Card";
-import { useState } from "react";
+import React, { useState } from "react";
 import { format } from "timeago.js";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../../../store/user-slice";
 import { useNavigate, useLocation } from "react-router-dom";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 
-const Post = ({ post, postUser, update }) => {
+const Post = React.forwardRef(({ post, postUser, update }, ref) => {
   const loggedInUser = useSelector((state) => state.user.user);
   const [liked, setLiked] = useState(post.likes.includes(loggedInUser.userId));
   const [likes, setLikes] = useState(
@@ -35,42 +35,44 @@ const Post = ({ post, postUser, update }) => {
   };
 
   return (
-    <Card className={classes.post}>
-      <div className={classes["post-upper"]}>
-        <img
-          className={classes["post-profile-img"]}
-          src={postUser.profilePicture || ppIcon}
-          alt={"profile"}
-        />
-        <span
-          className={classes["post-name"]}
-        >{`${postUser.firstname} ${postUser.lastname}`}</span>
-        <span className={classes["post-time"]}>{format(post.createdAt)}</span>
-      </div>
-      <div className={classes["post-body"]}>
-        <p className={classes["post-body-text"]}>{post.desc}</p>
-        <img
-          className={classes["post-img"]}
-          src="https://upload.wikimedia.org/wikipedia/commons/4/41/Arkansas_Black_apples_%28cropped%29.jpg"
-          alt="post img"
-        />
-      </div>
-      <div className={classes["post-like"]}>
-        {post.userId !== loggedInUser.userId && (
-          <ThumbUp
-            className={`${classes["post-like-icon"]} ${
-              liked && classes["post-liked-icon"]
-            }`}
-            onClick={likeHandler}
+    <div className={classes["post-wrapper-for-ref"]} ref={ref}>
+      <Card className={classes.post}>
+        <div className={classes["post-upper"]}>
+          <img
+            className={classes["post-profile-img"]}
+            src={postUser.profilePicture || ppIcon}
+            alt={"profile"}
           />
-        )}
-        <span className={classes["post-like-text"]}>
-          {liked && "You and "}{" "}
-          <span style={{ fontWeight: "bold" }}>{likes}</span> people like it
-        </span>
-      </div>
-    </Card>
+          <span
+            className={classes["post-name"]}
+          >{`${postUser.firstname} ${postUser.lastname}`}</span>
+          <span className={classes["post-time"]}>{format(post.createdAt)}</span>
+        </div>
+        <div className={classes["post-body"]}>
+          <p className={classes["post-body-text"]}>{post.desc}</p>
+          <img
+            className={classes["post-img"]}
+            src="https://upload.wikimedia.org/wikipedia/commons/4/41/Arkansas_Black_apples_%28cropped%29.jpg"
+            alt="post img"
+          />
+        </div>
+        <div className={classes["post-like"]}>
+          {post.userId !== loggedInUser.userId && (
+            <ThumbUp
+              className={`${classes["post-like-icon"]} ${
+                liked && classes["post-liked-icon"]
+              }`}
+              onClick={likeHandler}
+            />
+          )}
+          <span className={classes["post-like-text"]}>
+            {liked && "You and "}{" "}
+            <span style={{ fontWeight: "bold" }}>{likes}</span> people like it
+          </span>
+        </div>
+      </Card>
+    </div>
   );
-};
+});
 
 export default Post;

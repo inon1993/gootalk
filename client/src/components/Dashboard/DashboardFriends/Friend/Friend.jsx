@@ -1,4 +1,4 @@
-import ppIcon from "../../../../images/pp-icon.png";
+import ppIcon from "../../../../images/pp-icon-small.png";
 import classes from "./Friend.module.css";
 
 const Friend = ({ friend }) => {

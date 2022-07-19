@@ -10,7 +10,7 @@ import {
   Link,
 } from "react-router-dom";
 import useRequest from "../../../hooks/useRequest";
-import ppIcon from "../../../images/pp-icon.png";
+import ppIcon from "../../../images/pp-icon-small.png";
 import classes from "./Search.module.css";
 import { navbarActions } from "../../../store/navbar-slice";
 import { menuActions } from "../../../store/menu-slice";

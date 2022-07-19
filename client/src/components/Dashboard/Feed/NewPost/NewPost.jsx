@@ -1,36 +1,30 @@
 import classes from "./NewPost.module.css";
 import { ImageRounded } from "@mui/icons-material";
-import ppIcon from "../../../../images/pp-icon.png";
+import ppIcon from "../../../../images/pp-icon-small.png";
 import Card from "../../../UI/Card/Card";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import useRequest from "../../../../hooks/useRequest";
 import { useNavigate, useLocation } from "react-router-dom";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import { userActions } from "../../../../store/user-slice";
 import useLogout from "../../../../hooks/useLogout";
 
-const NewPost = ({ onReload }) => {
+const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
   const user = useSelector((state) => state.user.user);
   const [post, setPost] = useState({ userId: user.userId, desc: "" });
-  const sendPost = useRequest("/post", "POST", post);
   const req = useAxiosPrivate();
   const navigate = useNavigate();
   const dispach = useDispatch();
   const location = useLocation();
-  const controller = new AbortController();
   const logout = useLogout();
 
   const sharePostHandler = async () => {
-    // controller.abort()
-
-    // await sendPost();
     try {
-      await req.post("/post", post, {
-        signal: controller.signal,
-      });
-      // controller.abort();
-
+      await req.post("/post", post);
+      resetUsers([]);
+      resetPosts([]);
+      pageStart(0);
+      loading(true);
       onReload();
       setPost((prev) => {
         return {
@@ -39,13 +33,9 @@ const NewPost = ({ onReload }) => {
         };
       });
     } catch (error) {
-      // console.log(9);
-      controller.abort();
-      // console.log(8);
-      //   // await logout();
-      // navigate("/login", { state: { from: location }, replace: true });
-      //   dispach(userActions.logoutUser());
-      //   console.log(7);
+      await logout();
+      navigate("/login", { state: { from: location }, replace: true });
+      dispach(userActions.logoutUser());
     }
   };
 

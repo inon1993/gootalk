@@ -1,7 +1,7 @@
 import classes from "./DashboardExpendedUsers.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
-import ppIcon from "../../../images/pp-icon.png";
+import ppIcon from "../../../images/pp-icon-small.png";
 import PageNumbers from "../../../components/UI/PageNumbers/PageNumbers";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useDispatch } from "react-redux";

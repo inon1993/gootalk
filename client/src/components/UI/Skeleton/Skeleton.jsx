@@ -1,8 +1,8 @@
 import Card from "../Card/Card";
 import classes from "./Skeleton.module.css";
 
-export default function Skeleton({ type }) {
-  const COUNTER = 3;
+export default function Skeleton({ type, counter }) {
+  const COUNTER = counter;
   const PostSkeleton = () => (
     <Card className={classes["post-skeleton"]}>
       <div className={classes["post-upper-sk"]}>

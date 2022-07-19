@@ -21,6 +21,6 @@ router.get("/:id", auth, postCtr.getPostCtr);
 router.get("/posts/:userId", auth, postCtr.getAllUserPostsCtr);
 
 //--GET POSTS TIMELINE--//
-router.get("/timeline/:userId", auth, postCtr.getTimelineCtr);
+router.get("/timeline/:userId/:pageStart", auth, postCtr.getTimelineCtr);
 
 module.exports = router;

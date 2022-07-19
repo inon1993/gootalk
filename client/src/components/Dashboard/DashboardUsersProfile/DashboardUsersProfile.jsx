@@ -1,12 +1,13 @@
 import classes from "./DashboardUsersProfile.module.css";
 import { useSelector } from "react-redux";
 import UserPosts from "../UserPosts/UserPosts";
-import ppIcon from "../../../images/pp-icon.png";
+import ppIcon from "../../../images/pp-icon.webp";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { Done, PersonAdd } from "@mui/icons-material";
+import Loader from "../../UI/Loader/Loader";
 
 const DashboardUsersProfile = () => {
   const [user, setUser] = useState({});
@@ -56,13 +57,19 @@ const DashboardUsersProfile = () => {
         } else {
           setErrMsg("Something went wrong...");
         }
-        setLoading(false);
+        // setLoading(false);
       }
     };
     currUser.userId !== ""
       ? getPosts()
       : setErrMsg("Log in to see user's posts.");
-    setLoading(false);
+    // setLoading(false);
+  }, [user]);
+
+  useEffect(() => {
+    if (user.firstname) {
+      setLoading(false);
+    }
   }, [user]);
 
   const addFriendHandler = async () => {
@@ -80,7 +87,7 @@ const DashboardUsersProfile = () => {
 
   return (
     <>
-      {!loading && (
+      {!loading ? (
         <div className={classes["profile-data-wrapper"]}>
           <div className={classes["profile-data"]}>
             <div className={classes["profile-images"]}>
@@ -144,6 +151,8 @@ const DashboardUsersProfile = () => {
             <span>{errMsg}</span>
           )}
         </div>
+      ) : (
+        <Loader />
       )}
       <div className={classes["right-menu"]}></div>
     </>

@@ -1,6 +1,9 @@
+.post-wrapper-for-ref {
+  width: 50%;
+}
+
 .post {
   margin: 0 0 20px;
-  width: 50%;
 }
 
 .post-upper {
@@ -36,6 +39,7 @@
   font-weight: 400;
   padding-bottom: 10px;
   margin: 0;
+  white-space: pre-wrap;
 }
 
 .post-img {
@@ -72,13 +76,13 @@
 }
 
 @media only screen and (max-width: 1350px) {
-  .post {
+  .post-wrapper-for-ref {
     width: 70%;
   }
 }
 
 @media only screen and (max-width: 1100px) {
-  .post {
+  .post-wrapper-for-ref {
     width: 90%;
   }
 }

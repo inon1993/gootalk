@@ -1,7 +1,7 @@
 import classes from "./Feed.module.css";
 import NewPost from "./NewPost/NewPost";
 import Post from "./Post/Post";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../../store/user-slice";
@@ -13,38 +13,81 @@ const Feed = () => {
   const dispach = useDispatch();
   const [posts, setPosts] = useState([]);
   const [postsUsers, setPostsUsers] = useState([]);
+  const [pageStart, setPageStart] = useState(0);
   const [update, setUpdate] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [initialLoading, setInitialLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const user = useSelector((state) => state.user.user);
   const req = useAxiosPrivate();
   const navigate = useNavigate();
   const location = useLocation();
   const logout = useLogout();
+  const [endPosts, setEndPosts] = useState(false);
+  const observer = useRef();
+  const lastPost = useCallback(
+    (node) => {
+      if (isLoading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && !endPosts) {
+          setPageStart((prev) => {
+            return prev + 5;
+          });
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [isLoading, endPosts]
+  );
 
   useEffect(() => {
-    setIsLoading(true);
-    getPosts();
-  }, []);
+    if (!endPosts) {
+      setIsLoading(true);
+      getPosts();
+    }
+  }, [pageStart]);
 
   useEffect(() => {
     if (postsUsers.length !== 0 || posts.length !== 0) {
       setIsLoading(false);
+      setInitialLoading(false);
     }
   }, [postsUsers, posts]);
 
   const getPosts = async () => {
+    setIsLoading(true);
     try {
-      const postsArray = await req.get(`/post/timeline/${user.userId}`);
-
+      const postsArray = await req.get(
+        `/post/timeline/${user.userId}/${pageStart}`
+      );
+      if (postsArray.status === 204) {
+        setEndPosts(true);
+        setIsLoading(false);
+        setInitialLoading(false);
+        return;
+      }
       const getPostsUsers = await Promise.all(
         postsArray.data.map(async (p) => {
           return await req.get(`/user/${p.userId}`);
         })
       );
 
-      setPostsUsers(getPostsUsers);
-      setPosts(postsArray.data);
+      setPostsUsers((prev) => {
+        return [...prev, ...getPostsUsers];
+      });
+      setPosts((prev) => {
+        return [...prev, ...postsArray.data];
+      });
     } catch (error) {
+      console.log(error);
+      if (error.response.status === 404) {
+        console.log("404!");
+        setEndPosts(true);
+        setIsLoading(false);
+        return;
+      }
+      setIsLoading(false);
+      logout();
       dispach(userActions.logoutUser());
       navigate("/login", { state: { from: location }, replace: true });
     }
@@ -52,23 +95,42 @@ const Feed = () => {
 
   return (
     <div className={classes.feed}>
-      <NewPost onReload={getPosts} />
-      {isLoading ? (
-        <Skeleton type="post" />
+      <NewPost
+        onReload={getPosts}
+        resetUsers={setPostsUsers}
+        resetPosts={setPosts}
+        loading={setInitialLoading}
+        pageStart={setPageStart}
+      />
+      {initialLoading ? (
+        <Skeleton type="post" counter={4} />
       ) : posts.length !== 0 && postsUsers.length !== 0 ? (
         posts.map((post, i) => {
-          return (
-            <Post
-              key={i}
-              post={post}
-              postUser={postsUsers[i].data}
-              update={setUpdate}
-            />
-          );
+          if (posts.length === i + 1) {
+            return (
+              <Post
+                ref={lastPost}
+                key={i}
+                post={post}
+                postUser={postsUsers[i].data}
+                update={setUpdate}
+              />
+            );
+          } else {
+            return (
+              <Post
+                key={i}
+                post={post}
+                postUser={postsUsers[i].data}
+                update={setUpdate}
+              />
+            );
+          }
         })
       ) : (
         <span>No posts...</span>
       )}
+      {isLoading && <Skeleton type="post" counter={1} />}
     </div>
   );
 };
