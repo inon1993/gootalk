@@ -8,9 +8,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import { userActions } from "../../../../store/user-slice";
 import useLogout from "../../../../hooks/useLogout";
+import UploadPostImg from "./UploadPostImg/UploadPostImg";
 
 const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
   const user = useSelector((state) => state.user.user);
+  const [img, setImg] = useState("");
   const [post, setPost] = useState({ userId: user.userId, desc: "" });
   const req = useAxiosPrivate();
   const navigate = useNavigate();
@@ -63,6 +65,7 @@ const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
         />
       </div>
       <hr className={classes["new-post-br"]} />
+      <UploadPostImg />
       <div className={classes["new-post-features"]}>
         <div className={classes["new-post-add-img"]}>
           <ImageRounded className={classes["new-post-add-img-icon"]} />
