@@ -76,7 +76,7 @@ const DashboardUsersProfile = () => {
       senderUserId: currUser.userId,
     };
     try {
-      await req.put("api/notifications", payload);
+      await req.put("/notifications", payload);
       setDisableReqBtn(true);
     } catch (error) {
       console.log(error);
