@@ -1,9 +1,8 @@
 import { ImageRounded } from "@mui/icons-material";
 import { useState } from "react";
+import classes from "./UploadPostImg.module.css";
 
-const UploadPostImg = () => {
-  const [previewSource, setPreviewSource] = useState();
-
+const UploadPostImg = ({ imgToSet }) => {
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
     previewFile(file);
@@ -13,17 +12,17 @@ const UploadPostImg = () => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      setPreviewSource(reader.result);
+      imgToSet(reader.result);
     };
   };
 
   return (
     <>
       <form>
-        <labal htmlFor="file-input">
-          <ImageRounded />
-          <span>Add a Photo</span>
-        </labal>
+        <label htmlFor="file-input" className={classes["post-img"]}>
+          <ImageRounded className={classes["new-post-add-img-icon"]} />
+          <span className={classes["new-post-add-img-text"]}>Add a Photo</span>
+        </label>
         <input
           style={{ display: "none" }}
           id="file-input"
@@ -33,7 +32,6 @@ const UploadPostImg = () => {
           value=""
         />
       </form>
-      {previewSource && <img src={previewSource} />}
     </>
   );
 };

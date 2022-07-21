@@ -23,4 +23,7 @@ router.get("/posts/:userId", auth, postCtr.getAllUserPostsCtr);
 //--GET POSTS TIMELINE--//
 router.get("/timeline/:userId/:pageStart", auth, postCtr.getTimelineCtr);
 
+//--UPLOAD IMAGE TO CLOUDINARY ANG GET URL--//
+router.post("/uploadImg", auth, postCtr.uploadPicture);
+
 module.exports = router;

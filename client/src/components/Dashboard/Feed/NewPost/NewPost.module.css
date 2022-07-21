@@ -49,16 +49,6 @@
   cursor: pointer;
 }
 
-.new-post-add-img-icon {
-  margin-right: 5px;
-  color: tomato;
-}
-
-.new-post-add-img-text {
-  font-family: "Poppins", sans-serif;
-  font-size: 0.9rem;
-}
-
 .share-post {
   font-family: "Poppins", sans-serif;
   padding: 0.5rem 1.5rem;
@@ -74,6 +64,34 @@
   background-color: hsl(208.7, 100%, 53.7%);
   color: white;
   cursor: pointer;
+}
+
+.preview-img-wrapper {
+  position: relative;
+}
+
+.preview-img {
+  margin-top: 15px;
+  width: 100%;
+  /* max-width: 500px; */
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.remove-img-icon {
+  position: absolute;
+  top: 15px;
+  right: 0px;
+  font-size: 2rem !important;
+  transition: 200ms;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 0 0 0 10px;
+}
+
+.remove-img-icon:hover {
+  color: tomato;
 }
 
 @media only screen and (max-width: 650px) {
@@ -92,9 +110,6 @@
 }
 
 @media only screen and (max-width: 320px) {
-  /* .new-post-input {
-    font-size: 0.7rem;
-  } */
   .new-post-add-img-text {
     font-size: 0.65rem;
   }

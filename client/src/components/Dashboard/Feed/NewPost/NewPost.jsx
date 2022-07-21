@@ -1,5 +1,5 @@
 import classes from "./NewPost.module.css";
-import { ImageRounded } from "@mui/icons-material";
+import { RemoveCircleOutline } from "@mui/icons-material";
 import ppIcon from "../../../../images/pp-icon-small.png";
 import Card from "../../../UI/Card/Card";
 import { useState } from "react";
@@ -13,7 +13,10 @@ import UploadPostImg from "./UploadPostImg/UploadPostImg";
 const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
   const user = useSelector((state) => state.user.user);
   const [img, setImg] = useState("");
-  const [post, setPost] = useState({ userId: user.userId, desc: "" });
+  const [post, setPost] = useState({
+    userId: user.userId,
+    desc: "",
+  });
   const req = useAxiosPrivate();
   const navigate = useNavigate();
   const dispach = useDispatch();
@@ -21,8 +24,12 @@ const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
   const logout = useLogout();
 
   const sharePostHandler = async () => {
+    let imgUrl = "";
     try {
-      await req.post("/post", post);
+      if (img) {
+        imgUrl = await profilePictureUrl(img);
+      }
+      await req.post("/post", { ...post, image: imgUrl });
       resetUsers([]);
       resetPosts([]);
       pageStart(0);
@@ -32,12 +39,23 @@ const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
         return {
           ...prev,
           desc: "",
+          image: "",
         };
       });
+      setImg();
     } catch (error) {
       await logout();
       navigate("/login", { state: { from: location }, replace: true });
       dispach(userActions.logoutUser());
+    }
+  };
+
+  const profilePictureUrl = async (postImg) => {
+    if (postImg) {
+      const imgUrl = await req.post("post/uploadImg", { image: postImg });
+      return imgUrl.data.url;
+    } else {
+      return null;
     }
   };
 
@@ -65,16 +83,22 @@ const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
         />
       </div>
       <hr className={classes["new-post-br"]} />
-      <UploadPostImg />
       <div className={classes["new-post-features"]}>
-        <div className={classes["new-post-add-img"]}>
-          <ImageRounded className={classes["new-post-add-img-icon"]} />
-          <span className={classes["new-post-add-img-text"]}>Add a Photo</span>
-        </div>
-
+        <UploadPostImg imgToSet={setImg} />
         <button className={classes["share-post"]} onClick={sharePostHandler}>
           Share
         </button>
+      </div>
+      <div className={classes["preview-img-wrapper"]}>
+        {img && (
+          <img className={classes["preview-img"]} src={img} alt="preview" />
+        )}
+        {img && (
+          <RemoveCircleOutline
+            className={classes["remove-img-icon"]}
+            onClick={() => setImg()}
+          />
+        )}
       </div>
     </Card>
   );

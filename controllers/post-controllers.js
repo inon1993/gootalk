@@ -1,5 +1,6 @@
 const Post = require("../models/Post");
 const User = require("../models/User");
+const { cloudinary } = require("../utils/cloudinary");
 
 const newPostCtr = async (req, res) => {
   const newPost = new Post(req.body);
@@ -99,6 +100,22 @@ const getTimelineCtr = async (req, res) => {
   }
 };
 
+const uploadPicture = async (req, res) => {
+  console.log(req.body);
+  try {
+    const fileStr = req.body.image;
+    const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
+      height: 500,
+      crop: "scale",
+    });
+    const url = uploadedResponse.url;
+    return res.status(200).json({ url: url });
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500);
+  }
+};
+
 module.exports.newPostCtr = newPostCtr;
 module.exports.postUpdateCtr = postUpdateCtr;
 module.exports.deletePostCtr = deletePostCtr;
@@ -106,3 +123,4 @@ module.exports.likePostCtr = likePostCtr;
 module.exports.getPostCtr = getPostCtr;
 module.exports.getAllUserPostsCtr = getAllUserPostsCtr;
 module.exports.getTimelineCtr = getTimelineCtr;
+module.exports.uploadPicture = uploadPicture;

@@ -1,0 +1,27 @@
+.post-img {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.new-post-add-img-icon {
+  margin-right: 5px;
+  color: tomato;
+}
+
+.new-post-add-img-text {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+}
+
+@media only screen and (max-width: 650px) {
+  .new-post-add-img-text {
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .new-post-add-img-text {
+    font-size: 0.65rem;
+  }
+}

@@ -50,11 +50,13 @@ const Post = React.forwardRef(({ post, postUser, update }, ref) => {
         </div>
         <div className={classes["post-body"]}>
           <p className={classes["post-body-text"]}>{post.desc}</p>
-          <img
-            className={classes["post-img"]}
-            src="https://upload.wikimedia.org/wikipedia/commons/4/41/Arkansas_Black_apples_%28cropped%29.jpg"
-            alt="post img"
-          />
+          {post.image && (
+            <img
+              className={classes["post-img"]}
+              src={post.image}
+              alt="post img"
+            />
+          )}
         </div>
         <div className={classes["post-like"]}>
           {post.userId !== loggedInUser.userId && (
