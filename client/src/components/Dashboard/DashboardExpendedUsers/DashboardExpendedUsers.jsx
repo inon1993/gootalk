@@ -42,8 +42,12 @@ const DashboardExpendedUsers = () => {
   useEffect(() => {
     let filteredUsers = usersList.filter((user) => {
       if (
-        user.firstname.toLowerCase().includes(searchParams.get("query")) ||
-        user.lastname.toLowerCase().includes(searchParams.get("query"))
+        user.firstname
+          .toLowerCase()
+          .includes(searchParams.get("query").toLowerCase()) ||
+        user.lastname
+          .toLowerCase()
+          .includes(searchParams.get("query").toLowerCase())
       ) {
         return user;
       }
