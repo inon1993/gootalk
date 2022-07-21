@@ -58,9 +58,9 @@ const DashboardFriends = ({ friends }) => {
             })}
           </div>
         ) : friends.length === 0 ? (
-          <span>No friends yet...</span>
+          <span className={classes["no-msg"]}>No friends yet...</span>
         ) : listArray.length === 0 ? (
-          <span>No results.</span>
+          <span className={classes["no-msg"]}>No results.</span>
         ) : (
           <Loader />
         )}

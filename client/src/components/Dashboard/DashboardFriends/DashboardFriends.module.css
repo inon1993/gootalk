@@ -73,6 +73,10 @@
   border-radius: 10px;
 }
 
+.no-msg {
+  margin-top: 15px;
+}
+
 @media only screen and (max-width: 530px) {
   .friends-results-wrapper {
     width: 95%;
@@ -84,7 +88,6 @@
 }
 
 @media only screen and (max-width: 350px) {
-
   .friends-search-bar {
     width: 95%;
   }
