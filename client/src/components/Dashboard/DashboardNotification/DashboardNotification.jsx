@@ -17,7 +17,6 @@ const DashboardNotification = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(user.notifications);
     setIsLoading(true);
     const getNotifications = async () => {
       try {

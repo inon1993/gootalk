@@ -42,7 +42,6 @@ const Feed = () => {
 
   useEffect(() => {
     if (!endPosts) {
-      console.log(endPosts);
       setIsLoading(true);
       getPosts();
     }
@@ -62,7 +61,6 @@ const Feed = () => {
         `/post/timeline/${user.userId}/${pageStart}`
       );
       if (postsArray.data.length === 0) {
-        console.log(1);
         setEndPosts(true);
         setIsLoading(false);
         setInitialLoading(false);
@@ -89,9 +87,7 @@ const Feed = () => {
         return;
       }
     } catch (error) {
-      console.log(error);
       if (error.response.status === 404) {
-        console.log("404!");
         setEndPosts(true);
         setIsLoading(false);
         return;
