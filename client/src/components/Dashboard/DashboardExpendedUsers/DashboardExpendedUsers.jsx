@@ -40,19 +40,22 @@ const DashboardExpendedUsers = () => {
   }, []);
 
   useEffect(() => {
-    let filteredUsers = usersList.filter((user) => {
-      if (
-        user.firstname
-          .toLowerCase()
-          .includes(searchParams.get("query").toLowerCase()) ||
-        user.lastname
-          .toLowerCase()
-          .includes(searchParams.get("query").toLowerCase())
-      ) {
-        return user;
-      }
-    });
-    setFilteredList(filteredUsers);
+    if (searchParams.get("query")) {
+      let filteredUsers = usersList.filter((user) => {
+        if (
+          user.firstname
+            .toLowerCase()
+            .includes(searchParams.get("query").toLowerCase()) ||
+          user.lastname
+            .toLowerCase()
+            .includes(searchParams.get("query").toLowerCase())
+        ) {
+          return user;
+        }
+      });
+      setFilteredList(filteredUsers);
+    }
+
     setLoading(false);
   }, [searchParams, usersList]);
 
