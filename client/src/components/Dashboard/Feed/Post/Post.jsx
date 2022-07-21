@@ -34,6 +34,12 @@ const Post = React.forwardRef(({ post, postUser, update }, ref) => {
     update(1);
   };
 
+  const checkOnUserHandler = () => {
+    navigate(
+      `/users/${postUser._id}/${postUser.firstname}-${postUser.lastname}`
+    );
+  };
+
   return (
     <div className={classes["post-wrapper-for-ref"]} ref={ref}>
       <Card className={classes.post}>
@@ -42,6 +48,7 @@ const Post = React.forwardRef(({ post, postUser, update }, ref) => {
             className={classes["post-profile-img"]}
             src={postUser.profilePicture || ppIcon}
             alt={"profile"}
+            onClick={checkOnUserHandler}
           />
           <span
             className={classes["post-name"]}

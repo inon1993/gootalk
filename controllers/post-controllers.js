@@ -89,12 +89,13 @@ const getTimelineCtr = async (req, res) => {
       .sort({ createdAt: -1 })
       .skip(req.params.pageStart)
       .limit(5);
-    if (posts.length < 5) {
-      console.log(123);
-      console.log(posts);
-      return res.status(204).send(posts);
-    }
-    res.status(200).send(posts);
+    // if (posts.length < 5 && posts.length > 0) {
+    //   console.log(123);
+    //   console.log(posts);
+    //   console.log(posts.length);
+    //   return res.status(200).send(posts);
+    // }
+    return res.status(200).send(posts);
   } catch (error) {
     return res.status(500).json(error);
   }

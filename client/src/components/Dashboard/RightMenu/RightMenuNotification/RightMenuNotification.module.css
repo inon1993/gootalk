@@ -1,9 +1,17 @@
 .rm-notification {
   padding: 0 !important;
-  margin: 15px 0 0 0;
+  /* margin: 15px 0 0 0; */
   width: 95%;
 }
 
+.rm-profile-picture {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 5px;
+  cursor: pointer;
+}
 .rm-noti-text {
   font-size: 1rem;
   padding: 15px;
@@ -56,20 +64,23 @@
 }
 
 @media only screen and (max-width: 1050px) {
-  .rm-noti-accept, .rm-noti-reject {
+  .rm-noti-accept,
+  .rm-noti-reject {
     padding: 0.5rem 0.8rem;
   }
 }
 
 @media only screen and (max-width: 900px) {
-  .rm-noti-accept, .rm-noti-reject {
+  .rm-noti-accept,
+  .rm-noti-reject {
     padding: 0.5rem 0.5rem;
     border-radius: 7px;
   }
 }
 
 @media only screen and (max-width: 830px) {
-  .rm-noti-accept, .rm-noti-reject {
+  .rm-noti-accept,
+  .rm-noti-reject {
     font-size: 0.7rem;
     padding: 0.5rem 0.5rem;
     border-radius: 7px;

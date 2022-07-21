@@ -2,12 +2,14 @@ import Card from "../../../UI/Card/Card";
 import { useSelector } from "react-redux";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import { format } from "timeago.js";
-import ppIcon from "../../../../images/pp-icon.png";
+import ppIcon from "../../../../images/pp-icon-small.png";
 import classes from "./Notification.module.css";
+import { useNavigate } from "react-router";
 
 const Notification = ({ notificationUser, notification, onReload }) => {
   const req = useAxiosPrivate();
   const currUser = useSelector((state) => state.user.user);
+  const navigate = useNavigate();
 
   const responseRequest = async (e) => {
     const payload = {
@@ -25,6 +27,12 @@ const Notification = ({ notificationUser, notification, onReload }) => {
     }
   };
 
+  const checkOnUserHandler = () => {
+    navigate(
+      `/users/${notificationUser.data._id}/${notificationUser.data.firstname}-${notificationUser.data.lastname}`
+    );
+  };
+
   return (
     <Card className={classes["notification"]}>
       {!notification.status ? (
@@ -34,9 +42,13 @@ const Notification = ({ notificationUser, notification, onReload }) => {
               className={classes["noti-pic"]}
               src={notificationUser.data.profilePicture || ppIcon}
               alt="profile"
+              onClick={checkOnUserHandler}
             />
             <span>
-              <span style={{ fontWeight: "600" }}>
+              <span
+                className={classes["noti-name"]}
+                onClick={checkOnUserHandler}
+              >
                 {notificationUser.data.firstname}{" "}
                 {notificationUser.data.lastname}
               </span>{" "}
@@ -62,7 +74,7 @@ const Notification = ({ notificationUser, notification, onReload }) => {
         </div>
       ) : notification.response ? (
         <span>
-          <span style={{ fontWeight: "600" }}>
+          <span className={classes["noti-name"]} onClick={checkOnUserHandler}>
             {notificationUser.data.firstname} {notificationUser.data.lastname}
           </span>{" "}
           is now your friend.
@@ -70,7 +82,7 @@ const Notification = ({ notificationUser, notification, onReload }) => {
       ) : (
         <span>
           You've rejected{" "}
-          <span style={{ fontWeight: "600" }}>
+          <span className={classes["noti-name"]} onClick={checkOnUserHandler}>
             {notificationUser.data.firstname} {notificationUser.data.lastname}
           </span>
           's friendship request.

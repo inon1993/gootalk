@@ -42,6 +42,7 @@ const Feed = () => {
 
   useEffect(() => {
     if (!endPosts) {
+      console.log(endPosts);
       setIsLoading(true);
       getPosts();
     }
@@ -60,12 +61,14 @@ const Feed = () => {
       const postsArray = await req.get(
         `/post/timeline/${user.userId}/${pageStart}`
       );
-      if (postsArray.status === 204) {
+      if (postsArray.data.length === 0) {
+        console.log(1);
         setEndPosts(true);
         setIsLoading(false);
         setInitialLoading(false);
         return;
       }
+
       const getPostsUsers = await Promise.all(
         postsArray.data.map(async (p) => {
           return await req.get(`/user/${p.userId}`);
@@ -78,6 +81,13 @@ const Feed = () => {
       setPosts((prev) => {
         return [...prev, ...postsArray.data];
       });
+
+      if (postsArray.data.length < 5) {
+        setEndPosts(true);
+        setIsLoading(false);
+        setInitialLoading(false);
+        return;
+      }
     } catch (error) {
       console.log(error);
       if (error.response.status === 404) {

@@ -15,6 +15,12 @@
   height: 50px;
   border-radius: 50%;
   margin-right: 10px;
+  cursor: pointer;
+}
+
+.noti-name {
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .noti-buttons {
@@ -63,7 +69,6 @@
 }
 
 @media only screen and (max-width: 310px) {
-
   .noti-pic {
     height: 40px;
     width: 40px;
