@@ -11,8 +11,8 @@ const ExpendedUsers = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(navbarActions.activateSearch());
     dispatch(navbarActions.deactivateSearchInput());
-    dispatch(navbarActions.deactivate());
     dispatch(menuActions.deactivate());
   }, []);
 

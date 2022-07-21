@@ -10,6 +10,7 @@ import RequireAuth from "./components/RoutingComponents/RequireAuth";
 import Authenticated from "./components/RoutingComponents/Authenticated";
 import Notifications from "./pages/Notifications/Notifications";
 import FriendsPage from "./pages/FriendsPage/FriendsPage";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -26,9 +27,9 @@ function App() {
           <Route path="/search" element={<ExpendedUsers />} />
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/friends" element={<FriendsPage />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Route>
-      {/* <Route path="*" element={<Error />} /> */}
     </Routes>
   );
 }

@@ -15,11 +15,29 @@
   padding: 0;
 }
 
-.mm-li {
+.mm-li,
+.mm-link {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px 0;
+  color: hsl(220.3, 62.5%, 22%);
+  cursor: pointer;
+  border-bottom: 1px solid hsl(206.7, 33.3%, 89.7%);
+  width: 100%;
+}
+
+.mm-li:last-child {
+  border-bottom: none;
+}
+
+.mm-link {
+  text-decoration: none;
+  padding: 0;
+}
+
+.mm-li:hover {
+  background-color: hsl(206.7, 33.3%, 96.7%);
 }
 
 .mm-f-icon {

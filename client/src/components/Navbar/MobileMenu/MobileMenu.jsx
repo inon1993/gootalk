@@ -1,19 +1,44 @@
 import classes from "./MobileMenu.module.css";
 import Search from "../Search/Search";
-import { AccountCircleRounded, HelpCenterRounded, Logout, PeopleRounded, Settings } from "@mui/icons-material";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import useLogout from "../../../hooks/useLogout";
+import {
+  AccountCircleRounded,
+  HelpCenterRounded,
+  Logout,
+  PeopleRounded,
+  Settings,
+} from "@mui/icons-material";
 
 const MobileMenu = () => {
+  const user = useSelector((state) => state.user.user);
+  const logout = useLogout();
+  const navigate = useNavigate();
+
+  const logoutHandler = async () => {
+    await logout();
+    navigate("/login");
+  };
+
   return (
     <div className={classes["mm-features"]}>
       <ul className={classes["mm-ul"]}>
-        <li className={classes["mm-li"]}>
-          <AccountCircleRounded className={classes["mm-f-icon"]} />
-          <span className={classes["mm-f-text"]}>My Profile</span>
-        </li>
-        <li className={classes["mm-li"]}>
-          <PeopleRounded className={classes["mm-f-icon"]} />
-          <span className={classes["mm-f-text"]}>My Friends</span>
-        </li>
+        <Link
+          to={`/profile/${user.firstname}-${user.lastname}`}
+          className={classes["mm-link"]}
+        >
+          <li className={classes["mm-li"]}>
+            <AccountCircleRounded className={classes["mm-f-icon"]} />
+            <span className={classes["mm-f-text"]}>My Profile</span>
+          </li>
+        </Link>
+        <Link to={"/friends"} className={classes["mm-link"]}>
+          <li className={classes["mm-li"]}>
+            <PeopleRounded className={classes["mm-f-icon"]} />
+            <span className={classes["mm-f-text"]}>My Friends</span>
+          </li>
+        </Link>
         <li className={classes["mm-li"]}>
           <HelpCenterRounded className={classes["mm-f-icon"]} />
           <span className={classes["mm-f-text"]}>Help & About</span>
@@ -24,7 +49,9 @@ const MobileMenu = () => {
         </li>
         <li className={classes["mm-li"]}>
           <Logout className={classes["mm-f-icon"]} />
-          <span className={classes["mm-f-text"]}>Log Out</span>
+          <span className={classes["mm-f-text"]} onMouseDown={logoutHandler}>
+            Log Out
+          </span>
         </li>
       </ul>
     </div>

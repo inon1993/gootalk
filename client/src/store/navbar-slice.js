@@ -40,7 +40,7 @@ const navbarSlice = createSlice({
       state.activate.notifications = false;
       state.activate.profile = false;
       state.activate.search = true;
-      state.activate.searchInput = true;
+      state.activate.searchInput = false;
     },
     deactivateSearchInput(state) {
       state.activate.home = state.activate.home;
