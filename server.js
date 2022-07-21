@@ -15,7 +15,9 @@ const notificationsRoute = require("./routes/notifications");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-mongoose.connect("mongodb://localhost:27017/GootalkDB");
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost:27017/GootalkDB"
+);
 mongoose.connection.on("connected", () => {
   console.log("Mongoose is connected.");
 });
