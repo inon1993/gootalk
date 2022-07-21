@@ -7,7 +7,7 @@ const useRefreshToken = () => {
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const refresh = async () => {
-    const response = await axios.get("api/refresh", {
+    const response = await axios.get("/refresh", {
       withCredentials: true,
     });
     // dispatch(

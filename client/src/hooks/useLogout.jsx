@@ -10,7 +10,7 @@ const useLogout = () => {
 
   const logout = async () => {
     try {
-      await axios.get("api/logout", {
+      await axios.get("/logout", {
         withCredentials: true,
       });
     } catch (e) {

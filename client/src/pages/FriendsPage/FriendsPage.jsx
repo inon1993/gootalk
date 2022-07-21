@@ -28,7 +28,7 @@ const FriendsPage = () => {
     const getFriendsAndSort = async () => {
       const friendsNotSorted = await Promise.all(
         user.friends.map(async (f) => {
-          return await req.get(`api/user/${f}`);
+          return await req.get(`/user/${f}`);
         })
       );
       const sortedFriends = sortArrayByAlphaBeit(friendsNotSorted);

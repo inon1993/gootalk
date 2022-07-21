@@ -28,7 +28,7 @@ const Search = () => {
 
     const getUsers = async () => {
       try {
-        const fetchedUsers = await req.get("api/user/");
+        const fetchedUsers = await req.get("/user/");
         setUsers(fetchedUsers.data);
       } catch (error) {
         navigate("/login", { state: { from: location }, replace: true });

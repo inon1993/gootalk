@@ -29,7 +29,7 @@ const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
       if (img) {
         imgUrl = await profilePictureUrl(img);
       }
-      await req.post("api/post", { ...post, image: imgUrl });
+      await req.post("/post", { ...post, image: imgUrl });
       resetUsers([]);
       resetPosts([]);
       pageStart(0);
@@ -52,7 +52,7 @@ const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
 
   const profilePictureUrl = async (postImg) => {
     if (postImg) {
-      const imgUrl = await req.post("api/post/uploadImg", { image: postImg });
+      const imgUrl = await req.post("/post/uploadImg", { image: postImg });
       return imgUrl.data.url;
     } else {
       return null;

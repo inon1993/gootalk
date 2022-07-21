@@ -22,7 +22,7 @@ const Post = React.forwardRef(({ post, postUser, update }, ref) => {
 
   const likeHandler = async () => {
     try {
-      await req.put(`api/post/${post._id}/like`, {
+      await req.put(`/post/${post._id}/like`, {
         userId: loggedInUser.userId,
       });
       setLikes(post.likes.length);

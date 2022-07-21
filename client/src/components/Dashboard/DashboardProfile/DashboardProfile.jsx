@@ -13,7 +13,7 @@ const DashboardProfile = () => {
   useEffect(() => {
     const getUserPosts = async () => {
       try {
-        const userPostsArray = await req.get(`api/post/posts/${user.userId}`);
+        const userPostsArray = await req.get(`/post/posts/${user.userId}`);
         setUserPosts(userPostsArray.data);
       } catch (error) {
         console.log(error);

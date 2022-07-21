@@ -14,7 +14,7 @@ const RightMenuNotification = ({ notification, onReload }) => {
 
   useEffect(() => {
     const getUser = async () => {
-      const res = await req.get(`api/user/${notification.senderUserId}`);
+      const res = await req.get(`/user/${notification.senderUserId}`);
       setUser(res.data);
     };
 
@@ -29,7 +29,7 @@ const RightMenuNotification = ({ notification, onReload }) => {
       notificationId: notification._id,
     };
     try {
-      await req.put("api/notifications/response", payload);
+      await req.put("/notifications/response", payload);
       onReload();
       // window.location.reload();
     } catch (error) {

@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const signup = async (data, profilePicture) => {
   const user = await axios({
-    url: "api/auth/register",
+    url: "/auth/register",
     method: "POST",
     data: { data, profilePicture },
   });
@@ -11,7 +11,7 @@ export const signup = async (data, profilePicture) => {
 
 export const login = async (email, password) => {
   const user = await axios({
-    url: "api/auth/login",
+    url: "/auth/login",
     method: "POST",
     data: { email, password },
   });
@@ -19,7 +19,7 @@ export const login = async (email, password) => {
 };
 
 export const logout = async (accessToken) => {
-  await axios.get("api/logout", {
+  await axios.get("/logout", {
     headers: {
       Authorization: "Bearer " + accessToken,
     },
@@ -29,7 +29,7 @@ export const logout = async (accessToken) => {
 export const uploadImage = async (profilePicture) => {
   try {
     const url = await axios({
-      url: "api/auth/upload",
+      url: "/auth/upload",
       method: "POST",
       data: { profilePicture },
     });
