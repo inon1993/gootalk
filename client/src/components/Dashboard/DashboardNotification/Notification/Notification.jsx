@@ -19,7 +19,6 @@ const Notification = ({ notificationUser, notification, onReload }) => {
       notificationId: notification._id,
     };
     try {
-      console.log(payload);
       await req.put("/notifications/response", payload);
       onReload();
     } catch (error) {

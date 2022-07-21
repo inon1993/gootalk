@@ -76,7 +76,6 @@ const uploadPicture = async (req, res) => {
     const url = uploadedResponse.url;
     return res.status(200).json({ url: url });
   } catch (error) {
-    console.log(error);
     return res.sendStatus(500);
   }
 };

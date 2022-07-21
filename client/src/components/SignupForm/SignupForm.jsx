@@ -92,7 +92,6 @@ const LoginForm = ({ profilePicture }) => {
       const newUser = await signup(user, imgUrl);
       const accessToken = newUser.data.accessToken;
       const userData = newUser.data.user;
-      console.log(userData);
       const newUserToSet = {
         userId: userData._id,
         firstname: userData.firstname,
@@ -107,7 +106,6 @@ const LoginForm = ({ profilePicture }) => {
       navigate("/");
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       if (error.response.status === 409) {
         setErrorMsg({
@@ -147,7 +145,6 @@ const LoginForm = ({ profilePicture }) => {
 
   useEffect(() => {
     if (user.firstname.trim().length !== 0) {
-      console.log(user.firstname);
       user.firstname.trim().length < 2
         ? setIsValid((prev) => {
             return {

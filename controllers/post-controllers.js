@@ -41,7 +41,6 @@ const deletePostCtr = async (req, res) => {
 };
 
 const likePostCtr = async (req, res) => {
-  console.log(req.body);
   try {
     const post = await Post.findById(req.params.id);
     if (post.userId !== req.body.userId) {
@@ -72,7 +71,6 @@ const getPostCtr = async (req, res) => {
 const getAllUserPostsCtr = async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
-    console.log(user);
     const userPosts = await Post.find({ userId: user._id });
     return res.status(200).json(userPosts.reverse());
   } catch (err) {
@@ -89,12 +87,6 @@ const getTimelineCtr = async (req, res) => {
       .sort({ createdAt: -1 })
       .skip(req.params.pageStart)
       .limit(5);
-    // if (posts.length < 5 && posts.length > 0) {
-    //   console.log(123);
-    //   console.log(posts);
-    //   console.log(posts.length);
-    //   return res.status(200).send(posts);
-    // }
     return res.status(200).send(posts);
   } catch (error) {
     return res.status(500).json(error);
@@ -102,7 +94,6 @@ const getTimelineCtr = async (req, res) => {
 };
 
 const uploadPicture = async (req, res) => {
-  console.log(req.body);
   try {
     const fileStr = req.body.image;
     const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
@@ -112,7 +103,6 @@ const uploadPicture = async (req, res) => {
     const url = uploadedResponse.url;
     return res.status(200).json({ url: url });
   } catch (error) {
-    console.log(error);
     return res.sendStatus(500);
   }
 };

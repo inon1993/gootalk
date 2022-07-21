@@ -13,6 +13,7 @@ const logoutRoute = require("./routes/logout");
 const notificationsRoute = require("./routes/notifications");
 
 const app = express();
+const PORT = process.env.PORT || 8080;
 
 mongoose.connect("mongodb://localhost:27017/GootalkDB");
 mongoose.connection.on("connected", () => {
@@ -32,6 +33,10 @@ app.use("/api/refresh", refreshRoute);
 app.use("/api/logout", logoutRoute);
 app.use("/api/notifications", notificationsRoute);
 
-app.listen(8080, () => {
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
+app.listen(PORT, () => {
   console.log("Server is running.");
 });
