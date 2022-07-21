@@ -29,12 +29,12 @@ app.use(helmet());
 app.use(morgan("common"));
 app.use(cookieParser());
 
-app.use("/api/auth", authRoutes);
-app.use("/api/user", userRoutes);
-app.use("/api/post", postRoutes);
-app.use("/api/refresh", refreshRoute);
-app.use("/api/logout", logoutRoute);
-app.use("/api/notifications", notificationsRoute);
+app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
+app.use("/post", postRoutes);
+app.use("/refresh", refreshRoute);
+app.use("/logout", logoutRoute);
+app.use("/notifications", notificationsRoute);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
