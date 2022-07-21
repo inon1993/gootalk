@@ -9,22 +9,22 @@ const useLogout = () => {
   const dispatch = useDispatch();
 
   const logout = async () => {
-      try {
-       await axios.get('/logout', {
-           withCredentials: true
-       });   
-      } catch (e) {
-          return e
-      }
+    try {
+      await axios.get("api/logout", {
+        withCredentials: true,
+      });
+    } catch (e) {
+      return e;
+    }
 
     localStorage.removeItem("persist:root");
     dispatch(userActions.logoutUser());
     dispatch(menuActions.deactivate());
     dispatch(dropdownActions.deactivate());
     dispatch(accessTokenActions.removeAccessToken());
-  }
+  };
 
-  return logout
-}
+  return logout;
+};
 
 export default useLogout;

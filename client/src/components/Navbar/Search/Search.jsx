@@ -2,18 +2,13 @@ import { SearchRounded } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
-  useSelector,
   useNavigate,
   useLocation,
   useSearchParams,
   createSearchParams,
-  Link,
 } from "react-router-dom";
-import useRequest from "../../../hooks/useRequest";
 import ppIcon from "../../../images/pp-icon-small.png";
 import classes from "./Search.module.css";
-import { navbarActions } from "../../../store/navbar-slice";
-import { menuActions } from "../../../store/menu-slice";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { userActions } from "../../../store/user-slice";
 
@@ -22,9 +17,7 @@ const Search = () => {
   const [query, setQuery] = useState("");
   const [isExpended, setIsExpended] = useState(false);
   const [focus, setFocus] = useState(false);
-  const fetchUsers = useRequest("/user/", "GET");
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const location = useLocation();
   const [search, setSearch] = useSearchParams();
   const req = useAxiosPrivate();
@@ -35,7 +28,7 @@ const Search = () => {
 
     const getUsers = async () => {
       try {
-        const fetchedUsers = await req.get("/user/");
+        const fetchedUsers = await req.get("api/user/");
         setUsers(fetchedUsers.data);
       } catch (error) {
         navigate("/login", { state: { from: location }, replace: true });
@@ -60,15 +53,8 @@ const Search = () => {
       },
       { state: { from: location }, replace: true }
     );
-    // dispatch(navbarActions.toggleSearchInput());
-    // dispatch(navbarActions.deactivate());
-    // dispatch(menuActions.deactivate());
     setIsExpended(true);
   };
-
-  // const userSearchHandler = () => {
-  //   navigate("/")
-  // }
 
   return (
     <div

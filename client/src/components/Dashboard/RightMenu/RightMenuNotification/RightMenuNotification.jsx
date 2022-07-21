@@ -2,8 +2,7 @@ import classes from "./RightMenuNotification.module.css";
 import Card from "../../../UI/Card/Card";
 import { useEffect, useState } from "react";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
-import { useDispatch, useSelector } from "react-redux";
-import { userActions } from "../../../../store/user-slice";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import ppIcon from "../../../../images/pp-icon-small.png";
 
@@ -11,12 +10,11 @@ const RightMenuNotification = ({ notification, onReload }) => {
   const currUser = useSelector((state) => state.user.user);
   const [user, setUser] = useState();
   const req = useAxiosPrivate();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     const getUser = async () => {
-      const res = await req.get(`/user/${notification.senderUserId}`);
+      const res = await req.get(`api/user/${notification.senderUserId}`);
       setUser(res.data);
     };
 
@@ -31,7 +29,7 @@ const RightMenuNotification = ({ notification, onReload }) => {
       notificationId: notification._id,
     };
     try {
-      await req.put("/notifications/response", payload);
+      await req.put("api/notifications/response", payload);
       onReload();
       // window.location.reload();
     } catch (error) {
@@ -40,7 +38,7 @@ const RightMenuNotification = ({ notification, onReload }) => {
   };
 
   const checkOnUserHandler = () => {
-    navigate(navigate(`/users/${user._id}/${user.firstname}-${user.lastname}`));
+    navigate(`/users/${user._id}/${user.firstname}-${user.lastname}`);
   };
 
   return (

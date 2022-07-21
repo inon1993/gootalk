@@ -1,5 +1,4 @@
 import { ImageRounded } from "@mui/icons-material";
-import { useState } from "react";
 import classes from "./UploadPostImg.module.css";
 
 const UploadPostImg = ({ imgToSet }) => {

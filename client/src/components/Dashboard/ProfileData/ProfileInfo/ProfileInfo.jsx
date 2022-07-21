@@ -13,8 +13,7 @@ const ProfileInfo = () => {
   useEffect(() => {
     const getStats = async () => {
       try {
-        const res = await req.get(`/user/stats/${user.userId}`);
-        // console.log(res.data);
+        const res = await req.get(`api/user/stats/${user.userId}`);
         setStats(res.data);
       } catch (error) {
         console.log(error);

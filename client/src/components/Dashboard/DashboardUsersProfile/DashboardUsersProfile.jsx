@@ -25,7 +25,7 @@ const DashboardUsersProfile = () => {
     setSendReqBtn(false);
     setDisableReqBtn(false);
     const getUserPosts = async () => {
-      const getUser = await axios.get(`/user/${userid}`);
+      const getUser = await axios.get(`api/user/${userid}`);
       setUser(getUser.data);
       if (currUser.userId !== getUser.data._id) {
         setSendReqBtn(true);
@@ -46,7 +46,7 @@ const DashboardUsersProfile = () => {
     setNoPostsMsg("");
     const getPosts = async () => {
       try {
-        const res = await req.get(`/post/posts/${userid}`);
+        const res = await req.get(`api/post/posts/${userid}`);
         if (res.data.length === 0) {
           setNoPostsMsg("This user hasn't posted yet...");
         }
@@ -57,13 +57,11 @@ const DashboardUsersProfile = () => {
         } else {
           setErrMsg("Something went wrong...");
         }
-        // setLoading(false);
       }
     };
     currUser.userId !== ""
       ? getPosts()
       : setErrMsg("Log in to see user's posts.");
-    // setLoading(false);
   }, [user]);
 
   useEffect(() => {
@@ -78,7 +76,7 @@ const DashboardUsersProfile = () => {
       senderUserId: currUser.userId,
     };
     try {
-      await req.put("/notifications", payload);
+      await req.put("api/notifications", payload);
       setDisableReqBtn(true);
     } catch (error) {
       console.log(error);

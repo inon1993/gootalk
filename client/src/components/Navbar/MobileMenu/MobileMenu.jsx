@@ -1,5 +1,4 @@
 import classes from "./MobileMenu.module.css";
-import Search from "../Search/Search";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useLogout from "../../../hooks/useLogout";

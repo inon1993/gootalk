@@ -22,7 +22,7 @@ const DashboardNotification = () => {
       try {
         const getNotiUsers = await Promise.all(
           user.notifications.map(async (n) => {
-            return await req.get(`user/${n.senderUserId}`);
+            return await req.get(`api/user/${n.senderUserId}`);
           })
         );
         setNoti(getNotiUsers);
@@ -38,13 +38,12 @@ const DashboardNotification = () => {
   }, []);
 
   const getNotifications = async () => {
-    console.log(121212);
     try {
-      const res = await req.get(`/notifications/${user.userId}`);
+      const res = await req.get(`api/notifications/${user.userId}`);
       dispatch(userActions.setNotifications({ notifications: res.data }));
       const getNotiUsers = await Promise.all(
         res.data.map(async (n) => {
-          return await req.get(`user/${n.senderUserId}`);
+          return await req.get(`api/user/${n.senderUserId}`);
         })
       );
       console.log(getNotiUsers);

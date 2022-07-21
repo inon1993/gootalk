@@ -24,7 +24,7 @@ const DashboardExpendedUsers = () => {
     let isMounted = true;
     const getUsers = async () => {
       try {
-        const fetchedUsers = await req.get("/user/");
+        const fetchedUsers = await req.get("api/user/");
         isMounted && setUsers(fetchedUsers.data);
       } catch (error) {
         navigate("/login", { state: { from: location }, replace: true });

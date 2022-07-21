@@ -18,7 +18,6 @@ import DropdownBackground from "./Profile/DropdownMenu/DropdownBackground";
 import MobileMenu from "./MobileMenu/MobileMenu";
 import { Link } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const Navbar = () => {
   const user = useSelector((state) => state.user.user);
@@ -29,7 +28,6 @@ const Navbar = () => {
   const [notiBadge, setNotiBadge] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
-  const req = useAxiosPrivate();
   const filtered = user.notifications.filter((n) => {
     return !n.status;
   });

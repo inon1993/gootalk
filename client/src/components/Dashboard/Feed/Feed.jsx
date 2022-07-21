@@ -58,7 +58,7 @@ const Feed = () => {
     setIsLoading(true);
     try {
       const postsArray = await req.get(
-        `/post/timeline/${user.userId}/${pageStart}`
+        `api/post/timeline/${user.userId}/${pageStart}`
       );
       if (postsArray.data.length === 0) {
         setEndPosts(true);
@@ -69,7 +69,7 @@ const Feed = () => {
 
       const getPostsUsers = await Promise.all(
         postsArray.data.map(async (p) => {
-          return await req.get(`/user/${p.userId}`);
+          return await req.get(`api/user/${p.userId}`);
         })
       );
 

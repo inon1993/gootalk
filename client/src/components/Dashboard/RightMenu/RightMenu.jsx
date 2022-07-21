@@ -21,8 +21,8 @@ const RightMenu = ({ friends }) => {
 
   const getNotifications = async () => {
     try {
-      const res = await req.get(`/notifications/${user.userId}`);
-      const friends = await req.get(`/user/friends/${user.userId}`);
+      const res = await req.get(`api/notifications/${user.userId}`);
+      const friends = await req.get(`api/user/friends/${user.userId}`);
       dispatch(userActions.setNotifications({ notifications: res.data }));
       dispatch(userActions.setFriends({ friends: friends.data }));
     } catch (error) {
