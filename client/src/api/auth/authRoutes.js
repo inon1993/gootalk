@@ -29,7 +29,7 @@ export const logout = async (accessToken) => {
 export const uploadImage = async (profilePicture) => {
   try {
     const url = await axios({
-      url: "auth/upload",
+      url: "api/auth/upload",
       method: "POST",
       data: { profilePicture },
     });
