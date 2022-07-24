@@ -307,8 +307,8 @@ const LoginForm = ({ profilePicture }) => {
             autoComplete="none"
             disabled={country === "" ? true : false}
           />
-          {cityFocus && countryObj && city !== "" && (
-            <CitySelector
+          {cityFocus && countryObj && (
+            /*city !== "" &&*/ <CitySelector
               city={city || user.city}
               country={countryObj}
               onSetCity={setCity}

@@ -1,43 +1,51 @@
 import classes from "./LocationSelector.module.css";
 
-export const CountrySelector = ({ country, countries, onSetCountry, onSetCountryObj, onSetUser }) => {
+export const CountrySelector = ({
+  country,
+  countries,
+  onSetCountry,
+  onSetCountryObj,
+  onSetUser,
+}) => {
   return (
     <div className={classes["sr-country"]}>
-      {countries.filter((c) => {
-        if(c.country.toLowerCase().includes(country)) {
-          return c
-        }
-      })
-      .map((country) => {
-        return (
-          <span
-            key={`${country.iso2}${country.iso3}${Math.random()}`}
-            className={classes["sr-country-name"]}
-            onMouseDown={() => {
-              onSetCountryObj(country);
-              onSetCountry(country.country);
-              onSetUser(prevState => {
-                return {
-                  ...prevState,
-                  country: country.country
-                }
-              })
-            }}
-          >
-            {country.country}
-          </span>
-        );
-      })}
+      {countries
+        .filter((c) => {
+          if (c.country.toLowerCase().includes(country.toLowerCase())) {
+            return c;
+          }
+        })
+        .map((country) => {
+          return (
+            <span
+              key={`${country.iso2}${country.iso3}${Math.random()}`}
+              className={classes["sr-country-name"]}
+              onMouseDown={() => {
+                onSetCountryObj(country);
+                onSetCountry(country.country);
+                onSetUser((prevState) => {
+                  return {
+                    ...prevState,
+                    country: country.country,
+                  };
+                });
+              }}
+            >
+              {country.country}
+            </span>
+          );
+        })}
     </div>
   );
 };
 
 export const CitySelector = ({ city, country, onSetCity, onSetUser }) => {
-    return (
-      <div className={classes["sr-country"]}>
-        {country.cities.filter((c) => {
-          if(c.toLowerCase().includes(city)) {
-            return c
+  return (
+    <div className={classes["sr-country"]}>
+      {country.cities
+        .filter((c) => {
+          if (c.toLowerCase().includes(city.toLowerCase())) {
+            return c;
           }
         })
         .map((city) => {
@@ -47,19 +55,18 @@ export const CitySelector = ({ city, country, onSetCity, onSetUser }) => {
               className={classes["sr-country-name"]}
               onMouseDown={() => {
                 onSetCity(city);
-                onSetUser(prevState => {
+                onSetUser((prevState) => {
                   return {
                     ...prevState,
-                    city: city
-                  }
-                })
+                    city: city,
+                  };
+                });
               }}
             >
               {city}
             </span>
-          )
-        })
-        }
-      </div>
-    );
-  };
+          );
+        })}
+    </div>
+  );
+};
