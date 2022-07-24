@@ -46,11 +46,9 @@ const MobileMenu = () => {
           <Settings className={classes["mm-f-icon"]} />
           <span className={classes["mm-f-text"]}>Settings</span>
         </li>
-        <li className={classes["mm-li"]}>
+        <li className={classes["mm-li"]} onMouseDown={logoutHandler}>
           <Logout className={classes["mm-f-icon"]} />
-          <span className={classes["mm-f-text"]} onMouseDown={logoutHandler}>
-            Log Out
-          </span>
+          <span className={classes["mm-f-text"]}>Log Out</span>
         </li>
       </ul>
     </div>

@@ -22,66 +22,6 @@
   text-align: left;
 }
 
-.sl-add-pic {
-  position: relative;
-  transition: 200ms;
-}
-
-.sl-form > input {
-  display: none;
-}
-
-.sl-preview-pic {
-  height: 11.2rem;
-  width: 11.2rem;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 5px solid white;
-  cursor: pointer;
-}
-
-.sl-add-pic-icon {
-  height: 11.2rem;
-  width: 11.2rem;
-  border: 5px solid white;
-  border-radius: 50%;
-  transition: 200ms;
-}
-
-.sl-add-pic-icon:hover {
-  cursor: pointer;
-}
-
-.add-icon {
-  position: absolute;
-  top: 9rem;
-  right: 1rem;
-  font-size: 3.5rem !important;
-  background-color: white;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: 200ms;
-}
-
-.add-icon:hover {
-  color: hsl(208.7, 100%, 53.7%);
-}
-
-.remove-icon {
-  position: absolute;
-  top: 9rem;
-  right: 1rem;
-  font-size: 3.5rem !important;
-  background-color: white;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: 200ms;
-}
-
-.remove-icon:hover {
-  color: tomato;
-}
-
 .signup-right {
   /* flex: 2; */
   width: 66%;
@@ -93,6 +33,8 @@
 @media only screen and (max-width: 650px) {
   .signup-wrapper {
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     /* overflow-y: scroll; */
   }
 
@@ -105,6 +47,7 @@
   }
 
   .signup-left {
+    display: none;
     width: 75%;
     margin-top: 25px;
     background-color: hsl(208.7, 100%, 53.7%);
@@ -116,7 +59,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
     /* min-height: 100vh; */
   }
 
@@ -148,22 +91,6 @@
   }
 }
 
-@media only screen and (max-height: 550px) {
-  .sl-add-pic {
-    top: calc(50vh - 307px);
-  }
-
-  .signup-wrapper {
-    overflow-y: scroll;
-    align-items: flex-start;
-  }
-
-  .signup-left {
-    min-height: 100vh;
-    justify-content: end;
-  }
-}
-
 @media only screen and (max-width: 375px) {
   .sl-add-pic {
     top: calc(50vh - 307px);
@@ -184,5 +111,21 @@
     font-size: 1.2rem !important;
     top: 2.9rem;
     right: 0.2rem;
+  }
+}
+
+@media only screen and (max-height: 550px) {
+  .sl-add-pic {
+    top: calc(50vh - 307px);
+  }
+
+  .signup-wrapper {
+    overflow-y: scroll;
+    align-items: flex-start;
+  }
+
+  .signup-left {
+    min-height: 100vh;
+    justify-content: end;
   }
 }

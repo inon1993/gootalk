@@ -1,0 +1,117 @@
+.sl-add-pic {
+  position: relative;
+  transition: 200ms;
+}
+
+.sl-form > input {
+  display: none;
+}
+
+.sl-preview-pic {
+  height: 11.2rem;
+  width: 11.2rem;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid white;
+  cursor: pointer;
+}
+
+.sl-add-pic-icon {
+  height: 11.2rem;
+  width: 11.2rem;
+  border: 5px solid white;
+  border-radius: 50%;
+  transition: 200ms;
+}
+
+.sl-add-pic-icon:hover {
+  cursor: pointer;
+}
+
+.add-icon {
+  position: absolute;
+  top: 9rem;
+  right: 1rem;
+  font-size: 3.5rem !important;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 200ms;
+}
+
+.add-icon:hover {
+  color: hsl(208.7, 100%, 53.7%);
+}
+
+.remove-icon {
+  position: absolute;
+  top: 9rem;
+  right: 1rem;
+  font-size: 3.5rem !important;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 200ms;
+}
+
+.remove-icon:hover {
+  color: tomato;
+}
+
+@media only screen and (max-width: 650px) {
+  .sl-add-pic {
+    /* position: absolute; */
+    display: flex;
+    align-items: center;
+    /* left: 15%; */
+    z-index: 10;
+    /* margin-top: 15px; */
+    /* top: calc(50vh - 300px); */
+  }
+
+  .sl-preview-pic {
+    height: 4.9rem;
+    width: 4.9rem;
+  }
+
+  .sl-add-pic-icon {
+    height: 4.9rem;
+    width: 4.9rem;
+  }
+
+  .add-icon,
+  .remove-icon {
+    font-size: 1.8rem !important;
+    top: 3.5rem;
+    right: 0.3rem;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  /* .sl-add-pic {
+    top: calc(50vh - 307px);
+  } */
+
+  .sl-preview-pic {
+    height: 3.4rem;
+    width: 3.4rem;
+  }
+
+  .sl-add-pic-icon {
+    height: 3.4rem;
+    width: 3.4rem;
+  }
+
+  .add-icon,
+  .remove-icon {
+    font-size: 1.2rem !important;
+    top: 2.9rem;
+    right: 0.2rem;
+  }
+}
+
+@media only screen and (max-height: 550px) {
+  /* .sl-add-pic {
+    top: calc(50vh - 307px);
+  } */
+}

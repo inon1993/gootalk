@@ -12,10 +12,10 @@
 
 .new-post-profile-logo {
   margin-right: 10px;
-  /* font-size: 2.5rem !important; */
   height: 30px;
   width: 30px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .new-post-input {

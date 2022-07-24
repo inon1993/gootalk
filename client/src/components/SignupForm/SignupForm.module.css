@@ -7,9 +7,9 @@
   border-radius: 15px;
   width: 60%;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
   /* flex-wrap: wrap; */
-  /* min-height: 85vh; */
+  max-height: 85vh;
 }
 
 .st-title {
@@ -23,6 +23,10 @@
   margin-bottom: 40px;
   width: 85%;
   flex-wrap: wrap;
+}
+
+.profile-picture-mobile {
+  display: none;
 }
 
 .sr-form-text {
@@ -177,6 +181,10 @@
 }
 
 @media only screen and (max-width: 650px) {
+  .profile-picture-mobile {
+    display: flex;
+  }
+
   .sr-card {
     width: 80%;
   }
@@ -188,11 +196,12 @@
   .sr-title-wrapper {
     width: 85%;
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .sr-title {
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
   }
 }
 

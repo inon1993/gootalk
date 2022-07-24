@@ -12,9 +12,11 @@ import { userActions } from "../../store/user-slice";
 import { accessTokenActions } from "../../store/access-token-slice";
 import { useNavigate } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
+import ProfilePicture from "../ProfilePicture/ProfilePicture";
 
 const LoginForm = ({ profilePicture }) => {
   const firstnameRef = useRef();
+  const [previewSource, setPreviewSource] = useState();
   const [isPw, setIsPw] = useState({ visable: false, type: "password" });
   const [countries, setCountries] = useState([]);
   const [countryFocus, setCountryFocus] = useState(false);
@@ -88,7 +90,7 @@ const LoginForm = ({ profilePicture }) => {
     setIsLoading(true);
     setErrorMsg({ code: null, msg: "" });
     try {
-      const imgUrl = await profilePictureUrl(profilePicture);
+      const imgUrl = await profilePictureUrl(profilePicture || previewSource);
       const newUser = await signup(user, imgUrl);
       const accessToken = newUser.data.accessToken;
       const userData = newUser.data.user;
@@ -214,6 +216,12 @@ const LoginForm = ({ profilePicture }) => {
   return (
     <div className={classes["sr-card"]}>
       <div className={classes["sr-title-wrapper"]}>
+        <div className={classes["profile-picture-mobile"]}>
+          <ProfilePicture
+            onId="file-input-mobile"
+            onPreview={setPreviewSource}
+          />
+        </div>
         <h2 className={classes["sr-title"]}>Sign Up</h2>
       </div>
       <form
