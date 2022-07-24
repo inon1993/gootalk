@@ -34,24 +34,25 @@ app.use(
         "'self'",
         "https://countriesnow.space/api/v0.1/countries",
       ],
-      // "connect-src": "https://countriesnow.space/api/v0.1/countries",
     },
   })
 );
 app.use(morgan("common"));
 app.use(cookieParser());
 
-app.use("/auth", authRoutes);
-app.use("/user", userRoutes);
-app.use("/post", postRoutes);
-app.use("/refresh", refreshRoute);
-app.use("/logout", logoutRoute);
-app.use("/notifications", notificationsRoute);
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
+app.use("/api/post", postRoutes);
+app.use("/api/refresh", refreshRoute);
+app.use("/api/logout", logoutRoute);
+app.use("/api/notifications", notificationsRoute);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(
+      path.resolve(__dirname, "client", "build", "index.html", "/api")
+    );
   });
 }
 
