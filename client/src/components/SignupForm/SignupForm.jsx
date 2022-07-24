@@ -227,7 +227,7 @@ const LoginForm = ({ profilePicture }) => {
       <form
         className={classes["sr-form"]}
         onSubmit={signupHandler}
-        autoComplete="off"
+        autoComplete="new-password"
       >
         <input
           type="hidden"
