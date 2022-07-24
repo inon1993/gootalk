@@ -30,7 +30,8 @@ app.use(
     useDefaults: true,
     directives: {
       "img-src": ["'self'", "https: data:"],
-      "default-src": "self",
+      "script-src": ["self", "https://countriesnow.space/api/v0.1/countries"],
+      // "connect-src": "https://countriesnow.space/api/v0.1/countries",
     },
   })
 );
