@@ -30,7 +30,7 @@ app.use(
     useDefaults: true,
     directives: {
       "img-src": ["'self'", "https: data:"],
-      "Content-Security-Policy": "default-src 'self'",
+      "default-src": "self",
     },
   })
 );
