@@ -22,49 +22,51 @@ const Signup = () => {
 
   return (
     <div className={classes["signup-wrapper"]}>
-      <div className={classes["signup-left"]}>
-        <div className={classes["sl-add-pic"]}>
-          <form className={classes["sl-form"]}>
-            <label htmlFor="file-input">
-              {previewSource ? (
-                <img
-                  className={classes["sl-preview-pic"]}
-                  src={previewSource}
-                  alt="profile pic"
-                />
-              ) : (
-                <img
-                  className={classes["sl-add-pic-icon"]}
-                  src={ppIcon}
-                  alt="profile icon"
-                />
-              )}
-              {!previewSource && (
-                <AddCircleOutline className={classes["add-icon"]} />
-              )}
-            </label>
-            <label>
-              {previewSource && (
-                <RemoveCircleOutline
-                  className={classes["remove-icon"]}
-                  onClick={() => {
-                    setPreviewSource();
-                  }}
-                />
-              )}
-            </label>
-            <input
-              id="file-input"
-              type="file"
-              name="image"
-              onChange={handleFileInputChange}
-              value=""
-            />
-          </form>
+      <div className={classes["signup-content-wrapper"]}>
+        <div className={classes["signup-left"]}>
+          <div className={classes["sl-add-pic"]}>
+            <form className={classes["sl-form"]}>
+              <label htmlFor="file-input">
+                {previewSource ? (
+                  <img
+                    className={classes["sl-preview-pic"]}
+                    src={previewSource}
+                    alt="profile pic"
+                  />
+                ) : (
+                  <img
+                    className={classes["sl-add-pic-icon"]}
+                    src={ppIcon}
+                    alt="profile icon"
+                  />
+                )}
+                {!previewSource && (
+                  <AddCircleOutline className={classes["add-icon"]} />
+                )}
+              </label>
+              <label>
+                {previewSource && (
+                  <RemoveCircleOutline
+                    className={classes["remove-icon"]}
+                    onClick={() => {
+                      setPreviewSource();
+                    }}
+                  />
+                )}
+              </label>
+              <input
+                id="file-input"
+                type="file"
+                name="image"
+                onChange={handleFileInputChange}
+                value=""
+              />
+            </form>
+          </div>
         </div>
-      </div>
-      <div className={classes["signup-right"]}>
-        <SignupForm profilePicture={previewSource} />
+        <div className={classes["signup-right"]}>
+          <SignupForm profilePicture={previewSource} />
+        </div>
       </div>
     </div>
   );

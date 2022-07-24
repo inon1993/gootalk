@@ -59,6 +59,7 @@
 @media only screen and (max-width: 650px) {
   .login-wrapper {
     flex-direction: column;
+    max-height: 100vh;
   }
   .login-left {
     flex: 1;

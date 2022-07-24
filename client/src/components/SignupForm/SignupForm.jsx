@@ -216,11 +216,16 @@ const LoginForm = ({ profilePicture }) => {
       <div className={classes["sr-title-wrapper"]}>
         <h2 className={classes["sr-title"]}>Sign Up</h2>
       </div>
-      <form className={classes["sr-form"]} onSubmit={signupHandler}>
+      <form
+        className={classes["sr-form"]}
+        onSubmit={signupHandler}
+        autoComplete="off"
+      >
         <input
-          autoComplete="new-off"
-          style={{ display: "none" }}
-          id="fake-hidden-input-to-stop-google-address-lookup"
+          type="hidden"
+          value="something"
+          // style={{ display: "none" }}
+          // id="fake-hidden-input-to-stop-google-address-lookup"
         />
         <div className={classes["sr-field-text"]}>
           <span className={classes["sr-form-text"]}>First name</span>
