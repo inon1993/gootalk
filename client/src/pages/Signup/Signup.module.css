@@ -93,29 +93,37 @@
 @media only screen and (max-width: 650px) {
   .signup-wrapper {
     flex-direction: column;
+    /* overflow-y: scroll; */
   }
 
   .signup-content-wrapper {
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 100vh;
+    overflow-y: scroll;
   }
 
   .signup-left {
-    display: block;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    margin-top: 25px;
   }
   .signup-right {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    margin-bottom: 15px;
+    /* min-height: 100vh; */
   }
 
   .sl-add-pic {
-    position: absolute;
-    left: 15%;
+    /* position: absolute; */
+    display: flex;
+    align-items: center;
+    /* left: 15%; */
     z-index: 10;
+    margin-top: 25px;
     /* top: calc(50vh - 300px); */
   }
 
@@ -134,6 +142,22 @@
     font-size: 1.8rem !important;
     top: 3.5rem;
     right: 0.3rem;
+  }
+}
+
+@media only screen and (max-height: 550px) {
+  .sl-add-pic {
+    top: calc(50vh - 307px);
+  }
+
+  .signup-wrapper {
+    overflow-y: scroll;
+    align-items: flex-start;
+  }
+
+  .signup-left {
+    min-height: 100vh;
+    justify-content: end;
   }
 }
 
@@ -157,21 +181,5 @@
     font-size: 1.2rem !important;
     top: 2.9rem;
     right: 0.2rem;
-  }
-}
-
-@media only screen and (max-height: 550px) {
-  .sl-add-pic {
-    top: calc(50vh - 307px);
-  }
-
-  .signup-wrapper {
-    overflow-y: scroll;
-    align-items: flex-start;
-  }
-
-  .signup-left {
-    min-height: 100vh;
-    justify-content: end;
   }
 }
