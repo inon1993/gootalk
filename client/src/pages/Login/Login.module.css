@@ -87,11 +87,11 @@
 @media only screen and (max-height: 550px) {
   .login-wrapper {
     overflow-y: scroll;
-    align-items: flex-start;
+    /* align-items: flex-start; */
   }
 
   .login-left {
-    min-height: 100vh;
+    max-height: 100vh;
     justify-content: center;
   }
 }
