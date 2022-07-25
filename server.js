@@ -24,6 +24,8 @@ mongoose.connection.on("connected", () => {
   console.log("Mongoose is connected.");
 });
 
+app.use(cookieParser());
+
 app.use(cors({
   origin: "http://gootalk.herokuapp.com", 
   // origin: "true",
@@ -46,7 +48,6 @@ app.use(
   })
 );
 app.use(morgan("common"));
-app.use(cookieParser());
 
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
