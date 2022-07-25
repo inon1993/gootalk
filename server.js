@@ -24,7 +24,10 @@ mongoose.connection.on("connected", () => {
   console.log("Mongoose is connected.");
 });
 
-app.use(cors());
+app.use(cors({
+  origin: "https://gootalk.herokuapp.com/", 
+  credentials: true,
+}));
 
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
