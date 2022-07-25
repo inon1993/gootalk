@@ -25,7 +25,7 @@ mongoose.connection.on("connected", () => {
 });
 
 app.use(cors({
-  origin: "https://gootalk.herokuapp.com/", 
+  origin: "http://gootalk.herokuapp.com/", 
   credentials: true,
 }));
 
