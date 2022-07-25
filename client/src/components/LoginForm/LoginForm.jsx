@@ -55,11 +55,11 @@ const LoginForm = () => {
       console.log(newUser);
       dispatch(userActions.setUser(newUserToSet));
       dispatch(accessTokenActions.setAccessToken(accessToken));
+      dispatch(userActions.setFriends({ friends: userData.friends }));
       const notifications = await req.get(`/notifications/${userData._id}`);
       dispatch(
         userActions.setNotifications({ notifications: notifications.data })
       );
-      dispatch(userActions.setFriends({ friends: userData.friends }));
       navigate("/");
       setIsLoading(false);
     } catch (err) {
