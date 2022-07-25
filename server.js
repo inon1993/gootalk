@@ -5,7 +5,7 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const path = require("path");
-const cors = require("cors")
+const cors = require("cors");
 
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
@@ -15,6 +15,9 @@ const logoutRoute = require("./routes/logout");
 const notificationsRoute = require("./routes/notifications");
 
 const app = express();
+
+app.enable("trust proxy");
+
 const PORT = process.env.PORT || 8080;
 
 mongoose.connect(
@@ -24,14 +27,16 @@ mongoose.connection.on("connected", () => {
   console.log("Mongoose is connected.");
 });
 
-app.use(cors({
-  origin: ["http://gootalk.herokuapp.com", "https://gootalk.herokuapp.com"],
-  // origin: "true",
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-  allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'], 
-  credentials: true,
-  exposedHeaders: ['*', 'Authorization' ] 
-}));
+app.use(
+  cors({
+    origin: ["http://gootalk.herokuapp.com", "https://gootalk.herokuapp.com"],
+    // origin: "true",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
+    credentials: true,
+    exposedHeaders: ["*", "Authorization"],
+  })
+);
 
 app.use(cookieParser());
 
@@ -50,6 +55,14 @@ app.use(
   })
 );
 app.use(morgan("common"));
+
+app.use(function (request, response, next) {
+  if (process.env.NODE_ENV != "development" && !request.secure) {
+    return response.redirect("https://" + request.headers.host + request.url);
+  }
+
+  next();
+});
 
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
