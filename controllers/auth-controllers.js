@@ -54,7 +54,7 @@ const loginCtr = async (req, res) => {
     const accessToken = tokens.accessToken;
     res.cookie("jwt", tokens.refreshToken, {
       httpOnly: true,
-      // sameSite: "None",
+      sameSite: "none",
       secure: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
