@@ -28,8 +28,8 @@ app.use(cors({
   origin: "http://gootalk.herokuapp.com", 
   // origin: "true",
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-  credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization', 'x-csrf-token'], 
+  credentials: true,
   exposedHeaders: ['*', 'Authorization' ] 
 }));
 
