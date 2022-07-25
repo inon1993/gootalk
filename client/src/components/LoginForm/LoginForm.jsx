@@ -52,6 +52,7 @@ const LoginForm = () => {
         city: userData.city,
         profilePicture: userData.profilePicture,
       };
+      console.log(newUser);
       dispatch(userActions.setUser(newUserToSet));
       dispatch(accessTokenActions.setAccessToken(accessToken));
       const notifications = await req.get(`/notifications/${userData._id}`);
