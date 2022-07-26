@@ -31,10 +31,10 @@ app.use(
   cors({
     origin: ["http://gootalk.herokuapp.com", "https://gootalk.herokuapp.com"],
     // origin: "true",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-    allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
+    // methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    // allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
     credentials: true,
-    exposedHeaders: ["*", "Authorization"],
+    // exposedHeaders: ["*", "Authorization"],
   })
 );
 
@@ -57,7 +57,7 @@ app.use(
 app.use(morgan("common"));
 
 app.use(function (request, response, next) {
-  if (process.env.NODE_ENV != "development" && !request.secure) {
+  if (process.env.NODE_ENV === "production" && !request.secure) {
     return response.redirect("https://" + request.headers.host + request.url);
   }
 

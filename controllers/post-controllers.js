@@ -79,6 +79,7 @@ const getAllUserPostsCtr = async (req, res) => {
 };
 
 const getTimelineCtr = async (req, res) => {
+  console.log(req.body);
   try {
     const user = await User.findById(req.params.userId);
     const posts = await Post.find({
