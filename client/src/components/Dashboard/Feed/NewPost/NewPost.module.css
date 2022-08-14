@@ -51,13 +51,17 @@
 
 .share-post {
   font-family: "Poppins", sans-serif;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 0;
+  width: 100px;
   border: none;
   border-radius: 10px;
   background-color: hsl(206.7, 33.3%, 94.7%);
   color: hsl(220.3, 62.5%, 22%);
   transition: 250ms;
   outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .share-post:hover {

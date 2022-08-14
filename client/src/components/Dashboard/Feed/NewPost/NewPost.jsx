@@ -9,9 +9,12 @@ import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import { userActions } from "../../../../store/user-slice";
 import useLogout from "../../../../hooks/useLogout";
 import UploadPostImg from "./UploadPostImg/UploadPostImg";
+import { CircularProgress } from "@mui/material";
+import { useEffect } from "react";
 
 const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
   const user = useSelector((state) => state.user.user);
+  const [newPostLoading, setNewPostLoading] = useState(false)
   const [img, setImg] = useState("");
   const [post, setPost] = useState({
     userId: user.userId,
@@ -23,7 +26,13 @@ const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
   const location = useLocation();
   const logout = useLogout();
 
+  useEffect(() => {
+    setNewPostLoading(false);
+  }, [])
+
   const sharePostHandler = async () => {
+    console.log(1);
+    setNewPostLoading(true)
     let imgUrl = "";
     try {
       if (img) {
@@ -43,10 +52,12 @@ const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
         };
       });
       setImg();
+      setNewPostLoading(false);
     } catch (error) {
       await logout();
       navigate("/login", { state: { from: location }, replace: true });
       dispach(userActions.logoutUser());
+      setNewPostLoading(false);
     }
   };
 
@@ -85,8 +96,8 @@ const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
       <hr className={classes["new-post-br"]} />
       <div className={classes["new-post-features"]}>
         <UploadPostImg imgToSet={setImg} />
-        <button className={classes["share-post"]} onClick={sharePostHandler}>
-          Share
+        <button className={classes["share-post"]} onClick={sharePostHandler} disabled={newPostLoading}>
+          {newPostLoading ? <CircularProgress style={{ color: "white" }} size="20px" /> : "Share"}
         </button>
       </div>
       <div className={classes["preview-img-wrapper"]}>
