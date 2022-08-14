@@ -30,9 +30,9 @@ const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
         imgUrl = await profilePictureUrl(img);
       }
       await req.post("/post", { ...post, image: imgUrl });
+      pageStart(0);
       resetUsers([]);
       resetPosts([]);
-      pageStart(0);
       loading(true);
       onReload();
       setPost((prev) => {
