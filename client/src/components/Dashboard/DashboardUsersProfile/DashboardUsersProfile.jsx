@@ -34,7 +34,11 @@ const DashboardUsersProfile = () => {
         (n) => n.senderUserId === currUser.userId && n.status === false
       );
 
-      if (match.length > 0 || getUser.data.friends.includes(currUser.userId)) {
+      const existingNotification = currUser.notifications.filter(
+        (n) => n.senderUserId === getUser.data._id && n.status === false
+      )
+
+      if (match.length > 0 || getUser.data.friends.includes(currUser.userId) || existingNotification.length > 0) {
         setDisableReqBtn(true);
       }
     };

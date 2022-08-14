@@ -31,7 +31,6 @@ const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
   }, [])
 
   const sharePostHandler = async () => {
-    console.log(1);
     setNewPostLoading(true)
     let imgUrl = "";
     try {
