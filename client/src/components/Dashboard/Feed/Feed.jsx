@@ -102,7 +102,7 @@ const Feed = () => {
   return (
     <div className={classes.feed}>
       <NewPost
-        onReload={getPosts}
+        releseEndPosts={setEndPosts}
         resetUsers={setPostsUsers}
         resetPosts={setPosts}
         loading={setInitialLoading}

@@ -12,7 +12,7 @@ import UploadPostImg from "./UploadPostImg/UploadPostImg";
 import { CircularProgress } from "@mui/material";
 import { useEffect } from "react";
 
-const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
+const NewPost = ({ releseEndPosts, resetUsers, resetPosts, loading, pageStart }) => {
   const user = useSelector((state) => state.user.user);
   const [newPostLoading, setNewPostLoading] = useState(false)
   const [img, setImg] = useState("");
@@ -41,8 +41,8 @@ const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
       pageStart(0);
       resetUsers([]);
       resetPosts([]);
+      releseEndPosts(false)
       loading(true);
-      onReload();
       setPost((prev) => {
         return {
           ...prev,
@@ -95,7 +95,7 @@ const NewPost = ({ onReload, resetUsers, resetPosts, loading, pageStart }) => {
       <hr className={classes["new-post-br"]} />
       <div className={classes["new-post-features"]}>
         <UploadPostImg imgToSet={setImg} />
-        <button className={classes["share-post"]} onClick={sharePostHandler} disabled={newPostLoading}>
+        <button className={classes["share-post"]} onMouseDown={sharePostHandler} disabled={newPostLoading}>
           {newPostLoading ? <CircularProgress style={{ color: "white" }} size="20px" /> : "Share"}
         </button>
       </div>
