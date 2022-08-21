@@ -116,7 +116,6 @@ const userStats = async (req, res) => {
     const postsLen = posts.length;
     const date = new Date(user.createdAt);
 
-    console.log(date.getFullYear());
     return res.status(200).json({
       friends: friendsLen,
       posts: postsLen,

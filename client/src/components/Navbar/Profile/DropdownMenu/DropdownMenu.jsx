@@ -7,8 +7,10 @@ import {
 } from "@mui/icons-material";
 import { useNavigate } from "react-router";
 import useLogout from "../../../../hooks/useLogout";
+import { useSelector } from "react-redux";
 
 const DropdownMenu = () => {
+  const user = useSelector((state) => state.user.user);
   const logout = useLogout();
   const navigate = useNavigate();
   
@@ -20,7 +22,7 @@ const DropdownMenu = () => {
   return (
     <div className={classes.dropdown}>
       <div className={classes["dropdown-options"]}>
-        <div className={classes["dropdown-item"]}>
+        <div className={classes["dropdown-item"]} onClick={() => {navigate(`/profile/${user.firstname}-${user.lastname}`)}}>
           <AccountCircleRounded className={classes["dropdown-item-icon"]} />
           <span className={classes["dropdown-item-text"]}>My Account</span>
         </div>
