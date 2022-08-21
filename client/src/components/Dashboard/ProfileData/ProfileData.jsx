@@ -3,9 +3,10 @@ import classes from "./ProfileData.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import { useSelector } from "react-redux";
 import ppIcon from "../../../images/pp-icon-biggest.png";
+import coverImg from "../../../images/gootalk-cover.jpg";
 import { Edit } from "@mui/icons-material";
 
-const ProfileData = ({onEditProfile}) => {
+const ProfileData = ({ onEditProfile }) => {
   const [isStats, setIsStats] = useState(true);
   const user = useSelector((state) => state.user.user);
 
@@ -18,10 +19,13 @@ const ProfileData = ({onEditProfile}) => {
       <div className={classes["profile-images"]}>
         <img
           className={classes["profile-cover"]}
-          src="https://img.wallpapersafari.com/desktop/800/450/20/1/MPCYk3.jpg"
+          src={user.coverPicture || coverImg}
           alt="cover"
         />
-        <div className={classes["edit-button-div"]} onClick={() => onEditProfile(true)}>
+        <div
+          className={classes["edit-button-div"]}
+          onClick={() => onEditProfile(true)}
+        >
           <button className={classes["edit-profile-button"]}>{<Edit />}</button>
         </div>
         <div className={classes["profile-img-text"]}>

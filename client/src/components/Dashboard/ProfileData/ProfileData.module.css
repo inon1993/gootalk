@@ -17,6 +17,9 @@
   position: absolute;
   right: 10px;
   top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .edit-profile-button {
@@ -35,6 +38,8 @@
 
 .profile-cover {
   height: 250px;
+  max-width: 100%;
+  min-width: 100%;
   object-fit: cover;
 }
 

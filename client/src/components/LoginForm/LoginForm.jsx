@@ -51,6 +51,7 @@ const LoginForm = () => {
         country: userData.country,
         city: userData.city,
         profilePicture: userData.profilePicture,
+        coverPicture: userData.coverPicture,
       };
       dispatch(userActions.setUser(newUserToSet));
       dispatch(accessTokenActions.setAccessToken(accessToken));

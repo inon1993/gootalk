@@ -2,6 +2,7 @@ import classes from "./DashboardUsersProfile.module.css";
 import { useSelector } from "react-redux";
 import UserPosts from "../UserPosts/UserPosts";
 import ppIcon from "../../../images/pp-icon.webp";
+import coverImg from "../../../images/gootalk-cover.jpg";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
@@ -36,9 +37,13 @@ const DashboardUsersProfile = () => {
 
       const existingNotification = currUser.notifications.filter(
         (n) => n.senderUserId === getUser.data._id && n.status === false
-      )
+      );
 
-      if (match.length > 0 || getUser.data.friends.includes(currUser.userId) || existingNotification.length > 0) {
+      if (
+        match.length > 0 ||
+        getUser.data.friends.includes(currUser.userId) ||
+        existingNotification.length > 0
+      ) {
         setDisableReqBtn(true);
       }
     };
@@ -95,7 +100,7 @@ const DashboardUsersProfile = () => {
             <div className={classes["profile-images"]}>
               <img
                 className={classes["profile-cover"]}
-                src="https://img.wallpapersafari.com/desktop/800/450/20/1/MPCYk3.jpg"
+                src={user.coverPicture || coverImg}
                 alt="cover"
               />
               <div className={classes["profile-img-text"]}>
