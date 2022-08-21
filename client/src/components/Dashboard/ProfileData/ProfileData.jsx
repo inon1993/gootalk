@@ -2,9 +2,10 @@ import { useState } from "react";
 import classes from "./ProfileData.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import { useSelector } from "react-redux";
-import ppIcon from "../../../images/pp-icon-big.png";
+import ppIcon from "../../../images/pp-icon-biggest.png";
+import { Edit } from "@mui/icons-material";
 
-const ProfileData = () => {
+const ProfileData = ({onEditProfile}) => {
   const [isStats, setIsStats] = useState(true);
   const user = useSelector((state) => state.user.user);
 
@@ -20,6 +21,9 @@ const ProfileData = () => {
           src="https://img.wallpapersafari.com/desktop/800/450/20/1/MPCYk3.jpg"
           alt="cover"
         />
+        <div className={classes["edit-button-div"]} onClick={() => onEditProfile(true)}>
+          <button className={classes["edit-profile-button"]}>{<Edit />}</button>
+        </div>
         <div className={classes["profile-img-text"]}>
           <img
             className={classes["profile-pic"]}

@@ -13,6 +13,26 @@
   width: 100%;
 }
 
+.edit-button-div {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.edit-profile-button {
+  border: none;
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px 8px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
+  cursor: pointer;
+  color: hsl(220.3, 62.5%, 22%);
+}
+
+.edit-profile-button:hover {
+  color: hsl(208.7, 100%, 53.7%);
+}
+
 .profile-cover {
   height: 250px;
   object-fit: cover;

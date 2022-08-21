@@ -4,8 +4,10 @@ import UserPosts from "../UserPosts/UserPosts";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import EditProfile from "../../EditProfile/EditProfile";
 
 const DashboardProfile = () => {
+  const [editProfile, setEditProfile] = useState(false);
   const [userPosts, setUserPosts] = useState([]);
   const req = useAxiosPrivate();
   const user = useSelector((state) => state.user.user);
@@ -25,8 +27,8 @@ const DashboardProfile = () => {
 
   return (
     <>
-      <div className={classes["profile-data"]}>
-        <ProfileData />
+      {!editProfile ? <div className={classes["profile-data"]}>
+        <ProfileData onEditProfile={setEditProfile} />
         <div className={classes["profile-user-posts"]}>
           {userPosts.length > 0 ? (
             <UserPosts posts={userPosts} user={user} />
@@ -34,8 +36,10 @@ const DashboardProfile = () => {
             <span>No posts.</span>
           )}
         </div>
-      </div>
-      <div className={classes["right-menu"]}></div>
+      </div> : 
+      <div className={classes["edit-profile"]}>
+        <EditProfile onCloseEdit={setEditProfile} />
+      </div>}
     </>
   );
 };
