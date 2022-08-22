@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import classes from "./LocationSelector.module.css";
 
 export const CountrySelector = ({
@@ -6,12 +7,23 @@ export const CountrySelector = ({
   onSetCountry,
   onSetCountryObj,
   onSetUser,
+  // onEmptyCountries
 }) => {
+
+  // const checkLength = () => {
+  //   if(countries.length > 0) {
+  //     onEmptyCountries(false)
+  //   } else {
+  //     onEmptyCountries(true)
+  //   }
+  // }
+  
   return (
     <div className={classes["sr-country"]}>
       {countries
         .filter((c) => {
           if (c.country.toLowerCase().includes(country.toLowerCase())) {
+            // checkLength();
             return c;
           }
         })
@@ -34,7 +46,8 @@ export const CountrySelector = ({
               {country.country}
             </span>
           );
-        })}
+        })
+      }
     </div>
   );
 };
