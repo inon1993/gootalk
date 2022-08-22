@@ -11,7 +11,7 @@ const EditProfile = () => {
   const [countries, setCountries] = useState([]);
   const [countryFocus, setCountryFocus] = useState(false);
   const [countryObj, setCountryObj] = useState({});
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState(user.country);
   // const [isEmptyCountries, setIsEmptyCountries] = useState(true)
 
   const [cityFocus, setCityFocus] = useState(false);
@@ -88,7 +88,7 @@ const EditProfile = () => {
           className={`${classes["edit-input-country"]}`}
           name="country"
           type="text"
-          value={country || user.country}
+          value={country}
           onChange={countryHandler}
           onFocus={() => {
             setCountryFocus(true);

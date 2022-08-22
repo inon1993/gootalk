@@ -27,6 +27,8 @@
 
 .profile-cover {
   height: 250px;
+  max-width: 100%;
+  min-width: 100%;
   object-fit: cover;
 }
 
@@ -67,6 +69,7 @@
 .profile-user-posts {
   width: 80%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
