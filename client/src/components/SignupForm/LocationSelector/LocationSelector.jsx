@@ -9,7 +9,6 @@ export const CountrySelector = ({
   onSetUser,
   // onEmptyCountries
 }) => {
-
   // const checkLength = () => {
   //   if(countries.length > 0) {
   //     onEmptyCountries(false)
@@ -17,7 +16,7 @@ export const CountrySelector = ({
   //     onEmptyCountries(true)
   //   }
   // }
-  
+
   return (
     <div className={classes["sr-country"]}>
       {countries
@@ -46,13 +45,13 @@ export const CountrySelector = ({
               {country.country}
             </span>
           );
-        })
-      }
+        })}
     </div>
   );
 };
 
 export const CitySelector = ({ city, country, onSetCity, onSetUser }) => {
+  console.log(country);
   return (
     <div className={classes["sr-country"]}>
       {country.cities
