@@ -9,7 +9,7 @@ import {
 } from "../SignupForm/LocationSelector/LocationSelector";
 import getLocations from "../../helpers/countries-api/getLocations";
 
-const EditProfile = () => {
+const EditProfile = ({onCloseEdit}) => {
   const user = useSelector((state) => state.user.user);
   const [countries, setCountries] = useState([]);
   const [countryFocus, setCountryFocus] = useState(false);
@@ -21,13 +21,11 @@ const EditProfile = () => {
   const [city, setCity] = useState(user.city);
 
   const [updatedUser, setUpdatedUser] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    profilePicture: "",
-    country: "",
-    city: "",
-    password: "",
+    firstname: user.firstname,
+    lastname: user.lastname,
+    profilePicture: user.profilePicture,
+    country: user.country,
+    city: user.city,
   });
 
   useEffect(() => {
@@ -38,16 +36,30 @@ const EditProfile = () => {
         return country.country === user.country;
       });
       if (countryObjToSet) {
-        console.log(1);
         setCountryObj(countryObjToSet[0]);
       }
-      console.log(countryObjToSet);
     };
 
     getCountriesList();
   }, []);
 
-  console.log(countryObj);
+  const updateFirstnameHandler = (e) => {
+    setUpdatedUser((prevState) => {
+      return {
+        ...prevState,
+        firstname: e.target.value,
+      };
+    })
+  }
+
+  const updateLasttnameHandler = (e) => {
+    setUpdatedUser((prevState) => {
+      return {
+        ...prevState,
+        lastname: e.target.value,
+      };
+    })
+  }
 
   const countryHandler = (e) => {
     setCountry(e.target.value);
@@ -70,6 +82,10 @@ const EditProfile = () => {
     setCountryObj(null);
   };
 
+  const cancelHandler = () => {
+    onCloseEdit(false)
+  }
+
   return (
     <div className={classes["edit-wrapper"]}>
       <div className={classes["profile-cover-wrapper"]}>
@@ -88,20 +104,22 @@ const EditProfile = () => {
           alt="cover"
         />
       </div>
-      <div className={classes["edit-firstname"]}>
+      <div className={classes["edit-firstname-lastname"]}>
         <span className={classes["edit-text"]}>First name:</span>
         <input
           className={classes["edit-input"]}
           type="text"
           defaultValue={user.firstname}
+          onChange={updateFirstnameHandler}
         />
       </div>
-      <div className={classes["edit-firstname"]}>
+      <div className={classes["edit-firstname-lastname"]}>
         <span className={classes["edit-text"]}>Last name:</span>
         <input
           className={classes["edit-input"]}
           type="text"
           defaultValue={user.lastname}
+          onChange={updateLasttnameHandler}
         />
       </div>
       <div className={classes["edit-country-city-wrapper"]}>
@@ -166,6 +184,10 @@ const EditProfile = () => {
             />
           )}
         </div>
+      </div>
+      <div className={classes["edit-buttons-wrapper"]}>
+        <button className={classes["edit-save-btn"]} onClick={() => console.log(updatedUser)}>Save</button>
+        <button className={classes["edit-cancel-btn"]} onClick={cancelHandler}>Cancel</button>
       </div>
     </div>
   );
