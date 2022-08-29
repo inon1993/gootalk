@@ -1,14 +1,22 @@
 .edit-wrapper {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
+}
+
+.edit-form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .profile-cover-wrapper {
   display: flex;
   align-items: center;
   max-width: 100%;
-  margin: 50px 50px 20px 50px;
+  margin: 50px 0 20px 0;
 }
 
 .edit-text {
@@ -29,7 +37,7 @@
   display: flex;
   align-items: center;
   max-width: 100%;
-  margin: 0 50px 20px 50px;
+  margin-bottom: 20px;
 }
 
 .profile-pic {
@@ -43,7 +51,7 @@
   display: flex;
   align-items: center;
   max-width: 100%;
-  margin: 0 50px 20px 50px;
+  margin-bottom: 20px;
 }
 
 .edit-input {
@@ -73,7 +81,7 @@
   display: flex;
   align-items: center;
   max-width: 100%;
-  margin: 0 50px 20px 50px;
+  margin-bottom: 20px;
 }
 
 .edit-country-city {
@@ -113,13 +121,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* width: 100%; */
+  /* margin: 0 25px; */
+  width: 100%;
 }
 
 .success-msg {
   background-color: rgb(226, 255, 226);
   border: 1px solid hsl(120, 39.3%, 54.1%);
-  border-radius: 5px;
+  border-radius: 10px;
   color: hsl(120, 39.3%, 54.1%);
   font-size: 0.9rem;
   padding: 3px;
@@ -135,7 +144,7 @@
   text-align: center;
   background-color: pink;
   border: 1px solid red;
-  border-radius: 5px;
+  border-radius: 10px;
   color: red;
   font-size: 0.9rem;
   padding: 3px;
@@ -197,6 +206,12 @@
   color: white;
 }
 
+@media only screen and (max-width: 1150px) {
+  .success-msg, .error-msg {
+    width: 70%;
+  }
+}
+
 @media only screen and (max-width: 550px) {
   .edit-firstname-lastname,
   .edit-firstname,
@@ -214,6 +229,14 @@
   .edit-input-country-city {
     width: 100%;
   }
+
+  .msg-wrapper {
+    margin: 0;
+  }
+
+  .success-msg, .error-msg {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 400px) {
@@ -221,7 +244,7 @@
     flex-direction: column;
     align-items: center;
     /* width: 80%; */
-    margin: 70px 50px;
+    margin: 70px 0;
   }
 
   .edit-save-btn,
