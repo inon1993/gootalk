@@ -11,6 +11,7 @@ import getLocations from "../../helpers/countries-api/getLocations";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user-slice";
+import { CircularProgress } from "@mui/material";
 
 const EditProfile = ({ onCloseEdit }) => {
   const user = useSelector((state) => state.user.user);
@@ -31,9 +32,10 @@ const EditProfile = ({ onCloseEdit }) => {
     city: user.city,
   });
 
-  const [isValid, setIsValid] = useState({firstname: null, lastname: true});
+  const [isValid, setIsValid] = useState({ firstname: true, lastname: true });
   const [isLoading, setIsLoading] = useState(false);
   const [errMsg, setErrMsg] = useState({ code: null, msg: "" });
+  const [successMsg, setSuccessMsg] = useState(false);
   const req = useAxiosPrivate();
   const dispatch = useDispatch();
 
@@ -53,21 +55,41 @@ const EditProfile = ({ onCloseEdit }) => {
   }, []);
 
   const updateFirstnameHandler = (e) => {
+    setErrMsg({ code: null, msg: "" });
     setUpdatedUser((prevState) => {
       return {
         ...prevState,
         firstname: e.target.value,
       };
     });
+    if (e.target.value.trim().length < 2) {
+      setIsValid((prev) => {
+        return { ...prev, firstname: false };
+      });
+    } else {
+      setIsValid((prev) => {
+        return { ...prev, firstname: true };
+      });
+    }
   };
 
-  const updateLasttnameHandler = (e) => {
+  const updateLastnameHandler = (e) => {
+    setErrMsg({ code: null, msg: "" });
     setUpdatedUser((prevState) => {
       return {
         ...prevState,
         lastname: e.target.value,
       };
     });
+    if (e.target.value.trim().length < 2) {
+      setIsValid((prev) => {
+        return { ...prev, lastname: false };
+      });
+    } else {
+      setIsValid((prev) => {
+        return { ...prev, lastname: true };
+      });
+    }
   };
 
   const countryHandler = (e) => {
@@ -93,22 +115,34 @@ const EditProfile = ({ onCloseEdit }) => {
 
   const updateHandler = async (e) => {
     e.preventDefault();
-    // if(!isValid.firstname || !isValid.lastname) {
-    //   return;
-    // }
+    if (!isValid.firstname || !isValid.lastname) {
+      setErrMsg({
+        code: null,
+        msg: "Invalid fields. Firstname and Lastname must be at least 2 characters.",
+      });
+      return;
+    }
+    setErrMsg({ code: null, msg: "" });
     setIsLoading(true);
     setErrMsg({ code: null, msg: "" });
     try {
-      await req.put(`/user/${user.userId}`, {...updatedUser, userId: user.userId})
-      dispatch(userActions.setUser({...updatedUser, userId: user.userId}));
+      await req.put(`/user/${user.userId}`, {
+        ...updatedUser,
+        userId: user.userId,
+      });
+      dispatch(userActions.setUser({ ...updatedUser, userId: user.userId }));
       setIsLoading(false);
+      setSuccessMsg(true);
+      setTimeout(() => {
+        setSuccessMsg(false);
+      }, 2000);
     } catch (error) {
       setIsLoading(false);
-      if(error.response.status === 500) {
+      if (error.response.status === 500) {
         setErrMsg({
           code: 500,
           msg: "Something went wrong. Please try again.",
-        })
+        });
       }
     }
   };
@@ -139,7 +173,9 @@ const EditProfile = ({ onCloseEdit }) => {
         <div className={classes["edit-firstname-lastname"]}>
           <span className={classes["edit-text"]}>First name:</span>
           <input
-            className={classes["edit-input"]}
+            className={`${classes["edit-input"]} ${
+              isValid.firstname === false && classes["edit-input-invalid"]
+            }`}
             type="text"
             defaultValue={user.firstname}
             onChange={updateFirstnameHandler}
@@ -148,10 +184,12 @@ const EditProfile = ({ onCloseEdit }) => {
         <div className={classes["edit-firstname-lastname"]}>
           <span className={classes["edit-text"]}>Last name:</span>
           <input
-            className={classes["edit-input"]}
+            className={`${classes["edit-input"]} ${
+              isValid.lastname === false && classes["edit-input-invalid"]
+            }`}
             type="text"
             defaultValue={user.lastname}
-            onChange={updateLasttnameHandler}
+            onChange={updateLastnameHandler}
           />
         </div>
         <div className={classes["edit-country-city-wrapper"]}>
@@ -217,9 +255,25 @@ const EditProfile = ({ onCloseEdit }) => {
             )}
           </div>
         </div>
+        {(errMsg.msg !== "" || successMsg === true) && (
+          <div className={classes["msg-wrapper"]}>
+            {successMsg && (
+              <span className={classes["success-msg"]}>
+                Profile has been updated successfully.
+              </span>
+            )}
+            {errMsg.msg !== "" && (
+              <span className={classes["error-msg"]}>{errMsg.msg}</span>
+            )}
+          </div>
+        )}
         <div className={classes["edit-buttons-wrapper"]}>
           <button className={classes["edit-save-btn"]}>
-            Save
+            {isLoading ? (
+              <CircularProgress style={{ color: "white" }} size="20px" />
+            ) : (
+              "Save"
+            )}
           </button>
           <button
             className={classes["edit-cancel-btn"]}

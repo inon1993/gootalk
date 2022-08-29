@@ -63,6 +63,11 @@
   font-family: "Poppins", sans-serif;
 }
 
+.edit-input-invalid {
+  border-bottom: 1px solid red;
+  color: red;
+}
+
 .edit-country-city-wrapper {
   /* position: relative; */
   display: flex;
@@ -104,85 +109,127 @@
   opacity: 50%;
 }
 
+.msg-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 100%; */
+}
+
+.success-msg {
+  background-color: rgb(226, 255, 226);
+  border: 1px solid hsl(120, 39.3%, 54.1%);
+  border-radius: 5px;
+  color: hsl(120, 39.3%, 54.1%);
+  font-size: 0.9rem;
+  padding: 3px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  padding: 5px;
+}
+
+.error-msg {
+  text-align: center;
+  background-color: pink;
+  border: 1px solid red;
+  border-radius: 5px;
+  color: red;
+  font-size: 0.9rem;
+  padding: 3px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  padding: 5px;
+}
+
 .edit-buttons-wrapper {
-    display: flex;
-    justify-content: center;
-    margin: 70px 0;
+  display: flex;
+  justify-content: center;
+  margin: 70px 0;
 }
 
 .edit-save-btn {
-    width: 25%;
-    margin-right: 25px;
-    background-color: hsl(208.7, 100%, 53.7%);
-    border: 1px solid hsl(208.7, 100%, 53.7%);
-    border-radius: 10px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 200ms;
-    font-size: 0.9rem;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Poppins", sans-serif;
+  width: 25%;
+  margin-right: 25px;
+  background-color: hsl(208.7, 100%, 53.7%);
+  border: 1px solid hsl(208.7, 100%, 53.7%);
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 200ms;
+  font-size: 0.9rem;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
 }
 
 .edit-save-btn:hover {
-    background-color: hsl(220.3, 62.5%, 22%);
-    border: 1px solid hsl(220.3, 62.5%, 22%);
+  background-color: hsl(220.3, 62.5%, 22%);
+  border: 1px solid hsl(220.3, 62.5%, 22%);
 }
 
 .edit-cancel-btn {
-    width: 25%;
-    background-color: white;
-    border: 1px solid hsl(0, 0%, 13.3%);
-    border-radius: 10px;
-    color: hsl(0, 0%, 13.3%);
-    font-weight: 600;
-    cursor: pointer;
-    transition: 200ms;
-    font-size: 0.9rem;
-    height: 40px;
-    outline: none;
-    font-family: "Poppins", sans-serif;
+  width: 25%;
+  background-color: white;
+  border: 1px solid hsl(0, 0%, 13.3%);
+  border-radius: 10px;
+  color: hsl(0, 0%, 13.3%);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 200ms;
+  font-size: 0.9rem;
+  height: 40px;
+  outline: none;
+  font-family: "Poppins", sans-serif;
 }
 
 .edit-cancel-btn:hover {
-    background-color: hsl(0, 0%, 13.3%);
-    border: 1px solid hsl(0, 0%, 13.3%);
-    color: white;
+  background-color: hsl(0, 0%, 13.3%);
+  border: 1px solid hsl(0, 0%, 13.3%);
+  color: white;
 }
 
 @media only screen and (max-width: 550px) {
-    .edit-firstname-lastname, .edit-firstname, .edit-country-city-wrapper {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .edit-input {
-        width: 100%;
-        box-sizing: border-box; 
-    }
+  .edit-firstname-lastname,
+  .edit-firstname,
+  .edit-country-city-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    .edit-country-city, .edit-input-country-city {
-        width: 100%;
-    }
+  .edit-input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .edit-country-city,
+  .edit-input-country-city {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 400px) {
-    .edit-buttons-wrapper {
-        flex-direction: column;
-        align-items: center;
-        /* width: 80%; */
-        margin: 70px 50px;
-    }
+  .edit-buttons-wrapper {
+    flex-direction: column;
+    align-items: center;
+    /* width: 80%; */
+    margin: 70px 50px;
+  }
 
-    .edit-save-btn, .edit-cancel-btn {
-        width: 100%;
-    }
+  .edit-save-btn,
+  .edit-cancel-btn {
+    width: 100%;
+  }
 
-    .edit-save-btn {
-        margin: 0 0 15px;
-    }
+  .edit-save-btn {
+    margin: 0 0 15px;
+  }
 }
