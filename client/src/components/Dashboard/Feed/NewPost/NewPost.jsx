@@ -11,8 +11,9 @@ import useLogout from "../../../../hooks/useLogout";
 import UploadPostImg from "./UploadPostImg/UploadPostImg";
 import { CircularProgress } from "@mui/material";
 import { useEffect } from "react";
+import { getPictureUrl } from "../../../../api/uploadImg/uploadImg";
 
-const NewPost = ({ releseEndPosts, resetUsers, resetPosts, loading, pageStart }) => {
+const NewPost = ({ releseEndPosts, resetUsers, resetPosts, getPage, loading, pageStart, getPosts }) => {
   const user = useSelector((state) => state.user.user);
   const [newPostLoading, setNewPostLoading] = useState(false)
   const [img, setImg] = useState("");
@@ -35,9 +36,10 @@ const NewPost = ({ releseEndPosts, resetUsers, resetPosts, loading, pageStart })
     let imgUrl = "";
     try {
       if (img) {
-        imgUrl = await profilePictureUrl(img);
+        imgUrl = await getPictureUrl(img);
       }
       await req.post("/post", { ...post, image: imgUrl });
+      const page = getPage;
       pageStart(0);
       resetUsers([]);
       resetPosts([]);
@@ -51,21 +53,15 @@ const NewPost = ({ releseEndPosts, resetUsers, resetPosts, loading, pageStart })
         };
       });
       setImg();
+      if(page === 0) {
+        getPosts();
+      }
       setNewPostLoading(false);
     } catch (error) {
       await logout();
       navigate("/login", { state: { from: location }, replace: true });
       dispach(userActions.logoutUser());
       setNewPostLoading(false);
-    }
-  };
-
-  const profilePictureUrl = async (postImg) => {
-    if (postImg) {
-      const imgUrl = await req.post("/post/uploadImg", { image: postImg });
-      return imgUrl.data.url;
-    } else {
-      return null;
     }
   };
 

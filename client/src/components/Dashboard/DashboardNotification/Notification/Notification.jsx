@@ -88,7 +88,7 @@ const Notification = ({ notificationUser, notification, onReload }) => {
         </span>
       )}
       <span className={classes["notification-date"]}>
-        {format(notificationUser.data.createdAt)}
+        {format(notification.createdAt)}
       </span>
     </Card>
   );

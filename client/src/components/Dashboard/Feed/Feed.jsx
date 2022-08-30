@@ -107,6 +107,8 @@ const Feed = () => {
         resetPosts={setPosts}
         loading={setInitialLoading}
         pageStart={setPageStart}
+        getPage={pageStart}
+        getPosts={getPosts}
       />
       {initialLoading ? (
         <Skeleton type="post" counter={4} />

@@ -6,13 +6,14 @@ import {
   CountrySelector,
   CitySelector,
 } from "./LocationSelector/LocationSelector";
-import { signup, uploadImage } from "../../api/auth/authRoutes";
+import { signup } from "../../api/auth/authRoutes";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user-slice";
 import { accessTokenActions } from "../../store/access-token-slice";
 import { useNavigate } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import ProfilePicture from "../ProfilePicture/ProfilePicture";
+import { getPictureUrl } from "../../api/uploadImg/uploadImg";
 
 const LoginForm = ({ profilePicture }) => {
   const firstnameRef = useRef();
@@ -90,7 +91,7 @@ const LoginForm = ({ profilePicture }) => {
     setIsLoading(true);
     setErrorMsg({ code: null, msg: "" });
     try {
-      const imgUrl = await profilePictureUrl(profilePicture || previewSource);
+      const imgUrl = await getPictureUrl(profilePicture || previewSource);
       const newUser = await signup(user, imgUrl);
       const accessToken = newUser.data.accessToken;
       const userData = newUser.data.user;
@@ -101,7 +102,7 @@ const LoginForm = ({ profilePicture }) => {
         email: userData.email,
         country: userData.country,
         city: userData.city,
-        profilePicture: imgUrl?.data?.url || userData.profilePicture,
+        profilePicture: imgUrl || userData.profilePicture,
       };
       dispatch(userActions.setUser(newUserToSet));
       dispatch(accessTokenActions.setAccessToken(accessToken));
@@ -121,15 +122,6 @@ const LoginForm = ({ profilePicture }) => {
         });
       }
       throw new Error(error);
-    }
-  };
-
-  const profilePictureUrl = async (profilePicture) => {
-    if (profilePicture) {
-      const imgUrl = await uploadImage(profilePicture);
-      return imgUrl;
-    } else {
-      return null;
     }
   };
 
