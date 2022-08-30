@@ -37,6 +37,7 @@ const EditProfile = ({ onCloseEdit }) => {
 
   const [isValid, setIsValid] = useState({ firstname: true, lastname: true });
   const [isLoading, setIsLoading] = useState(false);
+  const [disable, setDisable] = useState(false);
   const [errMsg, setErrMsg] = useState({ code: null, msg: "" });
   const [successMsg, setSuccessMsg] = useState(false);
   const req = useAxiosPrivate();
@@ -125,16 +126,14 @@ const EditProfile = ({ onCloseEdit }) => {
       });
       return;
     }
-    // setErrMsg({ code: null, msg: "" });
     setSuccessMsg(false);
+    setDisable(true);
     setIsLoading(true);
     setErrMsg({ code: null, msg: "" });
     let imgUrl = "";
     try {
       if(previewSource) {
-        console.log(previewSource);
         imgUrl = await getPictureUrl(previewSource);
-        console.log(imgUrl);
       }
       await req.put(`/user/${user.userId}`, {
         ...updatedUser,
@@ -143,12 +142,12 @@ const EditProfile = ({ onCloseEdit }) => {
       });
       dispatch(userActions.setUser({ ...updatedUser, userId: user.userId, profilePicture: imgUrl }));
       setIsLoading(false);
+      setDisable(false);
       setSuccessMsg(true);
       setTimeout(() => {
         setSuccessMsg(false);
       }, 2000);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       if (error.response.status === 500) {
         setErrMsg({
@@ -156,6 +155,7 @@ const EditProfile = ({ onCloseEdit }) => {
           msg: "Something went wrong. Please try again.",
         });
       }
+      setDisable(false);
     }
   };
 
@@ -176,11 +176,6 @@ const EditProfile = ({ onCloseEdit }) => {
         </div>
         <div className={classes["profile-picture"]}>
           <span className={classes["edit-text"]}>Profile picture:</span>
-          {/* <img
-            className={classes["profile-pic"]}
-            src={user.profilePicture || ppIcon}
-            alt="cover"
-          /> */}
           <div className={classes["profile-pic"]}>
             <ProfilePicture onId="file-input" onPreview={setPreviewSource} preview={previewSource} page="edit-profile" />
           </div>
@@ -283,7 +278,7 @@ const EditProfile = ({ onCloseEdit }) => {
           </div>
         )}
         <div className={classes["edit-buttons-wrapper"]}>
-          <button className={classes["edit-save-btn"]}>
+          <button className={classes["edit-save-btn"]} disabled={disable}>
             {isLoading ? (
               <CircularProgress style={{ color: "white" }} size="20px" />
             ) : (

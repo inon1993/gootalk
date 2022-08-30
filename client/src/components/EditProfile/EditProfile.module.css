@@ -185,6 +185,10 @@
   border: 1px solid hsl(220.3, 62.5%, 22%);
 }
 
+.edit-save-btn:disabled {
+  opacity: 50%;
+}
+
 .edit-cancel-btn {
   width: 25%;
   background-color: white;
