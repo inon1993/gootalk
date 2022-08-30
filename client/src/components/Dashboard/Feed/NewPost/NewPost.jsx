@@ -70,7 +70,7 @@ const NewPost = ({ releseEndPosts, resetUsers, resetPosts, getPage, loading, pag
       <div className={classes["new-post-upper"]}>
         <img
           className={classes["new-post-profile-logo"]}
-          src={user?.profilePicture || ppIcon}
+          src={user.profilePicture || ppIcon}
           alt="profile"
         />
         <textarea

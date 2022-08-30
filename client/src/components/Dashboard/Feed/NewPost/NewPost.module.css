@@ -8,10 +8,11 @@
 .new-post-upper {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .new-post-profile-logo {
-  margin-right: 10px;
+  margin-right: 5px;
   height: 30px;
   width: 30px;
   border-radius: 50%;
@@ -22,7 +23,7 @@
   border: none;
   outline: none;
   font-size: 1.2rem;
-  width: 100%;
+  width: calc(100% - 42px);
   font-family: "Poppins", sans-serif;
   /* overflow:hidden; */
   resize: none;
