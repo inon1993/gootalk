@@ -213,11 +213,20 @@
 }
 
 @media only screen and (max-width: 550px) {
+  .profile-picture,
   .edit-firstname-lastname,
   .edit-firstname,
   .edit-country-city-wrapper {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .profile-pic {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    margin-top: 15px;
   }
 
   .edit-input {

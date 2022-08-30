@@ -3,8 +3,8 @@ import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
 import ppIcon from "../../images/pp-icon-biggest.png";
 import classes from "./ProfilePicture.module.css";
 
-const ProfilePicture = ({ onId, onPreview }) => {
-  const [previewSource, setPreviewSource] = useState();
+const ProfilePicture = ({ onId, onPreview, preview, page }) => {
+  const [previewSource, setPreviewSource] = useState(preview);
 
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
@@ -26,25 +26,25 @@ const ProfilePicture = ({ onId, onPreview }) => {
         <label htmlFor={onId}>
           {previewSource ? (
             <img
-              className={classes["sl-preview-pic"]}
+              className={`${page === "signup" ? classes["sl-preview-pic"] : classes["edit-profile"]}`}
               src={previewSource}
               alt="profile pic"
             />
           ) : (
             <img
-              className={classes["sl-add-pic-icon"]}
+              className={`${page === "signup" ? classes["sl-add-pic-icon"] : classes["edit-profile"]}`}
               src={ppIcon}
               alt="profile icon"
             />
           )}
           {!previewSource && (
-            <AddCircleOutline className={classes["add-icon"]} />
+            <AddCircleOutline className={`${page === "signup" ? classes["add-icon"] : classes["edit-profile-add"]}`} />
           )}
         </label>
         <label>
           {previewSource && (
             <RemoveCircleOutline
-              className={classes["remove-icon"]}
+              className={`${page === "signup" ? classes["remove-icon"] : classes["edit-profile-remove"]}`}
               onClick={() => {
                 setPreviewSource();
                 onPreview();

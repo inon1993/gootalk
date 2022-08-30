@@ -12,6 +12,8 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user-slice";
 import { CircularProgress } from "@mui/material";
+import ProfilePicture from "../ProfilePicture/ProfilePicture";
+import { getPictureUrl } from "../../api/uploadImg/uploadImg";
 
 const EditProfile = ({ onCloseEdit }) => {
   const user = useSelector((state) => state.user.user);
@@ -31,6 +33,7 @@ const EditProfile = ({ onCloseEdit }) => {
     country: user.country,
     city: user.city,
   });
+  const [previewSource, setPreviewSource] = useState(user.profilePicture);
 
   const [isValid, setIsValid] = useState({ firstname: true, lastname: true });
   const [isLoading, setIsLoading] = useState(false);
@@ -122,21 +125,30 @@ const EditProfile = ({ onCloseEdit }) => {
       });
       return;
     }
-    setErrMsg({ code: null, msg: "" });
+    // setErrMsg({ code: null, msg: "" });
+    setSuccessMsg(false);
     setIsLoading(true);
     setErrMsg({ code: null, msg: "" });
+    let imgUrl = "";
     try {
+      if(previewSource) {
+        console.log(previewSource);
+        imgUrl = await getPictureUrl(previewSource);
+        console.log(imgUrl);
+      }
       await req.put(`/user/${user.userId}`, {
         ...updatedUser,
         userId: user.userId,
+        profilePicture: imgUrl
       });
-      dispatch(userActions.setUser({ ...updatedUser, userId: user.userId }));
+      dispatch(userActions.setUser({ ...updatedUser, userId: user.userId, profilePicture: imgUrl }));
       setIsLoading(false);
       setSuccessMsg(true);
       setTimeout(() => {
         setSuccessMsg(false);
       }, 2000);
     } catch (error) {
+      console.log(error);
       setIsLoading(false);
       if (error.response.status === 500) {
         setErrMsg({
@@ -164,11 +176,14 @@ const EditProfile = ({ onCloseEdit }) => {
         </div>
         <div className={classes["profile-picture"]}>
           <span className={classes["edit-text"]}>Profile picture:</span>
-          <img
+          {/* <img
             className={classes["profile-pic"]}
             src={user.profilePicture || ppIcon}
             alt="cover"
-          />
+          /> */}
+          <div className={classes["profile-pic"]}>
+            <ProfilePicture onId="file-input" onPreview={setPreviewSource} preview={previewSource} page="edit-profile" />
+          </div>
         </div>
         <div className={classes["edit-firstname-lastname"]}>
           <span className={classes["edit-text"]}>First name:</span>

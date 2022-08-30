@@ -10,7 +10,7 @@ const Signup = () => {
     <div className={classes["signup-wrapper"]}>
       <div className={classes["signup-content-wrapper"]}>
         <div className={classes["signup-left"]}>
-          <ProfilePicture onId="file-input" onPreview={setPreviewSource} />
+          <ProfilePicture onId="file-input" onPreview={setPreviewSource} preview={previewSource} page="signup" />
         </div>
         <div className={classes["signup-right"]}>
           <SignupForm profilePicture={previewSource} />

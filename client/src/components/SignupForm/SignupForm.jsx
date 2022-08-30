@@ -15,7 +15,7 @@ import { CircularProgress } from "@mui/material";
 import ProfilePicture from "../ProfilePicture/ProfilePicture";
 import { getPictureUrl } from "../../api/uploadImg/uploadImg";
 
-const LoginForm = ({ profilePicture }) => {
+const SignupForm = ({ profilePicture }) => {
   const firstnameRef = useRef();
   const [previewSource, setPreviewSource] = useState();
   const [isPw, setIsPw] = useState({ visable: false, type: "password" });
@@ -399,4 +399,4 @@ const LoginForm = ({ profilePicture }) => {
   );
 };
 
-export default LoginForm;
+export default SignupForm;
