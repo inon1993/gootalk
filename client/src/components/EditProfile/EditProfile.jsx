@@ -34,6 +34,7 @@ const EditProfile = ({ onCloseEdit }) => {
     city: user.city,
   });
   const [previewSource, setPreviewSource] = useState(user.profilePicture);
+  const [previewSourceCover, setPreviewSourceCover] = useState(user.coverPicture);
 
   const [isValid, setIsValid] = useState({ firstname: true, lastname: true });
   const [isLoading, setIsLoading] = useState(false);
@@ -131,16 +132,21 @@ const EditProfile = ({ onCloseEdit }) => {
     setIsLoading(true);
     setErrMsg({ code: null, msg: "" });
     let imgUrl = "";
+    let coverUrl = "";
     try {
       if(previewSource) {
         imgUrl = await getPictureUrl(previewSource);
       }
+      if(previewSourceCover) {
+        coverUrl = await getPictureUrl(previewSourceCover);
+      }
       await req.put(`/user/${user.userId}`, {
         ...updatedUser,
         userId: user.userId,
-        profilePicture: imgUrl
+        profilePicture: imgUrl,
+        coverPicture: coverImg
       });
-      dispatch(userActions.setUser({ ...updatedUser, userId: user.userId, profilePicture: imgUrl }));
+      dispatch(userActions.setUser({ ...updatedUser, userId: user.userId, profilePicture: imgUrl, coverPicture: coverUrl }));
       setIsLoading(false);
       setDisable(false);
       setSuccessMsg(true);
@@ -168,11 +174,12 @@ const EditProfile = ({ onCloseEdit }) => {
       <form className={classes["edit-form"]} onSubmit={updateHandler}>
         <div className={classes["profile-cover-wrapper"]}>
           <span className={classes["edit-text"]}>Cover picture:</span>
-          <img
+          {/* <img
             className={classes["profile-cover"]}
             src={user.coverPicture || coverImg}
             alt="cover"
-          />
+          /> */}
+          <ProfilePicture onId="file-input-cover" onPreview={setPreviewSourceCover} preview={previewSourceCover} page="edit-profile-cover" />
         </div>
         <div className={classes["profile-picture"]}>
           <span className={classes["edit-text"]}>Profile picture:</span>

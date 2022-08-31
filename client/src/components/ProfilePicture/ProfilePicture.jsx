@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
 import ppIcon from "../../images/pp-icon-biggest.png";
+import coverImg from "../../images/gootalk-cover.jpg";
 import classes from "./ProfilePicture.module.css";
 
 const ProfilePicture = ({ onId, onPreview, preview, page }) => {
@@ -26,25 +27,54 @@ const ProfilePicture = ({ onId, onPreview, preview, page }) => {
         <label htmlFor={onId}>
           {previewSource ? (
             <img
-              className={`${page === "signup" ? classes["sl-preview-pic"] : classes["edit-profile"]}`}
+              className={`${
+                page === "signup"
+                  ? classes["sl-preview-pic"] :
+                  page === "edit-profile" ? classes["edit-profile"]
+                  : page === "edit-profile-cover" && classes["edit-profile-cover"]
+              }`}
               src={previewSource}
               alt="profile pic"
             />
-          ) : (
+          ) : page === "signup" || page === "edit-profile" ? (
             <img
-              className={`${page === "signup" ? classes["sl-add-pic-icon"] : classes["edit-profile"]}`}
+              className={`${
+                page === "signup"
+                  ? classes["sl-add-pic-icon"]
+                  : classes["edit-profile"]
+              }`}
               src={ppIcon}
               alt="profile icon"
             />
+          ) : (
+            <img
+              className={`${
+                page === "edit-profile-cover" && classes["edit-profile-cover"]
+              }`}
+              src={coverImg}
+              alt="profile cover"
+            />
           )}
           {!previewSource && (
-            <AddCircleOutline className={`${page === "signup" ? classes["add-icon"] : classes["edit-profile-add"]}`} />
+            <AddCircleOutline
+              className={`${
+                page === "signup"
+                  ? classes["add-icon"]
+                  : page === "edit-profile" ? classes["edit-profile-add"]
+                  : page === "edit-profile-cover" && classes["edit-profile-cover-add"]
+              }`}
+            />
           )}
         </label>
         <label>
           {previewSource && (
             <RemoveCircleOutline
-              className={`${page === "signup" ? classes["remove-icon"] : classes["edit-profile-remove"]}`}
+              className={`${
+                page === "signup"
+                  ? classes["remove-icon"]
+                  : page === "edit-profile" ? classes["edit-profile-remove"]
+                  : page === "edit-profile-cover" && classes["edit-profile-cover-remove"]
+              }`}
               onClick={() => {
                 setPreviewSource();
                 onPreview();

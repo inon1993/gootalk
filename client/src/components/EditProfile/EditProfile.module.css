@@ -25,13 +25,13 @@
   margin-right: 15px;
 }
 
-.profile-cover {
+/* .profile-cover {
   max-height: 200px;
   max-width: 80%;
-  /* min-width: 80%; */
+  // min-width: 80%;
   object-fit: cover;
   border-radius: 10px;
-}
+} */
 
 .profile-picture {
   display: flex;
