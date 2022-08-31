@@ -24,7 +24,7 @@ const ProfilePicture = ({ onId, onPreview, preview, page }) => {
   return (
     <div className={classes["sl-add-pic"]}>
       <form className={classes["sl-form"]}>
-        <label htmlFor={onId}>
+        <label className={classes["check"]} htmlFor={onId}>
           {previewSource ? (
             <img
               className={`${

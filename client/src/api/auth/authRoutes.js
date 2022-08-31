@@ -32,12 +32,12 @@ export const logout = async (accessToken) => {
   });
 };
 
-export const uploadImage = async (profilePicture) => {
+export const uploadImage = async (profilePicture, page) => {
   try {
     const url = await axios({
       url: "/auth/upload",
       method: "POST",
-      data: { profilePicture },
+      data: { profilePicture, page },
     });
     return url;
   } catch (error) {

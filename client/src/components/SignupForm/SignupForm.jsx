@@ -91,7 +91,7 @@ const SignupForm = ({ profilePicture }) => {
     setIsLoading(true);
     setErrorMsg({ code: null, msg: "" });
     try {
-      const imgUrl = await getPictureUrl(profilePicture || previewSource);
+      const imgUrl = await getPictureUrl(profilePicture || previewSource, "profile-picture");
       const newUser = await signup(user, imgUrl);
       const accessToken = newUser.data.accessToken;
       const userData = newUser.data.user;

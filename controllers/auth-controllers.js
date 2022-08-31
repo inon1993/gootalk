@@ -68,9 +68,16 @@ const loginCtr = async (req, res) => {
 
 const uploadPicture = async (req, res) => {
   try {
+    const page = req.body.page
+    let imgSize = 0;
+    if(page === "profile-picture") {
+      imgSize = 208;
+    } else if(page === "cover-picture") {
+      imgSize = 600
+    }
     const fileStr = req.body.profilePicture;
     const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
-      width: 208,
+      width: imgSize,
       crop: "scale",
     });
     const url = uploadedResponse.url;

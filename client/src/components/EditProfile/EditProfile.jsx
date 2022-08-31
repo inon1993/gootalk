@@ -133,12 +133,15 @@ const EditProfile = ({ onCloseEdit }) => {
     setErrMsg({ code: null, msg: "" });
     let imgUrl = "";
     let coverUrl = "";
+    console.log(previewSource);
     try {
-      if(previewSource) {
-        imgUrl = await getPictureUrl(previewSource);
+      if(previewSource !== user.profilePicture && previewSource) {
+        console.log(user.profilePicture);
+        console.log(previewSource);
+        imgUrl = await getPictureUrl(previewSource, "profile-picture");
       }
-      if(previewSourceCover) {
-        coverUrl = await getPictureUrl(previewSourceCover);
+      if(previewSourceCover !== user.coverPicture && previewSourceCover) {
+        coverUrl = await getPictureUrl(previewSourceCover, "cover-picture");
       }
       await req.put(`/user/${user.userId}`, {
         ...updatedUser,
@@ -146,7 +149,7 @@ const EditProfile = ({ onCloseEdit }) => {
         profilePicture: imgUrl,
         coverPicture: coverImg
       });
-      dispatch(userActions.setUser({ ...updatedUser, userId: user.userId, profilePicture: imgUrl, coverPicture: coverUrl }));
+      dispatch(userActions.setUser({ ...updatedUser, userId: user.userId, profilePicture: imgUrl || previewSource, coverPicture: coverUrl || previewSourceCover }));
       setIsLoading(false);
       setDisable(false);
       setSuccessMsg(true);
