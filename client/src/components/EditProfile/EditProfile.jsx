@@ -34,7 +34,9 @@ const EditProfile = ({ onCloseEdit }) => {
     city: user.city,
   });
   const [previewSource, setPreviewSource] = useState(user.profilePicture);
-  const [previewSourceCover, setPreviewSourceCover] = useState(user.coverPicture);
+  const [previewSourceCover, setPreviewSourceCover] = useState(
+    user.coverPicture
+  );
 
   const [isValid, setIsValid] = useState({ firstname: true, lastname: true });
   const [isLoading, setIsLoading] = useState(false);
@@ -135,21 +137,28 @@ const EditProfile = ({ onCloseEdit }) => {
     let coverUrl = "";
     console.log(previewSource);
     try {
-      if(previewSource !== user.profilePicture && previewSource) {
+      if (previewSource !== user.profilePicture && previewSource) {
         console.log(user.profilePicture);
         console.log(previewSource);
         imgUrl = await getPictureUrl(previewSource, "profile-picture");
       }
-      if(previewSourceCover !== user.coverPicture && previewSourceCover) {
+      if (previewSourceCover !== user.coverPicture && previewSourceCover) {
         coverUrl = await getPictureUrl(previewSourceCover, "cover-picture");
       }
       await req.put(`/user/${user.userId}`, {
         ...updatedUser,
         userId: user.userId,
         profilePicture: imgUrl,
-        coverPicture: coverImg
+        coverPicture: coverImg,
       });
-      dispatch(userActions.setUser({ ...updatedUser, userId: user.userId, profilePicture: imgUrl || previewSource, coverPicture: coverUrl || previewSourceCover }));
+      dispatch(
+        userActions.setUser({
+          ...updatedUser,
+          userId: user.userId,
+          profilePicture: imgUrl || previewSource,
+          coverPicture: coverUrl || previewSourceCover,
+        })
+      );
       setIsLoading(false);
       setDisable(false);
       setSuccessMsg(true);
@@ -177,17 +186,24 @@ const EditProfile = ({ onCloseEdit }) => {
       <form className={classes["edit-form"]} onSubmit={updateHandler}>
         <div className={classes["profile-cover-wrapper"]}>
           <span className={classes["edit-text"]}>Cover picture:</span>
-          {/* <img
-            className={classes["profile-cover"]}
-            src={user.coverPicture || coverImg}
-            alt="cover"
-          /> */}
-          <ProfilePicture onId="file-input-cover" onPreview={setPreviewSourceCover} preview={previewSourceCover} page="edit-profile-cover" />
+          <div className={classes["cover-pic"]}>
+            <ProfilePicture
+              onId="file-input-cover"
+              onPreview={setPreviewSourceCover}
+              preview={previewSourceCover}
+              page="edit-profile-cover"
+            />
+          </div>
         </div>
         <div className={classes["profile-picture"]}>
           <span className={classes["edit-text"]}>Profile picture:</span>
           <div className={classes["profile-pic"]}>
-            <ProfilePicture onId="file-input" onPreview={setPreviewSource} preview={previewSource} page="edit-profile" />
+            <ProfilePicture
+              onId="file-input"
+              onPreview={setPreviewSource}
+              preview={previewSource}
+              page="edit-profile"
+            />
           </div>
         </div>
         <div className={classes["edit-firstname-lastname"]}>

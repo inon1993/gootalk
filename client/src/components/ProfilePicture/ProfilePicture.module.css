@@ -40,7 +40,8 @@
 
 .edit-profile-cover {
   max-height: 200px;
-  max-width: 80%;
+  /* max-width: 80%; */
+  max-width: 100%;
   /* min-width: 80%; */
   object-fit: cover;
   border-radius: 10px;
@@ -87,6 +88,10 @@
   transition: 200ms;
 }
 
+.edit-profile-cover-add:hover {
+  color: hsl(208.7, 100%, 53.7%);
+}
+
 .remove-icon {
   position: absolute;
   top: 9rem;
@@ -120,12 +125,16 @@
 .edit-profile-cover-remove {
   position: absolute;
   top: 85%;
-  right: 15%;
+  right: -15px;
   font-size: 2.2rem !important;
   background-color: white;
   border-radius: 50%;
   cursor: pointer;
   transition: 200ms;
+}
+
+.edit-profile-cover-remove:hover {
+  color: tomato;
 }
 
 @media only screen and (max-width: 650px) {
