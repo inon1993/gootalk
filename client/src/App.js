@@ -10,6 +10,7 @@ import RequireAuth from "./components/RoutingComponents/RequireAuth";
 import Authenticated from "./components/RoutingComponents/Authenticated";
 import Notifications from "./pages/Notifications/Notifications";
 import FriendsPage from "./pages/FriendsPage/FriendsPage";
+import Settings from "../src/pages/Settings/Settings";
 import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/search" element={<ExpendedUsers />} />
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/friends" element={<FriendsPage />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Route>

@@ -42,10 +42,12 @@ const MobileMenu = () => {
           <HelpCenterRounded className={classes["mm-f-icon"]} />
           <span className={classes["mm-f-text"]}>Help & About</span>
         </li>
-        <li className={classes["mm-li"]}>
-          <Settings className={classes["mm-f-icon"]} />
-          <span className={classes["mm-f-text"]}>Settings</span>
-        </li>
+        <Link to={"/settings"} className={classes["mm-link"]}>
+          <li className={classes["mm-li"]}>
+            <Settings className={classes["mm-f-icon"]} />
+            <span className={classes["mm-f-text"]}>Settings</span>
+          </li>
+        </Link>
         <li className={classes["mm-li"]} onMouseDown={logoutHandler}>
           <Logout className={classes["mm-f-icon"]} />
           <span className={classes["mm-f-text"]}>Log Out</span>

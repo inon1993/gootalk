@@ -6,17 +6,22 @@
 }
 
 .edit-form {
-  width: 80%;
+  width: calc(100% - 100px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  background-color: white;
+  padding: 25px;
+  margin: 25px 0;
+  border-radius: 15px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
 }
 
 .profile-cover-wrapper {
   display: flex;
   align-items: center;
   max-width: 100%;
-  margin: 50px 0 20px 0;
+  margin: 25px 0 20px 0;
 }
 
 .edit-text {
@@ -159,7 +164,7 @@
 .edit-buttons-wrapper {
   display: flex;
   justify-content: center;
-  margin: 70px 0;
+  margin: 70px 0 25px 0;
 }
 
 .edit-save-btn {
@@ -218,6 +223,12 @@
 }
 
 @media only screen and (max-width: 550px) {
+  .edit-form {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: calc(100% - 70px);
+  }
+
   .profile-picture,
   .profile-cover-wrapper,
   .edit-firstname-lastname,
@@ -225,6 +236,10 @@
   .edit-country-city-wrapper {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .profile-cover-wrapper {
+    margin-top: 0;
   }
 
   .profile-pic,
@@ -261,7 +276,7 @@
     flex-direction: column;
     align-items: center;
     /* width: 80%; */
-    margin: 70px 0;
+    /* margin: 70px 0; */
   }
 
   .edit-save-btn,

@@ -30,7 +30,7 @@ const DropdownMenu = () => {
           <HelpCenterRounded className={classes["dropdown-item-icon"]} />
           <span className={classes["dropdown-item-text"]}>Help & About</span>
         </div>
-        <div className={classes["dropdown-item"]}>
+        <div className={classes["dropdown-item"]} onClick={() => navigate("/settings")}>
           <Settings className={classes["dropdown-item-icon"]} />
           <span className={classes["dropdown-item-text"]}>Settings</span>
         </div>
