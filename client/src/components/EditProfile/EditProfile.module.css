@@ -3,10 +3,12 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  min-height: 100%;
 }
 
 .edit-form {
   width: calc(100% - 100px);
+  min-height: calc(100% - 100px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -227,6 +229,7 @@
     margin-top: 10px;
     margin-bottom: 10px;
     width: calc(100% - 70px);
+    min-height: calc(100% - 70px);
   }
 
   .profile-picture,
