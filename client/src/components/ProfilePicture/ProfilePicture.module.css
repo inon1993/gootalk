@@ -49,8 +49,8 @@
 
 .add-icon {
   position: absolute;
-  top: 9rem;
-  right: 1rem;
+  top: calc(100% - 50px);
+  right: 0.7rem;
   font-size: 3.5rem !important;
   background-color: white;
   border-radius: 50%;
@@ -94,8 +94,8 @@
 
 .remove-icon {
   position: absolute;
-  top: 9rem;
-  right: 1rem;
+  top: calc(100% - 50px);
+  right: 0.7rem;
   font-size: 3.5rem !important;
   background-color: white;
   border-radius: 50%;
@@ -161,8 +161,8 @@
   .add-icon,
   .remove-icon {
     font-size: 1.8rem !important;
-    top: 3.5rem;
-    right: 0.3rem;
+    top: calc(100% - 30px);
+    right: 0.1rem;
   }
 }
 

@@ -257,7 +257,7 @@ const EditProfile = ({ onCloseEdit }) => {
           </div>
         </div>
         <div className={classes["edit-country-city-wrapper"]}>
-          <span className={classes["edit-text"]}>City</span>
+          <span className={classes["edit-text"]}>City:</span>
           <div className={classes["edit-country-city"]}>
             <input
               className={`${classes["edit-input-country-city"]} ${

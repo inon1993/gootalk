@@ -91,7 +91,10 @@ const SignupForm = ({ profilePicture }) => {
     setIsLoading(true);
     setErrorMsg({ code: null, msg: "" });
     try {
-      const imgUrl = await getPictureUrl(profilePicture || previewSource, "profile-picture");
+      const imgUrl = await getPictureUrl(
+        profilePicture || previewSource,
+        "profile-picture"
+      );
       const newUser = await signup(user, imgUrl);
       const accessToken = newUser.data.accessToken;
       const userData = newUser.data.user;
@@ -212,6 +215,7 @@ const SignupForm = ({ profilePicture }) => {
           <ProfilePicture
             onId="file-input-mobile"
             onPreview={setPreviewSource}
+            page="signup"
           />
         </div>
         <h2 className={classes["sr-title"]}>Sign Up</h2>
