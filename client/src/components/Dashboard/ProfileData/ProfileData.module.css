@@ -139,6 +139,10 @@
 }
 
 @media only screen and (max-width: 540px) {
+  .profile-pic {
+    margin-right: 0;
+  }
+
   .profile-img-text {
     flex-direction: column;
     top: 125px;

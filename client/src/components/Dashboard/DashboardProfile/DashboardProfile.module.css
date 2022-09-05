@@ -37,6 +37,6 @@
 
 @media only screen and (max-width: 600px) {
   .profile-user-posts {
-    width: 90%;
+    width: 100%;
   }
 }

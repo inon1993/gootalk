@@ -6,8 +6,8 @@
   flex-direction: column;
 }
 
-@media only screen and (max-width: 350px) {
+@media only screen and (max-width: 500px) {
   .notification-wrapper {
-    width: 80%;
+    width: 95%;
   }
 }

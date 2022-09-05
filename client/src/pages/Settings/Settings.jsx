@@ -12,7 +12,7 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(menuActions.deactivate());
+    dispatch(menuActions.activateSettings());
     dispatch(navbarActions.deactivate());
     dispatch(navbarActions.activateSearchInput());
   }, []);
