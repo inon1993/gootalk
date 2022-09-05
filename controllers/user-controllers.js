@@ -3,6 +3,7 @@ const Post = require("../models/Post");
 const bcrypt = require("bcrypt");
 
 const updateUserCtr = async (req, res) => {
+  console.log(req.body);
   if (req.body.userId === req.params.id) {
     if (req.body.password) {
       try {
@@ -131,11 +132,11 @@ const userStats = async (req, res) => {
 const getUserFriends = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
-    return res.status(200).send(user.friends)
+    return res.status(200).send(user.friends);
   } catch (error) {
-    return res.status(500).send("Internal server error.")
+    return res.status(500).send("Internal server error.");
   }
-}
+};
 
 module.exports.updateUserCtr = updateUserCtr;
 module.exports.deleteUserCtr = deleteUserCtr;

@@ -133,23 +133,22 @@ const EditProfile = ({ onCloseEdit }) => {
     setDisable(true);
     setIsLoading(true);
     setErrMsg({ code: null, msg: "" });
-    let imgUrl = "";
-    let coverUrl = "";
-    console.log(previewSource);
+    let imgUrl = user.profilePicture;
+    let coverUrl = user.coverPicture;
+
     try {
       if (previewSource !== user.profilePicture && previewSource) {
-        console.log(user.profilePicture);
-        console.log(previewSource);
         imgUrl = await getPictureUrl(previewSource, "profile-picture");
       }
       if (previewSourceCover !== user.coverPicture && previewSourceCover) {
         coverUrl = await getPictureUrl(previewSourceCover, "cover-picture");
       }
+
       await req.put(`/user/${user.userId}`, {
         ...updatedUser,
         userId: user.userId,
         profilePicture: imgUrl,
-        coverPicture: coverImg,
+        coverPicture: coverUrl,
       });
       dispatch(
         userActions.setUser({
