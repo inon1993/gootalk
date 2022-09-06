@@ -144,6 +144,14 @@ const EditProfile = ({ onCloseEdit }) => {
         coverUrl = await getPictureUrl(previewSourceCover, "cover-picture");
       }
 
+      if(previewSource === "" || !previewSource) {
+        imgUrl = "";
+      }
+
+      if(previewSourceCover === "" || !previewSourceCover) {
+        coverUrl = "";
+      }
+
       await req.put(`/user/${user.userId}`, {
         ...updatedUser,
         userId: user.userId,
