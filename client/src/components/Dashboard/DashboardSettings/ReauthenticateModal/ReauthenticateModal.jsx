@@ -4,7 +4,7 @@ import axios from "axios";
 import classes from "./ReauthenticateModal.module.css";
 
 const ReauthenticateModal = ({requiredSettings, onClose}) => {
-  const titleRef = useRef();
+//   const titleRef = useRef();
 
 //   const saveEditHandler =() => {
 //     console.log(props.id);
@@ -37,7 +37,7 @@ const ReauthenticateModal = ({requiredSettings, onClose}) => {
     <Modal onClose={closeReminderHandler}>
       <div className={classes['modal-reauthenticate-wrapper']}>
         <span className={classes["modal-title"]}>Please enter your password:</span>
-        <input className={classes['modal-input']} type="password" ref={titleRef} />
+        <input className={classes['modal-input']} type="password" /*ref={titleRef}*/ />
       </div>  
       <div className={classes.actions}>
         <button className={classes.continue} /*onClick={saveEditHandler}*/>Continue</button>
