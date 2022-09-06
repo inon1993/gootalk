@@ -13,9 +13,17 @@ import { CircularProgress } from "@mui/material";
 import { useEffect } from "react";
 import { getPictureUrl } from "../../../../api/uploadImg/uploadImg";
 
-const NewPost = ({ releseEndPosts, resetUsers, resetPosts, getPage, loading, pageStart, getPosts }) => {
+const NewPost = ({
+  releseEndPosts,
+  resetUsers,
+  resetPosts,
+  getPage,
+  loading,
+  pageStart,
+  getPosts,
+}) => {
   const user = useSelector((state) => state.user.user);
-  const [newPostLoading, setNewPostLoading] = useState(false)
+  const [newPostLoading, setNewPostLoading] = useState(false);
   const [img, setImg] = useState("");
   const [post, setPost] = useState({
     userId: user.userId,
@@ -29,21 +37,21 @@ const NewPost = ({ releseEndPosts, resetUsers, resetPosts, getPage, loading, pag
 
   useEffect(() => {
     setNewPostLoading(false);
-  }, [])
+  }, []);
 
   const sharePostHandler = async () => {
-    setNewPostLoading(true)
+    setNewPostLoading(true);
     let imgUrl = "";
     try {
       if (img) {
-        imgUrl = await getPictureUrl(img);
+        imgUrl = await getPictureUrl(img, "post");
       }
       await req.post("/post", { ...post, image: imgUrl });
       const page = getPage;
       pageStart(0);
       resetUsers([]);
       resetPosts([]);
-      releseEndPosts(false)
+      releseEndPosts(false);
       loading(true);
       setPost((prev) => {
         return {
@@ -53,7 +61,7 @@ const NewPost = ({ releseEndPosts, resetUsers, resetPosts, getPage, loading, pag
         };
       });
       setImg();
-      if(page === 0) {
+      if (page === 0) {
         getPosts();
       }
       setNewPostLoading(false);
@@ -91,8 +99,16 @@ const NewPost = ({ releseEndPosts, resetUsers, resetPosts, getPage, loading, pag
       <hr className={classes["new-post-br"]} />
       <div className={classes["new-post-features"]}>
         <UploadPostImg imgToSet={setImg} />
-        <button className={classes["share-post"]} onMouseDown={sharePostHandler} disabled={newPostLoading}>
-          {newPostLoading ? <CircularProgress style={{ color: "white" }} size="20px" /> : "Share"}
+        <button
+          className={classes["share-post"]}
+          onMouseDown={sharePostHandler}
+          disabled={newPostLoading}
+        >
+          {newPostLoading ? (
+            <CircularProgress style={{ color: "white" }} size="20px" />
+          ) : (
+            "Share"
+          )}
         </button>
       </div>
       <div className={classes["preview-img-wrapper"]}>
