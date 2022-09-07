@@ -6,10 +6,23 @@ import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 
 const ChangeEmailModal = ({ onClose }) => {
   const [enteredEmail, setEnteredEmail] = useState("");
+  const [errMsg, setErrMsg] = useState({ code: null, msg: "" });
+  const user = useSelector((state) => state.user.user);
+  const req = useAxiosPrivate();
 
-  const updateHandler = (e) => {
+  const emailValidator = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+  const updateHandler = async (e) => {
     e.preventDefault();
-    console.log(enteredEmail);
+    if (emailValidator.test(enteredEmail)) {
+      try {
+        await req.put(`/user/${user.userId}`, { ...user, email: enteredEmail });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      setErrMsg({ code: null, msg: "Please enter a valid E-Mail adress." });
+    }
   };
 
   return (
@@ -24,9 +37,16 @@ const ChangeEmailModal = ({ onClose }) => {
             }}
             required
           />
+          {errMsg.msg !== "" && (
+            <div>
+              <span>{errMsg.msg}</span>
+            </div>
+          )}
           <div>
             <button>Update</button>
-            <button type="button" onClick={() => onClose()}>Cancel</button>
+            <button type="button" onClick={() => onClose()}>
+              Cancel
+            </button>
           </div>
         </form>
       </div>
