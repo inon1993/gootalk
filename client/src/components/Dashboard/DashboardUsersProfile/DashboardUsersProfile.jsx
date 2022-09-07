@@ -28,7 +28,6 @@ const DashboardUsersProfile = () => {
     const getUserPosts = async () => {
       const getUser = await axios.get(`/user/${userid}`);
       setUser(getUser.data);
-      console.log(getUser.data);
       if (currUser.userId !== getUser.data._id) {
         setSendReqBtn(true);
       }

@@ -66,6 +66,25 @@ const loginCtr = async (req, res) => {
   }
 };
 
+const reauth = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+
+    if (!validPassword) {
+      return res.status(403).json("Wrong password.");
+    }
+
+    return res.sendStatus(200);
+  } catch (error) {
+    return res.sendStatus(500);
+  }
+}
+
 const uploadPicture = async (req, res) => {
   try {
     const page = req.body.page;
@@ -91,4 +110,5 @@ const uploadPicture = async (req, res) => {
 
 module.exports.registerCtr = registerCtr;
 module.exports.loginCtr = loginCtr;
+module.exports.reauth = reauth;
 module.exports.uploadPicture = uploadPicture;
