@@ -4,14 +4,14 @@ const bcrypt = require("bcrypt");
 
 const updateUserCtr = async (req, res) => {
   if (req.body.userId === req.params.id) {
-    if(req.body.email) {
+    if (req.body.updateRequired && req.body.updateRequired === "email") {
       try {
-        const user = await User.findOne({email: req.body.email})
-        if(req.body.email === req.body.currentEmail) {
-          return res.sendStatus(403)
+        const user = await User.findOne({ email: req.body.email });
+        if (req.body.email === req.body.currentEmail) {
+          return res.sendStatus(403);
         }
-        if(user) {
-          return res.sendStatus(409)
+        if (user) {
+          return res.sendStatus(409);
         }
       } catch (error) {
         return res.status(500).json(err);
@@ -27,7 +27,7 @@ const updateUserCtr = async (req, res) => {
     }
 
     try {
-      const {currentEmail, ...other} = req.body;
+      const { currentEmail, ...other } = req.body;
       const user = await User.findByIdAndUpdate(req.params.id, {
         $set: other,
       });

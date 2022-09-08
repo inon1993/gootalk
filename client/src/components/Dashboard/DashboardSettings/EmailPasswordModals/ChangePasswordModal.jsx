@@ -1,80 +1,78 @@
 import Modal from "../../../UI/Modal/Modal";
 import { useState, useRef, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { userActions } from "../../../../store/user-slice";
-import classes from "./ChangeEmailModal.module.css";
+import { useSelector } from "react-redux";
+import classes from "./ChangePasswordModal.module.css";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 
-const ChangeEmailModal = ({ onClose }) => {
-  const [enteredEmail, setEnteredEmail] = useState("");
+const ChangePasswordModal = ({ onClose }) => {
+  const [enteredPassword, setEnteredPassword] = useState("");
+  const [enteredPasswordAgain, setEnteredPasswordAgain] = useState("");
   const [errMsg, setErrMsg] = useState({ code: null, msg: "" });
   const [successMsg, setSuccessMsg] = useState("");
   const user = useSelector((state) => state.user.user);
-  const dispatch = useDispatch();
   const req = useAxiosPrivate();
 
-  const emailRef = useRef();
-
-  const emailValidator = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const passwordRef = useRef();
 
   useEffect(() => {
-    emailRef.current.focus();
+    passwordRef.current.focus();
   }, []);
 
   const updateHandler = async (e) => {
     e.preventDefault();
-    if (emailValidator.test(enteredEmail)) {
+    if (
+      enteredPassword.length > 5 &&
+      enteredPassword === enteredPasswordAgain
+    ) {
       try {
         await req.put(`/user/${user.userId}`, {
           ...user,
-          email: enteredEmail,
-          currentEmail: user.email,
-          updateRequired: "email",
+          password: enteredPassword,
+          updateRequired: "password",
         });
         setErrMsg({ code: null, msg: "" });
-        setSuccessMsg("E-Mail address updated successfully.");
-        dispatch(
-          userActions.setUser({
-            ...user,
-            email: enteredEmail,
-          })
-        );
+        setSuccessMsg("Password updated successfully.");
         setTimeout(() => {
           setSuccessMsg("");
         }, 2500);
       } catch (error) {
-        if (error.response.status === 403) {
-          setSuccessMsg("");
-          setErrMsg({
-            code: 403,
-            msg: "E-Mail address is the same as before.",
-          });
-        }
-        if (error.response.status === 409) {
-          setSuccessMsg("");
-          setErrMsg({ code: 409, msg: "E-Mail address is already in use." });
-        }
+        setErrMsg({ code: 500, msg: "Something went wrong. Try again." });
       }
     } else {
       setSuccessMsg("");
-      setErrMsg({ code: null, msg: "Please enter a valid E-Mail address." });
+      setErrMsg({ code: null, msg: "Please enter a valid password." });
     }
   };
 
   return (
     <Modal onClose={() => onClose()}>
       <form onSubmit={updateHandler}>
-        <div className={classes["change-email-wrapper"]}>
-          <span className={classes["modal-title"]}>Enter new E-Mail:</span>
+        <div className={classes["change-password-wrapper"]}>
+          <span className={classes["modal-title"]}>Enter new password:</span>
           <input
             className={classes["modal-input"]}
-            type="email"
+            type="password"
             onChange={(e) => {
-              setEnteredEmail(e.target.value);
+              setErrMsg({ code: null, msg: "" });
+              setEnteredPassword(e.target.value);
             }}
             required
             autoComplete="new-password"
-            ref={emailRef}
+            ref={passwordRef}
+            style={{ margin: "0 0 10px 0" }}
+          />
+          <span className={classes["modal-title"]}>
+            Enter new password again:
+          </span>
+          <input
+            className={classes["modal-input"]}
+            type="password"
+            onChange={(e) => {
+              setErrMsg({ code: null, msg: "" });
+              setEnteredPasswordAgain(e.target.value);
+            }}
+            required
+            autoComplete="new-password"
           />
           {errMsg.msg !== "" && (
             <span className={classes["err-msg"]}>{errMsg.msg}</span>
@@ -98,4 +96,4 @@ const ChangeEmailModal = ({ onClose }) => {
   );
 };
 
-export default ChangeEmailModal;
+export default ChangePasswordModal;

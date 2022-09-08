@@ -3,6 +3,7 @@ import Card from "../../UI/Card/Card";
 import { useState } from "react";
 import ReauthenticateModal from "./ReauthenticateModal/ReauthenticateModal";
 import ChangeEmailModal from "./EmailPasswordModals/ChangeEmailModal";
+import ChangePasswordModal from "./EmailPasswordModals/ChangePasswordModal";
 
 const DashboardSettings = () => {
   const [reauthenticate, setReauthenticate] = useState(null);
@@ -21,8 +22,12 @@ const DashboardSettings = () => {
   };
 
   const closeEmailModal = () => {
-    setChangeEmail(false)
-  }
+    setChangeEmail(false);
+  };
+
+  const closePasswordModal = () => {
+    setChangePassword(false);
+  };
 
   return (
     <>
@@ -34,7 +39,8 @@ const DashboardSettings = () => {
           onOpenPasswordModal={setChangePassword}
         />
       )}
-      {changeEmail && <ChangeEmailModal requiredSettings={reauthenticate} onClose={closeEmailModal} />}
+      {changeEmail && <ChangeEmailModal onClose={closeEmailModal} />}
+      {changePassword && <ChangePasswordModal onClose={closePasswordModal} />}
       <Card className={classes["settings-wrapper"]}>
         <div className={classes["user-settings"]}>
           <span className={classes["settings-title"]}>User Settings</span>
