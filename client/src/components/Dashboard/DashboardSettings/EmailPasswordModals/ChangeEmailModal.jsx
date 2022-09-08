@@ -7,6 +7,7 @@ import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 const ChangeEmailModal = ({ onClose }) => {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [errMsg, setErrMsg] = useState({ code: null, msg: "" });
+  const [successMsg, setSuccessMsg] = useState("");
   const user = useSelector((state) => state.user.user);
   const req = useAxiosPrivate();
 
@@ -16,11 +17,26 @@ const ChangeEmailModal = ({ onClose }) => {
     e.preventDefault();
     if (emailValidator.test(enteredEmail)) {
       try {
-        await req.put(`/user/${user.userId}`, { ...user, email: enteredEmail });
+        const res = await req.put(`/user/${user.userId}`, {
+          ...user,
+          email: enteredEmail,
+          currentEmail: user.email,
+        });
+        setErrMsg({ code: null, msg: "" });
+        setSuccessMsg("E-Mail adress updated successfully.");
       } catch (error) {
         console.log(error);
+        if (error.response.status === 403) {
+          setSuccessMsg("");
+          setErrMsg({ code: 403, msg: "E-Mail adress is the same as before." });
+        }
+        if (error.response.status === 409) {
+          setSuccessMsg("");
+          setErrMsg({ code: 409, msg: "E-Mail adress is already in use." });
+        }
       }
     } else {
+      setSuccessMsg("");
       setErrMsg({ code: null, msg: "Please enter a valid E-Mail adress." });
     }
   };
@@ -40,6 +56,11 @@ const ChangeEmailModal = ({ onClose }) => {
           {errMsg.msg !== "" && (
             <div>
               <span>{errMsg.msg}</span>
+            </div>
+          )}
+          {successMsg !== "" && (
+            <div>
+              <span>{successMsg}</span>
             </div>
           )}
           <div>
