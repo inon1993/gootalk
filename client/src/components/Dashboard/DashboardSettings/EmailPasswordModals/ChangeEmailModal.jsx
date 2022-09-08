@@ -66,17 +66,13 @@ const ChangeEmailModal = ({ onClose }) => {
             required
             autoComplete="new-password"
           />
+          {errMsg.msg !== "" && (
+            <span className={classes["err-msg"]}>{errMsg.msg}</span>
+          )}
+          {successMsg !== "" && (
+            <span className={classes["success-update-msg"]}>{successMsg}</span>
+          )}
         </div>
-        {errMsg.msg !== "" && (
-          <div>
-            <span>{errMsg.msg}</span>
-          </div>
-        )}
-        {successMsg !== "" && (
-          <div>
-            <span>{successMsg}</span>
-          </div>
-        )}
         <div className={classes.actions}>
           <button className={classes.update}>Update</button>
           <button

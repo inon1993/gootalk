@@ -61,12 +61,10 @@ const ReauthenticateModal = ({
             ref={passwordRef}
             required
           />
+          {errMsg !== "" && (
+            <span className={classes["err-msg"]}>{errMsg}</span>
+          )}
         </div>
-        {errMsg !== "" && (
-          <div>
-            <span>{errMsg}</span>
-          </div>
-        )}
         <div className={classes.actions}>
           <button className={classes.continue}>Continue</button>
           <button
