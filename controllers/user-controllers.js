@@ -42,14 +42,48 @@ const updateUserCtr = async (req, res) => {
 };
 
 const deleteUserCtr = async (req, res) => {
-  console.log(req.body);
-  console.log(req.body.userId);
-  console.log(req.params.id);
+  // console.log(req.body);
+  // console.log(req.body.userId);
+  // console.log(req.params.id);
   if (req.body.userId === req.params.id) {
     try {
       // const user = await User.findById(req.params.id);
-      const posts = await Post.deleteMany({userId: req.params.id});
-      // const friendWith = await User.find()
+      const posts = await Post.deleteMany({ userId: req.params.id });
+      console.log(1);
+      const noti = await Notification.deleteMany({
+        $or: [{ senderUserId: req.params.id }, { userId: req.params.id }],
+      });
+      console.log(2);
+      const userNoti = await User.find({
+        notifications: {
+          $or: [{ senderUserId: req.params.id }, { userId: req.params.id }],
+        },
+      });
+      userNoti.map((noti) => {
+        noti.updateOne({
+          $pull: {
+            $or: [
+              { "notifications.senderUserId": req.params.id },
+              { "notifications.userId": req.params.id },
+            ],
+          },
+        });
+      });
+      const friendWith = await User.find({ friends: req.params.id });
+      // console.log(friendWith);
+      friendWith.map((friend) => {
+        friend.updateOne({
+          $pull: { friends: req.params.id },
+        });
+      });
+
+      const postWith = await Post.find({ likes: req.params.id });
+      // console.log(friendWith);
+      postWith.map((post) => {
+        post.updateOne({
+          $pull: { likes: req.params.id },
+        });
+      });
       const user = await User.findByIdAndDelete(req.params.id);
       return res.status(200).json("Account has been deleted successfully.");
     } catch (err) {
