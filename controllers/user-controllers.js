@@ -65,8 +65,8 @@ const deleteUserCtr = async (req, res) => {
       });
       console.log(3);
       console.log(userNoti);
-      userNoti.map((noti) => {
-        noti.updateOne({
+      const check = await Promise.all(userNoti.map(async (noti) => {
+        await noti.updateOne({
           $pull: {
             $or: [
               { "notifications.senderUserId": req.params.id },
@@ -74,22 +74,23 @@ const deleteUserCtr = async (req, res) => {
             ],
           },
         });
-      });
+      }));
+      console.log(check);
       const friendWith = await User.find({ friends: req.params.id });
       // console.log(friendWith);
-      friendWith.map((friend) => {
-        friend.updateOne({
+      const check2 = await Promise.all(friendWith.map(async (friend) => {
+        await friend.updateOne({
           $pull: { friends: req.params.id },
         });
-      });
+      }));
 
       const postWith = await Post.find({ likes: req.params.id });
       // console.log(friendWith);
-      postWith.map((post) => {
-        post.updateOne({
+      const check3 = await Promise.all(postWith.map(async (post) => {
+        await post.updateOne({
           $pull: { likes: req.params.id },
         });
-      });
+      }));
       const user = await User.findByIdAndDelete(req.params.id);
       return res.status(200).json("Account has been deleted successfully.");
     } catch (err) {
