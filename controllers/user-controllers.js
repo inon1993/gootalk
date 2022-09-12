@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const Post = require("../models/Post");
 const bcrypt = require("bcrypt");
+const { find, deleteMany } = require("../models/User");
 
 const updateUserCtr = async (req, res) => {
   if (req.body.userId === req.params.id) {
@@ -41,8 +42,14 @@ const updateUserCtr = async (req, res) => {
 };
 
 const deleteUserCtr = async (req, res) => {
+  console.log(req.body);
+  console.log(req.body.userId);
+  console.log(req.params.id);
   if (req.body.userId === req.params.id) {
     try {
+      // const user = await User.findById(req.params.id);
+      const posts = await Post.deleteMany({userId: req.params.id});
+      // const friendWith = await User.find()
       const user = await User.findByIdAndDelete(req.params.id);
       return res.status(200).json("Account has been deleted successfully.");
     } catch (err) {

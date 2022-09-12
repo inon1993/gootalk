@@ -10,6 +10,7 @@ const ReauthenticateModal = ({
   onClose,
   onOpenEmailModal,
   onOpenPasswordModal,
+  onOpenDeleteAccountModal
 }) => {
   const [enteredPassword, setEnteredPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
@@ -34,6 +35,10 @@ const ReauthenticateModal = ({
       if (requiredSettings === "password") {
         onClose();
         onOpenPasswordModal(true);
+      }
+      if (requiredSettings === "delete-account") {
+        onClose();
+        onOpenDeleteAccountModal(true);
       }
     } catch (error) {
       setErrMsg("Invalid password.");

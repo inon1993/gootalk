@@ -2,19 +2,26 @@ import classes from "./DashboardSettings.module.css";
 import Card from "../../UI/Card/Card";
 import { useState } from "react";
 import ReauthenticateModal from "./ReauthenticateModal/ReauthenticateModal";
-import ChangeEmailModal from "./EmailPasswordModals/ChangeEmailModal";
-import ChangePasswordModal from "./EmailPasswordModals/ChangePasswordModal";
+import ChangeEmailModal from "./AccountSettingsModals/ChangeEmailModal";
+import ChangePasswordModal from "./AccountSettingsModals/ChangePasswordModal";
+import DeleteAccountModal from "./AccountSettingsModals/DeleteAccountModal";
 
 const DashboardSettings = () => {
   const [reauthenticate, setReauthenticate] = useState(null);
   const [changeEmail, setChangeEmail] = useState(false);
   const [changePassword, setChangePassword] = useState(false);
+  const [deleteAccount, setDeleteAccount] = useState(false);
+  
   const changeEmailHandler = () => {
     setReauthenticate("email");
   };
 
   const changePasswordHandler = () => {
     setReauthenticate("password");
+  };
+
+  const deleteAccountHandler = () => {
+    setReauthenticate("delete-account");
   };
 
   const closeReauthenticate = () => {
@@ -29,6 +36,10 @@ const DashboardSettings = () => {
     setChangePassword(false);
   };
 
+  const closeDeleteAccountModal = () => {
+    setDeleteAccount(false)
+  }
+
   return (
     <>
       {reauthenticate && (
@@ -37,10 +48,12 @@ const DashboardSettings = () => {
           onClose={closeReauthenticate}
           onOpenEmailModal={setChangeEmail}
           onOpenPasswordModal={setChangePassword}
+          onOpenDeleteAccountModal={setDeleteAccount}
         />
       )}
       {changeEmail && <ChangeEmailModal onClose={closeEmailModal} />}
       {changePassword && <ChangePasswordModal onClose={closePasswordModal} />}
+      {deleteAccount && <DeleteAccountModal onClose={closeDeleteAccountModal} />}
       <Card className={classes["settings-wrapper"]}>
         <div className={classes["user-settings"]}>
           <span className={classes["settings-title"]}>Account Settings</span>
@@ -55,6 +68,12 @@ const DashboardSettings = () => {
             onClick={changePasswordHandler}
           >
             Change password
+          </button>
+          <button
+            className={classes["settings-btn"]}
+            onClick={deleteAccountHandler}
+          >
+            Delete account
           </button>
         </div>
       </Card>
