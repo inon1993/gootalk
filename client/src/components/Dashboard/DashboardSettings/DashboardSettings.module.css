@@ -17,9 +17,9 @@
 }
 
 .settings-title {
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 10px;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .settings-btn {
@@ -28,8 +28,9 @@
     /* margin-bottom: 10px; */
     text-align: left;
     padding: 10px;
-    font-weight: 400;
+    font-weight: 500;
     cursor: pointer;
+    font-size: 0.9rem;
 }
 
 .settings-btn:hover {

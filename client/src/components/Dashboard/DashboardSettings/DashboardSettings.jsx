@@ -43,7 +43,7 @@ const DashboardSettings = () => {
       {changePassword && <ChangePasswordModal onClose={closePasswordModal} />}
       <Card className={classes["settings-wrapper"]}>
         <div className={classes["user-settings"]}>
-          <span className={classes["settings-title"]}>User Settings</span>
+          <span className={classes["settings-title"]}>Account Settings</span>
           <button
             className={classes["settings-btn"]}
             onClick={changeEmailHandler}
