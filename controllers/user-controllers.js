@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const Post = require("../models/Post");
+const Notification = require("../models/Notification");
 const bcrypt = require("bcrypt");
-const { find, deleteMany } = require("../models/User");
 
 const updateUserCtr = async (req, res) => {
   if (req.body.userId === req.params.id) {
@@ -55,10 +55,16 @@ const deleteUserCtr = async (req, res) => {
       });
       console.log(2);
       const userNoti = await User.find({
-        notifications: {
-          $or: [{ senderUserId: req.params.id }, { userId: req.params.id }],
-        },
+        // notifications: {
+        //   $or: [{ senderUserId: req.params.id }, { userId: req.params.id }],
+        // },
+        $or: [
+          { "notifications.senderUserId": req.params.id },
+          { "notifications.userId": req.params.id },
+        ],
       });
+      console.log(3);
+      console.log(userNoti);
       userNoti.map((noti) => {
         noti.updateOne({
           $pull: {
