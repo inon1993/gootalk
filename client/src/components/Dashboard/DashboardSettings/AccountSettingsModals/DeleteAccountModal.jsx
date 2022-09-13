@@ -50,7 +50,7 @@ const DeleteAccountModal = ({onClose}) => {
                 </div>
                 <div className={classes.actions}>
                     <button className={classes.delete} disabled={disabled}>{disabled ? <CircularProgress style={{ color: "white" }} size="20px" /> : "Delete"}</button>
-                    <button className={classes.cancel} disabled={disabled} type="button">Cancel</button>
+                    <button className={classes.cancel} disabled={disabled} type="button" onClick={() => onClose()}>Cancel</button>
                 </div> 
             </form>
             
