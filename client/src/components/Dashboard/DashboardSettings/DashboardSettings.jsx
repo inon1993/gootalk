@@ -70,7 +70,7 @@ const DashboardSettings = () => {
             Change password
           </button>
           <button
-            className={classes["settings-btn"]}
+            className={`${classes["settings-btn"]} ${classes["settings-btn-delete"]}`}
             onClick={deleteAccountHandler}
           >
             Delete account

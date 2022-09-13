@@ -2,6 +2,7 @@ import Modal from "../../../UI/Modal/Modal";
 import { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import classes from "./ChangePasswordModal.module.css";
+import { CircularProgress } from "@mui/material";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 
 const ChangePasswordModal = ({ onClose }) => {
@@ -9,6 +10,7 @@ const ChangePasswordModal = ({ onClose }) => {
   const [enteredPasswordAgain, setEnteredPasswordAgain] = useState("");
   const [errMsg, setErrMsg] = useState({ code: null, msg: "" });
   const [successMsg, setSuccessMsg] = useState("");
+  const [disabled, setDisabled] = useState(false);
   const user = useSelector((state) => state.user.user);
   const req = useAxiosPrivate();
 
@@ -25,6 +27,7 @@ const ChangePasswordModal = ({ onClose }) => {
       enteredPassword === enteredPasswordAgain
     ) {
       try {
+      setDisabled(true);
         await req.put(`/user/${user.userId}`, {
           ...user,
           password: enteredPassword,
@@ -32,11 +35,13 @@ const ChangePasswordModal = ({ onClose }) => {
         });
         setErrMsg({ code: null, msg: "" });
         setSuccessMsg("Password updated successfully.");
+      setDisabled(false);
         setTimeout(() => {
           setSuccessMsg("");
         }, 2500);
       } catch (error) {
         setErrMsg({ code: 500, msg: "Something went wrong. Try again." });
+      setDisabled(false);
       }
     } else {
       setSuccessMsg("");
@@ -82,11 +87,12 @@ const ChangePasswordModal = ({ onClose }) => {
           )}
         </div>
         <div className={classes.actions}>
-          <button className={classes.update}>Update</button>
+          <button className={classes.update} disabled={disabled}>{disabled ? <CircularProgress style={{ color: "white" }} size="20px" /> : "Update"}</button>
           <button
             className={classes.cancel}
             type="button"
             onClick={() => onClose()}
+            disabled={disabled}
           >
             Cancel
           </button>

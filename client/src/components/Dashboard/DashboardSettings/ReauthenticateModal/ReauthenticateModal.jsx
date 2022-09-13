@@ -3,6 +3,7 @@ import Modal from "../../../UI/Modal/Modal";
 import axios from "axios";
 import classes from "./ReauthenticateModal.module.css";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
+import { CircularProgress } from "@mui/material";
 import { useSelector } from "react-redux";
 
 const ReauthenticateModal = ({
@@ -14,6 +15,7 @@ const ReauthenticateModal = ({
 }) => {
   const [enteredPassword, setEnteredPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const [disabled, setDisabled] = useState(false);
   const user = useSelector((state) => state.user.user);
   const req = useAxiosPrivate();
   const passwordRef = useRef();
@@ -25,6 +27,7 @@ const ReauthenticateModal = ({
   const continueHandler = async (e) => {
     e.preventDefault();
     try {
+      setDisabled(true);
       await req.post(`/auth/reauth/${user.userId}`, {
         password: enteredPassword,
       });
@@ -40,8 +43,10 @@ const ReauthenticateModal = ({
         onClose();
         onOpenDeleteAccountModal(true);
       }
+      setDisabled(false);
     } catch (error) {
       setErrMsg("Invalid password.");
+      setDisabled(false);
     }
   };
 
@@ -71,11 +76,12 @@ const ReauthenticateModal = ({
           )}
         </div>
         <div className={classes.actions}>
-          <button className={classes.continue}>Continue</button>
+          <button className={classes.continue} disabled={disabled}>{disabled ? <CircularProgress style={{ color: "white" }} size="20px" /> : "Continue"}</button>
           <button
             className={classes.cancel}
             type="button"
             onClick={closeReminderHandler}
+            disabled={disabled}
           >
             Cancel
           </button>

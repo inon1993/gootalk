@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import useLogout from "../../../../hooks/useLogout";
+import { CircularProgress } from "@mui/material";
 
 const DeleteAccountModal = ({onClose}) => {
     const req = useAxiosPrivate();
@@ -23,10 +24,12 @@ const DeleteAccountModal = ({onClose}) => {
             await req.delete(`/user/${user.userId}`, {
                 data: {userId: user.userId,}
               });
-              setSuccessMsg("Account was deleted successfully.");
-              await logout();
-            navigate("/login", { state: { from: location }, replace: true });
-            setDisabled(false);
+            setSuccessMsg("Account was deleted successfully.");
+             setTimeout(async () => {
+               await logout();
+               navigate("/login", { state: { from: location }, replace: true });
+               setDisabled(false);
+             }, 2000)
         } catch (error) {
             setSuccessMsg("");
             setErrMsg("Something went wrong. Try again.")
@@ -39,16 +42,16 @@ const DeleteAccountModal = ({onClose}) => {
     return (
         <Modal onClose={() => onClose()}>
             <form onSubmit={deleteAccountHandler}>
-               <div>
-                <span>You are about to delete your account.</span>
-                <span>This action cannot be undone. Are you sure you want to continue?</span>
-            </div>
-            {errMsg !== "" && <span>{errMsg}</span>}
-            {successMsg !== "" && <span>{successMsg}</span>}
-            <div>
-                <button disabled={disabled}>Delete</button>
-                <button disabled={disabled} type="button">Cancel</button>
-            </div> 
+               <div className={classes["delete-account-wrapper"]}>
+                    <span className={classes["modal-title-main"]}>You are about to delete your account.</span>
+                    <span className={classes["modal-title"]}>This action cannot be undone. Are you sure you want to continue?</span>
+                    {errMsg !== "" && <span className={classes["err-msg"]}>{errMsg}</span>}
+                    {successMsg !== "" && <span className={classes["success-update-msg"]}>{successMsg}</span>}
+                </div>
+                <div className={classes.actions}>
+                    <button className={classes.delete} disabled={disabled}>{disabled ? <CircularProgress style={{ color: "white" }} size="20px" /> : "Delete"}</button>
+                    <button className={classes.cancel} disabled={disabled} type="button">Cancel</button>
+                </div> 
             </form>
             
         </Modal>
