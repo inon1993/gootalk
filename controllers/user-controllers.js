@@ -42,56 +42,17 @@ const updateUserCtr = async (req, res) => {
 };
 
 const deleteUserCtr = async (req, res) => {
-  // console.log(req.body);
-  // console.log(req.body.userId);
-  // console.log(req.params.id);
   if (req.body.userId === req.params.id) {
     try {
-      // const user = await User.findById(req.params.id);
-      const posts = await Post.deleteMany({ userId: req.params.id });
-      console.log(1);
-      const noti = await Notification.deleteMany({
+      await Post.deleteMany({ userId: req.params.id });
+      await Notification.deleteMany({
         $or: [{ senderUserId: req.params.id }, { userId: req.params.id }],
       });
-      console.log(2);
-      const userNoti = await User.find({
-        // notifications: {
-        //   $or: [{ senderUserId: req.params.id }, { userId: req.params.id }],
-        // },
-        $or: [
-          { "notifications.senderUserId": req.params.id },
-          { "notifications.userId": req.params.id },
-        ],
-      });
-      console.log(3);
-      console.log(userNoti);
-      const check = await Promise.all(userNoti.map(async (noti) => {
-        await noti.updateOne({
-          $pull: {
-            $or: [
-              { "notifications.senderUserId": req.params.id },
-              { "notifications.userId": req.params.id },
-            ],
-          },
-        });
-      }));
-      console.log(check);
-      const friendWith = await User.find({ friends: req.params.id });
-      // console.log(friendWith);
-      const check2 = await Promise.all(friendWith.map(async (friend) => {
-        await friend.updateOne({
-          $pull: { friends: req.params.id },
-        });
-      }));
+      await User.updateMany({}, {$pull: {notifications: {$or: [{senderUserId: req.params.id}, {userId: req.params.id}]}}});
+      await User.updateMany({}, {$pull: {friends: req.params.id}});
+      await Post.updateMany({}, {$pull: {likes: req.params.id}});
 
-      const postWith = await Post.find({ likes: req.params.id });
-      // console.log(friendWith);
-      const check3 = await Promise.all(postWith.map(async (post) => {
-        await post.updateOne({
-          $pull: { likes: req.params.id },
-        });
-      }));
-      const user = await User.findByIdAndDelete(req.params.id);
+      await User.findByIdAndDelete(req.params.id);
       return res.status(200).json("Account has been deleted successfully.");
     } catch (err) {
       return res.status(500).json(err);
