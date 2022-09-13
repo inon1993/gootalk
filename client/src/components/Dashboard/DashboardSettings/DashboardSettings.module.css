@@ -1,68 +1,70 @@
 .settings-wrapper {
-    width: calc(100% - 80px);
-    min-height: calc(100% - 80px);
-    background-color: white;
-    display: flex;
-    flex-direction: column;
+  width: calc(100% - 80px);
+  min-height: calc(100% - 80px);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .user-settings {
-    margin: 15px;
-    padding: 10px;
-    padding-bottom: 15px;
-    /* width: 80%; */
-    border-bottom: 1px solid hsl(206.7, 33.3%, 89.7%);
-    display: flex;
-    flex-direction: column;
+  margin: 15px;
+  padding: 10px;
+  padding-bottom: 15px;
+  /* width: 80%; */
+  border-bottom: 1px solid hsl(206.7, 33.3%, 89.7%);
+  display: flex;
+  flex-direction: column;
 }
 
 .settings-title {
-    font-weight: 700;
-    margin-bottom: 10px;
-    font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-size: 1rem;
 }
 
 .settings-btn {
-    background-color: transparent;
-    border: none;
-    /* margin-bottom: 10px; */
-    text-align: left;
-    padding: 10px;
-    font-weight: 500;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: 200ms;
+  background-color: transparent;
+  border: none;
+  /* margin-bottom: 10px; */
+  text-align: left;
+  padding: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 200ms;
 }
 
 .settings-btn-delete:hover {
-    color: red;
+  color: red;
 }
 
 .settings-btn:hover {
-    background-color: hsl(206.7, 33.3%, 96.7%);
+  background-color: hsl(206.7, 33.3%, 96.7%);
 }
 
 .settings-btn:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
+}
+
+@media only screen and (max-width: 550px) {
+  .settings-wrapper {
+    padding: 10px;
+    width: calc(100% - 40px);
+    min-height: calc(100% - 40px);
+  }
 }
 
 @media only screen and (max-width: 370px) {
-    .settings-wrapper {
-        padding: 10px;
-        width: calc(100% - 40px);
-        min-height: calc(100% - 40px);
-    }
+  .user-settings {
+    margin: 0;
+  }
 
-    .user-settings {
-        margin: 0;
-    }
+  .settings-title {
+    font-size: 0.9rem;
+  }
 
-    .settings-title {
-        font-size: 0.9rem;
-    }
-
-    .settings-btn {
-        padding: 7px;
-        font-size: 0.85rem;
-    }
+  .settings-btn {
+    padding: 7px;
+    font-size: 0.85rem;
+  }
 }
