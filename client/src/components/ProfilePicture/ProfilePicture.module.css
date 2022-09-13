@@ -195,6 +195,20 @@
   }
 }
 
+@media only screen and (max-width: 375px) {
+  .edit-profile-cover-add {
+    font-size: 1.8rem !important;
+  top: calc(100% - 20px);
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .edit-profile-cover-add {
+    font-size: 1.5rem !important;
+  top: calc(100% - 18px);
+  }
+}
+
 @media only screen and (max-height: 550px) {
   /* .sl-add-pic {
     top: calc(50vh - 307px);
