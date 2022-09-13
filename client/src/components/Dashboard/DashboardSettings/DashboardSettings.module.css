@@ -45,3 +45,24 @@
 .settings-btn:last-child {
     margin-bottom: 0;
 }
+
+@media only screen and (max-width: 370px) {
+    .settings-wrapper {
+        padding: 10px;
+        width: calc(100% - 40px);
+        min-height: calc(100% - 40px);
+    }
+
+    .user-settings {
+        margin: 0;
+    }
+
+    .settings-title {
+        font-size: 0.9rem;
+    }
+
+    .settings-btn {
+        padding: 7px;
+        font-size: 0.85rem;
+    }
+}
