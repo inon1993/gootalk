@@ -8,6 +8,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { menuActions } from "../../../store/menu-slice";
 import { navbarActions } from "../../../store/navbar-slice";
+import { settingsActions } from "../../../store/settings-slice";
 import { Link } from "react-router-dom";
 
 const Menu = () => {
@@ -34,6 +35,10 @@ const Menu = () => {
     dispatch(menuActions.activateSettings());
     dispatch(navbarActions.deactivate());
   };
+
+  const toggleTheme = () => {
+    dispatch(settingsActions.themeToggle())
+  }
 
   return (
     <div className={classes["menu-wrapper"]}>
@@ -93,6 +98,7 @@ const Menu = () => {
             <span className={classes["menu-text"]}>Settings</span>
           </li>
         </Link>
+        <li><button onClick={toggleTheme}>theme</button></li>
       </ul>
     </div>
   );

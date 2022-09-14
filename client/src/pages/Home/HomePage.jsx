@@ -12,6 +12,7 @@ import sortArrayByAlphaBeit from "../../helpers/custom-functions/sortArrayByAlph
 
 const Home = () => {
   const user = useSelector((state) => state.user.user);
+const theme = useSelector(state => state.settings.toggle.theme);
   const req = useAxiosPrivate();
   const [sortedFriends, setSortedFriends] = useState([]);
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div id={theme}>
       <Navbar />
       <div className={classes["dashboard-home"]}>
         <div

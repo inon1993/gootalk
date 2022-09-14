@@ -5,9 +5,16 @@
   border-bottom: 1px solid hsl(206.7, 33.3%, 89.7%);
   position: sticky;
   top: 0;
-  background-color: white;
   height: 60px;
   z-index: 50;
+}
+
+#light .navbar {
+  background-color: white;
+}
+
+#dark .navbar {
+  background-color: black;
 }
 
 .navbar-mobile-menu {

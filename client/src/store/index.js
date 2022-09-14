@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "@reduxjs/toolkit";
 import menuReducer from "./menu-slice";
+import settingsReducer from "./settings-slice"
 import navbarReducer from "./navbar-slice";
 import dropdownReducer from "./dropdown-slice";
 import userReducer from "./user-slice";
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   navbar: navbarReducer,
   dropdown: dropdownReducer,
   user: userReducer,
-  accessToken: accessTokenReducer
+  accessToken: accessTokenReducer,
+  settings: settingsReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
