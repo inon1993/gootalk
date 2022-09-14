@@ -1,5 +1,6 @@
 .menu-wrapper {
   color: var(--text-menu-unselected);
+  transition: 700ms;
 }
 
 .menu-list {
@@ -17,8 +18,8 @@
 
 .menu-item:hover {
   padding-left: 47px;
-  border-left: 3px solid hsl(208.7, 100%, 53.7%);
-  color: hsl(208.7, 100%, 53.7%);
+  border-left: 3px solid var(--logo-bright);
+  /* color: var(--menu-hover-text); */
   cursor: pointer;
 }
 
@@ -26,8 +27,8 @@
   display: flex;
   align-items: center;
   padding: 15px 47px;
-  border-left: 3px solid hsl(208.7, 100%, 53.7%);
-  color: hsl(220.3, 62.5%, 22%);
+  border-left: 3px solid var(--logo-bright);
+  color: var(--menu-active-text);
   cursor: pointer;
   font-weight: 600;
 }

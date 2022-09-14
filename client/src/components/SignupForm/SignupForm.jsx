@@ -6,7 +6,7 @@ import {
   CountrySelector,
   CitySelector,
 } from "./LocationSelector/LocationSelector";
-import { signup } from "../../api/auth/authRoutes";
+import { createSettings, signup } from "../../api/auth/authRoutes";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user-slice";
 import { accessTokenActions } from "../../store/access-token-slice";
@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import ProfilePicture from "../ProfilePicture/ProfilePicture";
 import { getPictureUrl } from "../../api/uploadImg/uploadImg";
+import { settingsActions } from "../../store/settings-slice";
 
 const SignupForm = ({ profilePicture }) => {
   const firstnameRef = useRef();
@@ -107,6 +108,7 @@ const SignupForm = ({ profilePicture }) => {
         city: userData.city,
         profilePicture: imgUrl || userData.profilePicture,
       };
+      await createSettings({ userId: userData._id, theme: "light" });
       dispatch(userActions.setUser(newUserToSet));
       dispatch(accessTokenActions.setAccessToken(accessToken));
       navigate("/");

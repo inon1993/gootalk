@@ -13,6 +13,7 @@ const postRoutes = require("./routes/post");
 const refreshRoute = require("./routes/refresh");
 const logoutRoute = require("./routes/logout");
 const notificationsRoute = require("./routes/notifications");
+const settingsRoutes = require("./routes/settings");
 
 const app = express();
 
@@ -70,6 +71,7 @@ app.use("/post", postRoutes);
 app.use("/refresh", refreshRoute);
 app.use("/logout", logoutRoute);
 app.use("/notifications", notificationsRoute);
+app.use("/settings", settingsRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

@@ -4,6 +4,8 @@
   align-items: center;
   width: 100%;
   min-height: calc(100vh - 61px);
+  color: var(--text-menu-unselected);
+  transition: 700ms;
   /* padding: 15px; */
 }
 
@@ -13,5 +15,6 @@
   align-items: center;
   width: 100%;
   height: calc(100vh - 61px);
+  color: var(--text-menu-unselected);
   /* padding: 15px; */
 }

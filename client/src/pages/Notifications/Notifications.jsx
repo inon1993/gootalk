@@ -1,6 +1,6 @@
 import Navbar from "../../components/Navbar/Navbar";
 import classes from "./Notifications.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { navbarActions } from "../../store/navbar-slice";
 import { menuActions } from "../../store/menu-slice";
 import { dropdownActions } from "../../store/dropdown-slice";
@@ -9,6 +9,7 @@ import Menu from "../../components/Dashboard/Menu/Menu";
 import DashboardNotification from "../../components/Dashboard/DashboardNotification/DashboardNotification";
 
 const Notifications = () => {
+  const theme = useSelector((state) => state.settings.toggle.theme);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const Notifications = () => {
   return (
     <>
       <Navbar />
-      <div className={classes["dashboard-noti"]}>
+      <div className={classes["dashboard-noti"]} data-theme={theme}>
         <div
           className={classes["left-menu"]}
           onClick={deactivateDropdownHandler}

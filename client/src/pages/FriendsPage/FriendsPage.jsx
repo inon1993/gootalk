@@ -14,6 +14,7 @@ const FriendsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
+  const theme = useSelector((state) => state.settings.toggle.theme);
   const req = useAxiosPrivate();
   const [sortedFriends, setSortedFriends] = useState([]);
 
@@ -45,7 +46,7 @@ const FriendsPage = () => {
   return (
     <>
       <Navbar />
-      <div className={classes["friends-dashboard"]}>
+      <div className={classes["friends-dashboard"]} data-theme={theme}>
         <div className={classes["friends-menu"]}>
           <Menu />
         </div>

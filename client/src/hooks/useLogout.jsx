@@ -4,6 +4,7 @@ import { userActions } from "../store/user-slice";
 import { menuActions } from "../store/menu-slice";
 import { accessTokenActions } from "../store/access-token-slice";
 import { dropdownActions } from "../store/dropdown-slice";
+import { settingsActions } from "../store/settings-slice";
 
 const useLogout = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const useLogout = () => {
     dispatch(menuActions.deactivate());
     dispatch(dropdownActions.deactivate());
     dispatch(accessTokenActions.removeAccessToken());
+    dispatch(settingsActions.themeReset());
   };
 
   return logout;

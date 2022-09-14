@@ -1,6 +1,6 @@
 import Navbar from "../../components/Navbar/Navbar";
 import classes from "./NotFound.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { navbarActions } from "../../store/navbar-slice";
 import { menuActions } from "../../store/menu-slice";
 import { dropdownActions } from "../../store/dropdown-slice";
@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import Menu from "../../components/Dashboard/Menu/Menu";
 
 const NotFound = () => {
+  const theme = useSelector((state) => state.settings.toggle.theme);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const NotFound = () => {
   return (
     <>
       <Navbar />
-      <div className={classes["not-found"]}>
+      <div className={classes["not-found"]} data-theme={theme}>
         <div
           className={classes["left-menu"]}
           onClick={deactivateDropdownHandler}

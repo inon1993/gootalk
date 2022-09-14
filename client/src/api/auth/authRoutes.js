@@ -24,6 +24,14 @@ export const login = async (email, password) => {
   return user;
 };
 
+export const createSettings = async (payload) => {
+  await axios({
+    url: "/settings/create",
+    method: "POST",
+    data: payload,
+  });
+};
+
 export const logout = async (accessToken) => {
   await axios.get("/logout", {
     headers: {

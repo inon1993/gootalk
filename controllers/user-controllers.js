@@ -2,6 +2,7 @@ const User = require("../models/User");
 const Post = require("../models/Post");
 const Notification = require("../models/Notification");
 const bcrypt = require("bcrypt");
+const Setting = require("../models/Setting");
 
 const updateUserCtr = async (req, res) => {
   if (req.body.userId === req.params.id) {
@@ -44,13 +45,23 @@ const updateUserCtr = async (req, res) => {
 const deleteUserCtr = async (req, res) => {
   if (req.body.userId === req.params.id) {
     try {
+      await Setting.deleteOne({ userId: req.params.id });
       await Post.deleteMany({ userId: req.params.id });
       await Notification.deleteMany({
         $or: [{ senderUserId: req.params.id }, { userId: req.params.id }],
       });
-      await User.updateMany({}, {$pull: {notifications: {$or: [{senderUserId: req.params.id}, {userId: req.params.id}]}}});
-      await User.updateMany({}, {$pull: {friends: req.params.id}});
-      await Post.updateMany({}, {$pull: {likes: req.params.id}});
+      await User.updateMany(
+        {},
+        {
+          $pull: {
+            notifications: {
+              $or: [{ senderUserId: req.params.id }, { userId: req.params.id }],
+            },
+          },
+        }
+      );
+      await User.updateMany({}, { $pull: { friends: req.params.id } });
+      await Post.updateMany({}, { $pull: { likes: req.params.id } });
 
       await User.findByIdAndDelete(req.params.id);
       return res.status(200).json("Account has been deleted successfully.");

@@ -1,16 +1,17 @@
 .friends-dashboard {
   min-height: calc(100vh - 61px);
   display: flex;
+  transition: 700ms;
 }
 
 .friends-page-wrapper {
-  flex: 9;
+  flex: 9.5;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background-color: hsl(210, 71.4%, 97.3%);
+  background-color: var(--background-feed);
   background-attachment: fixed;
 }
 
@@ -21,7 +22,9 @@
   position: sticky;
   top: 61px;
   z-index: 60;
-  border-right: 1px solid hsl(206.7, 33.3%, 89.7%);
+  border-right: 1px solid var(--menu-navbar-border);
+  background-color: var(--background);
+  transition: 700ms;
 }
 
 @media only screen and (max-width: 800px) {

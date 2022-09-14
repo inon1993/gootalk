@@ -18,7 +18,10 @@ export const CountrySelector = ({
   // }
 
   return (
-    <div className={classes["sr-country"]}>
+    <div
+      className={classes["sr-country"]}
+      // data-theme={user.userId !== "" ? theme : "light"}
+    >
       {countries
         .filter((c) => {
           if (c.country.toLowerCase().includes(country.toLowerCase())) {
@@ -51,7 +54,6 @@ export const CountrySelector = ({
 };
 
 export const CitySelector = ({ city, country, onSetCity, onSetUser }) => {
-  console.log(country);
   return (
     <div className={classes["sr-country"]}>
       {country.cities

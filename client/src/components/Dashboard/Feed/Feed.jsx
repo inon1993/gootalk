@@ -17,6 +17,7 @@ const Feed = () => {
   const [update, setUpdate] = useState(0);
   const [initialLoading, setInitialLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const theme = useSelector((state) => state.settings.toggle.theme);
   const user = useSelector((state) => state.user.user);
   const req = useAxiosPrivate();
   const navigate = useNavigate();
@@ -100,7 +101,7 @@ const Feed = () => {
   };
 
   return (
-    <div className={classes.feed}>
+    <div className={classes.feed} data-theme={theme}>
       <NewPost
         releseEndPosts={setEndPosts}
         resetUsers={setPostsUsers}

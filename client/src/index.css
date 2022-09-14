@@ -1,43 +1,43 @@
 :root {
   --background: white;
-  --secondery: hsl(206.7, 33.3%, 89.7%);
+  --menu-navbar-border: hsl(206.7, 33.3%, 89.7%);
   --logo-bright: hsl(208.7, 100%, 53.7%);
   --logo-dark: hsl(220.3, 62.5%, 22%);
   --navbar-features: hsl(207.2, 32.5%, 68%);
   --badge: red;
   --text-menu-unselected: hsl(207.2, 32.5%, 68%);
   --background-feed: hsl(210, 71.4%, 97.3%);
+  --menu-active-text: hsl(220.3, 62.5%, 22%);
+  --card-text: hsl(220.3, 62.5%, 22%);
+  --card-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  --background-location: white;
+  --border-location: hsl(212.3, 41.9%, 93.9%);
 }
 
 [data-theme="dark"] {
-  --background: rgb(31, 31, 31);
-  --secondery: #a5c9ca;
-  --logo-bright: hsl(208.7, 100%, 53.7%);
+  --background: rgb(33, 33, 33);
+  --menu-navbar-border: rgb(10, 10, 10);
+  --logo-bright: rgb(88, 160, 255);
   --logo-dark: rgb(230, 238, 255);
   --navbar-features: rgb(230, 238, 255);
   --badge: tomato;
   --text-menu-unselected: rgb(230, 238, 255);
   --background-feed: rgb(18, 18, 18);
+  --menu-active-text: rgb(88, 160, 255);
+  --menu-hover-text: rgb(174, 209, 255);
+  --card-text: rgb(230, 238, 255);
+  --card-shadow: rgba(0, 0, 0, 0.7) 0px 4px 12px;
+  --background-location: rgb(40, 40, 40);
+  --border-location: rgb(10, 10, 10);
 }
 
 body {
   margin: 0;
   color: var(--logo-dark);
-  font-family: 'Poppins', sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
   cursor: default;
-  /* font-family: "Roboto", sans-serif; */
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
 }
 
 a {
   color: var(--text-menu-unselected);
 }
-
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
