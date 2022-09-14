@@ -21,6 +21,7 @@ import { useNavigate, useLocation } from "react-router";
 
 const Navbar = () => {
   const user = useSelector((state) => state.user.user);
+  const theme = useSelector((state) => state.settings.toggle.theme);
   const isActivated = useSelector((state) => state.navbar.activate);
   const isActivatedDropdown = useSelector((state) => state.dropdown.activate);
   const dispatch = useDispatch();
@@ -81,6 +82,7 @@ const Navbar = () => {
         className={`${
           !isMobileMenu ? classes.navbar : classes["navbar-mobile-menu"]
         }`}
+        data-theme={theme}
       >
         <div className={classes.logo}>
           <Link to={"/"} style={{ textDecoration: "none" }}>

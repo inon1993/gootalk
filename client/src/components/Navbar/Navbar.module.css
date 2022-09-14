@@ -1,30 +1,41 @@
+:root {
+  --background: white;
+  --secondery: hsl(206.7, 33.3%, 89.7%);
+  --logo-bright: hsl(208.7, 100%, 53.7%);
+  --logo-dark: hsl(220.3, 62.5%, 22%);
+  --navbar-features: hsl(207.2, 32.5%, 68%);
+  --badge: red;
+}
+
+[data-theme="dark"] {
+  --background: rgb(31, 31, 31);
+  --secondery: #a5c9ca;
+  --logo-bright: hsl(208.7, 100%, 53.7%);
+  --logo-dark: rgb(230, 238, 255);
+  --navbar-features: rgb(230, 238, 255);
+  --badge: tomato;
+}
+
 .navbar {
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: 1px solid hsl(206.7, 33.3%, 89.7%);
+  border-bottom: 1px solid var(--secondery);
   position: sticky;
   top: 0;
   height: 60px;
   z-index: 50;
-}
-
-#light .navbar {
-  background-color: white;
-}
-
-#dark .navbar {
-  background-color: black;
+  background-color: var(--background);
 }
 
 .navbar-mobile-menu {
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: 1px solid hsl(206.7, 33.3%, 89.7%);
+  border-bottom: 1px solid var(--secondery);
   position: sticky;
   top: 0;
-  background-color: white;
+  background-color: var(--background);
   height: 60px;
   z-index: 50;
 }
@@ -36,7 +47,7 @@
 .navbar-logo {
   display: inline;
   font-family: "Poppins", sans-serif;
-  color: hsl(208.7, 100%, 53.7%);
+  color: var(--logo-bright);
   font-weight: 900;
   margin-left: 1rem;
   cursor: pointer;
@@ -44,7 +55,7 @@
 
 .logo-span {
   font-family: "Poppins", sans-serif;
-  color: hsl(220.3, 62.5%, 22%);
+  color: var(--logo-dark);
 }
 
 .search {
@@ -64,25 +75,25 @@
 .navbar-features-icon {
   /* position: relative; */
   font-size: 1.6rem !important;
-  color: hsl(207.2, 32.5%, 68%);
+  color: var(--navbar-features);
   padding: 18.2px;
   /* display: flex !important; */
 }
 
 .navbar-features-icon:hover {
   padding-bottom: 15.2px;
-  border-bottom: 3px solid hsl(208.7, 100%, 53.7%);
+  border-bottom: 3px solid var(--logo-bright);
   cursor: pointer;
 }
 
 .navbar-features-icon-focus {
   font-size: 1.6rem !important;
-  color: hsl(207.2, 32.5%, 68%);
+  color: var(--navbar-features);
   padding: 18.2px;
   padding-bottom: 15.2px;
-  border-bottom: 3px solid hsl(208.7, 100%, 53.7%);
+  border-bottom: 3px solid var(--logo-bright);
   cursor: pointer;
-  color: hsl(220.3, 62.5%, 22%);
+  color: var(--logo-bright);
 }
 
 .notification-badge {
@@ -92,10 +103,10 @@
   right: 10px;
   font-size: 0.6rem;
   color: white;
-  background-color: red;
+  background-color: var(--badge);
   padding: 4px 7px;
   border-radius: 50%;
-  border: 2px solid white;
+  border: 2px solid var(--background);
 }
 
 .dropdown-menu {
@@ -129,7 +140,7 @@
   background-color: transparent;
   border: none;
   outline: none;
-  color: hsl(220.3, 62.5%, 22%);
+  color: var(--logo-dark);
   font-family: "Poppins", sans-serif;
   margin-right: 1rem;
   font-size: 0.9rem;
@@ -137,7 +148,7 @@
 }
 
 .navber-signup-btn {
-  background-color: hsl(208.7, 100%, 53.7%);
+  background-color: var(--logo-bright);
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 10px;
@@ -150,7 +161,7 @@
 }
 
 .navber-signup-btn:hover {
-  background-color: hsl(220.3, 62.5%, 22%);
+  background-color: var(--logo-dark);
 }
 
 @media only screen and (max-width: 750px) {

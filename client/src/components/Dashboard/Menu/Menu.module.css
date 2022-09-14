@@ -1,5 +1,13 @@
+:root {
+  --text-menu-unselected: hsl(207.2, 32.5%, 68%);
+}
+
+[data-theme="dark"] {
+  --text-menu-unselected: rgb(230, 238, 255);
+}
+
 .menu-wrapper {
-  color: hsl(207.2, 32.5%, 68%);
+  color: var(--text-menu-unselected);
 }
 
 .menu-list {

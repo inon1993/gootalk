@@ -1,6 +1,14 @@
+:root {
+  --background-feed: hsl(210, 71.4%, 97.3%);
+}
+
+[data-theme="dark"] {
+  --background-feed: rgb(18, 18, 18);
+}
+
 .feed {
   flex: 7;
-  background-color: hsl(210, 71.4%, 97.3%);
+  background-color: var(--background-feed);
   background-attachment: fixed;
   display: flex;
   flex-direction: column;
@@ -9,7 +17,7 @@
 
 .right-menu {
   flex: 2.5;
-  background-color: hsl(210, 71.4%, 97.3%);
+  background-color: var(--background-feed);
   background-attachment: fixed;
 }
 

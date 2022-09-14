@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 
 const Menu = () => {
   const isActivated = useSelector((state) => state.menu.activate);
+  const theme = useSelector((state) => state.settings.toggle.theme);
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
 
@@ -37,11 +38,11 @@ const Menu = () => {
   };
 
   const toggleTheme = () => {
-    dispatch(settingsActions.themeToggle())
-  }
+    dispatch(settingsActions.themeToggle());
+  };
 
   return (
-    <div className={classes["menu-wrapper"]}>
+    <div className={classes["menu-wrapper"]} data-theme={theme}>
       <ul className={classes["menu-list"]}>
         <Link to={"/"} style={{ textDecoration: "none" }}>
           <li
@@ -98,7 +99,9 @@ const Menu = () => {
             <span className={classes["menu-text"]}>Settings</span>
           </li>
         </Link>
-        <li><button onClick={toggleTheme}>theme</button></li>
+        <li>
+          <button onClick={toggleTheme}>theme</button>
+        </li>
       </ul>
     </div>
   );
