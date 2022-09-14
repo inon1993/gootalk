@@ -1,21 +1,3 @@
-:root {
-  --background: white;
-  --secondery: hsl(206.7, 33.3%, 89.7%);
-  --logo-bright: hsl(208.7, 100%, 53.7%);
-  --logo-dark: hsl(220.3, 62.5%, 22%);
-  --navbar-features: hsl(207.2, 32.5%, 68%);
-  --badge: red;
-}
-
-[data-theme="dark"] {
-  --background: rgb(31, 31, 31);
-  --secondery: #a5c9ca;
-  --logo-bright: hsl(208.7, 100%, 53.7%);
-  --logo-dark: rgb(230, 238, 255);
-  --navbar-features: rgb(230, 238, 255);
-  --badge: tomato;
-}
-
 .navbar {
   display: flex;
   flex-direction: row;

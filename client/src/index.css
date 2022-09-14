@@ -1,6 +1,28 @@
+:root {
+  --background: white;
+  --secondery: hsl(206.7, 33.3%, 89.7%);
+  --logo-bright: hsl(208.7, 100%, 53.7%);
+  --logo-dark: hsl(220.3, 62.5%, 22%);
+  --navbar-features: hsl(207.2, 32.5%, 68%);
+  --badge: red;
+  --text-menu-unselected: hsl(207.2, 32.5%, 68%);
+  --background-feed: hsl(210, 71.4%, 97.3%);
+}
+
+[data-theme="dark"] {
+  --background: rgb(31, 31, 31);
+  --secondery: #a5c9ca;
+  --logo-bright: hsl(208.7, 100%, 53.7%);
+  --logo-dark: rgb(230, 238, 255);
+  --navbar-features: rgb(230, 238, 255);
+  --badge: tomato;
+  --text-menu-unselected: rgb(230, 238, 255);
+  --background-feed: rgb(18, 18, 18);
+}
+
 body {
   margin: 0;
-  color: hsl(220.3, 62.5%, 22%);
+  color: var(--logo-dark);
   font-family: 'Poppins', sans-serif !important;
   cursor: default;
   /* font-family: "Roboto", sans-serif; */
@@ -12,7 +34,7 @@ body {
 }
 
 a {
-  color: hsl(207.2, 32.5%, 68%);
+  color: var(--text-menu-unselected);
 }
 
 /* code {

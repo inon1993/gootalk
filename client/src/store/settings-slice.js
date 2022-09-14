@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialSettingsState = {
   toggle: {
-    theme: "dark"
+    theme: "light"
   },
 };
 

@@ -12,10 +12,13 @@ import Notifications from "./pages/Notifications/Notifications";
 import FriendsPage from "./pages/FriendsPage/FriendsPage";
 import Settings from "../src/pages/Settings/Settings";
 import NotFound from "./pages/NotFound/NotFound";
+import {useSelector} from "react-redux";
 
 function App() {
+  const theme = useSelector(state => state.settings.toggle.theme)
   return (
-    <Routes>
+    <div data-theme={theme}>
+      <Routes>
       <Route element={<Authenticated />}>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -33,6 +36,7 @@ function App() {
         </Route>
       </Route>
     </Routes>
+    </div>
   );
 }
 
