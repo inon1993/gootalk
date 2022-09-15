@@ -12,6 +12,9 @@
   --card-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   --background-location: white;
   --border-location: hsl(212.3, 41.9%, 93.9%);
+  --profile-picture-border: white;
+  --profile-picture-icons-color: hsl(220.3, 62.5%, 22%);
+  --background-search-input: white; 
 }
 
 [data-theme="dark"] {
@@ -29,6 +32,9 @@
   --card-shadow: rgba(0, 0, 0, 0.7) 0px 4px 12px;
   --background-location: rgb(40, 40, 40);
   --border-location: rgb(10, 10, 10);
+  --profile-picture-border: rgb(33, 33, 33);
+  --profile-picture-icons-color: rgb(230, 238, 255);
+  --background-search-input: rgb(75, 75, 75); 
 }
 
 body {

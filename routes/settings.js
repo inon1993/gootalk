@@ -6,9 +6,9 @@ const settingsCtr = require("../controllers/settings-controller");
 router.post("/create", settingsCtr.createSettings);
 
 //--GET SETTINGS--//
-router.get("/:id", auth, settingsCtr.getSettings);
+router.get("/:id", settingsCtr.getSettings);
 
 //--UPDATE SETTINGS--//
-router.put("/theme/:id", auth, settingsCtr.setTheme);
+router.put("/theme/:id", settingsCtr.setTheme);
 
 module.exports = router;

@@ -56,10 +56,10 @@ const LoginForm = () => {
       };
       dispatch(userActions.setUser(newUserToSet));
       dispatch(accessTokenActions.setAccessToken(accessToken));
-      dispatch(userActions.setFriends({ friends: userData.friends }));
       const settings = await req.get(`/settings/${userData._id}`);
+      dispatch(settingsActions.setSettings({theme: settings.data }));
+      dispatch(userActions.setFriends({ friends: userData.friends }));
       const notifications = await req.get(`/notifications/${userData._id}`);
-      dispatch(settingsActions.setSettings({ theme: settings.data.theme }));
       dispatch(
         userActions.setNotifications({ notifications: notifications.data })
       );

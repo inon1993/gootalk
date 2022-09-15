@@ -2,10 +2,11 @@
   display: flex;
   align-items: center;
   padding: 5px 8px;
-  border: 1px solid hsl(206.7, 33.3%, 89.7%);
+  border: 1px solid var(--menu-navbar-border);
   border-radius: 10px;
   width: 70%;
   position: relative;
+  background-color: var(--background-search-input);
 }
 
 .navbar-search-text {
@@ -14,14 +15,14 @@
 
 .search-icon {
   font-size: 1.1rem !important;
-  color: hsl(207.2, 32.5%, 68%);
+  color: var(--navbar-features);
 }
 
 .search-input {
   width: 90%;
   border: none;
   padding: 5px;
-  color: hsl(207.2, 32.5%, 58%);
+  color: var(--navbar-features);
   font-size: 1rem;
   font-family: "Poppins", sans-serif;
   font-size: 0.9rem;
@@ -29,16 +30,16 @@
 
 .search-input:focus {
   outline: none;
-  color: hsl(220.3, 62.5%, 22%);
+  color: var(--menu-active-text);
 }
 
 .search-input::placeholder {
-  color: hsl(207.2, 32.5%, 68%);
+  color: var(--navbar-features);
 }
 
 .search-results {
   /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
-  border: 1px solid hsl(206.7, 33.3%, 89.7%);
+  border: 1px solid var(--menu-navbar-border);
   border-top: none;
   width: 100%;
   border-radius: 0 0 10px 10px;
@@ -53,14 +54,14 @@
   align-content: center;
   justify-content: flex-start;
   align-items: center;
-  background-color: white;
-  border-bottom: 1px solid hsl(206.7, 33.3%, 89.7%);
+  background-color: var(--background-search-input);
+  border-bottom: 1px solid var(--menu-navbar-border);
   cursor: pointer;
   transition: 200ms;
 }
 
 .search-users:hover {
-  background-color: hsl(206.7, 33.3%, 89.7%);
+  background-color: var(--menu-navbar-border);
 }
 
 .search-pic {
@@ -93,11 +94,11 @@
   margin: 0;
   padding: 0.5rem;
   border-radius: 0 0 10px 10px;
-  background-color: white;
+  background-color: var(--background-search-input);
   cursor: pointer;
   transition: 200ms;
 }
 
 .search-expend:hover {
-  background-color: hsl(206.7, 33.3%, 89.7%);
+  background-color: var(--menu-navbar-border);
 }
