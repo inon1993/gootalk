@@ -41,12 +41,12 @@
   outline: none;
   padding-top: 3px;
   /* height: 57px; */
-  border-bottom: 3px solid hsl(208.7, 100%, 53.7%);
+  border-bottom: 3px solid var(--logo-bright);
   cursor: pointer;
 }
 
 .navbar-profile-focus > .navbar-profile-icon {
-  color: hsl(220.3, 62.5%, 22%);
+  color: var(--navbar-icon-focus);
 }
 
 .navbar-profile-name {
@@ -54,4 +54,5 @@
   font-size: 0.8rem;
   font-weight: 400;
   margin-left: 10px;
+  color: var(--navbar-profile-text);
 }

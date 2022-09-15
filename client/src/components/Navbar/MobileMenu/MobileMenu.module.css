@@ -1,7 +1,7 @@
 .mm-features {
   display: none;
-  background-color: white;
-  border-bottom: 1px solid hsl(206.7, 33.3%, 94.7%);
+  background-color: var(--background);
+  border-bottom: 1px solid var(--menu-navbar-border);
   z-index: 70;
   animation: slide-down 200ms ease-out forwards;
   border-radius: 0 0 10px 10px;
@@ -22,9 +22,9 @@
   justify-content: center;
   align-items: center;
   padding: 20px 0;
-  color: hsl(220.3, 62.5%, 22%);
+  color: var(--navbar-profile-text);
   cursor: pointer;
-  border-bottom: 1px solid hsl(206.7, 33.3%, 89.7%);
+  border-bottom: 1px solid var(--menu-navbar-border);
   width: 100%;
 }
 
@@ -33,13 +33,17 @@
   border-radius: 0 0 10px 10px;
 }
 
+.mm-link > .mm-li {
+  border-radius: 0;
+}
+
 .mm-link {
   text-decoration: none;
   padding: 0;
 }
 
 .mm-li:hover {
-  background-color: hsl(206.7, 33.3%, 96.7%);
+  background-color: var(--menu-navbar-border);
 }
 
 .mm-f-icon {

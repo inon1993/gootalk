@@ -5,6 +5,7 @@
   --logo-dark: hsl(220.3, 62.5%, 22%);
   --navbar-features: hsl(207.2, 32.5%, 68%);
   --badge: red;
+  --navbar-signup-hover: hsl(220.3, 62.5%, 22%);
   --text-menu-unselected: hsl(207.2, 32.5%, 68%);
   --background-feed: hsl(210, 71.4%, 97.3%);
   --menu-active-text: hsl(220.3, 62.5%, 22%);
@@ -16,6 +17,9 @@
   --profile-picture-icons-color: hsl(220.3, 62.5%, 22%);
   --background-search-input: white;
   --search-blur-text: hsl(207.2, 32.5%, 68%);
+  --navbar-profile-text: hsl(220.3, 62.5%, 22%);
+  --navbar-icon-focus: hsl(220.3, 62.5%, 22%);
+  --share-button: hsl(206.7, 33.3%, 94.7%);
 }
 
 [data-theme="dark"] {
@@ -23,8 +27,9 @@
   --menu-navbar-border: rgb(15, 15, 15);
   --logo-bright: rgb(88, 160, 255);
   --logo-dark: rgb(230, 238, 255);
-  --navbar-features: rgb(230, 238, 255);
+  --navbar-features: rgb(191, 198, 214);
   --badge: tomato;
+  --navbar-signup-hover: hsl(208.7, 100%, 53.7%);
   --text-menu-unselected: rgb(230, 238, 255);
   --background-feed: rgb(18, 18, 18);
   --menu-active-text: rgb(88, 160, 255);
@@ -37,6 +42,9 @@
   --profile-picture-icons-color: rgb(230, 238, 255);
   --background-search-input: rgb(56, 56, 56);
   --search-blur-text: rgb(191, 198, 214);
+  --navbar-profile-text: rgb(191, 198, 214);
+  --navbar-icon-focus: rgb(88, 160, 255);
+  --share-button: rgb(88, 160, 255);
 }
 
 body {

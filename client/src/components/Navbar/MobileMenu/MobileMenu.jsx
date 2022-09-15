@@ -38,10 +38,12 @@ const MobileMenu = () => {
             <span className={classes["mm-f-text"]}>My Friends</span>
           </li>
         </Link>
-        <li className={classes["mm-li"]}>
-          <HelpCenterRounded className={classes["mm-f-icon"]} />
-          <span className={classes["mm-f-text"]}>Help & About</span>
-        </li>
+        <Link to={"/friends"} className={classes["mm-link"]}>
+          <li className={classes["mm-li"]}>
+            <HelpCenterRounded className={classes["mm-f-icon"]} />
+            <span className={classes["mm-f-text"]}>Help & About</span>
+          </li>
+        </Link>
         <Link to={"/settings"} className={classes["mm-link"]}>
           <li className={classes["mm-li"]}>
             <Settings className={classes["mm-f-icon"]} />

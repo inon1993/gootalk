@@ -109,6 +109,7 @@
   align-items: center;
   justify-content: center;
   padding: 18.2px 0 18.2px 8px;
+  color: var(--navbar-profile-text);
 }
 
 .mm-icon {
@@ -144,7 +145,7 @@
 }
 
 .navber-signup-btn:hover {
-  background-color: var(--logo-dark);
+  background-color: var(--navbar-signup-hover);
 }
 
 @media only screen and (max-width: 750px) {
@@ -173,7 +174,7 @@
   } */
 
   .navbar-mobile-menu {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--background);
   }
 
   .navbar-features-icon {
