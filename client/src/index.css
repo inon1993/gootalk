@@ -14,12 +14,13 @@
   --border-location: hsl(212.3, 41.9%, 93.9%);
   --profile-picture-border: white;
   --profile-picture-icons-color: hsl(220.3, 62.5%, 22%);
-  --background-search-input: white; 
+  --background-search-input: white;
+  --search-blur-text: hsl(207.2, 32.5%, 68%);
 }
 
 [data-theme="dark"] {
   --background: rgb(33, 33, 33);
-  --menu-navbar-border: rgb(10, 10, 10);
+  --menu-navbar-border: rgb(15, 15, 15);
   --logo-bright: rgb(88, 160, 255);
   --logo-dark: rgb(230, 238, 255);
   --navbar-features: rgb(230, 238, 255);
@@ -31,10 +32,11 @@
   --card-text: rgb(230, 238, 255);
   --card-shadow: rgba(0, 0, 0, 0.7) 0px 4px 12px;
   --background-location: rgb(40, 40, 40);
-  --border-location: rgb(10, 10, 10);
+  --border-location: rgb(15, 15, 15);
   --profile-picture-border: rgb(33, 33, 33);
   --profile-picture-icons-color: rgb(230, 238, 255);
-  --background-search-input: rgb(75, 75, 75); 
+  --background-search-input: rgb(56, 56, 56);
+  --search-blur-text: rgb(191, 198, 214);
 }
 
 body {

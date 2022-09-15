@@ -22,19 +22,20 @@
   width: 90%;
   border: none;
   padding: 5px;
-  color: var(--navbar-features);
+  color: var(--search-blur-text);
   font-size: 1rem;
   font-family: "Poppins", sans-serif;
   font-size: 0.9rem;
+  background-color: var(--background-search-input);
 }
 
 .search-input:focus {
   outline: none;
-  color: var(--menu-active-text);
+  color: var(--navbar-features);
 }
 
 .search-input::placeholder {
-  color: var(--navbar-features);
+  color: var(--search-blur-text);
 }
 
 .search-results {
