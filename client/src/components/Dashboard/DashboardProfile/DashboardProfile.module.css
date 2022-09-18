@@ -15,6 +15,7 @@
   flex-direction: column;
   align-items: center;
   width: 80%;
+  color: var(--card-text);
 }
 
 .edit-profile {

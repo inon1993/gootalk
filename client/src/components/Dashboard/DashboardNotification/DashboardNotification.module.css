@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  color: var(--card-text);
 }
 
 @media only screen and (max-width: 500px) {

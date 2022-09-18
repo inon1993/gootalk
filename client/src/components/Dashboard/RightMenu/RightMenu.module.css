@@ -12,11 +12,11 @@
 
 .rm-hr {
   border: none;
-  border-bottom: 1px solid hsl(207.2, 32.5%, 58%);
+  border-bottom: 1px solid var(--rm-hr);
   width: 95%;
 }
 
 .no-noti {
   font-size: 0.8rem;
-  color: hsl(207.2, 32.5%, 68%);
+  color: var(--rm-no-noti-text);
 }

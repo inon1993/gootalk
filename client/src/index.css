@@ -20,6 +20,25 @@
   --navbar-profile-text: hsl(220.3, 62.5%, 22%);
   --navbar-icon-focus: hsl(220.3, 62.5%, 22%);
   --share-button: hsl(206.7, 33.3%, 94.7%);
+  --share-button-text: hsl(220.3, 62.5%, 22%);
+  --share-button-text-hover: white;
+  --save-button: hsl(208.7, 100%, 53.7%);
+  --save-button-hover: hsl(220.3, 62.5%, 22%); 
+  --cancel-button: white;
+  --cancel-button-border: hsl(0, 0%, 13.3%);
+  --cancel-button-text: hsl(0, 0%, 13.3%);
+  --cancel-button-hover: hsl(0, 0%, 13.3%);
+  --cancel-button-text-hover: white;
+  --rm-hr: hsl(207.2, 32.5%, 58%);
+  --rm-no-noti-text:hsl(207.2, 32.5%, 68%);
+  --rm-noti-button: hsl(206.7, 33.3%, 94.7%);
+  --scroll-track: hsl(210, 71.4%, 97.3%);
+  --scroll-thumb: hsl(207.2, 32.5%, 68%);
+  --rm-friend-hover: white;
+  --rm-friend-text-hover: hsl(208.7, 100%, 53.7%);
+  --post-sub-text: hsl(207.2, 32.5%, 58%);
+  --settings-hover: hsl(206.7, 33.3%, 96.7%);
+  --modal-input: hsl(212.3, 41.9%, 93.9%);
 }
 
 [data-theme="dark"] {
@@ -35,7 +54,7 @@
   --menu-active-text: rgb(88, 160, 255);
   --menu-hover-text: rgb(174, 209, 255);
   --card-text: rgb(230, 238, 255);
-  --card-shadow: rgba(0, 0, 0, 0.7) 0px 4px 12px;
+  --card-shadow: rgba(0, 0, 0, 0.5) 0px 4px 12px;
   --background-location: rgb(40, 40, 40);
   --border-location: rgb(66, 66, 66);
   --profile-picture-border: rgb(33, 33, 33);
@@ -45,6 +64,25 @@
   --navbar-profile-text: rgb(191, 198, 214);
   --navbar-icon-focus: rgb(88, 160, 255);
   --share-button: rgb(88, 160, 255);
+  --share-button-text: white;
+  --share-button-text-hover: white;
+  --save-button: rgb(88, 160, 255);
+  --save-button-hover: hsl(208.7, 100%, 53.7%);
+  --cancel-button: hsl(0, 0%, 13.3%);
+  --cancel-button-border: white;
+  --cancel-button-text: white;
+  --cancel-button-hover: white;
+  --cancel-button-text-hover: hsl(0, 0%, 13.3%);
+  --rm-hr: rgb(230, 238, 255);
+  --rm-no-noti-text: rgb(191, 198, 214);
+  --rm-noti-button: rgb(56, 56, 56);
+  --scroll-track: rgb(18, 18, 18);
+  --scroll-thumb: rgb(56, 56, 56);
+  --rm-friend-hover: rgb(66, 66, 66);
+  --rm-friend-text-hover: rgb(230, 238, 255);
+  --post-sub-text: rgba(230, 238, 255, 0.5);
+  --settings-hover: rgb(66, 66, 66);
+  --modal-input: rgb(56, 56, 56);
 }
 
 body {

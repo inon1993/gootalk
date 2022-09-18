@@ -1,7 +1,7 @@
 .settings-wrapper {
   width: calc(100% - 80px);
   min-height: calc(100% - 80px);
-  background-color: white;
+  background-color: var(--background);
   display: flex;
   flex-direction: column;
 }
@@ -11,7 +11,7 @@
   padding: 10px;
   padding-bottom: 15px;
   /* width: 80%; */
-  border-bottom: 1px solid hsl(206.7, 33.3%, 89.7%);
+  border-bottom: 1px solid var(--menu-navbar-border);
   display: flex;
   flex-direction: column;
 }
@@ -31,15 +31,16 @@
   font-weight: 500;
   cursor: pointer;
   font-size: 0.9rem;
+  color: var(--card-text);
   transition: 200ms;
 }
 
 .settings-btn-delete:hover {
-  color: red;
+  color: var(--badge);
 }
 
 .settings-btn:hover {
-  background-color: hsl(206.7, 33.3%, 96.7%);
+  background-color: var(--settings-hover);
 }
 
 .settings-btn:last-child {

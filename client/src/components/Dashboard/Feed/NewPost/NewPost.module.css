@@ -33,7 +33,7 @@
 
 .new-post-br {
   border: none;
-  border-bottom: 1px solid hsl(206.7, 33.3%, 89.7%);
+  border-bottom: 1px solid var(--menu-navbar-border);
   margin: 10px 0;
 }
 
@@ -59,7 +59,7 @@
   border: none;
   border-radius: 10px;
   background-color: var(--share-button);
-  color: hsl(220.3, 62.5%, 22%);
+  color: var(--share-button-text);
   transition: 250ms;
   outline: none;
   display: flex;
@@ -69,7 +69,7 @@
 
 .share-post:hover {
   background-color: hsl(208.7, 100%, 53.7%);
-  color: white;
+  color: var(--share-button-text-hover);
   cursor: pointer;
 }
 
@@ -93,8 +93,9 @@
   font-size: 2rem !important;
   transition: 200ms;
   cursor: pointer;
-  background-color: white;
+  background-color: var(--background);
   border-radius: 0 0 0 10px;
+  transition: 200ms;
 }
 
 .remove-img-icon:hover {

@@ -26,10 +26,13 @@
   border: none;
   background-color: white;
   border-radius: 10px;
-  padding: 5px 8px;
+  padding: 8px;
   box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
   cursor: pointer;
   color: hsl(220.3, 62.5%, 22%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .edit-profile-button:hover {
@@ -50,6 +53,7 @@
   right: 0;
   display: flex;
   align-items: center;
+  color: var(--card-text);
 }
 
 .profile-pic {
@@ -57,7 +61,7 @@
   width: 150px;
   object-fit: cover;
   border-radius: 50%;
-  border: 5px solid hsl(210, 71.4%, 97.3%);
+  border: 5px solid var(--background-feed);
   margin-right: 10px;
 }
 
@@ -100,14 +104,14 @@
   padding: 0.5rem 1.3rem;
   border: none;
   border-radius: 10px;
-  background-color: white;
-  color: hsl(220.3, 62.5%, 22%);
+  background-color: var(--background);
+  color: var(--card-text);
   font-weight: 500;
   transition: 150ms;
 }
 
 .show-stats-button:hover {
-  background-color: hsl(220.3, 62.5%, 22%);
+  background-color: var(--navbar-signup-hover);
   color: white;
   cursor: pointer;
 }

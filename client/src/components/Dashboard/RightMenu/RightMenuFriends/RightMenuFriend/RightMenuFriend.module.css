@@ -3,16 +3,16 @@
   display: flex;
   align-items: center;
   padding: 15px 0;
-  color: hsl(220.3, 62.5%, 22%);
+  color: var(--card-text);
   transition: 150ms;
   padding-left: 10px;
   margin-left: 3px;
 }
 
 .rm-friend:hover {
-  background-color: white;
+  background-color: var(--rm-friend-hover);
   border-radius: 15px;
-  color: hsl(208.7, 100%, 53.7%);
+  color: var(--rm-friend-text-hover);
   cursor: pointer;
 }
 

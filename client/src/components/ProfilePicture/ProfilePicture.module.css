@@ -36,6 +36,7 @@
   border-radius: 50%;
   border: 5px solid var(--profile-picture-border);
   cursor: pointer;
+  transition: 700ms;
 }
 
 .edit-profile-cover {

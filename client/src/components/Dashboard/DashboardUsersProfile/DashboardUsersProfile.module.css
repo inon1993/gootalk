@@ -2,7 +2,7 @@
   flex: 9.5;
   width: 100%;
   /* height: calc(100vh - 61px); */
-  background-color: hsl(210, 71.4%, 97.3%);
+  /* background-color: hsl(210, 71.4%, 97.3%); */
   background-attachment: fixed;
   display: flex;
   flex-direction: column;
@@ -39,6 +39,7 @@
   right: 0;
   display: flex;
   align-items: center;
+  color: var(--card-text);
 }
 
 .profile-pic {
@@ -46,8 +47,9 @@
   width: 150px;
   object-fit: cover;
   border-radius: 50%;
-  border: 5px solid hsl(210, 71.4%, 97.3%);
+  border: 5px solid var(--background-feed);
   margin-right: 10px;
+  transition: 700ms;
 }
 
 .profile-name-city {
