@@ -35,7 +35,7 @@
   padding: 0.5rem 1.3rem;
   border: none;
   border-radius: 10px;
-  background-color: hsl(206.7, 33.3%, 94.7%);
+  background-color: var(--rm-noti-button);
   color: hsl(120, 39.3%, 54.1%);
   font-weight: 500;
   transition: 150ms;
@@ -52,7 +52,7 @@
   padding: 0.5rem 1.3rem;
   border: none;
   border-radius: 10px;
-  background-color: hsl(206.7, 33.3%, 94.7%);
+  background-color: var(--rm-noti-button);
   color: hsl(1.7, 64.5%, 58%);
   font-weight: 500;
   transition: 150ms;
@@ -67,7 +67,7 @@
 .notification-date {
   font-weight: 300;
   font-size: 0.8rem;
-  color: hsl(207.2, 32.5%, 58%);
+  color: var(--post-sub-text);
   margin-top: 5px;
 }
 

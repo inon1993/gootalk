@@ -13,6 +13,7 @@
   width: 100%;
   background-color: var(--background-feed);
   background-attachment: fixed;
+  transition: 700ms;
 }
 
 .search-menu {

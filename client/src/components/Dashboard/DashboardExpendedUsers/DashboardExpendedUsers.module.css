@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background-color: hsl(210, 71.4%, 97.3%);
+  /* background-color: hsl(210, 71.4%, 97.3%); */
   background-attachment: fixed;
 }
 
@@ -22,9 +22,11 @@
   border-radius: 10px;
   margin-top: 10px;
   outline: none;
-  border: 1px solid hsl(206.7, 33.3%, 89.7%);
+  border: 1px solid var(--menu-navbar-border);
   box-sizing: border-box;
-  color: hsl(220.3, 62.5%, 22%);
+  color: var(--card-text);
+  background-color: var(--background-search-input);
+  transition: 700ms;
 }
 
 .search-bar-expended {
@@ -33,10 +35,10 @@
 
 .results-expended {
   margin-top: 1rem;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: var(--card-shadow);
   width: 80%;
   border-radius: 10px;
-  border: 1px solid hsl(206.7, 33.3%, 89.7%);
+  border: 1px solid var(--menu-navbar-border);
 }
 
 .users-expended {
@@ -45,14 +47,16 @@
   align-content: center;
   justify-content: flex-start;
   align-items: center;
-  background-color: white;
+  background-color: var(--background);
   border-bottom: 1px solid #ccc;
   cursor: pointer;
   transition: 100ms;
+  color: var(--card-text);
+  transition: 700ms;
 }
 
 .users-expended:hover {
-  background-color: hsl(206.7, 33.3%, 96.7%);
+  background-color: var(--settings-hover);
 }
 
 .users-expended:first-child {
@@ -89,6 +93,7 @@
 
 .no-users {
   margin-top: 30px;
+  color: var(--card-text);
 }
 
 @media only screen and (max-width: 800px) {
