@@ -2,7 +2,7 @@
   flex: 9.5;
   width: 100%;
   /* height: calc(100vh - 61px); */
-  background-color: hsl(210, 71.4%, 97.3%);
+  /* background-color: hsl(210, 71.4%, 97.3%); */
   background-attachment: fixed;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@
   flex: 9.5;
   width: 100%;
   /* height: calc(100vh - 61px); */
-  background-color: hsl(210, 71.4%, 97.3%);
+  /* background-color: hsl(210, 71.4%, 97.3%); */
   background-attachment: fixed;
   display: flex;
   flex-direction: column;

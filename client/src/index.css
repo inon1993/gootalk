@@ -24,7 +24,7 @@
 
 [data-theme="dark"] {
   --background: rgb(33, 33, 33);
-  --menu-navbar-border: rgb(15, 15, 15);
+  --menu-navbar-border: rgb(66, 66, 66);
   --logo-bright: rgb(88, 160, 255);
   --logo-dark: rgb(230, 238, 255);
   --navbar-features: rgb(191, 198, 214);
@@ -37,7 +37,7 @@
   --card-text: rgb(230, 238, 255);
   --card-shadow: rgba(0, 0, 0, 0.7) 0px 4px 12px;
   --background-location: rgb(40, 40, 40);
-  --border-location: rgb(15, 15, 15);
+  --border-location: rgb(66, 66, 66);
   --profile-picture-border: rgb(33, 33, 33);
   --profile-picture-icons-color: rgb(230, 238, 255);
   --background-search-input: rgb(56, 56, 56);

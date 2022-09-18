@@ -50,6 +50,7 @@
 }
 
 .search-users {
+  color: var(--card-text);
   display: flex;
   flex-direction: row;
   align-content: center;
@@ -90,6 +91,7 @@
 }
 
 .search-expend {
+  color: var(--card-text);
   text-align: center;
   font-size: 0.7rem;
   margin: 0;

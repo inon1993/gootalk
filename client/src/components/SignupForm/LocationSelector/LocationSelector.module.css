@@ -27,6 +27,7 @@
 }
 
 .sr-country-name {
+  color: var(--card-text);
   display: block;
   font-size: 0.8rem;
   padding: 5px;
