@@ -18,6 +18,8 @@ import DropdownBackground from "./Profile/DropdownMenu/DropdownBackground";
 import MobileMenu from "./MobileMenu/MobileMenu";
 import { Link } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
+import { settingsActions } from "../../store/settings-slice";
 
 const Navbar = () => {
   const user = useSelector((state) => state.user.user);
@@ -27,6 +29,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const [isMobileMenu, setIsMobileMenu] = useState(false);
   const [notiBadge, setNotiBadge] = useState(0);
+  const [isDarkMode, setDarkMode] = useState(theme === "light" ? true : false);
   const navigate = useNavigate();
   const location = useLocation();
   const filtered = user.notifications.filter((n) => {
@@ -76,6 +79,11 @@ const Navbar = () => {
     navigate("/signup", { state: { from: location }, replace: true });
   };
 
+  const toggleDarkMode = (checked) => {
+    setDarkMode(checked);
+    dispatch(settingsActions.themeToggle());
+  };
+
   return (
     <>
       <div
@@ -101,6 +109,16 @@ const Navbar = () => {
         )}
         {user.userId !== "" && (
           <div className={classes["navbar-features"]}>
+            <div className={classes["navbar-dark-mode-toggle"]}>
+              <DarkModeSwitch
+                // style={{ marginBottom: "2rem" }}
+                checked={isDarkMode}
+                onChange={toggleDarkMode}
+                size={24}
+                moonColor="hsl(207.2, 32.5%, 68%)"
+                sunColor="rgb(191, 198, 214)"
+              />
+            </div>
             <Link to={"/"} style={{ textDecoration: "none", display: "flex" }}>
               <HomeRounded
                 onClick={activateHomeHandler}

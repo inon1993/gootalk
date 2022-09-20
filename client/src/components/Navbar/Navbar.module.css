@@ -55,6 +55,11 @@
   align-items: center;
 }
 
+.navbar-dark-mode-toggle {
+  padding: 18.2px;
+}
+
+
 .navbar-features-icon {
   /* position: relative; */
   font-size: 1.6rem !important;

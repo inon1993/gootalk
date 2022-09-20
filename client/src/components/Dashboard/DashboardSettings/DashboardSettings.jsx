@@ -55,7 +55,7 @@ const DashboardSettings = () => {
       {changePassword && <ChangePasswordModal onClose={closePasswordModal} />}
       {deleteAccount && <DeleteAccountModal onClose={closeDeleteAccountModal} />}
       <Card className={classes["settings-wrapper"]}>
-        <div className={classes["user-settings"]}>
+        <div className={classes["account-settings"]}>
           <span className={classes["settings-title"]}>Account Settings</span>
           <button
             className={classes["settings-btn"]}

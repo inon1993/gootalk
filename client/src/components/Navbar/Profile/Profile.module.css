@@ -6,8 +6,8 @@
   border: none;
   border-left: 1px solid var(--menu-navbar-border);
   height: 60px;
-  background-color: var(--background);
-  transition: 700ms;
+  /* background-color: var(--background); */
+  /* transition: 700ms; */
 }
 
 .navbar-profile-pic {
