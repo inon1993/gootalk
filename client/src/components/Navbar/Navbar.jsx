@@ -79,6 +79,10 @@ const Navbar = () => {
     navigate("/signup", { state: { from: location }, replace: true });
   };
 
+  // useEffect(() => {
+  //   setDarkMode(checked);
+  // }, [theme]);
+
   const toggleDarkMode = (checked) => {
     setDarkMode(checked);
     dispatch(settingsActions.themeToggle());
@@ -111,7 +115,6 @@ const Navbar = () => {
           <div className={classes["navbar-features"]}>
             <div className={classes["navbar-dark-mode-toggle"]}>
               <DarkModeSwitch
-                // style={{ marginBottom: "2rem" }}
                 checked={isDarkMode}
                 onChange={toggleDarkMode}
                 size={24}

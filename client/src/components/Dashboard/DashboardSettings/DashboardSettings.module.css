@@ -6,7 +6,7 @@
   flex-direction: column;
 }
 
-.account-settings {
+.section-settings {
   margin: 15px;
   padding: 10px;
   padding-bottom: 15px;
@@ -33,6 +33,22 @@
   font-size: 0.9rem;
   color: var(--card-text);
   transition: 200ms;
+}
+
+.settings-toggle {
+  background-color: transparent;
+  border: none;
+  /* margin-bottom: 10px; */
+  text-align: left;
+  padding-left: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--card-text);
+  transition: 200ms;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .settings-btn-delete:hover {

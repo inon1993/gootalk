@@ -5,13 +5,20 @@ import ReauthenticateModal from "./ReauthenticateModal/ReauthenticateModal";
 import ChangeEmailModal from "./AccountSettingsModals/ChangeEmailModal";
 import ChangePasswordModal from "./AccountSettingsModals/ChangePasswordModal";
 import DeleteAccountModal from "./AccountSettingsModals/DeleteAccountModal";
+import { Switch } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import { settingsActions } from "../../../store/settings-slice";
+import axios from "axios";
 
 const DashboardSettings = () => {
   const [reauthenticate, setReauthenticate] = useState(null);
   const [changeEmail, setChangeEmail] = useState(false);
   const [changePassword, setChangePassword] = useState(false);
   const [deleteAccount, setDeleteAccount] = useState(false);
-  
+  const user = useSelector(state => state.user.user)
+  const theme = useSelector((state) => state.settings.toggle.theme);
+  const dispatch = useDispatch();
+
   const changeEmailHandler = () => {
     setReauthenticate("email");
   };
@@ -37,8 +44,17 @@ const DashboardSettings = () => {
   };
 
   const closeDeleteAccountModal = () => {
-    setDeleteAccount(false)
-  }
+    setDeleteAccount(false);
+  };
+
+  const toggleHandler = async () => {
+    dispatch(settingsActions.themeToggle());
+    await axios.put(
+      `/settings/theme/${user.userId}`,
+      { userId: user.userId, theme: theme === "light" ? "dark" : "light" },
+      { withCredentials: true }
+    );
+  };
 
   return (
     <>
@@ -53,10 +69,12 @@ const DashboardSettings = () => {
       )}
       {changeEmail && <ChangeEmailModal onClose={closeEmailModal} />}
       {changePassword && <ChangePasswordModal onClose={closePasswordModal} />}
-      {deleteAccount && <DeleteAccountModal onClose={closeDeleteAccountModal} />}
+      {deleteAccount && (
+        <DeleteAccountModal onClose={closeDeleteAccountModal} />
+      )}
       <Card className={classes["settings-wrapper"]}>
-        <div className={classes["account-settings"]}>
-          <span className={classes["settings-title"]}>Account Settings</span>
+        <div className={classes["section-settings"]}>
+          <span className={classes["settings-title"]}>Account</span>
           <button
             className={classes["settings-btn"]}
             onClick={changeEmailHandler}
@@ -75,6 +93,16 @@ const DashboardSettings = () => {
           >
             Delete account
           </button>
+        </div>
+        <div className={classes["section-settings"]}>
+          <span className={classes["settings-title"]}>Appearence</span>
+          <div className={classes["settings-toggle"]}>
+            <span>Dark mode</span>
+            <Switch
+              onChange={toggleHandler}
+              checked={theme === "dark" ? true : false}
+            />
+          </div>
         </div>
       </Card>
     </>

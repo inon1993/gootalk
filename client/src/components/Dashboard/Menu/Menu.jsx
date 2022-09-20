@@ -8,12 +8,10 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { menuActions } from "../../../store/menu-slice";
 import { navbarActions } from "../../../store/navbar-slice";
-import { settingsActions } from "../../../store/settings-slice";
 import { Link } from "react-router-dom";
 
 const Menu = () => {
   const isActivated = useSelector((state) => state.menu.activate);
-  const theme = useSelector((state) => state.settings.toggle.theme);
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
 
@@ -37,12 +35,8 @@ const Menu = () => {
     dispatch(navbarActions.deactivate());
   };
 
-  const toggleTheme = () => {
-    dispatch(settingsActions.themeToggle());
-  };
-
   return (
-    <div className={classes["menu-wrapper"]} data-theme={theme}>
+    <div className={classes["menu-wrapper"]}>
       <ul className={classes["menu-list"]}>
         <Link to={"/"} style={{ textDecoration: "none" }}>
           <li
@@ -99,9 +93,6 @@ const Menu = () => {
             <span className={classes["menu-text"]}>Settings</span>
           </li>
         </Link>
-        <li>
-          <button onClick={toggleTheme}>theme</button>
-        </li>
       </ul>
     </div>
   );
