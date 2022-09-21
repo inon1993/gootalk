@@ -164,6 +164,15 @@ const Navbar = () => {
         )}
         {user.userId !== "" ? (
           <div className={classes["mobile-menu"]}>
+            <div className={classes["navbar-dark-mode-toggle-mobile"]}>
+              <DarkModeSwitch
+                checked={isDarkMode}
+                onChange={toggleDarkMode}
+                size={19}
+                moonColor="hsl(207.2, 32.5%, 68%)"
+                sunColor="rgb(191, 198, 214)"
+              />
+            </div>
             <Link
               to={"/notifications"}
               style={{ textDecoration: "none", display: "flex" }}

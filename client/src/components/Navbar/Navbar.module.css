@@ -59,6 +59,9 @@
   padding: 18.2px 18.2px 11.2px 18.2px;
 }
 
+.navbar-dark-mode-toggle-mobile {
+  padding: 20.2px 13.2px 15.2px 18.2px;
+}
 
 .navbar-features-icon {
   /* position: relative; */
@@ -209,6 +212,28 @@
 
   .navber-signin-btn {
     margin-right: 0.5rem;
+  }
+
+  .navbar-features-icon {
+    /* font-size: 1.2rem !important; */
+    padding: 0 4px;
+  }
+
+  .mm-button {
+    padding-left: 4px;
+  }
+
+  .mm-icon {
+    font-size: 1.5rem !important;
+  }
+
+  .navbar-features-icon-focus {
+    /* font-size: 1.2rem !important; */
+    padding: 0 4px;
+  }
+
+  .navbar-dark-mode-toggle-mobile {
+    padding: 6px 4px 0 0;
   }
 }
 
