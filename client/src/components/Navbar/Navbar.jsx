@@ -79,9 +79,9 @@ const Navbar = () => {
     navigate("/signup", { state: { from: location }, replace: true });
   };
 
-  // useEffect(() => {
-  //   setDarkMode(checked);
-  // }, [theme]);
+  useEffect(() => {
+    setDarkMode(theme === "light" ? true : false);
+  }, [theme]);
 
   const toggleDarkMode = (checked) => {
     setDarkMode(checked);

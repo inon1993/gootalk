@@ -95,7 +95,7 @@ const DashboardSettings = () => {
           </button>
         </div>
         <div className={classes["section-settings"]}>
-          <span className={classes["settings-title"]}>Appearence</span>
+          <span className={classes["settings-title"]}>Appearance</span>
           <div className={classes["settings-toggle"]}>
             <span>Dark mode</span>
             <Switch
