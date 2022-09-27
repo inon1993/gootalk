@@ -42,14 +42,16 @@ const deletePostCtr = async (req, res) => {
 
 const likePostCtr = async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id);
+    let post = await Post.findById(req.params.id);
     if (post.userId !== req.body.userId) {
       if (!post.likes.includes(req.body.userId)) {
         await post.updateOne({ $push: { likes: req.body.userId } });
-        return res.status(200).json("Post has been liked.");
+        post = await Post.findById(req.params.id);
+        return res.status(200).send(post.likes);
       } else {
         await post.updateOne({ $pull: { likes: req.body.userId } });
-        return res.status(200).json("Post has been disliked.");
+        post = await Post.findById(req.params.id);
+        return res.status(200).send(post.likes);
       }
     } else {
       return res.status(403).json("You can't like your own posts.");
@@ -58,6 +60,16 @@ const likePostCtr = async (req, res) => {
     return res.status(500).json(err);
   }
 };
+
+// const getLikes = async (req, res) => {
+//   try {
+//     const post = await Post.findById(req.params.id);
+//     console.log(post.likes);
+//     return res.status(200).send(post.likes);
+//   } catch (err) {
+//     return res.status(500).json(err);
+//   }
+// };
 
 const getPostCtr = async (req, res) => {
   try {
@@ -79,7 +91,6 @@ const getAllUserPostsCtr = async (req, res) => {
 };
 
 const getTimelineCtr = async (req, res) => {
-  console.log(req.params);
   try {
     const user = await User.findById(req.params.userId);
     const posts = await Post.find({
@@ -116,3 +127,4 @@ module.exports.getPostCtr = getPostCtr;
 module.exports.getAllUserPostsCtr = getAllUserPostsCtr;
 module.exports.getTimelineCtr = getTimelineCtr;
 module.exports.uploadPicture = uploadPicture;
+// module.exports.getLikes = getLikes;

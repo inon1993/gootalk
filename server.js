@@ -14,6 +14,7 @@ const refreshRoute = require("./routes/refresh");
 const logoutRoute = require("./routes/logout");
 const notificationsRoute = require("./routes/notifications");
 const settingsRoutes = require("./routes/settings");
+const commentRoutes = require("./routes/comment");
 
 const app = express();
 
@@ -72,6 +73,7 @@ app.use("/refresh", refreshRoute);
 app.use("/logout", logoutRoute);
 app.use("/notifications", notificationsRoute);
 app.use("/settings", settingsRoutes);
+app.use("/comment", commentRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

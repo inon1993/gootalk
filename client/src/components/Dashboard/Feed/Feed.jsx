@@ -14,7 +14,6 @@ const Feed = () => {
   const [posts, setPosts] = useState([]);
   const [postsUsers, setPostsUsers] = useState([]);
   const [pageStart, setPageStart] = useState(0);
-  const [update, setUpdate] = useState(0);
   const [initialLoading, setInitialLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const theme = useSelector((state) => state.settings.toggle.theme);
@@ -122,18 +121,10 @@ const Feed = () => {
                 key={i}
                 post={post}
                 postUser={postsUsers[i].data}
-                update={setUpdate}
               />
             );
           } else {
-            return (
-              <Post
-                key={i}
-                post={post}
-                postUser={postsUsers[i].data}
-                update={setUpdate}
-              />
-            );
+            return <Post key={i} post={post} postUser={postsUsers[i].data} />;
           }
         })
       ) : (
