@@ -2,7 +2,7 @@ import { ThumbUp } from "@mui/icons-material";
 import ppIcon from "../../../../images/pp-icon-small.png";
 import classes from "./Post.module.css";
 import Card from "../../../UI/Card/Card";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { format } from "timeago.js";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../../../store/user-slice";
@@ -12,12 +12,27 @@ import PostModal from "./PostModal/PostModal";
 
 const Post = React.forwardRef(({ post, postUser }, ref) => {
   const loggedInUser = useSelector((state) => state.user.user);
+  const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState(post.likes);
   const [isExpendedPost, setExpendedPost] = useState(false);
   const req = useAxiosPrivate();
   const dispach = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    getComments();
+  }, []);
+
+  const getComments = async () => {
+    try {
+      const commentsData = await req.get(`/comment/${post._id}`);
+      setComments(commentsData.data);
+    } catch (error) {
+      dispach(userActions.logoutUser());
+      navigate("/login", { state: { from: location }, replace: true });
+    }
+  };
 
   const likeHandler = async () => {
     try {
@@ -44,7 +59,7 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
   return (
     <>
       {isExpendedPost && (
-        <PostModal post={post} postUser={postUser} onClose={onClose} />
+        <PostModal post={post} postUser={postUser} onClose={onClose} likes={likes} setLikes={setLikes} comments={comments} setComments={setComments}/>
       )}
       <div className={classes["post-wrapper-for-ref"]} ref={ref}>
         <Card className={classes.post}>
@@ -75,8 +90,9 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
               />
             )}
           </div>
-          <div className={classes["post-like"]}>
-            {post.userId !== loggedInUser.userId && (
+          <div className={classes["post-like-comments"]}>
+            <div className={classes["post-like"]}>
+              {post.userId !== loggedInUser.userId && (
               <ThumbUp
                 className={`${classes["post-like-icon"]} ${
                   likes.includes(loggedInUser.userId) &&
@@ -94,6 +110,8 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
               </span>{" "}
               people like it
             </span>
+            </div>
+            <span className={classes["post-comment-text"]}><span style={{fontWeight: "bold"}}>{comments.length}</span> comments</span>
           </div>
         </Card>
       </div>
