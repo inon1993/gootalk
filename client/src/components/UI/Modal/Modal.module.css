@@ -11,24 +11,9 @@
 
 .modal {
   position: fixed;
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* top: 50%;
-  bottom: 50%; */
-  /* left: 50%; */
-    /* top: 50%; */
-    /* transform: translate(-50%, -50%); */
-  /* left: 10vw; */
-  /* left: calc(-50vw + 50%);
-right: calc(-50vw + 50%);
-margin-left: auto;
-margin-right: auto; */
-max-height: 100vh;
-  overflow-y: scroll;
-top: 15vh; 
-/* left: 0; */
-transform: translate(calc(50vw - 50%), calc(50vh - 50%));
+  max-height: 80vh;
+  overflow-y: auto;
+  top: 10vh;
   width: 30%;
   background-color: var(--background);
   padding: 1rem;
@@ -40,6 +25,17 @@ transform: translate(calc(50vw - 50%), calc(50vh - 50%));
   white-space: pre-wrap;
   transition: 700ms;
 }
+
+/* .modal::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background: gray;
+  border-radius: 30px;
+} */
 
 @media (max-width: 1050px) {
   .modal {

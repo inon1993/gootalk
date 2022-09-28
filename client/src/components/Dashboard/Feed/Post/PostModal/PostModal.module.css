@@ -1,12 +1,12 @@
 .post-wrapper-for-ref {
   width: 50%;
   max-height: 80vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
-.post {
+/* .post {
   margin: 0 0 20px;
-}
+} */
 
 .post-upper {
   display: flex;

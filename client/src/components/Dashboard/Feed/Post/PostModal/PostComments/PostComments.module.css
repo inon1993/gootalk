@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   max-height: 80vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .new-comment-wrapper {
@@ -26,26 +26,26 @@
 }
 
 .add-comment-button {
-    background-color: var(--new-comment-background);
-    border: none;
-    outline: none;
-    border-radius: 0 8px 8px 0;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    color: var(--card-text);
-    transition: 200ms;
+  background-color: var(--new-comment-background);
+  border: none;
+  outline: none;
+  border-radius: 0 8px 8px 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: var(--card-text);
+  transition: 200ms;
 }
 
 .add-comment-button:hover {
-    background-color: var(--new-comment-button-hover);
-    color: white;
+  background-color: var(--new-comment-button-hover);
+  color: white;
 }
 
 .comments-section {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    max-height: 30vh;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 30vh;
 }
