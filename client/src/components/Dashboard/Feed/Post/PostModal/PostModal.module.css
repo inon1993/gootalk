@@ -1,5 +1,7 @@
 .post-wrapper-for-ref {
   width: 50%;
+  max-height: 80vh;
+  overflow-y: scroll;
 }
 
 .post {
