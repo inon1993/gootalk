@@ -21,7 +21,7 @@ const Comment = ({ comment }) => {
 
   useEffect(() => {
     getCommentLikes();
-  }, [likes]);
+  }, []);
 
   useEffect(() => {
     setLoading(true);
