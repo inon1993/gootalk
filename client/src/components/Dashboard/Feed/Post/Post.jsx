@@ -59,7 +59,15 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
   return (
     <>
       {isExpendedPost && (
-        <PostModal post={post} postUser={postUser} onClose={onClose} likes={likes} setLikes={setLikes} comments={comments} setComments={setComments}/>
+        <PostModal
+          post={post}
+          postUser={postUser}
+          onClose={onClose}
+          likes={likes}
+          setLikes={setLikes}
+          comments={comments}
+          setComments={setComments}
+        />
       )}
       <div className={classes["post-wrapper-for-ref"]} ref={ref}>
         <Card className={classes.post}>
@@ -93,25 +101,28 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
           <div className={classes["post-like-comments"]}>
             <div className={classes["post-like"]}>
               {post.userId !== loggedInUser.userId && (
-              <ThumbUp
-                className={`${classes["post-like-icon"]} ${
-                  likes.includes(loggedInUser.userId) &&
-                  classes["post-liked-icon"]
-                }`}
-                onClick={likeHandler}
-              />
-            )}
-            <span className={classes["post-like-text"]}>
-              {likes.includes(loggedInUser.userId) && "You and "}{" "}
-              <span style={{ fontWeight: "bold" }}>
-                {likes.includes(loggedInUser.userId)
-                  ? likes.length - 1
-                  : likes.length}
-              </span>{" "}
-              people like it
-            </span>
+                <ThumbUp
+                  className={`${classes["post-like-icon"]} ${
+                    likes.includes(loggedInUser.userId) &&
+                    classes["post-liked-icon"]
+                  }`}
+                  onClick={likeHandler}
+                />
+              )}
+              <span className={classes["post-like-text"]}>
+                {likes.includes(loggedInUser.userId) && "You and "}{" "}
+                <span style={{ fontWeight: "bold" }}>
+                  {likes.includes(loggedInUser.userId)
+                    ? likes.length - 1
+                    : likes.length}
+                </span>{" "}
+                people like it
+              </span>
             </div>
-            <span className={classes["post-comment-text"]}><span style={{fontWeight: "bold"}}>{comments.length}</span> comments</span>
+            <span className={classes["post-comment-text"]}>
+              <span style={{ fontWeight: "bold" }}>{comments.length}</span>{" "}
+              comments
+            </span>
           </div>
         </Card>
       </div>

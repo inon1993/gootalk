@@ -1,0 +1,70 @@
+.comment-wrapper {
+  padding: 15px;
+  border-bottom: 1px solid var(--menu-navbar-border);
+}
+
+.comment-upper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.comment-profile-picture {
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.comment-name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--card-text);
+}
+
+.comment-body {
+  margin-bottom: 10px;
+}
+
+.comment-body-text {
+  font-size: 1rem;
+  color: var(--card-text);
+}
+
+.comment-like-create-at {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comment-like {
+  display: flex;
+  align-items: center;
+}
+
+.comment-like-icon {
+  color: var(--card-text);
+  font-size: 1.2rem !important;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: 100ms !important;
+}
+
+.comment-like-icon:hover {
+  color: hsl(208.7, 100%, 53.7%);
+}
+
+.comment-like-text {
+  font-size: 0.8rem;
+  color: var(--post-sub-text);
+}
+
+.comment-liked-icon {
+  color: hsl(208.7, 100%, 53.7%);
+}
+
+.comment-created-at {
+  font-size: 0.8rem;
+  color: var(--post-sub-text);
+}

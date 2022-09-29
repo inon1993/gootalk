@@ -5,6 +5,7 @@ import { userActions } from "../../../../../../store/user-slice";
 import useAxiosPrivate from "../../../../../../hooks/useAxiosPrivate";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import Comment from "./Comment/Comment";
 
 const PostComments = ({ post, comments, setComments }) => {
   const loggedInUser = useSelector((state) => state.user.user);
@@ -26,7 +27,7 @@ const PostComments = ({ post, comments, setComments }) => {
     try {
       const commentData = await req.post("/comment/", comment);
       setComments((prev) => {
-        return [...prev, commentData.data];
+        return [commentData.data, ...prev];
       });
       setComment((prev) => {
         return {
@@ -52,8 +53,8 @@ const PostComments = ({ post, comments, setComments }) => {
             onChange={(e) =>
               setComment((prev) => {
                 return {
-                  ...prev,
-                  desc: e.target.value,
+                    ...prev,
+                    desc: e.target.value,
                 };
               })
             }
@@ -69,7 +70,7 @@ const PostComments = ({ post, comments, setComments }) => {
       </div>
       <div className={classes["comments-section"]}>
         {comments.map((c) => {
-          return <span>{c.desc}</span>;
+          return <Comment comment={c} />;
         })}
       </div>
     </>

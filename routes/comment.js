@@ -8,6 +8,12 @@ router.post("/", auth, commentCtr.newComment);
 //--GET COMMENTS--//
 router.get("/:postId", auth, commentCtr.getComments);
 
+//--LIKE/DISLIKE A COMMENT--//
+router.put("/:id/like", auth, commentCtr.likeComment);
+
+//--GET COMMENT LIKES--//
+router.get("/likes/:id", auth, commentCtr.getCommentLikes);
+
 //--DELETE COMMENT--//
 // router.delete("/:id", auth, commentCtr.deleteComment);
 
