@@ -11,8 +11,8 @@
 
 .modal {
   position: fixed;
-  max-height: 80vh;
-  overflow-y: auto;
+  /* overflow-y: auto; */
+  overflow: hidden;
   top: 10vh;
   width: 30%;
   background-color: var(--background);
@@ -26,16 +26,25 @@
   transition: 700ms;
 }
 
-/* .modal::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
-  border-radius: 30px;
-  overflow: hidden;
+.content {
+  overflow-y: auto;
+  max-height: 80vh;
+  /* padding-right: 5px; */
 }
 
-.modal::-webkit-scrollbar-thumb {
-  background: gray;
-  border-radius: 30px;
-} */
+.content::-webkit-scrollbar {
+  width: 7px;
+}
+
+.content::-webkit-scrollbar-track {
+  border-left: solid 4px var(--background);
+  border-radius: 3px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  border-left: solid 4px var(--background);
+  border-radius: 0;
+}
 
 @media (max-width: 1050px) {
   .modal {
@@ -46,6 +55,12 @@
 @media (max-width: 600px) {
   .modal {
     width: 70%;
+  }
+}
+
+@media (max-width: 500px) {
+  .modal {
+    width: 85%;
   }
 }
 
