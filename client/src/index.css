@@ -34,6 +34,8 @@
   --rm-noti-button: hsl(206.7, 33.3%, 94.7%);
   --scroll-track: hsl(210, 71.4%, 97.3%);
   --scroll-thumb: hsl(207.2, 32.5%, 68%);
+  --scroll-track-modal: white;
+  --scroll-thumb-modal: hsl(207.2, 32.5%, 92%);
   --rm-friend-hover: white;
   --rm-friend-text-hover: hsl(208.7, 100%, 53.7%);
   --post-sub-text: hsl(207.2, 32.5%, 58%);
@@ -81,6 +83,8 @@
   --rm-noti-button: rgb(56, 56, 56);
   --scroll-track: rgb(18, 18, 18);
   --scroll-thumb: rgb(56, 56, 56);
+  --scroll-track-modal: rgb(33, 33, 33);
+  --scroll-thumb-modal: rgb(56, 56, 56, 60%);
   --rm-friend-hover: rgb(66, 66, 66);
   --rm-friend-text-hover: rgb(230, 238, 255);
   --post-sub-text: rgba(230, 238, 255, 0.5);

@@ -37,11 +37,13 @@
 }
 
 .content::-webkit-scrollbar-track {
+  background-color: var(--scroll-track-modal);
   border-left: solid 4px var(--background);
   border-radius: 3px;
 }
 
 .content::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-thumb-modal);
   border-left: solid 4px var(--background);
   border-radius: 0;
 }
