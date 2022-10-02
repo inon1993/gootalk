@@ -1,11 +1,9 @@
 import classes from "./PostModal.module.css";
 import Modal from "../../../../UI/Modal/Modal";
-import Card from "../../../../UI/Card/Card";
 import ppIcon from "../../../../../images/pp-icon-small.png";
 import { format } from "timeago.js";
 import { ThumbUp } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 import useAxiosPrivate from "../../../../../hooks/useAxiosPrivate";
 import { userActions } from "../../../../../store/user-slice";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -18,32 +16,13 @@ const PostModal = ({
   likes,
   setLikes,
   comments,
-  setComments/*, commentsUsers, setCommentsUsers*/,
+  setComments,
 }) => {
   const loggedInUser = useSelector((state) => state.user.user);
-  // const [commentsUsers, setCommentsUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
   const req = useAxiosPrivate();
   const dispach = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
-  // useEffect(() => {
-  //   console.log("yes");
-  //   setLoading(true)
-  //   const getCommentsUsersUpdate = async () => {
-  //     const getCommentsUsers = await Promise.all(
-  //       comments.map(async (c) => {
-  //         return await req.get(`/user/${c.userId}`);
-  //       })
-  //     );
-  //     setCommentsUsers(getCommentsUsers);
-  //   console.log(getCommentsUsers);
-  //   };
-
-  //   getCommentsUsersUpdate();
-  //   setLoading(false);
-  // }, [comments]);
 
   const likeHandler = async () => {
     try {
@@ -105,15 +84,15 @@ const PostModal = ({
             people like it
           </span>
         </div>
-        {/*commentsUsers.length !== 0 && !loading && */<div className={classes["post-modal-comments"]}>
-          <PostComments
-            post={post}
-            comments={comments}
-            setComments={setComments}
-            // commentsUsers={commentsUsers}
-            // setCommentsUsers={setCommentsUsers}
-          />
-        </div>}
+        {
+          <div className={classes["post-modal-comments"]}>
+            <PostComments
+              post={post}
+              comments={comments}
+              setComments={setComments}
+            />
+          </div>
+        }
       </div>
     </Modal>
   );

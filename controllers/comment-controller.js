@@ -6,8 +6,16 @@ const newComment = async (req, res) => {
   const newComment = new Comment(req.body);
   try {
     const savedComment = await newComment.save();
-    const comments = await Comment.find({postId: req.body.postId})
-    res.status(200).send(comments.reverse());
+    const comments = await Comment.find({ postId: req.body.postId });
+    const getCommentsUsers = await Promise.all(
+      comments.map(async (c) => {
+        return await User.findById(c.userId);
+      })
+    );
+    res.status(200).send({
+      comments: comments.reverse(),
+      users: getCommentsUsers.reverse(),
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -19,7 +27,15 @@ const getComments = async (req, res) => {
     if (!comments) {
       return res.status(404).json("Post not found.");
     }
-    return res.status(200).send(comments.reverse());
+    const getCommentsUsers = await Promise.all(
+      comments.map(async (c) => {
+        return await User.findById(c.userId);
+      })
+    );
+    return res.status(200).send({
+      comments: comments.reverse(),
+      users: getCommentsUsers.reverse(),
+    });
   } catch (error) {
     return res.status(500).json("Internal server error.");
   }

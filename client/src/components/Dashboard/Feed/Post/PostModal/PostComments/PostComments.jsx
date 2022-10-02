@@ -4,59 +4,29 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { userActions } from "../../../../../../store/user-slice";
 import useAxiosPrivate from "../../../../../../hooks/useAxiosPrivate";
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Comment from "./Comment/Comment";
 
-const PostComments = ({
-  post,
-  comments,
-  setComments /*, commentsUsers, setCommentsUsers*/,
-}) => {
-  // console.log(commentsUsers);
+const PostComments = ({ post, comments, setComments }) => {
   const loggedInUser = useSelector((state) => state.user.user);
   const [comment, setComment] = useState({
     postId: post._id,
     userId: loggedInUser.userId,
     desc: "",
   });
-  const [commentsUsers, setCommentsUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const req = useAxiosPrivate();
   const dispach = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    console.log(1);
-    console.log(comments);
-    getCommentsUsersUpdate();
-    setLoading(false);
-  }, [comments]);
-
-  const getCommentsUsersUpdate = async () => {
-    // console.log(comments);
-    setLoading(true);
-    console.log("yes");
-    const getCommentsUsers = await Promise.all(
-      comments.map(async (c) => {
-        return await req.get(`/user/${c.userId}`);
-      })
-    );
-    setCommentsUsers(getCommentsUsers);
-    console.log(getCommentsUsers);
-    setLoading(false);
-  };
-
   const saveComment = async () => {
-    // setLoading(true)
     if (comment.desc === "") {
       return;
     }
     try {
       const commentData = await req.post("/comment/", comment);
       setComments(commentData.data);
-      // await getCommentsUsersUpdate();
       setComment((prev) => {
         return {
           ...prev,
@@ -91,18 +61,20 @@ const PostComments = ({
             className={classes["add-comment-button"]}
             type="button"
             onClick={saveComment}
-            // onClick={getCommentsUsersUpdate}
           >
             {<AddComment className={classes["add-comment-icon"]} />}
           </button>
         </div>
       </div>
-      {commentsUsers.length !== 0 && !loading && (
+      {comments.comments.length > 0 ? (
         <div className={classes["comments-section"]}>
-          {comments.map((c, i) => {
-            console.log(commentsUsers);
-            return <Comment comment={c} commentUser={commentsUsers[i].data} />;
+          {comments.comments.map((c, i) => {
+            return <Comment comment={c} commentUser={comments.users[i]} />;
           })}
+        </div>
+      ) : (
+        <div className={classes["no-comments"]}>
+          <span>Be the first to comment...</span>
         </div>
       )}
     </>

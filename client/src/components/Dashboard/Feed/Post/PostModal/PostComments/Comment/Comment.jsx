@@ -7,12 +7,8 @@ import { userActions } from "../../../../../../../store/user-slice";
 import ppImg from "../../../../../../../images/pp-icon-small.png";
 import { format } from "timeago.js";
 import { ThumbUp } from "@mui/icons-material";
-import { CircularProgress } from "@mui/material";
 
-const Comment = ({ comment, commentUser}) => {
-  // console.log(commentUser);
-  const [user, setUser] = useState(commentUser);
-  const [loading, setLoading] = useState(true);
+const Comment = ({ comment, commentUser }) => {
   const [likes, setLikes] = useState(comment.likes);
   const loggedInUser = useSelector((state) => state.user.user);
   const req = useAxiosPrivate();
@@ -23,26 +19,6 @@ const Comment = ({ comment, commentUser}) => {
   useEffect(() => {
     getCommentLikes();
   }, []);
-
-  // useEffect(() => {
-  //   setLoading(true);
-  //   const getUser = async () => {
-  //     try {
-  //       const userData = await req.get(`/user/${comment.userId}`);
-  //       setUser(userData.data);
-  //     } catch (error) {
-  //       navigate("/login", { state: { from: location }, replace: true });
-  //       dispach(userActions.logoutUser());
-  //       setLoading(false)
-  //     }
-  //   };
-
-  //   getUser();
-  // }, []);
-
-  useEffect(() => {
-    setLoading(false);
-  }, [])
 
   const getCommentLikes = async () => {
     try {
@@ -66,16 +42,17 @@ const Comment = ({ comment, commentUser}) => {
     }
   };
 
-  return loading === false ? (
+  return (
     <div className={classes["comment-wrapper"]}>
       <div className={classes["comment-upper"]}>
         <img
           className={classes["comment-profile-picture"]}
-          src={user?.profilePicture || ppImg}
+          src={commentUser?.profilePicture || ppImg}
+          alt="profile"
         />
         <span
           className={classes["comment-name"]}
-        >{`${user.firstname} ${user.lastname}`}</span>
+        >{`${commentUser.firstname} ${commentUser.lastname}`}</span>
       </div>
       <div className={classes["comment-body"]}>
         <p className={classes["comment-body-text"]}>{comment.desc}</p>
@@ -106,8 +83,6 @@ const Comment = ({ comment, commentUser}) => {
         </span>
       </div>
     </div>
-  ) : (
-    <CircularProgress />
   );
 };
 
