@@ -9,8 +9,9 @@ import { format } from "timeago.js";
 import { ThumbUp } from "@mui/icons-material";
 import { CircularProgress } from "@mui/material";
 
-const Comment = ({ comment }) => {
-  const [user, setUser] = useState({});
+const Comment = ({ comment, commentUser}) => {
+  // console.log(commentUser);
+  const [user, setUser] = useState(commentUser);
   const [loading, setLoading] = useState(true);
   const [likes, setLikes] = useState(comment.likes);
   const loggedInUser = useSelector((state) => state.user.user);
@@ -23,21 +24,21 @@ const Comment = ({ comment }) => {
     getCommentLikes();
   }, []);
 
-  useEffect(() => {
-    setLoading(true);
-    const getUser = async () => {
-      try {
-        const userData = await req.get(`/user/${comment.userId}`);
-        setUser(userData.data);
-      } catch (error) {
-        navigate("/login", { state: { from: location }, replace: true });
-        dispach(userActions.logoutUser());
-        setLoading(false)
-      }
-    };
+  // useEffect(() => {
+  //   setLoading(true);
+  //   const getUser = async () => {
+  //     try {
+  //       const userData = await req.get(`/user/${comment.userId}`);
+  //       setUser(userData.data);
+  //     } catch (error) {
+  //       navigate("/login", { state: { from: location }, replace: true });
+  //       dispach(userActions.logoutUser());
+  //       setLoading(false)
+  //     }
+  //   };
 
-    getUser();
-  }, []);
+  //   getUser();
+  // }, []);
 
   useEffect(() => {
     setLoading(false);

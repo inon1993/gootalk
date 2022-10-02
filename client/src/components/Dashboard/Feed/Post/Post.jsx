@@ -13,6 +13,7 @@ import PostModal from "./PostModal/PostModal";
 const Post = React.forwardRef(({ post, postUser }, ref) => {
   const loggedInUser = useSelector((state) => state.user.user);
   const [comments, setComments] = useState([]);
+  // const [commentsUsers, setCommentsUsers] = useState([]);
   const [likes, setLikes] = useState(post.likes);
   const [isExpendedPost, setExpendedPost] = useState(false);
   const req = useAxiosPrivate();
@@ -27,7 +28,16 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
   const getComments = async () => {
     try {
       const commentsData = await req.get(`/comment/${post._id}`);
+      // const getCommentsUsers = await Promise.all(
+      //   commentsData.data.map(async (c) => {
+      //     const u = await req.get(`/user/${c.userId}`);
+      //     console.log(u.data);
+      //     return u 
+      //   })
+      // );
+      // console.log(getCommentsUsers);
       setComments(commentsData.data);
+      // setCommentsUsers(getCommentsUsers);
     } catch (error) {
       dispach(userActions.logoutUser());
       navigate("/login", { state: { from: location }, replace: true });
@@ -67,6 +77,8 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
           setLikes={setLikes}
           comments={comments}
           setComments={setComments}
+          // commentsUsers={commentsUsers}
+          // setCommentsUsers={setCommentsUsers}
         />
       )}
       <div className={classes["post-wrapper-for-ref"]} ref={ref}>

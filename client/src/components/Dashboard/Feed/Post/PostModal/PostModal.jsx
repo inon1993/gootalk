@@ -11,12 +11,39 @@ import { userActions } from "../../../../../store/user-slice";
 import { useNavigate, useLocation } from "react-router-dom";
 import PostComments from "./PostComments/PostComments";
 
-const PostModal = ({ post, postUser, onClose, likes, setLikes, comments, setComments }) => {
+const PostModal = ({
+  post,
+  postUser,
+  onClose,
+  likes,
+  setLikes,
+  comments,
+  setComments/*, commentsUsers, setCommentsUsers*/,
+}) => {
   const loggedInUser = useSelector((state) => state.user.user);
+  // const [commentsUsers, setCommentsUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
   const req = useAxiosPrivate();
   const dispach = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+
+  // useEffect(() => {
+  //   console.log("yes");
+  //   setLoading(true)
+  //   const getCommentsUsersUpdate = async () => {
+  //     const getCommentsUsers = await Promise.all(
+  //       comments.map(async (c) => {
+  //         return await req.get(`/user/${c.userId}`);
+  //       })
+  //     );
+  //     setCommentsUsers(getCommentsUsers);
+  //   console.log(getCommentsUsers);
+  //   };
+
+  //   getCommentsUsersUpdate();
+  //   setLoading(false);
+  // }, [comments]);
 
   const likeHandler = async () => {
     try {
@@ -78,9 +105,15 @@ const PostModal = ({ post, postUser, onClose, likes, setLikes, comments, setComm
             people like it
           </span>
         </div>
-        <div className={classes["post-modal-comments"]}>
-          <PostComments post={post} comments={comments} setComments={setComments} />
-        </div>
+        {/*commentsUsers.length !== 0 && !loading && */<div className={classes["post-modal-comments"]}>
+          <PostComments
+            post={post}
+            comments={comments}
+            setComments={setComments}
+            // commentsUsers={commentsUsers}
+            // setCommentsUsers={setCommentsUsers}
+          />
+        </div>}
       </div>
     </Modal>
   );

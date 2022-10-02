@@ -6,7 +6,8 @@ const newComment = async (req, res) => {
   const newComment = new Comment(req.body);
   try {
     const savedComment = await newComment.save();
-    res.status(200).send(savedComment);
+    const comments = await Comment.find({postId: req.body.postId})
+    res.status(200).send(comments.reverse());
   } catch (err) {
     res.status(500).json(err);
   }
