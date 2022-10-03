@@ -8,10 +8,21 @@ const UploadPostImg = ({ imgToSet }) => {
   };
 
   const previewFile = (file) => {
+    if (!file.type.includes("video") && !file.type.includes("image")) {
+      return;
+    }
+    if (file.type.includes("video")) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        imgToSet({ type: "video", file: reader.result });
+      };
+      return;
+    }
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      imgToSet(reader.result);
+      imgToSet({ type: "image", file: reader.result });
     };
   };
 

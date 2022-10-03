@@ -24,11 +24,12 @@ const NewPost = ({
 }) => {
   const user = useSelector((state) => state.user.user);
   const [newPostLoading, setNewPostLoading] = useState(false);
-  const [img, setImg] = useState("");
+  const [img, setImg] = useState({ type: "", file: "" });
   const [post, setPost] = useState({
     userId: user.userId,
     desc: "",
   });
+
   const req = useAxiosPrivate();
   const navigate = useNavigate();
   const dispach = useDispatch();
@@ -43,8 +44,8 @@ const NewPost = ({
     setNewPostLoading(true);
     let imgUrl = "";
     try {
-      if (img) {
-        imgUrl = await getPictureUrl(img, "post");
+      if (img.file !== "") {
+        imgUrl = await getPictureUrl(img.file, "post");
       }
       await req.post("/post", { ...post, image: imgUrl });
       const page = getPage;
@@ -112,13 +113,22 @@ const NewPost = ({
         </button>
       </div>
       <div className={classes["preview-img-wrapper"]}>
-        {img && (
-          <img className={classes["preview-img"]} src={img} alt="preview" />
+        {img.type === "image" && (
+          <img
+            className={classes["preview-img"]}
+            src={img.file}
+            alt="preview"
+          />
         )}
-        {img && (
+        {img.type === "video" && (
+          <video controls>
+            <source type="video/mp4" src={img.file} />
+          </video>
+        )}
+        {img.file !== "" && (
           <RemoveCircleOutline
             className={classes["remove-img-icon"]}
-            onClick={() => setImg()}
+            onClick={() => setImg({ type: "", file: "" })}
           />
         )}
       </div>
