@@ -9,6 +9,10 @@ const UploadPostImg = ({ imgToSet }) => {
 
   const previewFile = (file) => {
     if (!file.type.includes("video") && !file.type.includes("image")) {
+      imgToSet({ type: "error", file: "File not supported." });
+      setTimeout(() => {
+        imgToSet({ type: "", file: "" });
+      }, 1500);
       return;
     }
     if (file.type.includes("video")) {

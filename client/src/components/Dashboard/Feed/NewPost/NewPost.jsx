@@ -112,6 +112,11 @@ const NewPost = ({
           )}
         </button>
       </div>
+      {img.type === "error" && (
+        <div className={classes["file-error"]}>
+          <span className={classes["file-error-text"]}>{img.file}</span>
+        </div>
+      )}
       <div className={classes["preview-img-wrapper"]}>
         {img.type === "image" && (
           <img
@@ -127,7 +132,7 @@ const NewPost = ({
             </video>
           </div>
         )}
-        {img.file !== "" && (
+        {img.file !== "" && img.type !== "error" && (
           <RemoveCircleOutline
             className={classes["remove-img-icon"]}
             onClick={() => setImg({ type: "", file: "" })}

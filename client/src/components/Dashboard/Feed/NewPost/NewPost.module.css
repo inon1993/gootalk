@@ -114,6 +114,18 @@
   color: tomato;
 }
 
+.file-error {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.file-error-text {
+  font-size: 0.9rem;
+  color: tomato;
+  font-weight: 400;
+}
+
 @media only screen and (max-width: 650px) {
   .new-post-input {
     font-size: 0.9rem;
@@ -126,6 +138,10 @@
 @media only screen and (max-width: 380px) {
   .new-post-input {
     font-size: 0.75rem;
+  }
+
+  .file-error-text {
+    font-size: 0.8rem;
   }
 }
 
