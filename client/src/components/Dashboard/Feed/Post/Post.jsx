@@ -92,15 +92,19 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
             <p className={classes["post-body-text"]}>{post.desc}</p>
             {post.image &&
               (post.image.includes("/image/") ? (
-                <img
-                  className={classes["post-img"]}
-                  src={post.image}
-                  alt="post img"
-                />
+                <div className={classes["img-video-wrapper"]}>
+                  <img
+                    className={classes["post-img"]}
+                    src={post.image}
+                    alt="post img"
+                  />
+                </div>
               ) : (
-                <video className={classes["post-video"]} controls>
-                  <source type="video/mp4" src={post.image} />
-                </video>
+                <div className={classes["img-video-wrapper"]}>
+                  <video className={classes["post-video"]} controls>
+                    <source type="video/mp4" src={post.image} />
+                  </video>
+                </div>
               ))}
           </div>
           <div className={classes["post-like-comments"]}>
