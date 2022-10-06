@@ -7,6 +7,7 @@
   transition: 150ms;
   padding-left: 10px;
   margin-left: 3px;
+  overflow-x: auto;
 }
 
 .rm-friend:hover {
@@ -18,8 +19,10 @@
 
 .rm-friend-img {
   /* font-size: 2rem !important; */
-  height: 30px;
-  width: 30px;
+  min-height: 30px;
+  max-height: 30px;
+  min-width: 30px;
+  max-width: 30px;
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;

@@ -1,6 +1,7 @@
 .comment-wrapper {
   padding: 15px;
   border-bottom: 1px solid var(--menu-navbar-border);
+  overflow-x: auto;
 }
 
 .comment-upper {
@@ -10,8 +11,10 @@
 }
 
 .comment-profile-picture {
-  height: 22px;
-  width: 22px;
+  min-height: 22px;
+  max-height: 22px;
+  min-width: 22px;
+  max-width: 22px;
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;

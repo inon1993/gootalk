@@ -215,7 +215,10 @@
   }
 
   .navbar-features-icon {
-    /* font-size: 1.2rem !important; */
+    padding: 0 4px;
+  }
+
+  .navbar-features-icon:hover {
     padding: 0 4px;
   }
 

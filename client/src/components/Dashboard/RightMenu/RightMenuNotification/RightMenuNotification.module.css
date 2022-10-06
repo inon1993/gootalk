@@ -2,11 +2,14 @@
   padding: 0 !important;
   /* margin: 15px 0 0 0; */
   width: 95%;
+  overflow-x: auto;
 }
 
 .rm-profile-picture {
-  height: 30px;
-  width: 30px;
+  min-height: 30px;
+  max-height: 30px;
+  min-width: 30px;
+  max-width: 30px;
   border-radius: 50%;
   object-fit: cover;
   margin-right: 5px;

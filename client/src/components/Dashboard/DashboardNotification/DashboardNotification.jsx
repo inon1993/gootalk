@@ -40,13 +40,14 @@ const DashboardNotification = () => {
   const getNotifications = async () => {
     try {
       const res = await req.get(`/notifications/${user.userId}`);
+      const friends = await req.get(`/user/friends/${user.userId}`);
       dispatch(userActions.setNotifications({ notifications: res.data }));
+      dispatch(userActions.setFriends({ friends: friends.data }));
       const getNotiUsers = await Promise.all(
         res.data.map(async (n) => {
           return await req.get(`/user/${n.senderUserId}`);
         })
       );
-      console.log(getNotiUsers);
       setNoti(getNotiUsers);
     } catch (error) {
       dispatch(userActions.logoutUser());

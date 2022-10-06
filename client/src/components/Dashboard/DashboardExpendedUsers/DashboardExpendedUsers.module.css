@@ -53,6 +53,7 @@
   transition: 100ms;
   color: var(--card-text);
   transition: 700ms;
+  overflow-x: auto;
 }
 
 .users-expended:hover {
@@ -73,8 +74,10 @@
 }
 
 .pic-expended {
-  width: 45px;
-  height: 45px;
+  min-width: 45px;
+  max-width: 45px;
+  min-height: 45px;
+  max-height: 45px;
   border-radius: 50px;
   object-fit: cover;
   margin: 10px;
