@@ -46,14 +46,13 @@ app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(
   helmet.contentSecurityPolicy({
-    useDefaults: true,
+    // useDefaults: true,
     directives: {
-      "img-src": ["'self'", "https: data:"],
-      "media-src": ["*", "'self'", "https:", "data:"],
-      "connect-src": [
-        "'self'",
-        "https://countriesnow.space/api/v0.1/countries",
-      ],
+      // mediaSrc: ["data:"],
+      // "default-src": ["'self'", "data:"],
+      imgSrc: ["'self'", "https: data:"],
+      mediaSrc: ["'*'", "data:"],
+      connectSrc: ["'self'", "https://countriesnow.space/api/v0.1/countries"],
     },
   })
 );

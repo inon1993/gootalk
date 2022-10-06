@@ -61,7 +61,7 @@ const NewPost = ({
           image: "",
         };
       });
-      setImg();
+      setImg({ type: "", file: "" });
       if (page === 0) {
         getPosts();
       }
@@ -121,9 +121,11 @@ const NewPost = ({
           />
         )}
         {img.type === "video" && (
-          <video controls>
-            <source type="video/mp4" src={img.file} />
-          </video>
+          <div className={classes["video-wrapper"]}>
+            <video className={classes["video-insert"]} controls>
+              <source type="video/mp4" src={img.file} />
+            </video>
+          </div>
         )}
         {img.file !== "" && (
           <RemoveCircleOutline
