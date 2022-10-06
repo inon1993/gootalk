@@ -51,7 +51,7 @@ app.use(
       // mediaSrc: ["data:"],
       // "default-src": ["'self'", "data:"],
       imgSrc: ["'self'", "https: data:"],
-      mediaSrc: ["'*'", "data:"],
+      mediaSrc: ["'*'", "data: http://res.cloudinary.com"],
       connectSrc: ["'self'", "https://countriesnow.space/api/v0.1/countries"],
     },
   })
