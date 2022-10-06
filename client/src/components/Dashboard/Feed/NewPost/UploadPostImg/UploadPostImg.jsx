@@ -28,10 +28,12 @@ const UploadPostImg = ({ imgToSet }) => {
 
   return (
     <>
-      <form>
+      <form style={{ marginRight: "15px" }}>
         <label htmlFor="file-input" className={classes["post-img"]}>
           <ImageRounded className={classes["new-post-add-img-icon"]} />
-          <span className={classes["new-post-add-img-text"]}>Add a Photo</span>
+          <span className={classes["new-post-add-img-text"]}>
+            Add a Photo/Video
+          </span>
         </label>
         <input
           style={{ display: "none" }}
