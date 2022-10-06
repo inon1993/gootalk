@@ -98,11 +98,9 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
                   alt="post img"
                 />
               ) : (
-                <div>
-                  <video className={classes["post-video"]} controls>
-                    <source type="video/mp4" src={post.image} />
-                  </video>
-                </div>
+                <video className={classes["post-video"]} controls>
+                  <source type="video/mp4" src={post.image} />
+                </video>
               ))}
           </div>
           <div className={classes["post-like-comments"]}>
