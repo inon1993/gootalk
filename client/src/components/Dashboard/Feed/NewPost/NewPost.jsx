@@ -126,11 +126,11 @@ const NewPost = ({
           />
         )}
         {img.type === "video" && (
-          <div className={classes["video-wrapper"]}>
-            <video className={classes["video-insert"]} controls>
-              <source type="video/mp4" src={img.file} />
-            </video>
-          </div>
+          // <div className={classes["video-wrapper"]}>
+          <video className={classes["video-insert"]} controls>
+            <source type="video/mp4" src={img.file} />
+          </video>
+          // </div>
         )}
         {img.file !== "" && img.type !== "error" && (
           <RemoveCircleOutline
