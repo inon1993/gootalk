@@ -56,13 +56,20 @@ const PostModal = ({
           // onClick={() => setExpendedPost(true)}
         >
           <p className={classes["post-body-text"]}>{post.desc}</p>
-          {post.image && (
-            <img
-              className={classes["post-img"]}
-              src={post.image}
-              alt="post img"
-            />
-          )}
+          {post.image &&
+            (post.image.includes("/image/") ? (
+              <img
+                className={classes["post-img"]}
+                src={post.image}
+                alt="post img"
+              />
+            ) : (
+              <div>
+                <video className={classes["post-video"]} controls>
+                  <source type="video/mp4" src={post.image} />
+                </video>
+              </div>
+            ))}
         </div>
         <div className={classes["post-like"]}>
           {post.userId !== loggedInUser.userId && (

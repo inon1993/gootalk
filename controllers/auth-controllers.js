@@ -14,7 +14,7 @@ const registerCtr = async (req, res) => {
       password: hashedPassword,
       country: req.body.data.country,
       city: req.body.data.city,
-      profilePicture: req.body.profilePicture?.data?.url || "",
+      profilePicture: req.body.profilePicture || "",
     });
 
     const user = await newUser.save();
@@ -95,12 +95,35 @@ const uploadPicture = async (req, res) => {
     } else if (page === "cover-picture") {
       imgSize = 600;
     } else if (page === "post") {
-      imgSize = 800;
+      if (req.body.profilePicture.type === "image") {
+        imgSize = 800;
+      } else {
+        imgSize = 300;
+      }
     }
-    const fileStr = req.body.profilePicture;
+    const fileStr = req.body.profilePicture.file;
+    if (req.body.profilePicture.type === "image") {
+      const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
+        width: imgSize,
+        crop: "scale",
+      });
+      const url = uploadedResponse.url;
+      return res.status(200).json({ url: url });
+    }
     const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
-      width: imgSize,
-      crop: "scale",
+      resource_type: "video",
+      chunk_size: 6000000,
+      eager: [
+        { width: 300, height: 300, crop: "pad", audio_codec: "none" },
+        {
+          width: 160,
+          height: 100,
+          crop: "crop",
+          gravity: "south",
+          audio_codec: "none",
+        },
+      ],
+      eager_async: true,
     });
     const url = uploadedResponse.url;
     return res.status(200).json({ url: url });

@@ -45,7 +45,7 @@ const NewPost = ({
     let imgUrl = "";
     try {
       if (img.file !== "") {
-        imgUrl = await getPictureUrl(img.file, "post");
+        imgUrl = await getPictureUrl(img, "post");
       }
       await req.post("/post", { ...post, image: imgUrl });
       const page = getPage;

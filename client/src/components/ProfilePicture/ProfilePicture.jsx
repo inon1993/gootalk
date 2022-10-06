@@ -12,12 +12,24 @@ const ProfilePicture = ({ onId, onPreview, preview, page }) => {
     previewFile(file);
   };
 
+  // const previewFile = (file) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onloadend = () => {
+  //     setPreviewSource(reader.result);
+  //     onPreview(reader.result);
+  //   };
+  // };
+
   const previewFile = (file) => {
+    if (!file.type.includes("image")) {
+      return;
+    }
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      setPreviewSource(reader.result);
-      onPreview(reader.result);
+      setPreviewSource({ type: "image", file: reader.result });
+      onPreview({ type: "image", file: reader.result });
     };
   };
 
@@ -25,15 +37,17 @@ const ProfilePicture = ({ onId, onPreview, preview, page }) => {
     <div className={classes["sl-add-pic"]}>
       <form className={classes["sl-form"]}>
         <label className={classes["check"]} htmlFor={onId}>
-          {previewSource ? (
+          {previewSource.file ? (
             <img
               className={`${
                 page === "signup"
-                  ? classes["sl-preview-pic"] :
-                  page === "edit-profile" ? classes["edit-profile"]
-                  : page === "edit-profile-cover" && classes["edit-profile-cover"]
+                  ? classes["sl-preview-pic"]
+                  : page === "edit-profile"
+                  ? classes["edit-profile"]
+                  : page === "edit-profile-cover" &&
+                    classes["edit-profile-cover"]
               }`}
-              src={previewSource}
+              src={previewSource.file}
               alt="profile pic"
             />
           ) : page === "signup" || page === "edit-profile" ? (
@@ -55,29 +69,33 @@ const ProfilePicture = ({ onId, onPreview, preview, page }) => {
               alt="profile cover"
             />
           )}
-          {!previewSource && (
+          {!previewSource.file && (
             <AddCircleOutline
               className={`${
                 page === "signup"
                   ? classes["add-icon"]
-                  : page === "edit-profile" ? classes["edit-profile-add"]
-                  : page === "edit-profile-cover" && classes["edit-profile-cover-add"]
+                  : page === "edit-profile"
+                  ? classes["edit-profile-add"]
+                  : page === "edit-profile-cover" &&
+                    classes["edit-profile-cover-add"]
               }`}
             />
           )}
         </label>
         <label>
-          {previewSource && (
+          {previewSource.file && (
             <RemoveCircleOutline
               className={`${
                 page === "signup"
                   ? classes["remove-icon"]
-                  : page === "edit-profile" ? classes["edit-profile-remove"]
-                  : page === "edit-profile-cover" && classes["edit-profile-cover-remove"]
+                  : page === "edit-profile"
+                  ? classes["edit-profile-remove"]
+                  : page === "edit-profile-cover" &&
+                    classes["edit-profile-cover-remove"]
               }`}
               onClick={() => {
-                setPreviewSource();
-                onPreview();
+                setPreviewSource({ type: "", file: "" });
+                onPreview({ type: "", file: "" });
               }}
             />
           )}

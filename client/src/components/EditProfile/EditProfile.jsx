@@ -33,10 +33,14 @@ const EditProfile = ({ onCloseEdit }) => {
     country: user.country,
     city: user.city,
   });
-  const [previewSource, setPreviewSource] = useState(user.profilePicture);
-  const [previewSourceCover, setPreviewSourceCover] = useState(
-    user.coverPicture
-  );
+  const [previewSource, setPreviewSource] = useState({
+    type: "image",
+    file: user.profilePicture,
+  });
+  const [previewSourceCover, setPreviewSourceCover] = useState({
+    type: "image",
+    file: user.coverPicture,
+  });
 
   const [isValid, setIsValid] = useState({ firstname: true, lastname: true });
   const [isLoading, setIsLoading] = useState(false);
@@ -137,18 +141,21 @@ const EditProfile = ({ onCloseEdit }) => {
     let coverUrl = user.coverPicture;
 
     try {
-      if (previewSource !== user.profilePicture && previewSource) {
+      if (previewSource.file !== user.profilePicture && previewSource.file) {
         imgUrl = await getPictureUrl(previewSource, "profile-picture");
       }
-      if (previewSourceCover !== user.coverPicture && previewSourceCover) {
+      if (
+        previewSourceCover.file !== user.coverPicture &&
+        previewSourceCover.file
+      ) {
         coverUrl = await getPictureUrl(previewSourceCover, "cover-picture");
       }
 
-      if(previewSource === "" || !previewSource) {
+      if (previewSource.file === "" || !previewSource.file) {
         imgUrl = "";
       }
 
-      if(previewSourceCover === "" || !previewSourceCover) {
+      if (previewSourceCover.file === "" || !previewSourceCover.file) {
         coverUrl = "";
       }
 
@@ -162,8 +169,8 @@ const EditProfile = ({ onCloseEdit }) => {
         userActions.setUser({
           ...updatedUser,
           userId: user.userId,
-          profilePicture: imgUrl || previewSource,
-          coverPicture: coverUrl || previewSourceCover,
+          profilePicture: imgUrl || previewSource.file,
+          coverPicture: coverUrl || previewSourceCover.file,
         })
       );
       setIsLoading(false);

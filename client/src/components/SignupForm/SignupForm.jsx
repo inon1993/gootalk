@@ -18,7 +18,7 @@ import { settingsActions } from "../../store/settings-slice";
 
 const SignupForm = ({ profilePicture }) => {
   const firstnameRef = useRef();
-  const [previewSource, setPreviewSource] = useState();
+  const [previewSource, setPreviewSource] = useState({ type: "", file: "" });
   const [isPw, setIsPw] = useState({ visable: false, type: "password" });
   const [countries, setCountries] = useState([]);
   const [countryFocus, setCountryFocus] = useState(false);
@@ -93,7 +93,9 @@ const SignupForm = ({ profilePicture }) => {
     setErrorMsg({ code: null, msg: "" });
     try {
       const imgUrl = await getPictureUrl(
-        profilePicture || previewSource,
+        profilePicture.file
+          ? profilePicture
+          : previewSource.file && previewSource,
         "profile-picture"
       );
       const newUser = await signup(user, imgUrl);
@@ -216,6 +218,7 @@ const SignupForm = ({ profilePicture }) => {
         <div className={classes["profile-picture-mobile"]}>
           <ProfilePicture
             onId="file-input-mobile"
+            preview={previewSource}
             onPreview={setPreviewSource}
             page="signup"
           />
