@@ -23,6 +23,12 @@ const ProfilePicture = ({ onId, onPreview, preview, page }) => {
 
   const previewFile = (file) => {
     if (!file.type.includes("image")) {
+      setPreviewSource({ type: "error", file: "File not supported." });
+      onPreview({ type: "error", file: "File not supported." });
+      setTimeout(() => {
+        setPreviewSource({ type: "", file: "" });
+        onPreview({ type: "", file: "" });
+      }, 1500);
       return;
     }
     const reader = new FileReader();
@@ -37,7 +43,7 @@ const ProfilePicture = ({ onId, onPreview, preview, page }) => {
     <div className={classes["sl-add-pic"]}>
       <form className={classes["sl-form"]}>
         <label className={classes["check"]} htmlFor={onId}>
-          {previewSource.file ? (
+          {previewSource.file && previewSource.type !== "error" ? (
             <img
               className={`${
                 page === "signup"
@@ -56,7 +62,7 @@ const ProfilePicture = ({ onId, onPreview, preview, page }) => {
                 page === "signup"
                   ? classes["sl-add-pic-icon"]
                   : classes["edit-profile"]
-              }`}
+              } ${previewSource.type === "error" && classes["error-file"]}`}
               src={ppIcon}
               alt="profile icon"
             />
@@ -64,12 +70,16 @@ const ProfilePicture = ({ onId, onPreview, preview, page }) => {
             <img
               className={`${
                 page === "edit-profile-cover" && classes["edit-profile-cover"]
+              } ${
+                previewSource.type === "error" &&
+                page === "edit-profile-cover" &&
+                classes["error-file-cover"]
               }`}
               src={coverImg}
               alt="profile cover"
             />
           )}
-          {!previewSource.file && (
+          {(!previewSource.file || previewSource.type === "error") && (
             <AddCircleOutline
               className={`${
                 page === "signup"
@@ -83,7 +93,7 @@ const ProfilePicture = ({ onId, onPreview, preview, page }) => {
           )}
         </label>
         <label>
-          {previewSource.file && (
+          {previewSource.file && previewSource.type !== "error" && (
             <RemoveCircleOutline
               className={`${
                 page === "signup"
