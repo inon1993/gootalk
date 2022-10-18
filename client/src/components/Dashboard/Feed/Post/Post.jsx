@@ -128,7 +128,10 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
                 people like it
               </span>
             </div>
-            <span className={classes["post-comment-text"]}>
+            <span
+              className={classes["post-comment-text"]}
+              onClick={() => setExpendedPost(true)}
+            >
               <span style={{ fontWeight: "bold" }}>
                 {comments.comments.length}
               </span>{" "}
