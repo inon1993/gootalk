@@ -20,7 +20,6 @@ export const CountrySelector = ({
   return (
     <div
       className={classes["sr-country"]}
-      // data-theme={user.userId !== "" ? theme : "light"}
     >
       {countries
         .filter((c) => {

@@ -5,10 +5,6 @@
   flex-direction: column;
 }
 
-.sr-input-country {
-  /* width: 95%; */
-}
-
 .sr-input-country:focus {
   border-radius: 10px 10px 0 0;
 }

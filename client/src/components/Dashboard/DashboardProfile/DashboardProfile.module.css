@@ -1,8 +1,6 @@
 .profile-data {
   flex: 9.5;
   width: 100%;
-  /* height: calc(100vh - 61px); */
-  /* background-color: hsl(210, 71.4%, 97.3%); */
   background-attachment: fixed;
   display: flex;
   flex-direction: column;
@@ -21,8 +19,6 @@
 .edit-profile {
   flex: 9.5;
   width: 100%;
-  /* height: calc(100vh - 61px); */
-  /* background-color: hsl(210, 71.4%, 97.3%); */
   background-attachment: fixed;
   display: flex;
   flex-direction: column;

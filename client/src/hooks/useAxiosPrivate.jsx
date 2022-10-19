@@ -35,13 +35,11 @@ const useAxiosPrivate = () => {
           } catch (error) {
             return Promise.reject(error);
           }
-          // window.location.href = '/login';
           return Promise.reject(error);
         } else if (
           error?.response?.status === 401 &&
-          prevRequest.url !== "/refresh" /*prevRequest?.sent !== true*/
+          prevRequest.url !== "/refresh"
         ) {
-          // prevRequest.sent = true;
           const newAccessToken = await refresh();
           prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
           return axiosPrivate(prevRequest);

@@ -5,9 +5,6 @@ export const signup = async (data, profilePicture) => {
     url: "/auth/register",
     method: "POST",
     data: { data, profilePicture },
-    // headers: {
-    //   withCredentials: true
-    // }
   });
   return user;
 };
@@ -17,9 +14,6 @@ export const login = async (email, password) => {
     url: "/auth/login",
     method: "POST",
     data: { email, password },
-    // headers: {
-    //   withCredentials: true
-    // }
   });
   return user;
 };

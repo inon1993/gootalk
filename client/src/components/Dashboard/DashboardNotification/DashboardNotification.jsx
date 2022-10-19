@@ -6,6 +6,7 @@ import { userActions } from "../../../store/user-slice";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loader from "../../UI/Loader/Loader";
+import useLogout from "../../../hooks/useLogout";
 
 const DashboardNotification = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -14,6 +15,7 @@ const DashboardNotification = () => {
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const logout = useLogout();
   const location = useLocation();
 
   useEffect(() => {
@@ -27,6 +29,7 @@ const DashboardNotification = () => {
         );
         setNoti(getNotiUsers);
       } catch (error) {
+        await logout();
         dispatch(userActions.logoutUser());
         navigate("/login", { state: { from: location }, replace: true });
       }

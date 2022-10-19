@@ -21,7 +21,6 @@ const EditProfile = ({ onCloseEdit }) => {
   const [countryFocus, setCountryFocus] = useState(false);
   const [countryObj, setCountryObj] = useState({});
   const [country, setCountry] = useState(user.country);
-  // const [isEmptyCountries, setIsEmptyCountries] = useState(true)
 
   const [cityFocus, setCityFocus] = useState(false);
   const [city, setCity] = useState(user.city);

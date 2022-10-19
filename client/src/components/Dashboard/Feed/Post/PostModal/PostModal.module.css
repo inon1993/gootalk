@@ -4,10 +4,6 @@
   overflow-y: auto;
 }
 
-/* .post {
-  margin: 0 0 20px;
-} */
-
 .post-upper {
   display: flex;
   align-items: center;
@@ -58,7 +54,6 @@
 
 .post-img {
   max-width: 100%;
-  /* max-width: 500px; */
   max-height: 500px;
   object-fit: contain;
   border-radius: 10px;

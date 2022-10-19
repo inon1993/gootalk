@@ -3,12 +3,19 @@ import classes from "./ProfileInfo.module.css";
 import Card from "../../../UI/Card/Card";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import useLogout from "../../../../hooks/useLogout";
+import { userActions } from "../../../../store/user-slice";
 
 const ProfileInfo = () => {
   const [stats, setStats] = useState({ friends: 0, posts: 0, createdAt: "" });
   const req = useAxiosPrivate();
   const user = useSelector((state) => state.user.user);
+  const navigate = useNavigate();
+  const logout = useLogout();
+  const location = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getStats = async () => {
@@ -16,7 +23,9 @@ const ProfileInfo = () => {
         const res = await req.get(`/user/stats/${user.userId}`);
         setStats(res.data);
       } catch (error) {
-        console.log(error);
+        await logout();
+        navigate("/login", { state: { from: location }, replace: true });
+        dispatch(userActions.logoutUser());
       }
     };
 

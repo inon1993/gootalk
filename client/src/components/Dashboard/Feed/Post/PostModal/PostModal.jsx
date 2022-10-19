@@ -8,6 +8,7 @@ import useAxiosPrivate from "../../../../../hooks/useAxiosPrivate";
 import { userActions } from "../../../../../store/user-slice";
 import { useNavigate, useLocation } from "react-router-dom";
 import PostComments from "./PostComments/PostComments";
+import useLogout from "../../../../../hooks/useLogout";
 
 const PostModal = ({
   post,
@@ -23,6 +24,7 @@ const PostModal = ({
   const dispach = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const logout = useLogout();
 
   const likeHandler = async () => {
     try {
@@ -31,8 +33,9 @@ const PostModal = ({
       });
       setLikes(updatedLikes.data);
     } catch (error) {
-      dispach(userActions.logoutUser());
+      await logout();
       navigate("/login", { state: { from: location }, replace: true });
+      dispach(userActions.logoutUser());
     }
   };
 
@@ -44,7 +47,6 @@ const PostModal = ({
             className={classes["post-profile-img"]}
             src={postUser.profilePicture || ppIcon}
             alt={"profile"}
-            //   onClick={checkOnUserHandler}
           />
           <span
             className={classes["post-name"]}
@@ -53,7 +55,6 @@ const PostModal = ({
         </div>
         <div
           className={classes["post-body"]}
-          // onClick={() => setExpendedPost(true)}
         >
           <p className={classes["post-body-text"]}>{post.desc}</p>
           {post.image &&

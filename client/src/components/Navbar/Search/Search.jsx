@@ -11,6 +11,7 @@ import ppIcon from "../../../images/pp-icon-small.png";
 import classes from "./Search.module.css";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { userActions } from "../../../store/user-slice";
+import useLogout from "../../../hooks/useLogout";
 
 const Search = () => {
   const [users, setUsers] = useState([]);
@@ -22,6 +23,7 @@ const Search = () => {
   const [search, setSearch] = useSearchParams();
   const req = useAxiosPrivate();
   const dispach = useDispatch();
+  const logout = useLogout();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -31,6 +33,7 @@ const Search = () => {
         const fetchedUsers = await req.get("/user/");
         setUsers(fetchedUsers.data);
       } catch (error) {
+        await logout();
         navigate("/login", { state: { from: location }, replace: true });
         dispach(userActions.logoutUser());
       }

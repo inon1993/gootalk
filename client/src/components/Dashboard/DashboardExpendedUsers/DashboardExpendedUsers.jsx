@@ -6,6 +6,7 @@ import PageNumbers from "../../../components/UI/PageNumbers/PageNumbers";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../../store/user-slice";
+import useLogout from "../../../hooks/useLogout";
 
 const DashboardExpendedUsers = () => {
   const [sliceVal, setSliceVal] = useState({ start: 0, end: 10 });
@@ -17,6 +18,7 @@ const DashboardExpendedUsers = () => {
   const req = useAxiosPrivate();
   const location = useLocation();
   const dispach = useDispatch();
+  const logout = useLogout();
 
   const controller = new AbortController();
 
@@ -27,6 +29,7 @@ const DashboardExpendedUsers = () => {
         const fetchedUsers = await req.get("/user/");
         isMounted && setUsers(fetchedUsers.data);
       } catch (error) {
+        await logout();
         navigate("/login", { state: { from: location }, replace: true });
         dispach(userActions.logoutUser());
       }

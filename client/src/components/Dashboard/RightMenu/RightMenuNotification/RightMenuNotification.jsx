@@ -2,15 +2,21 @@ import classes from "./RightMenuNotification.module.css";
 import Card from "../../../UI/Card/Card";
 import { useEffect, useState } from "react";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useLocation } from "react-router";
 import ppIcon from "../../../../images/pp-icon-small.png";
+import { userActions } from "../../../../store/user-slice";
+import useLogout from "../../../../hooks/useLogout";
+
 
 const RightMenuNotification = ({ notification, onReload }) => {
   const currUser = useSelector((state) => state.user.user);
   const [user, setUser] = useState();
   const req = useAxiosPrivate();
   const navigate = useNavigate();
+  const logout = useLogout();
+  const location = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getUser = async () => {
@@ -31,9 +37,10 @@ const RightMenuNotification = ({ notification, onReload }) => {
     try {
       await req.put("/notifications/response", payload);
       onReload();
-      // window.location.reload();
     } catch (error) {
-      console.log(error);
+      await logout();
+      navigate("/login", { state: { from: location }, replace: true });
+      dispatch(userActions.logoutUser());
     }
   };
 

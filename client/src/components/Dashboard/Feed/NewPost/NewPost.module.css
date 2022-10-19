@@ -26,7 +26,6 @@
   font-size: 1.2rem;
   width: calc(100% - 42px);
   font-family: "Poppins", sans-serif;
-  /* overflow:hidden; */
   resize: none;
   background-color: var(--background);
   color: var(--navbar-profile-text);
@@ -53,10 +52,6 @@
 .new-post-add-img:hover {
   cursor: pointer;
 }
-
-/* .video-wrapper {
-  margin-top: 15px;
-} */
 
 .video-insert {
   margin-top: 15px;
@@ -96,7 +91,6 @@
 .preview-img {
   margin-top: 15px;
   width: 100%;
-  /* max-width: 500px; */
   max-height: 500px;
   object-fit: contain;
   border-radius: 10px;

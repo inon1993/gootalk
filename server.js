@@ -32,11 +32,7 @@ mongoose.connection.on("connected", () => {
 app.use(
   cors({
     origin: ["http://gootalk.herokuapp.com", "https://gootalk.herokuapp.com"],
-    // origin: "true",
-    // methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-    // allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
     credentials: true,
-    // exposedHeaders: ["*", "Authorization"],
   })
 );
 
@@ -46,10 +42,7 @@ app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(
   helmet.contentSecurityPolicy({
-    // useDefaults: true,
     directives: {
-      // mediaSrc: ["data:"],
-      // "default-src": ["'self'", "data:"],
       imgSrc: ["'self'", "https: data:"],
       mediaSrc: ["'*'", "data: http://res.cloudinary.com"],
       connectSrc: ["'self'", "https://countriesnow.space/api/v0.1/countries"],

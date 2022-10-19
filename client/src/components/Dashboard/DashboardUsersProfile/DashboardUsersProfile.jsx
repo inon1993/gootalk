@@ -1,14 +1,16 @@
 import classes from "./DashboardUsersProfile.module.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import UserPosts from "../UserPosts/UserPosts";
 import ppIcon from "../../../images/pp-icon.webp";
 import coverImg from "../../../images/gootalk-cover.jpg";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router";
+import { useParams, useLocation, useNavigate } from "react-router";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { Done, PersonAdd } from "@mui/icons-material";
 import Loader from "../../UI/Loader/Loader";
+import useLogout from "../../../hooks/useLogout";
+import { userActions } from "../../../store/user-slice";
 
 const DashboardUsersProfile = () => {
   const [user, setUser] = useState({});
@@ -21,6 +23,10 @@ const DashboardUsersProfile = () => {
   const currUser = useSelector((state) => state.user.user);
   const [sendReqBtn, setSendReqBtn] = useState(false);
   const [disableReqBtn, setDisableReqBtn] = useState(false);
+  const navigate = useNavigate();
+  const logout = useLogout();
+  const location = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setSendReqBtn(false);
@@ -88,7 +94,9 @@ const DashboardUsersProfile = () => {
       await req.put("/notifications", payload);
       setDisableReqBtn(true);
     } catch (error) {
-      console.log(error);
+      await logout();
+      navigate("/login", { state: { from: location }, replace: true });
+      dispatch(userActions.logoutUser());
     }
   };
 

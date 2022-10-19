@@ -18,7 +18,6 @@
 .dashboard-profile-wrapper {
   flex: 9.5;
   width: 100%;
-  /* height: calc(100vh - 61px); */
   background-color: var(--background-feed);
   background-attachment: fixed;
   display: flex;

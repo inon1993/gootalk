@@ -9,12 +9,9 @@ const initialUserState = {
     profilePicture: "",
     coverPicture: "",
     friends: [],
-    // followers: [],
-    // following: [],
     country: "",
     city: "",
     notifications: [],
-    // accessToken: "",
   },
 };
 
@@ -29,12 +26,8 @@ const userSlice = createSlice({
       state.user.email = action.payload.email;
       state.user.profilePicture = action.payload.profilePicture;
       state.user.coverPicture = action.payload.coverPicture;
-      // state.user.followers = action.payload.followers;
-      // state.user.following = action.payload.following;
       state.user.country = action.payload.country;
       state.user.city = action.payload.city;
-      // state.user.notifications = action.payload.notifications;
-      // state.user.accessToken = action.payload.accessToken;
     },
     setNotifications(state, action) {
       state.user.notifications = action.payload.notifications;
@@ -50,12 +43,9 @@ const userSlice = createSlice({
       state.user.profilePicture = "";
       state.user.coverPicture = "";
       state.user.friends = [];
-      // state.user.followers = [];
-      // state.user.following = [];
       state.user.country = "";
       state.user.city = "";
       state.user.notifications = [];
-      // state.user.accessToken = "";
     },
   },
 });

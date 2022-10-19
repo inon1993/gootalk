@@ -17,7 +17,6 @@
   font-size: 0.9rem;
   width: calc(100% - 42px);
   font-family: "Poppins", sans-serif;
-  /* overflow:hidden; */
   resize: none;
   background-color: var(--new-comment-background);
   color: var(--navbar-profile-text);

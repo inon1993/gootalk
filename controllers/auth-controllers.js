@@ -28,7 +28,6 @@ const registerCtr = async (req, res) => {
     });
     res.status(200).json({ user, accessToken });
   } catch (err) {
-    console.log(err);
     if (err.code === 11000) {
       return res.status(409).send("e-mail is already registered.");
     }
@@ -60,8 +59,6 @@ const loginCtr = async (req, res) => {
       maxAge: 24 * 60 * 60 * 1000,
     });
     res.status(200).json({ user, accessToken });
-
-    // return res.status(200).json({ user, token });
   } catch (err) {
     return res.status(500).json(err);
   }

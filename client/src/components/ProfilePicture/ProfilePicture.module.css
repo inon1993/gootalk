@@ -41,9 +41,7 @@
 
 .edit-profile-cover {
   max-height: 200px;
-  /* max-width: 80%; */
   max-width: 100%;
-  /* min-width: 80%; */
   object-fit: cover;
   border-radius: 10px;
 }
@@ -153,13 +151,9 @@
 
 @media only screen and (max-width: 650px) {
   .sl-add-pic {
-    /* position: absolute; */
     display: flex;
     align-items: center;
-    /* left: 15%; */
     z-index: 10;
-    /* margin-top: 15px; */
-    /* top: calc(50vh - 300px); */
   }
 
   .sl-preview-pic {
@@ -187,10 +181,6 @@
 }
 
 @media only screen and (max-width: 375px) {
-  /* .sl-add-pic {
-    top: calc(50vh - 307px);
-  } */
-
   .sl-preview-pic {
     height: 3.4rem;
     width: 3.4rem;
@@ -221,10 +211,4 @@
     font-size: 1.5rem !important;
     top: calc(100% - 18px);
   }
-}
-
-@media only screen and (max-height: 550px) {
-  /* .sl-add-pic {
-    top: calc(50vh - 307px);
-  } */
 }

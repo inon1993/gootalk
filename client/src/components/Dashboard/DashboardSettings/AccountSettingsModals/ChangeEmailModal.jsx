@@ -47,14 +47,17 @@ const ChangeEmailModal = ({ onClose }) => {
           setSuccessMsg("");
         }, 2500);
       } catch (error) {
+        if (error.response.status === 500) {
+          setSuccessMsg("");
+          setErrMsg({ code: 500, msg: "Something went wrong. Try again." });
+        }
         if (error.response.status === 403) {
           setSuccessMsg("");
           setErrMsg({
             code: 403,
             msg: "E-Mail address is the same as before.",
           });
-        }
-        if (error.response.status === 409) {
+        } else if (error.response.status === 409) {
           setSuccessMsg("");
           setErrMsg({ code: 409, msg: "E-Mail address is already in use." });
         }
@@ -89,7 +92,13 @@ const ChangeEmailModal = ({ onClose }) => {
           )}
         </div>
         <div className={classes.actions}>
-          <button className={classes.update} disabled={disabled}>{disabled ? <CircularProgress style={{ color: "white" }} size="20px" /> : "Update"}</button>
+          <button className={classes.update} disabled={disabled}>
+            {disabled ? (
+              <CircularProgress style={{ color: "white" }} size="20px" />
+            ) : (
+              "Update"
+            )}
+          </button>
           <button
             className={classes.cancel}
             type="button"

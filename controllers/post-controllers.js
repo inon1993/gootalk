@@ -61,16 +61,6 @@ const likePostCtr = async (req, res) => {
   }
 };
 
-// const getLikes = async (req, res) => {
-//   try {
-//     const post = await Post.findById(req.params.id);
-//     console.log(post.likes);
-//     return res.status(200).send(post.likes);
-//   } catch (err) {
-//     return res.status(500).json(err);
-//   }
-// };
-
 const getPostCtr = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -127,4 +117,3 @@ module.exports.getPostCtr = getPostCtr;
 module.exports.getAllUserPostsCtr = getAllUserPostsCtr;
 module.exports.getTimelineCtr = getTimelineCtr;
 module.exports.uploadPicture = uploadPicture;
-// module.exports.getLikes = getLikes;

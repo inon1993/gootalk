@@ -88,7 +88,6 @@
 @media only screen and (max-height: 550px) {
   .login-wrapper {
     overflow-y: scroll;
-    /* align-items: flex-start; */
   }
 
   .login-left {

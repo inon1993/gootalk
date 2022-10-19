@@ -2,10 +2,17 @@ const router = require("express").Router();
 const authCtr = require("../controllers/auth-controllers");
 const auth = require("../middleware/auth-mid");
 
+//--REGISTER NEW USER--//
 router
   .post("/register", authCtr.registerCtr)
+
+//--LOGIN USER--//
   .post("/login", authCtr.loginCtr)
+
+//--UPLOAD PROFILE PICTURE--//
   .post("/upload", authCtr.uploadPicture)
-  .post("/reauth/:id", auth, authCtr.reauth)
+
+//--REAUTHENTICATE FOR SETTINGS--//
+  .post("/reauth/:id", auth, authCtr.reauth);
 
 module.exports = router;

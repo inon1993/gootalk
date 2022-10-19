@@ -19,7 +19,6 @@
 .menu-item:hover {
   padding-left: 47px;
   border-left: 3px solid var(--logo-bright);
-  /* color: var(--menu-hover-text); */
   cursor: pointer;
 }
 

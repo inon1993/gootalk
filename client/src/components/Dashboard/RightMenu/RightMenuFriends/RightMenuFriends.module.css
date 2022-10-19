@@ -6,7 +6,6 @@
   max-height: calc(100vh - 250px);
   margin-top: 15px;
   border-radius: 0 0 15px 15px;
-  /* border-bottom: 1px solid black; */
 }
 
 .no-notification {

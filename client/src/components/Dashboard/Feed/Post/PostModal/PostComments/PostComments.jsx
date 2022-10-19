@@ -6,6 +6,7 @@ import useAxiosPrivate from "../../../../../../hooks/useAxiosPrivate";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Comment from "./Comment/Comment";
+import useLogout from "../../../../../../hooks/useLogout";
 
 const PostComments = ({ post, comments, setComments }) => {
   const loggedInUser = useSelector((state) => state.user.user);
@@ -19,6 +20,7 @@ const PostComments = ({ post, comments, setComments }) => {
   const dispach = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const logout = useLogout();
 
   const saveComment = async () => {
     if (comment.desc === "") {
@@ -34,6 +36,7 @@ const PostComments = ({ post, comments, setComments }) => {
         };
       });
     } catch (error) {
+      await logout();
       navigate("/login", { state: { from: location }, replace: true });
       dispach(userActions.logoutUser());
     }
@@ -69,7 +72,7 @@ const PostComments = ({ post, comments, setComments }) => {
       {comments.comments.length > 0 ? (
         <div className={classes["comments-section"]}>
           {comments.comments.map((c, i) => {
-            return <Comment comment={c} commentUser={comments.users[i]} />;
+            return <Comment key={i} comment={c} commentUser={comments.users[i]} />;
           })}
         </div>
       ) : (

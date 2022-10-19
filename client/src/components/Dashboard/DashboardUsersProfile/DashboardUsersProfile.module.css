@@ -1,8 +1,6 @@
 .profile-data-wrapper {
   flex: 9.5;
   width: 100%;
-  /* height: calc(100vh - 61px); */
-  /* background-color: hsl(210, 71.4%, 97.3%); */
   background-attachment: fixed;
   display: flex;
   flex-direction: column;
@@ -96,7 +94,6 @@
 }
 
 .add-friend-btn:hover {
-  /* background-color: hsl(220.3, 62.5%, 22%); */
   background-color: hsl(120, 39.3%, 54.1%);
 }
 

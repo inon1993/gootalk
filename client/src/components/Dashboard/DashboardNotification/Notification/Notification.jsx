@@ -1,15 +1,20 @@
 import Card from "../../../UI/Card/Card";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import { format } from "timeago.js";
 import ppIcon from "../../../../images/pp-icon-small.png";
 import classes from "./Notification.module.css";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
+import useLogout from "../../../../hooks/useLogout";
+import { userActions } from "../../../../store/user-slice";
 
 const Notification = ({ notificationUser, notification, onReload }) => {
   const req = useAxiosPrivate();
   const currUser = useSelector((state) => state.user.user);
   const navigate = useNavigate();
+  const logout = useLogout();
+  const location = useLocation();
+  const dispatch = useDispatch();
 
   const responseRequest = async (e) => {
     const payload = {
@@ -22,7 +27,9 @@ const Notification = ({ notificationUser, notification, onReload }) => {
       await req.put("/notifications/response", payload);
       onReload();
     } catch (error) {
-      console.log(error);
+      await logout();
+      navigate("/login", { state: { from: location }, replace: true });
+      dispatch(userActions.logoutUser());
     }
   };
 

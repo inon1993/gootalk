@@ -12,15 +12,6 @@ const ProfilePicture = ({ onId, onPreview, preview, page }) => {
     previewFile(file);
   };
 
-  // const previewFile = (file) => {
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(file);
-  //   reader.onloadend = () => {
-  //     setPreviewSource(reader.result);
-  //     onPreview(reader.result);
-  //   };
-  // };
-
   const previewFile = (file) => {
     if (!file.type.includes("image")) {
       setPreviewSource({ type: "error", file: "File not supported." });

@@ -3,27 +3,27 @@ const auth = require("../middleware/auth-mid");
 const userCtr = require("../controllers/user-controllers");
 
 //--UPDATE USER--//
-router.put("/:id", auth, userCtr.updateUserCtr);
+router.put("/:id", auth, userCtr.updateUserCtr)
 
 //--DELETE USER--//
-router.delete("/:id", auth, userCtr.deleteUserCtr);
+    .delete("/:id", auth, userCtr.deleteUserCtr)
 
 //--GET ALL USERS--//
-router.get("/", auth, userCtr.getAllUsersCtr);
+    .get("/", auth, userCtr.getAllUsersCtr)
 
 //--GET A USER--//
-router.get("/:id", userCtr.getUserCtr);
+    .get("/:id", userCtr.getUserCtr)
 
 //--FOLLOW A USER--//
-router.put("/:id/follow", auth, userCtr.followUserCtr);
+    .put("/:id/follow", auth, userCtr.followUserCtr)
 
 //--UNFOLLOW A USER--//
-router.put("/:id/unfollow", auth, userCtr.unfollowUserCtr);
+    .put("/:id/unfollow", auth, userCtr.unfollowUserCtr)
 
 //--GET USER PROFILE STATISTICS--//
-router.get("/stats/:id", auth, userCtr.userStats);
+    .get("/stats/:id", auth, userCtr.userStats)
 
 //--GET USER FRIENDS--//
-router.get("/friends/:id", auth, userCtr.getUserFriends);
+    .get("/friends/:id", auth, userCtr.getUserFriends);
 
 module.exports = router;

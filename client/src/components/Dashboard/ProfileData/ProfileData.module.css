@@ -84,7 +84,6 @@
 .stats {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: center;
   width: 100%;
 }
@@ -92,7 +91,6 @@
 .stats-buttons {
   display: flex;
   justify-content: center;
-  /* margin-bottom: 15px; */
 }
 
 .stats-buttons:first-child {
@@ -100,7 +98,6 @@
 }
 
 .show-stats-button {
-  /* width: 18%; */
   padding: 0.5rem 1.3rem;
   border: none;
   border-radius: 10px;

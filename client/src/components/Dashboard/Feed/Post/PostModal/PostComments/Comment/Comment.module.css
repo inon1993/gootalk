@@ -1,7 +1,6 @@
 .comment-wrapper {
   padding: 15px;
   border-bottom: 1px solid var(--menu-navbar-border);
-  /* overflow-x: auto; */
 }
 
 .comment-upper {

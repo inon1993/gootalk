@@ -64,11 +64,9 @@
 }
 
 .navbar-features-icon {
-  /* position: relative; */
   font-size: 1.6rem !important;
   color: var(--navbar-features);
   padding: 18.2px;
-  /* display: flex !important; */
 }
 
 .navbar-features-icon:hover {

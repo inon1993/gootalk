@@ -9,6 +9,7 @@ import { userActions } from "../../../../store/user-slice";
 import { useNavigate, useLocation } from "react-router-dom";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import PostModal from "./PostModal/PostModal";
+import useLogout from "../../../../hooks/useLogout";
 
 const Post = React.forwardRef(({ post, postUser }, ref) => {
   const loggedInUser = useSelector((state) => state.user.user);
@@ -19,6 +20,7 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
   const dispach = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const logout = useLogout();
 
   useEffect(() => {
     getComments();
@@ -29,8 +31,9 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
       const commentsData = await req.get(`/comment/${post._id}`);
       setComments(commentsData.data);
     } catch (error) {
-      dispach(userActions.logoutUser());
+      await logout();
       navigate("/login", { state: { from: location }, replace: true });
+      dispach(userActions.logoutUser());
     }
   };
 
@@ -41,8 +44,9 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
       });
       setLikes(updatedLikes.data);
     } catch (error) {
-      dispach(userActions.logoutUser());
+      await logout();
       navigate("/login", { state: { from: location }, replace: true });
+      dispach(userActions.logoutUser());
     }
   };
 

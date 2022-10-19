@@ -2,8 +2,6 @@ const User = require("../models/User");
 const Notification = require("../models/Notification");
 
 const friendshipRequest = async (req, res) => {
-  console.log(1);
-  console.log(req.body);
   try {
     if (
       req.body.hasOwnProperty("response") ||
@@ -24,8 +22,6 @@ const friendshipRequest = async (req, res) => {
       userId: newNotification.userId,
     });
     if (requests.filter((n) => n.status === false).length > 0) {
-      console.log(user.notifications);
-      console.log(newNotification.senderUserId);
       return res.status(409).send("Request has already been sent.");
     }
     await newNotification.save();
@@ -37,7 +33,6 @@ const friendshipRequest = async (req, res) => {
 };
 
 const responseReqest = async (req, res) => {
-  console.log(req.body);
   try {
     const currentUser = await User.findById(req.body.currentUserId);
     if (currentUser.friends.includes(req.body.userId)) {
@@ -45,10 +40,6 @@ const responseReqest = async (req, res) => {
         status: true,
         response: true,
       });
-      // await currentUser.updateOne(
-      //   { notifications: { $elemMatch: { _id: req.body.notificationId } } },
-      //   { $set: { status: true, response: true } }
-      // );
       return res.status(409).send("You are already friends.");
     }
     const user = await User.findById(req.body.userId);
@@ -56,10 +47,6 @@ const responseReqest = async (req, res) => {
       status: true,
     });
     if (req.body.response === false) {
-      // await currentUser.updateOne(
-      //   { notifications: { $elemMatch: { _id: req.body.notificationId } } },
-      //   { $set: { status: true } }
-      // );
       return res.status(200).send("Request has been rejected successfully.");
     }
     await Notification.findByIdAndUpdate(req.body.notificationId, {
@@ -68,17 +55,6 @@ const responseReqest = async (req, res) => {
     });
     await currentUser.updateOne({ $push: { friends: req.body.userId } });
     await user.updateOne({ $push: { friends: req.body.currentUserId } });
-    // await currentUser.updateOne(
-    //   {
-    //     "notifications._id": req.body.notificationId,
-    //   },
-    //   {
-    //     $set: {
-    //       "notifications.$.status": true,
-    //       "notifications.$.response": true,
-    //     },
-    //   }
-    // );
     return res.status(200).send("Request has been accepted successfully.");
   } catch (error) {
     return res.status(500).send("Internal server error.");

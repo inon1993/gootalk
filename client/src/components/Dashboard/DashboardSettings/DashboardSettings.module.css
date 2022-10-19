@@ -10,7 +10,6 @@
   margin: 15px;
   padding: 10px;
   padding-bottom: 15px;
-  /* width: 80%; */
   border-bottom: 1px solid var(--menu-navbar-border);
   display: flex;
   flex-direction: column;
@@ -25,7 +24,6 @@
 .settings-btn {
   background-color: transparent;
   border: none;
-  /* margin-bottom: 10px; */
   text-align: left;
   padding: 10px;
   font-weight: 500;
@@ -38,7 +36,6 @@
 .settings-toggle {
   background-color: transparent;
   border: none;
-  /* margin-bottom: 10px; */
   text-align: left;
   padding-left: 10px;
   font-weight: 500;

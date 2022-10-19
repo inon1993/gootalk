@@ -5,12 +5,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { userActions } from "../../../store/user-slice";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import { useNavigate, useLocation } from "react-router-dom";
+import useLogout from "../../../hooks/useLogout";
 
 const RightMenu = ({ friends }) => {
   const user = useSelector((state) => state.user.user);
   const [notification, setNotification] = useState();
   const req = useAxiosPrivate();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const logout = useLogout();
+  const location = useLocation();
 
   useEffect(() => {
     const firstNotification = user.notifications.find((n) => {
@@ -26,7 +31,9 @@ const RightMenu = ({ friends }) => {
       dispatch(userActions.setNotifications({ notifications: res.data }));
       dispatch(userActions.setFriends({ friends: friends.data }));
     } catch (error) {
-      console.log(error);
+      await logout();
+      navigate("/login", { state: { from: location }, replace: true });
+      dispatch(userActions.logoutUser());
     }
   };
 

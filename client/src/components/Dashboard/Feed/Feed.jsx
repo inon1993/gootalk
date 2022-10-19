@@ -93,9 +93,9 @@ const Feed = () => {
         return;
       }
       setIsLoading(false);
-      logout();
-      dispach(userActions.logoutUser());
+      await logout();
       navigate("/login", { state: { from: location }, replace: true });
+      dispach(userActions.logoutUser());
     }
   };
 

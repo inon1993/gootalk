@@ -22,7 +22,6 @@ const getSettings = async (req, res) => {
 };
 
 const setTheme = async (req, res) => {
-  console.log(req.body);
   if (req.body.userId === req.params.id) {
     try {
       await User.findById(req.params.id);

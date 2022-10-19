@@ -34,14 +34,6 @@
   color: var(--card-text);
 }
 
-/* .profile-cover {
-  max-height: 200px;
-  max-width: 80%;
-  // min-width: 80%;
-  object-fit: cover;
-  border-radius: 10px;
-} */
-
 .profile-picture {
   display: flex;
   align-items: center;
@@ -71,8 +63,6 @@
   border: none;
   background-color: var(--background-search-input);
   border: 1px solid var(--menu-navbar-border);
-  /* background-color: hsl(212.3, 41.9%, 93.9%); */
-  /* border: 1px solid hsl(212.3, 41.9%, 93.9%); */
   padding: 5px;
   outline: none;
   font-size: 0.9rem;
@@ -88,7 +78,6 @@
 }
 
 .edit-country-city-wrapper {
-  /* position: relative; */
   display: flex;
   align-items: center;
   max-width: 100%;
@@ -111,8 +100,6 @@
   border: none;
   background-color: var(--background-search-input);
   border: 1px solid var(--menu-navbar-border);
-  /* background-color: hsl(212.3, 41.9%, 93.9%); */
-  /* border: 1px solid hsl(212.3, 41.9%, 93.9%); */
   padding: 5px;
   outline: none;
   font-size: 0.9rem;
@@ -133,7 +120,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin: 0 25px; */
   width: 100%;
 }
 
@@ -283,8 +269,6 @@
   .edit-buttons-wrapper {
     flex-direction: column;
     align-items: center;
-    /* width: 80%; */
-    /* margin: 70px 0; */
   }
 
   .edit-save-btn,

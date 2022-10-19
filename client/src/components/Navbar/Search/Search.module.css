@@ -39,7 +39,6 @@
 }
 
 .search-results {
-  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
   border: 1px solid var(--menu-navbar-border);
   border-top: none;
   width: 100%;

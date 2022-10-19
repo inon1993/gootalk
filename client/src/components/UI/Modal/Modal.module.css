@@ -6,12 +6,10 @@
   height: 100vh;
   z-index: 500;
   background-color: rgba(0, 0, 0, 0.75);
-  /* backdrop-filter: blur(8px); */
 }
 
 .modal {
   position: fixed;
-  /* overflow-y: auto; */
   overflow: hidden;
   top: 10vh;
   width: 30%;
@@ -29,7 +27,6 @@
 .content {
   overflow-y: auto;
   max-height: 80vh;
-  /* padding-right: 5px; */
 }
 
 .content::-webkit-scrollbar {
