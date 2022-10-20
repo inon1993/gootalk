@@ -30,6 +30,7 @@
   cursor: pointer;
   font-size: 0.9rem;
   color: var(--card-text);
+  font-family: "Poppins", sans-serif;
   transition: 200ms;
 }
 
