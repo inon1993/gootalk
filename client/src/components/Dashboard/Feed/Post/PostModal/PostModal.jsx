@@ -39,6 +39,13 @@ const PostModal = ({
     }
   };
 
+  const checkOnUserHandler = () => {
+    onClose();
+    navigate(
+      `/users/${postUser._id}/${postUser.firstname}-${postUser.lastname}`
+    );
+  };
+
   return (
     <Modal onClose={() => onClose()}>
       <div className={classes.post}>
@@ -47,6 +54,7 @@ const PostModal = ({
             className={classes["post-profile-img"]}
             src={postUser.profilePicture || ppIcon}
             alt={"profile"}
+            onClick={checkOnUserHandler}
           />
           <span
             className={classes["post-name"]}
@@ -94,7 +102,7 @@ const PostModal = ({
             people like it
           </span>
         </div>
-        {
+        {loggedInUser.userId === post.userId || loggedInUser.friends.includes(post.userId) ?
           <div className={classes["post-modal-comments"]}>
             <PostComments
               post={post}
@@ -102,6 +110,7 @@ const PostModal = ({
               setComments={setComments}
             />
           </div>
+          : <div className={classes["no-access-comments"]}><span>Only friends can comment and whtch others comments...</span></div>
         }
       </div>
     </Modal>

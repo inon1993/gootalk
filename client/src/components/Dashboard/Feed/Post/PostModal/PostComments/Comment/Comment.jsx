@@ -42,6 +42,12 @@ const Comment = ({ comment, commentUser }) => {
     }
   };
 
+  const checkOnUserHandler = () => {
+    navigate(
+      `/users/${commentUser._id}/${commentUser.firstname}-${commentUser.lastname}`
+    );
+  };
+
   return (
     <div className={classes["comment-wrapper"]}>
       <div className={classes["comment-upper"]}>
@@ -49,6 +55,7 @@ const Comment = ({ comment, commentUser }) => {
           className={classes["comment-profile-picture"]}
           src={commentUser?.profilePicture || ppImg}
           alt="profile"
+          onClick={checkOnUserHandler}
         />
         <span
           className={classes["comment-name"]}

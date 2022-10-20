@@ -50,11 +50,12 @@
 }
 
 .no-comments {
-  margin: 10px 0 0 0;
+  margin: 15px 0 0 0;
   display: flex;
   justify-content: center;
 }
 
 .no-comments > span {
   color: var(--card-text);
+  font-size: 0.9rem;
 }

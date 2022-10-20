@@ -5,6 +5,13 @@ const Comment = require("../models/Comment");
 const newComment = async (req, res) => {
   const newComment = new Comment(req.body);
   try {
+    const commentUser = await User.findById(newComment.userId);
+    const post = await Post.findById(newComment.postId);
+    const postUser = await User.findById(post.userId);
+    if (!commentUser.friends.includes(postUser)) {
+      return res.status(403).json("Only friends can add comments");
+    }
+
     const savedComment = await newComment.save();
     const comments = await Comment.find({ postId: req.body.postId });
     const getCommentsUsers = await Promise.all(
