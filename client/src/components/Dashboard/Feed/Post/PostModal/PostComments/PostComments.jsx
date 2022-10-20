@@ -8,7 +8,7 @@ import { useState } from "react";
 import Comment from "./Comment/Comment";
 import useLogout from "../../../../../../hooks/useLogout";
 
-const PostComments = ({ post, comments, setComments }) => {
+const PostComments = ({ post, comments, setComments, onClose }) => {
   const loggedInUser = useSelector((state) => state.user.user);
   const [comment, setComment] = useState({
     postId: post._id,
@@ -72,7 +72,14 @@ const PostComments = ({ post, comments, setComments }) => {
       {comments.comments.length > 0 ? (
         <div className={classes["comments-section"]}>
           {comments.comments.map((c, i) => {
-            return <Comment key={i} comment={c} commentUser={comments.users[i]} />;
+            return (
+              <Comment
+                key={i}
+                comment={c}
+                commentUser={comments.users[i]}
+                onClose={onClose}
+              />
+            );
           })}
         </div>
       ) : (

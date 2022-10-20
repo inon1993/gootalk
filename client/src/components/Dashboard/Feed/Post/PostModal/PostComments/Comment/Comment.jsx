@@ -8,7 +8,7 @@ import ppImg from "../../../../../../../images/pp-icon-small.png";
 import { format } from "timeago.js";
 import { ThumbUp } from "@mui/icons-material";
 
-const Comment = ({ comment, commentUser }) => {
+const Comment = ({ comment, commentUser, onClose }) => {
   const [likes, setLikes] = useState(comment.likes);
   const loggedInUser = useSelector((state) => state.user.user);
   const req = useAxiosPrivate();
@@ -43,6 +43,7 @@ const Comment = ({ comment, commentUser }) => {
   };
 
   const checkOnUserHandler = () => {
+    onClose();
     navigate(
       `/users/${commentUser._id}/${commentUser.firstname}-${commentUser.lastname}`
     );

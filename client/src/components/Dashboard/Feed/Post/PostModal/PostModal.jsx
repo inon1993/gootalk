@@ -61,9 +61,7 @@ const PostModal = ({
           >{`${postUser.firstname} ${postUser.lastname}`}</span>
           <span className={classes["post-time"]}>{format(post.createdAt)}</span>
         </div>
-        <div
-          className={classes["post-body"]}
-        >
+        <div className={classes["post-body"]}>
           <p className={classes["post-body-text"]}>{post.desc}</p>
           {post.image &&
             (post.image.includes("/image/") ? (
@@ -102,16 +100,21 @@ const PostModal = ({
             people like it
           </span>
         </div>
-        {loggedInUser.userId === post.userId || loggedInUser.friends.includes(post.userId) ?
+        {loggedInUser.userId === post.userId ||
+        loggedInUser.friends.includes(post.userId) ? (
           <div className={classes["post-modal-comments"]}>
             <PostComments
               post={post}
               comments={comments}
               setComments={setComments}
+              onClose={onClose}
             />
           </div>
-          : <div className={classes["no-access-comments"]}><span>Only friends can comment and whtch others comments...</span></div>
-        }
+        ) : (
+          <div className={classes["no-access-comments"]}>
+            <span>Only friends can comment and whtch others comments...</span>
+          </div>
+        )}
       </div>
     </Modal>
   );
