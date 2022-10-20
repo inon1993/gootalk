@@ -112,6 +112,8 @@ const SignupForm = ({ profilePicture }) => {
       };
       await createSettings({ userId: userData._id, theme: "light" });
       dispatch(userActions.setUser(newUserToSet));
+      dispatch(userActions.setFriends([]));
+      dispatch(userActions.setNotifications([]));
       dispatch(accessTokenActions.setAccessToken(accessToken));
       navigate("/");
       setIsLoading(false);
@@ -230,12 +232,7 @@ const SignupForm = ({ profilePicture }) => {
         onSubmit={signupHandler}
         autoComplete="new-password"
       >
-        <input
-          type="hidden"
-          value="something"
-          // style={{ display: "none" }}
-          // id="fake-hidden-input-to-stop-google-address-lookup"
-        />
+        <input type="hidden" value="something" />
         <div className={classes["sr-field-text"]}>
           <span className={classes["sr-form-text"]}>First name</span>
           {isValid.firstname === false && (
