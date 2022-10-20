@@ -44,7 +44,7 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       imgSrc: ["'self'", "https: data:"],
-      mediaSrc: ["'*'", "data: http://res.cloudinary.com"],
+      mediaSrc: ["data: http://res.cloudinary.com"],
       connectSrc: ["'self'", "https://countriesnow.space/api/v0.1/countries"],
     },
   })
