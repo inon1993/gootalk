@@ -3,6 +3,7 @@ const Post = require("../models/Post");
 const Notification = require("../models/Notification");
 const bcrypt = require("bcrypt");
 const Setting = require("../models/Setting");
+const Comment = require("../models/Comment");
 
 const updateUserCtr = async (req, res) => {
   if (req.body.userId === req.params.id) {
@@ -62,6 +63,8 @@ const deleteUserCtr = async (req, res) => {
       );
       await User.updateMany({}, { $pull: { friends: req.params.id } });
       await Post.updateMany({}, { $pull: { likes: req.params.id } });
+      await Comment.deleteMany({userId: req.params.id});
+      await Comment.updateMany({}, { $pull: { likes: req.params.id } });
 
       await User.findByIdAndDelete(req.params.id);
       return res.status(200).json("Account has been deleted successfully.");
