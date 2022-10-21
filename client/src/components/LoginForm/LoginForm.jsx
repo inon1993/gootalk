@@ -55,9 +55,15 @@ const LoginForm = () => {
         coverPicture: userData.coverPicture,
       };
       dispatch(userActions.setUser(newUserToSet));
+      dispatch(userActions.setFriends({ friends: newUser.data.friends }));
+      dispatch(
+        userActions.setNotifications({
+          notifications: newUser.data.notifications,
+        })
+      );
       dispatch(accessTokenActions.setAccessToken(accessToken));
       const settings = await req.get(`/settings/${userData._id}`);
-      dispatch(settingsActions.setSettings({theme: settings.data }));
+      dispatch(settingsActions.setSettings({ theme: settings.data }));
       dispatch(userActions.setFriends({ friends: userData.friends }));
       const notifications = await req.get(`/notifications/${userData._id}`);
       dispatch(
