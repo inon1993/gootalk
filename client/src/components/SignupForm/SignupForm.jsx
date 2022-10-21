@@ -112,8 +112,8 @@ const SignupForm = ({ profilePicture }) => {
       };
       await createSettings({ userId: userData._id, theme: "light" });
       dispatch(userActions.setUser(newUserToSet));
-      dispatch(userActions.setFriends([]));
-      dispatch(userActions.setNotifications([]));
+      dispatch(userActions.setFriends({ friends: [] }));
+      dispatch(userActions.setNotifications({ notifications: [] }));
       dispatch(accessTokenActions.setAccessToken(accessToken));
       navigate("/");
       setIsLoading(false);
