@@ -6,6 +6,7 @@
   border: none;
   border-left: 1px solid var(--menu-navbar-border);
   height: 60px;
+  transition: 700ms;
 }
 
 .navbar-profile-pic {

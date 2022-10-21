@@ -5,12 +5,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: 700ms;
 }
 
 .right-menu {
   flex: 2.5;
   background-color: var(--background-feed);
   background-attachment: fixed;
+  transition: 700ms;
 }
 
 @media only screen and (max-width: 800px) {

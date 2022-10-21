@@ -14,13 +14,16 @@
 
 ::-webkit-scrollbar {
   width: 3px;
+  transition: 700ms;
 }
 
 ::-webkit-scrollbar-track {
   background-color: var(--scroll-track);
+  transition: 700ms;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--scroll-thumb);
   border-radius: 20px;
+  transition: 700ms;
 }
