@@ -7,7 +7,7 @@
   transition: 150ms;
   padding-left: 10px;
   margin-left: 3px;
-  overflow-x: auto;
+  /* overflow-x: auto; */
 }
 
 .rm-friend:hover {

@@ -252,6 +252,8 @@ const SignupForm = ({ profilePicture }) => {
           autoComplete="new-off"
           required
           ref={firstnameRef}
+          minLength={2}
+          maxLength={10}
         />
         <div className={classes["sr-field-text"]}>
           <span className={classes["sr-form-text"]}>Last name</span>
@@ -270,6 +272,8 @@ const SignupForm = ({ profilePicture }) => {
           onChange={setUserHandler}
           autoComplete="none"
           required
+          minLength={2}
+          maxLength={10}
         />
         <span className={classes["sr-form-text"]}>Country</span>
         <div className={classes["sr-country-wrapper"]}>
