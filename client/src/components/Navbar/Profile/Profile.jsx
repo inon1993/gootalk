@@ -17,7 +17,8 @@ const Profile = ({ activate, onClick }) => {
       }
       onClick={clickHandler}
     >
-      {user.profilePicture ? (
+      <div className={classes["navbar-profile-content"]}>
+        {user.profilePicture ? (
         <img
           className={classes["navbar-profile-pic"]}
           src={user.profilePicture}
@@ -29,6 +30,8 @@ const Profile = ({ activate, onClick }) => {
       <span
         className={classes["navbar-profile-name"]}
       >{`${user.firstname} ${user.lastname}`}</span>
+      </div>
+      
     </div>
   );
 };

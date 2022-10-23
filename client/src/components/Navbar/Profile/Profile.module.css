@@ -2,11 +2,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 18.2px;
   border: none;
-  border-left: 1px solid var(--menu-navbar-border);
   height: 60px;
-  transition: 700ms;
+}
+
+.navbar-profile-content {
+  border-left: 1px solid var(--menu-navbar-border);
+    transition: 700ms;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18.2px;
 }
 
 .navbar-profile-pic {
@@ -33,9 +41,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 18.2px;
   border: none;
-  border-left: 1px solid var(--menu-navbar-border);
   height: 55.5px;
   background-color: var(--background);
   outline: none;
