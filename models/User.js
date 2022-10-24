@@ -6,25 +6,25 @@ const UserSchema = new mongoose.Schema(
     firstname: {
       type: String,
       required: true,
-      min: 2,
-      max: 10,
+      minlength: 2,
+      maxlength: 20,
     },
     lastname: {
       type: String,
       required: true,
-      min: 2,
-      max: 10,
+      minlength: 2,
+      maxlength: 20,
     },
     email: {
       type: String,
       required: true,
-      max: 50,
+      maxlength: 30,
       unique: true,
     },
     password: {
       type: String,
       required: true,
-      min: 6,
+      minlength: 6,
     },
     profilePicture: {
       type: String,
@@ -52,11 +52,11 @@ const UserSchema = new mongoose.Schema(
     },
     country: {
       type: String,
-      max: 50,
+      maxlength: 20,
     },
     city: {
       type: String,
-      max: 50,
+      maxlength: 20,
     },
     refreshTokens: [
       {

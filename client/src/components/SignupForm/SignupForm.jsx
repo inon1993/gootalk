@@ -253,7 +253,7 @@ const SignupForm = ({ profilePicture }) => {
           required
           ref={firstnameRef}
           minLength={2}
-          maxLength={10}
+          maxLength={20}
         />
         <div className={classes["sr-field-text"]}>
           <span className={classes["sr-form-text"]}>Last name</span>
@@ -273,7 +273,7 @@ const SignupForm = ({ profilePicture }) => {
           autoComplete="none"
           required
           minLength={2}
-          maxLength={10}
+          maxLength={20}
         />
         <span className={classes["sr-form-text"]}>Country</span>
         <div className={classes["sr-country-wrapper"]}>
@@ -288,6 +288,7 @@ const SignupForm = ({ profilePicture }) => {
             }}
             onBlur={() => setCountryFocus(false)}
             autoComplete="none"
+            maxLength={20}
           />
           {countryFocus && (
             <CountrySelector
@@ -321,6 +322,7 @@ const SignupForm = ({ profilePicture }) => {
             onBlur={() => setCityFocus(false)}
             autoComplete="none"
             disabled={country === "" ? true : false}
+            maxLength={20}
           />
           {cityFocus && countryObj && (
             /*city !== "" &&*/ <CitySelector
@@ -371,6 +373,7 @@ const SignupForm = ({ profilePicture }) => {
             type={isPw.type}
             onChange={setUserHandler}
             required
+            minLength={6}
           />
           {!isPw.visable && (
             <Visibility
