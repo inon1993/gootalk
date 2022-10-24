@@ -8,7 +8,7 @@ const newComment = async (req, res) => {
     const commentUser = await User.findById(newComment.userId);
     const post = await Post.findById(newComment.postId);
     const postUser = await User.findById(post.userId);
-    if (!commentUser.friends.includes(postUser._id)) {
+    if ((!commentUser.friends.includes(postUser._id)) && (!commentUser._id.equals(postUser._id))) {
       return res.status(403).json("Only friends can add comments");
     }
 
