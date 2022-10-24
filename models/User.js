@@ -20,6 +20,13 @@ const UserSchema = new mongoose.Schema(
       required: true,
       maxlength: 50,
       unique: true,
+      validate: {
+        validator: function (email) {
+          const emailValidator =
+            /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+          return emailValidator.test(email);
+        },
+      },
     },
     password: {
       type: String,

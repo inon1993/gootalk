@@ -21,6 +21,11 @@ const updateUserCtr = async (req, res) => {
       }
     }
     if (req.body.password) {
+      const passwordValidator =
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,50}$/;
+      if (!passwordValidator.test(req.body.password)) {
+        return res.status(403).json("Invalid password was provided.");
+      }
       try {
         const salt = await bcrypt.genSalt(8);
         req.body.password = await bcrypt.hash(req.body.password, salt);
@@ -63,7 +68,7 @@ const deleteUserCtr = async (req, res) => {
       );
       await User.updateMany({}, { $pull: { friends: req.params.id } });
       await Post.updateMany({}, { $pull: { likes: req.params.id } });
-      await Comment.deleteMany({userId: req.params.id});
+      await Comment.deleteMany({ userId: req.params.id });
       await Comment.updateMany({}, { $pull: { likes: req.params.id } });
 
       await User.findByIdAndDelete(req.params.id);

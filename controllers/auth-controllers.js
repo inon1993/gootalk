@@ -3,7 +3,13 @@ const User = require("../models/User");
 const { cloudinary } = require("../utils/cloudinary");
 
 const registerCtr = async (req, res) => {
+  const passwordValidator =
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,50}$/;
+
   try {
+    if (!passwordValidator.test(req.body.data.password)) {
+      return res.status(403).json("Invalid password was provided.");
+    }
     const salt = await bcrypt.genSalt(8);
     const hashedPassword = await bcrypt.hash(req.body.data.password, salt);
 

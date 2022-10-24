@@ -30,7 +30,7 @@ const ChangeEmailModal = ({ onClose }) => {
       try {
         await req.put(`/user/${user.userId}`, {
           ...user,
-          email: enteredEmail,
+          email: enteredEmail.toLowerCase(),
           currentEmail: user.email,
           updateRequired: "email",
         });

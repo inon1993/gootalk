@@ -160,6 +160,11 @@
   margin-left: 5px;
 }
 
+.sr-err-password {
+  font-size: 0.6rem;
+  margin: 7px 0 7px 5px;
+}
+
 .sr-err {
   background-color: pink;
   border: 1px solid red;

@@ -16,6 +16,9 @@ const ChangePasswordModal = ({ onClose }) => {
 
   const passwordRef = useRef();
 
+  const passwordValidator =
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,50}$/;
+
   useEffect(() => {
     passwordRef.current.focus();
   }, []);
@@ -23,11 +26,11 @@ const ChangePasswordModal = ({ onClose }) => {
   const updateHandler = async (e) => {
     e.preventDefault();
     if (
-      enteredPassword.length > 5 &&
+      passwordValidator.test(enteredPassword) &&
       enteredPassword === enteredPasswordAgain
     ) {
       try {
-      setDisabled(true);
+        setDisabled(true);
         await req.put(`/user/${user.userId}`, {
           ...user,
           password: enteredPassword,
@@ -35,17 +38,20 @@ const ChangePasswordModal = ({ onClose }) => {
         });
         setErrMsg({ code: null, msg: "" });
         setSuccessMsg("Password updated successfully.");
-      setDisabled(false);
+        setDisabled(false);
         setTimeout(() => {
           setSuccessMsg("");
         }, 2500);
       } catch (error) {
         setErrMsg({ code: 500, msg: "Something went wrong. Try again." });
-      setDisabled(false);
+        setDisabled(false);
       }
     } else {
       setSuccessMsg("");
-      setErrMsg({ code: null, msg: "Please enter a valid password." });
+      setErrMsg({
+        code: null,
+        msg: "Please enter a valid password.(Min. 1 upper and lower case letters, 1 number and special characters. Min. 8 characters.)",
+      });
     }
   };
 
@@ -87,7 +93,13 @@ const ChangePasswordModal = ({ onClose }) => {
           )}
         </div>
         <div className={classes.actions}>
-          <button className={classes.update} disabled={disabled}>{disabled ? <CircularProgress style={{ color: "white" }} size="20px" /> : "Update"}</button>
+          <button className={classes.update} disabled={disabled}>
+            {disabled ? (
+              <CircularProgress style={{ color: "white" }} size="20px" />
+            ) : (
+              "Update"
+            )}
+          </button>
           <button
             className={classes.cancel}
             type="button"

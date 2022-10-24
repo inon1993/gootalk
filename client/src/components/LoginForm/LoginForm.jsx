@@ -41,7 +41,7 @@ const LoginForm = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const newUser = await login(email, password);
+      const newUser = await login(email.toLowerCase(), password);
       const accessToken = newUser.data.accessToken;
       const userData = newUser.data.user;
       const newUserToSet = {
@@ -92,6 +92,7 @@ const LoginForm = () => {
           autoComplete="none"
           required
           ref={emailRef}
+          maxLength={50}
         />
         <span className={classes["lr-form-text"]}>Password</span>
         <div className={classes["lr-input"]}>
@@ -101,6 +102,7 @@ const LoginForm = () => {
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="none"
             required
+            maxLength={50}
           />
           {!isVisiblePw && (
             <Visibility

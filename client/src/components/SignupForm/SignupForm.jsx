@@ -45,6 +45,10 @@ const SignupForm = ({ profilePicture }) => {
   });
   const [errorMsg, setErrorMsg] = useState({ code: null, msg: "" });
 
+  const emailValidator = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const passwordValidator =
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,50}$/;
+
   useEffect(() => {
     firstnameRef.current.focus();
   }, []);
@@ -105,7 +109,7 @@ const SignupForm = ({ profilePicture }) => {
         userId: userData._id,
         firstname: userData.firstname,
         lastname: userData.lastname,
-        email: userData.email,
+        email: userData.email.toLowerCase(),
         country: userData.country,
         city: userData.city,
         profilePicture: imgUrl || userData.profilePicture,
@@ -180,9 +184,7 @@ const SignupForm = ({ profilePicture }) => {
     }
 
     if (user.email.trim().length !== 0) {
-      user.email.trim().length < 5 ||
-      !user.email.includes("@") ||
-      !user.email.includes(".")
+      user.email.trim().length < 5 || !emailValidator.test(user.email)
         ? setIsValid((prev) => {
             return {
               ...prev,
@@ -198,7 +200,7 @@ const SignupForm = ({ profilePicture }) => {
     }
 
     if (user.password.trim().length !== 0) {
-      user.password.trim().length < 6
+      !passwordValidator.test(user.password)
         ? setIsValid((prev) => {
             return {
               ...prev,
@@ -358,8 +360,11 @@ const SignupForm = ({ profilePicture }) => {
         <div className={classes["sr-field-text"]}>
           <span className={classes["sr-form-text"]}>Password</span>
           {isValid.password === false && (
-            <span className={classes["sr-err-instructions"]}>
-              (At least 6 characters.)
+            <span
+              className={`${classes["sr-err-instructions"]} ${classes["sr-err-password"]}`}
+            >
+              (Min. 1 upper and lower case letters, 1 number and special
+              characters. Min. 8 characters.)
             </span>
           )}
         </div>
@@ -374,7 +379,7 @@ const SignupForm = ({ profilePicture }) => {
             type={isPw.type}
             onChange={setUserHandler}
             required
-            minLength={6}
+            minLength={8}
             maxLength={50}
           />
           {!isPw.visable && (

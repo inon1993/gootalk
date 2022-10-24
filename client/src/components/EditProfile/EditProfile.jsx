@@ -228,6 +228,8 @@ const EditProfile = ({ onCloseEdit }) => {
             type="text"
             defaultValue={user.firstname}
             onChange={updateFirstnameHandler}
+            minLength={2}
+            maxLength={20}
           />
         </div>
         <div className={classes["edit-firstname-lastname"]}>
@@ -239,6 +241,8 @@ const EditProfile = ({ onCloseEdit }) => {
             type="text"
             defaultValue={user.lastname}
             onChange={updateLastnameHandler}
+            minLength={2}
+            maxLength={20}
           />
         </div>
         <div className={classes["edit-country-city-wrapper"]}>
@@ -256,6 +260,7 @@ const EditProfile = ({ onCloseEdit }) => {
               onBlur={() => setCountryFocus(false)}
               autoComplete="none"
               defaultValue={user.country}
+              maxLength={20}
             />
             {countryFocus && (
               <CountrySelector
@@ -293,6 +298,7 @@ const EditProfile = ({ onCloseEdit }) => {
               autoComplete="none"
               defaultValue={user.city}
               disabled={country === "" ? true : false}
+              maxLength={20}
             />
             {cityFocus && countryObj && (
               /*city !== "" &&*/ <CitySelector
