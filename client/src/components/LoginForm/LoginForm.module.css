@@ -138,6 +138,18 @@
   margin-top: 0.5rem;
   color: tomato;
   font-size: 0.8rem;
+  margin-bottom: -26px;
+}
+
+.demo-login-text {
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+
+.demo-login-btn {
+  color: hsl(208.7, 100%, 53.7%);
+  font-weight: 600;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1250px) {

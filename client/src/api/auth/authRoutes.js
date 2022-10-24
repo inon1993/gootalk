@@ -18,6 +18,14 @@ export const login = async (email, password) => {
   return user;
 };
 
+export const loginDemo = async () => {
+  const user = await axios({
+    url: "/auth/login/demo",
+    method: "POST",
+  });
+  return user;
+};
+
 export const createSettings = async (payload) => {
   await axios({
     url: "/settings/create",

@@ -3,7 +3,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useState, useEffect, useRef } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../../api/auth/authRoutes";
+import { login, loginDemo } from "../../api/auth/authRoutes";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user-slice";
 import { accessTokenActions } from "../../store/access-token-slice";
@@ -43,7 +43,46 @@ const LoginForm = () => {
     try {
       const newUser = await login(email.toLowerCase(), password);
       const accessToken = newUser.data.accessToken;
-      const userData = newUser.data.user;
+      const userData = newUser.data.data;
+      const newUserToSet = {
+        userId: userData._id,
+        firstname: userData.firstname,
+        lastname: userData.lastname,
+        email: userData.email,
+        country: userData.country,
+        city: userData.city,
+        profilePicture: userData.profilePicture,
+        coverPicture: userData.coverPicture,
+      };
+      dispatch(userActions.setUser(newUserToSet));
+      dispatch(accessTokenActions.setAccessToken(accessToken));
+      const settings = await req.get(`/settings/${userData._id}`);
+      const notifications = await req.get(`/notifications/${userData._id}`);
+      dispatch(settingsActions.setSettings({ theme: settings.data }));
+      dispatch(userActions.setFriends({ friends: userData.friends }));
+      dispatch(
+        userActions.setNotifications({ notifications: notifications.data })
+      );
+      navigate("/");
+      setIsLoading(false);
+    } catch (err) {
+      if (err.response.status === 404) {
+        setErrMsg("User not found.");
+      } else if (err.response.status === 400) {
+        setErrMsg("Invalid password.");
+      } else {
+        setErrMsg("Login failed.");
+      }
+      setIsLoading(false);
+    }
+  };
+
+  const loginDemoHandler = async () => {
+    setIsLoading(true);
+    try {
+      const newUser = await loginDemo();
+      const accessToken = newUser.data.accessToken;
+      const userData = newUser.data.data;
       const newUserToSet = {
         userId: userData._id,
         firstname: userData.firstname,
@@ -138,6 +177,13 @@ const LoginForm = () => {
           <button className={classes["lr-signup-button"]}>Sign Up</button>
         </Link>
       </div>
+      <span className={classes["demo-login-text"]}>
+        Or login to a{" "}
+        <span className={classes["demo-login-btn"]} onClick={loginDemoHandler}>
+          DEMO
+        </span>{" "}
+        account
+      </span>
     </div>
   );
 };

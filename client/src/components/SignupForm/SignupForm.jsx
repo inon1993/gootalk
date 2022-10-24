@@ -104,7 +104,7 @@ const SignupForm = ({ profilePicture }) => {
       );
       const newUser = await signup(user, imgUrl);
       const accessToken = newUser.data.accessToken;
-      const userData = newUser.data.user;
+      const userData = newUser.data.data;
       const newUserToSet = {
         userId: userData._id,
         firstname: userData.firstname,

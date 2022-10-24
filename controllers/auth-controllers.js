@@ -32,7 +32,8 @@ const registerCtr = async (req, res) => {
       secure: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
-    res.status(200).json({ user, accessToken });
+    const { password, ...data } = user._doc;
+    res.status(200).json({ data, accessToken });
   } catch (err) {
     if (err.code === 11000) {
       return res.status(409).send("e-mail is already registered.");
@@ -64,7 +65,8 @@ const loginCtr = async (req, res) => {
       secure: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
-    res.status(200).json({ user, accessToken });
+    const { password, ...data } = user._doc;
+    res.status(200).json({ data, accessToken });
   } catch (err) {
     return res.status(500).json(err);
   }
@@ -135,7 +137,38 @@ const uploadPicture = async (req, res) => {
   }
 };
 
+const demoLogin = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: process.env.DEMO_EMAIL });
+    if (!user) {
+      return res.status(404).json("User not found.");
+    }
+
+    const validPassword = await bcrypt.compare(
+      process.env.DEMO_PASSWORD,
+      user.password
+    );
+    if (!validPassword) {
+      return res.status(400).json("Wrong password.");
+    }
+
+    const tokens = await user.generateAuthToken();
+    const accessToken = tokens.accessToken;
+    res.cookie("jwt", tokens.refreshToken, {
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+    const { password, ...data } = user._doc;
+    res.status(200).json({ data, accessToken });
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+
 module.exports.registerCtr = registerCtr;
 module.exports.loginCtr = loginCtr;
 module.exports.reauth = reauth;
 module.exports.uploadPicture = uploadPicture;
+module.exports.demoLogin = demoLogin;
