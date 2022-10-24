@@ -350,6 +350,7 @@ const SignupForm = ({ profilePicture }) => {
           onChange={setUserHandler}
           autoComplete="none"
           required
+          maxLength={50}
         />
         {errorMsg.code === 409 && (
           <span className={classes["sr-err"]}>{errorMsg.msg}</span>
@@ -374,6 +375,7 @@ const SignupForm = ({ profilePicture }) => {
             onChange={setUserHandler}
             required
             minLength={6}
+            maxLength={50}
           />
           {!isPw.visable && (
             <Visibility
