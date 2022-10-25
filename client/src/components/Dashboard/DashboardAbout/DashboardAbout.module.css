@@ -1,0 +1,112 @@
+.about-wrapper {
+  width: calc(100% - 80px);
+  min-height: calc(100% - 80px);
+  /* max-height: calc(100% - 80px); */
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.section-about {
+  margin: 15px;
+  padding: 10px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--menu-navbar-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.section-about:last-child {
+  border-bottom: none;
+  padding-bottom: 15px;
+}
+
+.about-title-goo {
+  display: inline;
+  font-family: "Poppins", sans-serif;
+  color: var(--logo-bright);
+  font-weight: 900;
+  margin-top: 1rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.about-title-talk {
+  font-family: "Poppins", sans-serif;
+  color: var(--logo-dark);
+}
+
+.about-sub-title {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.about-title {
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.settings-btn {
+  background-color: transparent;
+  border: none;
+  text-align: left;
+  padding: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--card-text);
+  font-family: "Poppins", sans-serif;
+  transition: 200ms;
+}
+
+.settings-toggle {
+  background-color: transparent;
+  border: none;
+  text-align: left;
+  padding-left: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--card-text);
+  transition: 200ms;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings-btn-delete:hover {
+  color: var(--badge);
+}
+
+.settings-btn:hover {
+  background-color: var(--settings-hover);
+}
+
+.settings-btn:last-child {
+  margin-bottom: 0;
+}
+
+@media only screen and (max-width: 550px) {
+  .settings-wrapper {
+    padding: 10px;
+    width: calc(100% - 40px);
+    min-height: calc(100% - 40px);
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .user-settings {
+    margin: 0;
+  }
+
+  .settings-title {
+    font-size: 0.9rem;
+  }
+
+  .settings-btn {
+    padding: 7px;
+    font-size: 0.85rem;
+  }
+}

@@ -1,0 +1,35 @@
+.dashboard-about {
+  display: flex;
+  min-height: calc(100vh - 61px);
+  transition: 700ms;
+}
+
+.left-menu {
+  flex: 2.5;
+  background-attachment: fixed;
+  height: calc(100vh - 61px);
+  position: sticky;
+  top: 61px;
+  z-index: 60;
+  border-right: 1px solid var(--menu-navbar-border);
+  background-color: var(--background);
+  transition: 700ms;
+}
+
+.dashboard-about-wrapper {
+  flex: 9.5;
+  width: 100%;
+  background-color: var(--background-feed);
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: 700ms;
+}
+
+@media only screen and (max-width: 800px) {
+  .left-menu {
+    display: none;
+  }
+}

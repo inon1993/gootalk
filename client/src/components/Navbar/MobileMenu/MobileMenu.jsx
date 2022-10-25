@@ -38,7 +38,7 @@ const MobileMenu = () => {
             <span className={classes["mm-f-text"]}>My Friends</span>
           </li>
         </Link>
-        <Link to={"/friends"} className={classes["mm-link"]}>
+        <Link to={"/about"} className={classes["mm-link"]}>
           <li className={classes["mm-li"]}>
             <HelpCenterRounded className={classes["mm-f-icon"]} />
             <span className={classes["mm-f-text"]}>Help & About</span>

@@ -1,13 +1,14 @@
 import Navbar from "../../components/Navbar/Navbar";
-import classes from "./NotFound.module.css";
+import classes from "./AboutPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { navbarActions } from "../../store/navbar-slice";
 import { menuActions } from "../../store/menu-slice";
 import { dropdownActions } from "../../store/dropdown-slice";
 import { useEffect } from "react";
 import Menu from "../../components/Dashboard/Menu/Menu";
+import DashboardAbout from "../../components/Dashboard/DashboardAbout/DashboardAbout";
 
-const NotFound = () => {
+const AboutPage = () => {
   const theme = useSelector((state) => state.settings.toggle.theme);
   const dispatch = useDispatch();
 
@@ -24,22 +25,19 @@ const NotFound = () => {
   return (
     <>
       <Navbar />
-      <div className={classes["not-found"]} data-theme={theme}>
+      <div className={classes["dashboard-about"]} data-theme={theme}>
         <div
           className={classes["left-menu"]}
           onClick={deactivateDropdownHandler}
         >
           <Menu />
         </div>
-        <div className={classes["not-found-wrapper"]}>
-          <span className={classes["status-msg"]}>404!</span>
-          <span className={classes["not-found-msg"]}>
-            Oops, looks like you got lost...
-          </span>
+        <div className={classes["dashboard-about-wrapper"]}>
+          <DashboardAbout />
         </div>
       </div>
     </>
   );
 };
 
-export default NotFound;
+export default AboutPage;

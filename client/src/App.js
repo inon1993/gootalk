@@ -12,30 +12,32 @@ import Notifications from "./pages/Notifications/Notifications";
 import FriendsPage from "./pages/FriendsPage/FriendsPage";
 import Settings from "../src/pages/Settings/Settings";
 import NotFound from "./pages/NotFound/NotFound";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
+import AboutPage from "./pages/AboutPage/AboutPage";
 
 function App() {
-  const theme = useSelector(state => state.settings.toggle.theme)
+  const theme = useSelector((state) => state.settings.toggle.theme);
   return (
     <div data-theme={theme}>
       <Routes>
-      <Route element={<Authenticated />}>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-      </Route>
-      <Route path="/users/:userid/:username" element={<UsersProfile />} />
-      <Route element={<PersistAuth />}>
-        <Route element={<RequireAuth />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/profile/:username" element={<ProfilePage />} />
-          <Route path="/search" element={<ExpendedUsers />} />
-          <Route path="/notifications" element={<Notifications />} />
-          <Route path="/friends" element={<FriendsPage />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="*" element={<NotFound />} />
+        <Route element={<Authenticated />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Route>
-      </Route>
-    </Routes>
+        <Route path="/users/:userid/:username" element={<UsersProfile />} />
+        <Route element={<PersistAuth />}>
+          <Route element={<RequireAuth />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/profile/:username" element={<ProfilePage />} />
+            <Route path="/search" element={<ExpendedUsers />} />
+            <Route path="/notifications" element={<Notifications />} />
+            <Route path="/friends" element={<FriendsPage />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Route>
+      </Routes>
     </div>
   );
 }

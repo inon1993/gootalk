@@ -13,7 +13,7 @@ const DropdownMenu = () => {
   const user = useSelector((state) => state.user.user);
   const logout = useLogout();
   const navigate = useNavigate();
-  
+
   const logoutHandler = async () => {
     await logout();
     navigate("/login");
@@ -22,24 +22,33 @@ const DropdownMenu = () => {
   return (
     <div className={classes.dropdown}>
       <div className={classes["dropdown-options"]}>
-        <div className={classes["dropdown-item"]} onClick={() => {navigate(`/profile/${user.firstname}-${user.lastname}`)}}>
+        <div
+          className={classes["dropdown-item"]}
+          onClick={() => {
+            navigate(`/profile/${user.firstname}-${user.lastname}`);
+          }}
+        >
           <AccountCircleRounded className={classes["dropdown-item-icon"]} />
           <span className={classes["dropdown-item-text"]}>My Account</span>
         </div>
-        <div className={classes["dropdown-item"]}>
+        <div
+          className={classes["dropdown-item"]}
+          onClick={() => navigate("/about")}
+        >
           <HelpCenterRounded className={classes["dropdown-item-icon"]} />
           <span className={classes["dropdown-item-text"]}>Help & About</span>
         </div>
-        <div className={classes["dropdown-item"]} onClick={() => navigate("/settings")}>
+        <div
+          className={classes["dropdown-item"]}
+          onClick={() => navigate("/settings")}
+        >
           <Settings className={classes["dropdown-item-icon"]} />
           <span className={classes["dropdown-item-text"]}>Settings</span>
         </div>
       </div>
       <div className={classes["dropdown-item"]} onClick={logoutHandler}>
         <Logout className={classes["dropdown-item-icon"]} />
-        <span className={classes["dropdown-item-text"]} >
-          Log Out
-        </span>
+        <span className={classes["dropdown-item-text"]}>Log Out</span>
       </div>
     </div>
   );
