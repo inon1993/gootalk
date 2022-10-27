@@ -1,16 +1,54 @@
 import classes from "./DashboardAbout.module.css";
 import Card from "../../UI/Card/Card";
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 
 const DashboardAbout = () => {
-  const [reauthenticate, setReauthenticate] = useState(null);
-  const [changeEmail, setChangeEmail] = useState(false);
-  const [changePassword, setChangePassword] = useState(false);
-  const [deleteAccount, setDeleteAccount] = useState(false);
-  const user = useSelector((state) => state.user.user);
-  const theme = useSelector((state) => state.settings.toggle.theme);
-  const dispatch = useDispatch();
+  const [selected, setSelected] = useState({
+    keyFeatures: false,
+    getStarted: false,
+    tipsAndTricks: false,
+  });
+
+  const toggle = (i) => {
+    if (i === 1) {
+      if (selected.keyFeatures) {
+        setSelected((prev) => ({
+          ...prev,
+          keyFeatures: false,
+        }));
+      } else {
+        setSelected((prev) => ({
+          ...prev,
+          keyFeatures: true,
+        }));
+      }
+    } else if (i === 2) {
+      if (selected.getStarted) {
+        setSelected((prev) => ({
+          ...prev,
+          getStarted: false,
+        }));
+      } else {
+        setSelected((prev) => ({
+          ...prev,
+          getStarted: true,
+        }));
+      }
+    } else if (i === 3) {
+      if (selected.tipsAndTricks) {
+        setSelected((prev) => ({
+          ...prev,
+          tipsAndTricks: false,
+        }));
+      } else {
+        setSelected((prev) => ({
+          ...prev,
+          tipsAndTricks: true,
+        }));
+      }
+    }
+  };
 
   return (
     <>
@@ -32,12 +70,24 @@ const DashboardAbout = () => {
             my M.E.R.N. stack coding skills in mind.
             <br />
             I'm updating this app from time to time, adding features and fixing
-            bugs
+            bugs.
           </p>
+          <span className={classes["about-inon"]}>- Inon Avramashvili</span>
         </div>
-        <div className={classes["section-about"]}>
-          <span className={classes["about-title"]}>Key features</span>
-          <ul>
+        <div className={classes["section-about"]} onClick={() => toggle(1)}>
+          <div className={classes["section-upper"]}>
+            <span className={classes["about-title"]}>Key features</span>
+            {selected.keyFeatures ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+          </div>
+          <ul
+            style={{
+              maxHeight: selected.keyFeatures ? "9999px" : "0",
+              overflow: selected.keyFeatures ? "auto" : "hidden",
+              transition: selected.keyFeatures
+                ? "max-height 0.5s ease-in-out"
+                : "max-height 0.5s ease-in-out",
+            }}
+          >
             <li>Register with your own user to get connected with friends.</li>
             <li>Share your thoughts with your friends.</li>
             <li>Like and comment on posts.</li>
@@ -45,20 +95,50 @@ const DashboardAbout = () => {
             <li>Enjoy a beautiful and responsive UI.</li>
           </ul>
         </div>
-        <div className={classes["section-about"]}>
-          <span className={classes["about-title"]}>Get Started</span>
-          <p>
+        <div className={classes["section-about"]} onClick={() => toggle(2)}>
+          <div className={classes["section-upper"]}>
+            <span className={classes["about-title"]}>Get started</span>
+            {selected.getStarted ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+          </div>
+          <p
+            style={{
+              maxHeight: selected.getStarted ? "9999px" : "0",
+              overflow: selected.getStarted ? "auto" : "hidden",
+              transition: selected.getStarted
+                ? "max-height 0.5s ease-in-out"
+                : "max-height 0.5s ease-in-out",
+            }}
+          >
             Register with a new profile, or login to an existing profile (all of
             your data will be editable later on profile page/settings page).
-            Look for your friends on the search bar and ask for friendship. When
-            they will accept your friendship request, you'll be able to comment
-            on their posts. Now you can share your thoughts, images and videos
-            will the people you want!
+            <br />
+            Look for your friends on the search bar and ask for friendship.
+            <br />
+            When they will accept your friendship request, you'll be able to
+            comment on their posts.
+            <br />
+            Now you can share your thoughts, images and videos with the people
+            you want!
           </p>
         </div>
-        <div className={classes["section-about"]}>
-          <span className={classes["about-title"]}>Tips and tricks</span>
-          <ul>
+        <div className={classes["section-about"]} onClick={() => toggle(3)}>
+          <div className={classes["section-upper"]}>
+            <span className={classes["about-title"]}>Tips and tricks</span>
+            {selected.tipsAndTricks ? (
+              <KeyboardArrowUp />
+            ) : (
+              <KeyboardArrowDown />
+            )}
+          </div>
+          <ul
+            style={{
+              maxHeight: selected.tipsAndTricks ? "9999px" : "0",
+              overflow: selected.tipsAndTricks ? "auto" : "hidden",
+              transition: selected.tipsAndTricks
+                ? "max-height 0.5s ease-in-out"
+                : "max-height 0.5s ease-in-out",
+            }}
+          >
             <li>
               To edit your profile, just go to your profile page (from the
               navigation bar menu, or from the left main menu) and click on the
