@@ -1,7 +1,11 @@
 import classes from "./DashboardAbout.module.css";
 import Card from "../../UI/Card/Card";
 import { useState } from "react";
-import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
+import {
+  KeyboardArrowDown,
+  KeyboardArrowUp,
+  Rotate90DegreesCcw,
+} from "@mui/icons-material";
 
 const DashboardAbout = () => {
   const [selected, setSelected] = useState({
@@ -74,18 +78,23 @@ const DashboardAbout = () => {
           </p>
           <span className={classes["about-inon"]}>- Inon Avramashvili</span>
         </div>
-        <div className={classes["section-about"]} onClick={() => toggle(1)}>
-          <div className={classes["section-upper"]}>
+        <div className={classes["section-about"]}>
+          <div className={classes["section-upper"]} onClick={() => toggle(1)}>
             <span className={classes["about-title"]}>Key features</span>
-            {selected.keyFeatures ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+            <KeyboardArrowDown
+              style={{
+                transform: selected.keyFeatures ? "rotate(180deg)" : "",
+                transition: "transform 300ms ease",
+              }}
+            />
           </div>
           <ul
             style={{
-              maxHeight: selected.keyFeatures ? "9999px" : "0",
+              maxHeight: selected.keyFeatures ? "600px" : "0",
               overflow: selected.keyFeatures ? "auto" : "hidden",
               transition: selected.keyFeatures
-                ? "max-height 0.5s ease-in-out"
-                : "max-height 0.5s ease-in-out",
+                ? "all 300ms ease-in-out"
+                : "all 300ms ease-in-out",
             }}
           >
             <li>Register with your own user to get connected with friends.</li>
@@ -95,18 +104,23 @@ const DashboardAbout = () => {
             <li>Enjoy a beautiful and responsive UI.</li>
           </ul>
         </div>
-        <div className={classes["section-about"]} onClick={() => toggle(2)}>
-          <div className={classes["section-upper"]}>
+        <div className={classes["section-about"]}>
+          <div className={classes["section-upper"]} onClick={() => toggle(2)}>
             <span className={classes["about-title"]}>Get started</span>
-            {selected.getStarted ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+            <KeyboardArrowDown
+              style={{
+                transform: selected.getStarted ? "rotate(180deg)" : "",
+                transition: "transform 300ms ease",
+              }}
+            />
           </div>
           <p
             style={{
-              maxHeight: selected.getStarted ? "9999px" : "0",
+              maxHeight: selected.getStarted ? "600px" : "0",
               overflow: selected.getStarted ? "auto" : "hidden",
               transition: selected.getStarted
-                ? "max-height 0.5s ease-in-out"
-                : "max-height 0.5s ease-in-out",
+                ? "max-height 300ms ease-in-out"
+                : "max-height 300ms ease-in-out",
             }}
           >
             Register with a new profile, or login to an existing profile (all of
@@ -121,22 +135,23 @@ const DashboardAbout = () => {
             you want!
           </p>
         </div>
-        <div className={classes["section-about"]} onClick={() => toggle(3)}>
-          <div className={classes["section-upper"]}>
+        <div className={classes["section-about"]}>
+          <div className={classes["section-upper"]} onClick={() => toggle(3)}>
             <span className={classes["about-title"]}>Tips and tricks</span>
-            {selected.tipsAndTricks ? (
-              <KeyboardArrowUp />
-            ) : (
-              <KeyboardArrowDown />
-            )}
+            <KeyboardArrowDown
+              style={{
+                transform: selected.tipsAndTricks ? "rotate(180deg)" : "",
+                transition: "transform 300ms ease",
+              }}
+            />
           </div>
           <ul
             style={{
-              maxHeight: selected.tipsAndTricks ? "9999px" : "0",
+              maxHeight: selected.tipsAndTricks ? "600px" : "0",
               overflow: selected.tipsAndTricks ? "auto" : "hidden",
               transition: selected.tipsAndTricks
-                ? "max-height 0.5s ease-in-out"
-                : "max-height 0.5s ease-in-out",
+                ? "max-height 300ms ease-in-out"
+                : "max-height 300ms ease-in-out",
             }}
           >
             <li>
