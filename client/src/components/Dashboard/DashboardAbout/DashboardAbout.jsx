@@ -106,7 +106,7 @@ const DashboardAbout = () => {
             <KeyboardArrowDown
               style={{
                 transform: selected.getStarted ? "rotate(180deg)" : "",
-                transition: "transform 300ms ease",
+                transition: "transform 300ms ease"
               }}
             />
           </div>
