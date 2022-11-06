@@ -33,7 +33,7 @@ This app was built with the following tools and technologies:
 - MongoDB
 - Mongoose
 
-Iv'e added a **demo** login, for an easy - register-free access.
+I've added a **demo** login, for an easy - register-free access.
 In addition, this project was deployed to **Heroku**.
 
 ## Key Features
