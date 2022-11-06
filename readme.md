@@ -56,7 +56,10 @@ Now you can share your thoughts, images and videos will the people you want!
 ## Tips and tricks
 
 - **To edit your profile**, just go to your profile page (from the navigation bar menu, or from the left main menu) and click on the edit button in the top right corner.
+
   ![edit](https://res.cloudinary.com/dxpwvpv56/image/upload/v1667778173/2_cb7ora.png "edit")
+
 - **Add a cover picture** from the edit profile page.
 - **Toggle between Light Mode and Dark Mode** easily from the top navigation bar or from the settings page.
+
   ![toggle](https://res.cloudinary.com/dxpwvpv56/image/upload/v1667778354/3_lmiz58.png "toggle")![toggle-dark](https://res.cloudinary.com/dxpwvpv56/image/upload/v1667778547/4_dwilwt.png "toggle-dark")
