@@ -6,6 +6,8 @@ A social network app, built with React.js, Node.js, Express.js and MongoDB.
 
 ---
 
+![s1](https://res.cloudinary.com/dxpwvpv56/image/upload/v1667777864/1_mrxx6i.png "s1")
+
 ## Introduction
 
 Welcome to Gootalk, my social network app.
@@ -31,6 +33,7 @@ This app was built with the following tools and technologies:
 - MongoDB
 - Mongoose
 
+Iv'e added a **demo** login, for an easy - register-free access.
 In addition, this project was deployed to **Heroku**.
 
 ## Key Features
@@ -52,6 +55,8 @@ Now you can share your thoughts, images and videos will the people you want!
 
 ## Tips and tricks
 
-- ** To edit your profile**, just go to your profile page (from the navigation bar menu, or from the left main menu) and click on the edit button in the top right corner.
+- **To edit your profile**, just go to your profile page (from the navigation bar menu, or from the left main menu) and click on the edit button in the top right corner.
+  ![edit](https://res.cloudinary.com/dxpwvpv56/image/upload/v1667778173/2_cb7ora.png "edit")
 - **Add a cover picture** from the edit profile page.
 - **Toggle between Light Mode and Dark Mode** easily from the top navigation bar or from the settings page.
+  ![toggle](https://res.cloudinary.com/dxpwvpv56/image/upload/v1667778354/3_lmiz58.png "toggle")![toggle-dark](https://res.cloudinary.com/dxpwvpv56/image/upload/v1667778547/4_dwilwt.png "toggle-dark")
