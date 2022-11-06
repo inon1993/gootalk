@@ -1,7 +1,6 @@
 .about-wrapper {
   width: calc(100% - 80px);
   min-height: calc(100% - 80px);
-  /* max-height: calc(100% - 80px); */
   background-color: var(--background);
   display: flex;
   flex-direction: column;
@@ -35,8 +34,8 @@
   color: var(--logo-bright);
   font-weight: 900;
   margin-top: 1rem;
-  cursor: pointer;
   text-align: center;
+  font-size: 3.5rem;
 }
 
 .about-title-talk {
@@ -47,6 +46,7 @@
 .about-sub-title {
   text-align: center;
   font-size: 1rem;
+  padding: 0 25px;
 }
 
 .section-upper {
@@ -60,67 +60,33 @@
   font-weight: 700;
   margin-bottom: 10px;
   font-size: 1rem;
+  transition: 300ms;
 }
 
-.settings-btn {
-  background-color: transparent;
-  border: none;
-  text-align: left;
-  padding: 10px;
-  font-weight: 500;
-  cursor: pointer;
-  font-size: 0.9rem;
-  color: var(--card-text);
-  font-family: "Poppins", sans-serif;
-  transition: 200ms;
+.about-title-expended {
+  color: var(--logo-bright);
 }
 
-.settings-toggle {
-  background-color: transparent;
-  border: none;
-  text-align: left;
-  padding-left: 10px;
-  font-weight: 500;
-  cursor: pointer;
-  font-size: 0.9rem;
-  color: var(--card-text);
-  transition: 200ms;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.expended-section-off {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 300ms ease-in-out;
 }
 
-.settings-btn-delete:hover {
-  color: var(--badge);
+.expended-section-on {
+  max-height: 600px;
 }
 
-.settings-btn:hover {
-  background-color: var(--settings-hover);
-}
-
-.settings-btn:last-child {
-  margin-bottom: 0;
+@media only screen and (max-width: 600px) {
+  .about-title-goo {
+    font-size: 2.5rem;
+  }
 }
 
 @media only screen and (max-width: 550px) {
-  .settings-wrapper {
+  .about-wrapper {
     padding: 10px;
     width: calc(100% - 40px);
     min-height: calc(100% - 40px);
-  }
-}
-
-@media only screen and (max-width: 370px) {
-  .user-settings {
-    margin: 0;
-  }
-
-  .settings-title {
-    font-size: 0.9rem;
-  }
-
-  .settings-btn {
-    padding: 7px;
-    font-size: 0.85rem;
   }
 }
