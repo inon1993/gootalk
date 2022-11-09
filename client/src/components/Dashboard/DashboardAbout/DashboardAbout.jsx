@@ -76,9 +76,13 @@ const DashboardAbout = () => {
         </div>
         <div className={classes["section-about"]}>
           <div className={classes["section-upper"]} onClick={() => toggle(1)}>
-            <span className={`${classes["about-title"]} ${
-              selected.keyFeatures && classes["about-title-expended"]
-            }`}>Key features</span>
+            <span
+              className={`${classes["about-title"]} ${
+                selected.keyFeatures && classes["about-title-expended"]
+              }`}
+            >
+              Key features
+            </span>
             <KeyboardArrowDown
               style={{
                 transform: selected.keyFeatures ? "rotate(180deg)" : "",
@@ -100,13 +104,17 @@ const DashboardAbout = () => {
         </div>
         <div className={classes["section-about"]}>
           <div className={classes["section-upper"]} onClick={() => toggle(2)}>
-            <span className={`${classes["about-title"]} ${
-              selected.getStarted && classes["about-title-expended"]
-            }`}>Get started</span>
+            <span
+              className={`${classes["about-title"]} ${
+                selected.getStarted && classes["about-title-expended"]
+              }`}
+            >
+              Get started
+            </span>
             <KeyboardArrowDown
               style={{
                 transform: selected.getStarted ? "rotate(180deg)" : "",
-                transition: "transform 300ms ease"
+                transition: "transform 300ms ease",
               }}
             />
           </div>
@@ -129,9 +137,13 @@ const DashboardAbout = () => {
         </div>
         <div className={classes["section-about"]}>
           <div className={classes["section-upper"]} onClick={() => toggle(3)}>
-            <span className={`${classes["about-title"]} ${
-              selected.tipsAndTricks && classes["about-title-expended"]
-            }`}>Tips and tricks</span>
+            <span
+              className={`${classes["about-title"]} ${
+                selected.tipsAndTricks && classes["about-title-expended"]
+              }`}
+            >
+              Tips and tricks
+            </span>
             <KeyboardArrowDown
               style={{
                 transform: selected.tipsAndTricks ? "rotate(180deg)" : "",
@@ -145,15 +157,36 @@ const DashboardAbout = () => {
             }`}
           >
             <li>
-              To <span style={{fontWeight: "600"}}>edit your profile</span>, just go to your profile page (from the
-              navigation bar menu, or from the left main menu on desktop) and click on the
-              edit button in the top right corner.
+              To <span style={{ fontWeight: "600" }}>edit your profile</span>,
+              just go to your profile page (from the navigation bar menu, or
+              from the left main menu on desktop) and click on the edit button
+              in the top right corner.
             </li>
-            <li>Add a <span style={{fontWeight: "600"}}>cover picture</span> from the edit profile page.</li>
+            <img
+              className={classes["tips-icons"]}
+              src="https://res.cloudinary.com/dxpwvpv56/image/upload/v1667778173/2_cb7ora.png"
+              alt="edit-icon"
+            />
             <li>
-              Toggle between <span style={{fontWeight: "600"}}>Light Mode</span> and <span style={{fontWeight: "600"}}>Dark Mode</span> easily from the top
-              navigation bar or from the settings page.
+              Add a <span style={{ fontWeight: "600" }}>cover picture</span>{" "}
+              from the edit profile page.
             </li>
+            <li>
+              Toggle between{" "}
+              <span style={{ fontWeight: "600" }}>Light Mode</span> and{" "}
+              <span style={{ fontWeight: "600" }}>Dark Mode</span> easily from
+              the top navigation bar or from the settings page.
+            </li>
+            <img
+              className={classes["tips-icons-dark-mode"]}
+              src="https://res.cloudinary.com/dxpwvpv56/image/upload/v1667778354/3_lmiz58.png"
+              alt="light-icon"
+            />
+            <img
+              className={classes["tips-icons-dark-mode"]}
+              src="https://res.cloudinary.com/dxpwvpv56/image/upload/v1667778547/4_dwilwt.png"
+              alt="dark-icon"
+            />
           </ul>
         </div>
       </Card>

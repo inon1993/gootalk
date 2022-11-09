@@ -3,7 +3,7 @@ import classes from "./ProfileData.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import { useSelector } from "react-redux";
 import ppIcon from "../../../images/pp-icon-biggest.png";
-import coverImg from "../../../images/gootalk-cover.jpg";
+import coverImg from "../../../images/gootalk-cover.png";
 import { Edit } from "@mui/icons-material";
 
 const ProfileData = ({ onEditProfile }) => {

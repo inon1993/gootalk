@@ -77,6 +77,16 @@
   max-height: 600px;
 }
 
+.tips-icons {
+  height: 35px;
+  width: 41px;
+}
+
+.tips-icons-dark-mode {
+  height: 35px;
+  width: 36px;
+}
+
 @media only screen and (max-width: 600px) {
   .about-title-goo {
     font-size: 2.5rem;
@@ -88,5 +98,17 @@
     padding: 10px;
     width: calc(100% - 40px);
     min-height: calc(100% - 40px);
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .section-about {
+    padding: 0;
+  }
+  .about-sub-title {
+    font-size: 0.85rem;
+  }
+  .about-inon {
+    font-size: 1rem;
   }
 }

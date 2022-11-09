@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
 import ppIcon from "../../images/pp-icon-biggest.png";
-import coverImg from "../../images/gootalk-cover.jpg";
+import coverImg from "../../images/gootalk-cover.png";
 import classes from "./ProfilePicture.module.css";
 
 const ProfilePicture = ({ onId, onPreview, preview, page }) => {

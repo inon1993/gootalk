@@ -1,8 +1,6 @@
 import { useSelector } from "react-redux";
-import { useState, useEffect, isValidElement } from "react";
+import { useState, useEffect } from "react";
 import classes from "./EditProfile.module.css";
-import ppIcon from "../../images/pp-icon-biggest.png";
-import coverImg from "../../images/gootalk-cover.jpg";
 import {
   CountrySelector,
   CitySelector,
