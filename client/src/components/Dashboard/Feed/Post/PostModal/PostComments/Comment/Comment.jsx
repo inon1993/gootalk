@@ -11,6 +11,7 @@ import { ThumbUp } from "@mui/icons-material";
 const Comment = ({ comment, commentUser, onClose }) => {
   const [likes, setLikes] = useState(comment.likes);
   const loggedInUser = useSelector((state) => state.user.user);
+  const [slice, setSlice] = useState(100);
   const req = useAxiosPrivate();
   const dispach = useDispatch();
   const navigate = useNavigate();
@@ -63,7 +64,31 @@ const Comment = ({ comment, commentUser, onClose }) => {
         >{`${commentUser.firstname} ${commentUser.lastname}`}</span>
       </div>
       <div className={classes["comment-body"]}>
-        <p className={classes["comment-body-text"]}>{comment.desc}</p>
+        <p className={classes["comment-body-text"]}>
+          {comment.desc.length > 100 ? (
+            <span>{comment.desc.slice(0, slice)}</span>
+          ) : (
+            comment.desc
+          )}
+        </p>
+        {slice === 100 && comment.desc.length > 100 ? (
+          <span
+            className={classes["comment-read-more-less"]}
+            onClick={() => setSlice(comment.desc.length)}
+          >
+            ... read more
+          </span>
+        ) : (
+          comment.desc.length > 100 && (
+            <span
+              className={classes["comment-read-more-less"]}
+              onClick={() => setSlice(100)}
+            >
+              {" "}
+              show less
+            </span>
+          )
+        )}
       </div>
       <div className={classes["comment-like-create-at"]}>
         <div className={classes["comment-like"]}>

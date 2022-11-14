@@ -9,6 +9,7 @@ import { userActions } from "../../../../../store/user-slice";
 import { useNavigate, useLocation } from "react-router-dom";
 import PostComments from "./PostComments/PostComments";
 import useLogout from "../../../../../hooks/useLogout";
+import { useState } from "react";
 
 const PostModal = ({
   post,
@@ -20,6 +21,7 @@ const PostModal = ({
   setComments,
 }) => {
   const loggedInUser = useSelector((state) => state.user.user);
+  const [slice, setSlice] = useState(150);
   const req = useAxiosPrivate();
   const dispach = useDispatch();
   const navigate = useNavigate();
@@ -62,7 +64,31 @@ const PostModal = ({
           <span className={classes["post-time"]}>{format(post.createdAt)}</span>
         </div>
         <div className={classes["post-body"]}>
-          <p className={classes["post-body-text"]}>{post.desc}</p>
+          <p className={classes["post-body-text"]}>
+            {post.desc.length > 150 ? (
+              <span>{post.desc.slice(0, slice)}</span>
+            ) : (
+              post.desc
+            )}
+          </p>
+          {slice === 150 && post.desc.length > 150 ? (
+            <span
+              className={classes["post-read-more-less"]}
+              onClick={() => setSlice(post.desc.length)}
+            >
+              ... read more
+            </span>
+          ) : (
+            post.desc.length > 150 && (
+              <span
+                className={classes["post-read-more-less"]}
+                onClick={() => setSlice(150)}
+              >
+                {" "}
+                show less
+              </span>
+            )
+          )}
           {post.image &&
             (post.image.includes("/image/") ? (
               <div className={classes["img-video-wrapper"]}>

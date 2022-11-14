@@ -33,6 +33,14 @@
 .comment-body-text {
   font-size: 1rem;
   color: var(--card-text);
+  display: inline;
+}
+
+.comment-read-more-less {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--post-sub-text);
+  cursor: pointer;
 }
 
 .comment-like-create-at {

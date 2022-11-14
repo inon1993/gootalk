@@ -16,6 +16,7 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
   const [comments, setComments] = useState({ comments: [], users: [] });
   const [likes, setLikes] = useState(post.likes);
   const [isExpendedPost, setExpendedPost] = useState(false);
+  const [slice, setSlice] = useState(150);
   const req = useAxiosPrivate();
   const dispach = useDispatch();
   const navigate = useNavigate();
@@ -89,14 +90,41 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
               {format(post.createdAt)}
             </span>
           </div>
-          <div
-            className={classes["post-body"]}
-            onClick={() => setExpendedPost(true)}
-          >
-            <p className={classes["post-body-text"]}>{post.desc}</p>
+          <div className={classes["post-body"]}>
+            <p
+              className={classes["post-body-text"]}
+              onClick={() => setExpendedPost(true)}
+            >
+              {post.desc.length > 150 ? (
+                <span>{post.desc.slice(0, slice)}</span>
+              ) : (
+                post.desc
+              )}
+            </p>
+            {slice === 150 && post.desc.length > 150 ? (
+              <span
+                className={classes["post-read-more-less"]}
+                onClick={() => setSlice(post.desc.length)}
+              >
+                ... read more
+              </span>
+            ) : (
+              post.desc.length > 150 && (
+                <span
+                  className={classes["post-read-more-less"]}
+                  onClick={() => setSlice(150)}
+                >
+                  {" "}
+                  show less
+                </span>
+              )
+            )}
             {post.image &&
               (post.image.includes("/image/") ? (
-                <div className={classes["img-video-wrapper"]}>
+                <div
+                  className={classes["img-video-wrapper"]}
+                  onClick={() => setExpendedPost(true)}
+                >
                   <img
                     className={classes["post-img"]}
                     src={post.image}
@@ -104,7 +132,10 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
                   />
                 </div>
               ) : (
-                <div className={classes["img-video-wrapper"]}>
+                <div
+                  className={classes["img-video-wrapper"]}
+                  onClick={() => setExpendedPost(true)}
+                >
                   <video className={classes["post-video"]} controls>
                     <source type="video/mp4" src={post.image} />
                   </video>

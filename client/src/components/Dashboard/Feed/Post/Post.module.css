@@ -43,6 +43,14 @@
   margin: 0;
   white-space: pre-wrap;
   color: var(--card-text);
+  display: inline;
+}
+
+.post-read-more-less {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--post-sub-text);
+  cursor: pointer;
 }
 
 .img-video-wrapper {
