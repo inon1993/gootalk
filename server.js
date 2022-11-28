@@ -23,7 +23,7 @@ app.enable("trust proxy");
 const PORT = process.env.PORT || 8080;
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost:27017/GootalkDB"
+  process.env.MONGODB_URI || "mongodb://127.0.0.1/GootalkDB"
 );
 mongoose.connection.on("connected", () => {
   console.log("Mongoose is connected.");
