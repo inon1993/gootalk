@@ -30,6 +30,9 @@ const postUpdateCtr = async (req, res) => {
 const deletePostCtr = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
+    if (post.createdAt < new Date(2023, 1, 1)) {
+      return res.status(403).json("This post is undeleteable.");
+    }
     if (post.userId === req.params.userId) {
       await post.deleteOne();
       await Comment.deleteMany({

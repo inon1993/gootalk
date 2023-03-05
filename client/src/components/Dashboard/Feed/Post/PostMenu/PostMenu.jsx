@@ -13,6 +13,9 @@ const PostMenu = ({ post, posts, setPosts }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const logout = useLogout();
+
+  const postCreatedAt = new Date(post.createdAt);
+
   const deletePostHandler = async () => {
     try {
       await req.delete(`/post/${post._id}/${user.userId}`);
@@ -35,8 +38,14 @@ const PostMenu = ({ post, posts, setPosts }) => {
         >
           Update post
         </li> */}
-        <li className={classes["menu-item"]} onMouseDown={deletePostHandler}>
-          Delete post
+        <li className={classes["menu-item"]}>
+          <button
+            className={classes["post-menu-button"]}
+            onMouseDown={deletePostHandler}
+            disabled={postCreatedAt < new Date(2023, 1, 1)}
+          >
+            Delete post
+          </button>
         </li>
       </ul>
     </Card>
