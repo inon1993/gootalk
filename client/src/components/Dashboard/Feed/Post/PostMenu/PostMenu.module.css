@@ -1,0 +1,24 @@
+.post-menu-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: var(--card-shadow-darker);
+}
+
+.post-menu-list {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-item {
+    font-size: 0.9rem;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background-color: var(--settings-hover);
+}

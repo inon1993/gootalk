@@ -1,5 +1,6 @@
 const Post = require("../models/Post");
 const User = require("../models/User");
+const Comment = require("../models/Comment");
 const { cloudinary } = require("../utils/cloudinary");
 
 const newPostCtr = async (req, res) => {
@@ -29,9 +30,12 @@ const postUpdateCtr = async (req, res) => {
 const deletePostCtr = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
-    if (post.userId === req.body.userId) {
+    if (post.userId === req.params.userId) {
       await post.deleteOne();
-      return res.status(200).json("Post has benn deleted.");
+      await Comment.deleteMany({
+        postId: req.params.id,
+      });
+      return res.status(200).json("Post has been deleted.");
     } else {
       return res.status(403).json("You can only delete your posts.");
     }

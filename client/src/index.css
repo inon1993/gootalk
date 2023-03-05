@@ -11,6 +11,7 @@
   --menu-active-text: hsl(220.3, 62.5%, 22%);
   --card-text: hsl(220.3, 62.5%, 22%);
   --card-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  --card-shadow-darker: rgba(0, 0, 0, 0.35) 0px 4px 12px;
   --background-location: white;
   --border-location: hsl(212.3, 41.9%, 93.9%);
   --profile-picture-border: white;
@@ -60,6 +61,7 @@
   --menu-hover-text: rgb(174, 209, 255);
   --card-text: rgb(230, 238, 255);
   --card-shadow: rgba(0, 0, 0, 0.5) 0px 4px 12px;
+  --card-shadow-darker: rgba(0, 0, 0, 0.85) 0px 4px 12px;
   --background-location: rgb(40, 40, 40);
   --border-location: rgb(66, 66, 66);
   --profile-picture-border: rgb(33, 33, 33);

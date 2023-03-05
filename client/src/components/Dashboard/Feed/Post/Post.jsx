@@ -1,4 +1,4 @@
-import { ThumbUp } from "@mui/icons-material";
+import { MoreVert, ThumbUp } from "@mui/icons-material";
 import ppIcon from "../../../../images/pp-icon-small.png";
 import classes from "./Post.module.css";
 import Card from "../../../UI/Card/Card";
@@ -10,12 +10,14 @@ import { useNavigate, useLocation } from "react-router-dom";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import PostModal from "./PostModal/PostModal";
 import useLogout from "../../../../hooks/useLogout";
+import PostMenu from "./PostMenu/PostMenu";
 
-const Post = React.forwardRef(({ post, postUser }, ref) => {
+const Post = React.forwardRef(({ post, postUser, posts, setPosts }, ref) => {
   const loggedInUser = useSelector((state) => state.user.user);
   const [comments, setComments] = useState({ comments: [], users: [] });
   const [likes, setLikes] = useState(post.likes);
   const [isExpendedPost, setExpendedPost] = useState(false);
+  const [isPostMenu, setPostMenu] = useState(false);
   const [slice, setSlice] = useState(150);
   const req = useAxiosPrivate();
   const dispach = useDispatch();
@@ -53,7 +55,9 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
 
   const checkOnUserHandler = () => {
     navigate(
-      `/users/${postUser._id}/${postUser.firstname}-${postUser.lastname}`
+      `/users/${postUser._id || postUser.userId}/${postUser.firstname}-${
+        postUser.lastname
+      }`
     );
   };
 
@@ -77,18 +81,37 @@ const Post = React.forwardRef(({ post, postUser }, ref) => {
       <div className={classes["post-wrapper-for-ref"]} ref={ref}>
         <Card className={classes.post}>
           <div className={classes["post-upper"]}>
-            <img
-              className={classes["post-profile-img"]}
-              src={postUser.profilePicture || ppIcon}
-              alt={"profile"}
-              onClick={checkOnUserHandler}
-            />
-            <span
-              className={classes["post-name"]}
-            >{`${postUser.firstname} ${postUser.lastname}`}</span>
-            <span className={classes["post-time"]}>
-              {format(post.createdAt)}
-            </span>
+            <div className={classes["post-profile-name"]}>
+              <img
+                className={classes["post-profile-img"]}
+                src={postUser.profilePicture || ppIcon}
+                alt={"profile"}
+                onClick={checkOnUserHandler}
+              />
+              <span
+                className={classes["post-name"]}
+              >{`${postUser.firstname} ${postUser.lastname}`}</span>
+              <span className={classes["post-time"]}>
+                {format(post.createdAt)}
+              </span>
+            </div>
+            {post.userId === loggedInUser.userId && (
+              <div
+                className={classes["post-menu"]}
+                onClick={() => setPostMenu(true)}
+              >
+                <button
+                  className={classes["post-menu-button"]}
+                  onFocus={() => setPostMenu(true)}
+                  onBlur={() => setPostMenu(false)}
+                >
+                  <MoreVert />
+                </button>
+                {isPostMenu && (
+                  <PostMenu post={post} posts={posts} setPosts={setPosts} />
+                )}
+              </div>
+            )}
           </div>
           <div className={classes["post-body"]}>
             <p

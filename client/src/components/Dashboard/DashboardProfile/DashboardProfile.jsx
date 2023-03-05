@@ -41,7 +41,11 @@ const DashboardProfile = () => {
           <ProfileData onEditProfile={setEditProfile} />
           <div className={classes["profile-user-posts"]}>
             {userPosts.length > 0 ? (
-              <UserPosts posts={userPosts} user={user} />
+              <UserPosts
+                posts={userPosts}
+                user={user}
+                setPosts={setUserPosts}
+              />
             ) : (
               <span>No posts.</span>
             )}

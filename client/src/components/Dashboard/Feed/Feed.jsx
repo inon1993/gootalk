@@ -121,10 +121,24 @@ const Feed = () => {
                 key={i}
                 post={post}
                 postUser={postsUsers[i].data}
+                getPosts={getPosts}
+                pageStart={setPageStart}
+                posts={posts}
+                setPosts={setPosts}
               />
             );
           } else {
-            return <Post key={i} post={post} postUser={postsUsers[i].data} />;
+            return (
+              <Post
+                key={i}
+                post={post}
+                postUser={postsUsers[i].data}
+                getPosts={getPosts}
+                pageStart={setPageStart}
+                posts={posts}
+                setPosts={setPosts}
+              />
+            );
           }
         })
       ) : (

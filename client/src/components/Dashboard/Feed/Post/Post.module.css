@@ -9,7 +9,28 @@
 .post-upper {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding-bottom: 10px;
+}
+
+.post-profile-name {
+  display: flex;
+  align-items: center;
+}
+
+.post-menu-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: var(--card-text);
+  padding: 0;
+}
+
+.post-menu {
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
 .post-profile-img {
