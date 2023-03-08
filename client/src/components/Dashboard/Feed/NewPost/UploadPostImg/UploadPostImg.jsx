@@ -12,7 +12,7 @@ const UploadPostImg = ({ imgToSet }) => {
       imgToSet({ type: "error", file: "File not supported." });
       setTimeout(() => {
         imgToSet({ type: "", file: "" });
-      }, 1500);
+      }, 2500);
       return;
     }
     if (file.type.includes("video")) {

@@ -15,9 +15,9 @@
 
 .menu-item {
     font-size: 0.9rem;
-    padding: 10px;
     display: flex;
     align-items: center;
+    transition: 150ms;
 }
 
 .post-menu-button {
@@ -27,8 +27,24 @@
     outline: none;
     width: 100%;
     height: 100%;
+    color: var(--card-text);
+    padding: 10px;
+    transition: 150ms;
+}
+
+.post-menu-button-delete {
+    color: tomato;
+}
+
+.post-menu-button-delete:hover {
+    color: white;
 }
 
 .menu-item:hover {
     background-color: var(--settings-hover);
+}
+
+.menu-item-delete:hover {
+    color: white;
+    background-color: tomato;
 }

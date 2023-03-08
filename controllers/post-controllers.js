@@ -17,8 +17,17 @@ const postUpdateCtr = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (post.userId === req.body.userId) {
+      if (
+        (req.body.desc === "" && req.body.image === "") ||
+        (req.body.desc === "" && post.image === "")
+      ) {
+        return res.status(403).json("A post can not be empty.");
+      }
       await post.updateOne({ $set: req.body });
-      return res.status(200).json("Post has been updated.");
+      const updatedPost = await Post.findById(req.params.id);
+      return res
+        .status(200)
+        .json({ msg: "Post has been updated.", data: updatedPost });
     } else {
       return res.status(403).json("You can only update your posts.");
     }

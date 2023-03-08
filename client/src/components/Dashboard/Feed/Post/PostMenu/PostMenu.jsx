@@ -6,7 +6,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 import useLogout from "../../../../../hooks/useLogout";
 import { userActions } from "../../../../../store/user-slice";
 
-const PostMenu = ({ post, posts, setPosts }) => {
+const PostMenu = ({
+  post,
+  posts,
+  setPosts,
+  setUpdatePost,
+  setExpendedPost,
+}) => {
   const req = useAxiosPrivate();
   const user = useSelector((state) => state.user.user);
   const dispach = useDispatch();
@@ -15,6 +21,11 @@ const PostMenu = ({ post, posts, setPosts }) => {
   const logout = useLogout();
 
   const postCreatedAt = new Date(post.createdAt);
+
+  const updatePostHandler = () => {
+    setExpendedPost(true);
+    setUpdatePost(true);
+  };
 
   const deletePostHandler = async () => {
     try {
@@ -30,25 +41,32 @@ const PostMenu = ({ post, posts, setPosts }) => {
     }
   };
   return (
-    <Card className={classes["post-menu-wrapper"]}>
-      <ul className={classes["post-menu-list"]}>
-        {/* <li
-          className={classes["menu-item"]}
-            onMouseDown={async () => await getPosts()}
-        >
-          Update post
-        </li> */}
-        <li className={classes["menu-item"]}>
-          <button
-            className={classes["post-menu-button"]}
-            onMouseDown={deletePostHandler}
-            disabled={postCreatedAt < new Date(2023, 1, 1)}
+    <>
+      <Card className={classes["post-menu-wrapper"]}>
+        <ul className={classes["post-menu-list"]}>
+          <li className={classes["menu-item"]}>
+            <button
+              className={classes["post-menu-button"]}
+              onMouseDown={updatePostHandler}
+              disabled={postCreatedAt < new Date(2023, 1, 1)}
+            >
+              Update post
+            </button>
+          </li>
+          <li
+            className={`${classes["menu-item"]} ${classes["menu-item-delete"]}`}
           >
-            Delete post
-          </button>
-        </li>
-      </ul>
-    </Card>
+            <button
+              className={`${classes["post-menu-button"]} ${classes["post-menu-button-delete"]}`}
+              onMouseDown={deletePostHandler}
+              disabled={postCreatedAt < new Date(2023, 1, 1)}
+            >
+              Delete post
+            </button>
+          </li>
+        </ul>
+      </Card>
+    </>
   );
 };
 

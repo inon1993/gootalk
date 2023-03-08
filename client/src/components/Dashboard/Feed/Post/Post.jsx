@@ -14,9 +14,11 @@ import PostMenu from "./PostMenu/PostMenu";
 
 const Post = React.forwardRef(({ post, postUser, posts, setPosts }, ref) => {
   const loggedInUser = useSelector((state) => state.user.user);
+  const [postUpdated, setPostUpdated] = useState(post);
   const [comments, setComments] = useState({ comments: [], users: [] });
   const [likes, setLikes] = useState(post.likes);
   const [isExpendedPost, setExpendedPost] = useState(false);
+  const [isUpdatePost, setUpdatePost] = useState(false);
   const [isPostMenu, setPostMenu] = useState(false);
   const [slice, setSlice] = useState(150);
   const req = useAxiosPrivate();
@@ -63,6 +65,7 @@ const Post = React.forwardRef(({ post, postUser, posts, setPosts }, ref) => {
 
   const onClose = () => {
     setExpendedPost(false);
+    setUpdatePost(false);
   };
 
   return (
@@ -76,6 +79,9 @@ const Post = React.forwardRef(({ post, postUser, posts, setPosts }, ref) => {
           setLikes={setLikes}
           comments={comments}
           setComments={setComments}
+          isUpdatePost={isUpdatePost}
+          postUpdated={postUpdated}
+          setPostUpdated={setPostUpdated}
         />
       )}
       <div className={classes["post-wrapper-for-ref"]} ref={ref}>
@@ -108,7 +114,13 @@ const Post = React.forwardRef(({ post, postUser, posts, setPosts }, ref) => {
                   <MoreVert />
                 </button>
                 {isPostMenu && (
-                  <PostMenu post={post} posts={posts} setPosts={setPosts} />
+                  <PostMenu
+                    post={post}
+                    posts={posts}
+                    setPosts={setPosts}
+                    setUpdatePost={setUpdatePost}
+                    setExpendedPost={setExpendedPost}
+                  />
                 )}
               </div>
             )}
@@ -118,21 +130,21 @@ const Post = React.forwardRef(({ post, postUser, posts, setPosts }, ref) => {
               className={classes["post-body-text"]}
               onClick={() => setExpendedPost(true)}
             >
-              {post.desc.length > 150 ? (
-                <span>{post.desc.slice(0, slice)}</span>
+              {postUpdated.desc.length > 150 ? (
+                <span>{postUpdated.desc.slice(0, slice)}</span>
               ) : (
-                post.desc
+                postUpdated.desc
               )}
             </p>
-            {slice === 150 && post.desc.length > 150 ? (
+            {slice === 150 && postUpdated.desc.length > 150 ? (
               <span
                 className={classes["post-read-more-less"]}
-                onClick={() => setSlice(post.desc.length)}
+                onClick={() => setSlice(postUpdated.desc.length)}
               >
                 ... read more
               </span>
             ) : (
-              post.desc.length > 150 && (
+              postUpdated.desc.length > 150 && (
                 <span
                   className={classes["post-read-more-less"]}
                   onClick={() => setSlice(150)}
@@ -142,15 +154,15 @@ const Post = React.forwardRef(({ post, postUser, posts, setPosts }, ref) => {
                 </span>
               )
             )}
-            {post.image &&
-              (post.image.includes("/image/") ? (
+            {postUpdated.image &&
+              (postUpdated.image.includes("/image/") ? (
                 <div
                   className={classes["img-video-wrapper"]}
                   onClick={() => setExpendedPost(true)}
                 >
                   <img
                     className={classes["post-img"]}
-                    src={post.image}
+                    src={postUpdated.image}
                     alt="post img"
                   />
                 </div>
@@ -160,7 +172,7 @@ const Post = React.forwardRef(({ post, postUser, posts, setPosts }, ref) => {
                   onClick={() => setExpendedPost(true)}
                 >
                   <video className={classes["post-video"]} controls>
-                    <source type="video/mp4" src={post.image} />
+                    <source type="video/mp4" src={postUpdated.image} />
                   </video>
                 </div>
               ))}

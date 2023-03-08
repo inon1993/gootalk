@@ -118,7 +118,7 @@ const Feed = () => {
             return (
               <Post
                 ref={lastPost}
-                key={i}
+                key={post._id}
                 post={post}
                 postUser={postsUsers[i].data}
                 getPosts={getPosts}
@@ -130,7 +130,7 @@ const Feed = () => {
           } else {
             return (
               <Post
-                key={i}
+                key={post._id}
                 post={post}
                 postUser={postsUsers[i].data}
                 getPosts={getPosts}
