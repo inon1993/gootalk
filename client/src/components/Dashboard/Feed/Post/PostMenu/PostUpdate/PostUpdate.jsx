@@ -20,6 +20,7 @@ const PostUpdate = ({
   const [newPost, setNewPost] = useState({ desc: postUpdated.desc });
   const [img, setImg] = useState({ type: "", file: postUpdated.image });
   const [isLoading, setIsLoading] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
   const [error, setError] = useState({ status: "", msg: "" });
   const bodyRef = useRef();
   const req = useAxiosPrivate();
@@ -27,6 +28,14 @@ const PostUpdate = ({
   useEffect(() => {
     bodyRef.current.focus();
   }, []);
+
+  useEffect(() => {
+    if (img.file === "" && newPost.desc === "") {
+      setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
+    }
+  }, [img, newPost]);
 
   const editHandler = (e) => {
     setNewPost({
@@ -41,8 +50,10 @@ const PostUpdate = ({
       (newPost.desc === "" && img.file === "")
     ) {
       setIsLoading(false);
+      setIsDisabled(true);
       return;
     }
+    setIsDisabled(false);
     try {
       let imgUrl = "";
       if (img.file !== "" && img.file !== post.image) {
@@ -90,6 +101,7 @@ const PostUpdate = ({
             name="desc"
             defaultValue={postUpdated.desc}
             onChange={editHandler}
+            placeholder={`What's on your mind, ${postUser.firstname}?`}
           />
           <UploadPostImg imgToSet={setImg} />
           {img.file && img.type !== "error" && (
@@ -149,7 +161,7 @@ const PostUpdate = ({
           <button
             className={classes["update-btn"]}
             onMouseDown={updateHandler}
-            disabled={isLoading}
+            disabled={isLoading || isDisabled}
           >
             {isLoading ? (
               <CircularProgress style={{ color: "white" }} size="20px" />
@@ -157,7 +169,11 @@ const PostUpdate = ({
               "Update"
             )}
           </button>
-          <button className={classes["cancel-btn"]} onClick={() => onClose()}>
+          <button
+            className={classes["cancel-btn"]}
+            disabled={isLoading}
+            onClick={() => onClose()}
+          >
             Cancel
           </button>
         </div>

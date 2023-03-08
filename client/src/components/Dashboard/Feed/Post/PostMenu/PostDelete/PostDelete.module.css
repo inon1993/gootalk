@@ -1,0 +1,111 @@
+.delete-post-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+}
+  
+.modal-title {
+    font-size: 1.1rem;
+    margin: 0 0 1rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--card-text);
+}
+  
+.err-msg {
+    font-size: 0.9rem;
+    color: tomato;
+    margin: -31px 0 10px;
+}
+  
+.success-update-msg {
+    font-size: 0.9rem;
+    color: hsl(120, 39.3%, 54.1%);
+    margin: -31px 0 10px;
+  }
+  
+.actions {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+  
+.delete {
+    background-color: tomato;
+    border: 1px solid tomato;
+    border-radius: 10px;
+    width: 20%;
+    height: 40px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 200ms;
+    font-family: "Poppins", sans-serif !important;
+    font-size: 0.9rem;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.delete:hover {
+    background-color: red;
+    border: 1px solid red;
+}
+  
+.delete:disabled {
+    opacity: 50%;
+    cursor: auto;
+}
+  
+.cancel {
+    margin-left: 1rem;
+    border: 1px solid var(--cancel-button-border);
+    background-color: var(--cancel-button);
+    color: var(--cancel-button-text);
+    border-radius: 10px;
+    width: 20%;
+    height: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 200ms;
+    font-family: "Poppins", sans-serif !important;
+    font-size: 0.9rem;
+    outline: none;
+}
+  
+.cancel:hover {
+    background-color: var(--cancel-button-hover);
+    color: var(--cancel-button-text-hover);
+    outline: none;
+}
+  
+.cancel:disabled {
+    opacity: 50%;
+    cursor: auto;
+}
+  
+@media only screen and (max-width: 1350px) {
+    .delete,
+    .cancel {
+      width: 25%;
+    }
+}
+  
+@media only screen and (max-width: 460px) {
+    .delete,
+    .cancel {
+      width: 100%;
+    }
+}
+  
+@media only screen and (max-width: 340px) {
+    .actions {
+      flex-direction: column;
+    }
+    .cancel {
+      margin: 1rem 0 0;
+    }
+}
+  

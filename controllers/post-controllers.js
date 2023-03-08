@@ -19,7 +19,7 @@ const postUpdateCtr = async (req, res) => {
     if (post.userId === req.body.userId) {
       if (
         (req.body.desc === "" && req.body.image === "") ||
-        (req.body.desc === "" && post.image === "")
+        (req.body.desc === "" && post.image === "" && !req.body.image)
       ) {
         return res.status(403).json("A post can not be empty.");
       }

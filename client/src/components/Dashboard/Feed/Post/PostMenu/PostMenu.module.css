@@ -32,6 +32,10 @@
     transition: 150ms;
 }
 
+.post-menu-button:disabled {
+    opacity: 50%;
+}
+
 .post-menu-button-delete {
     color: tomato;
 }

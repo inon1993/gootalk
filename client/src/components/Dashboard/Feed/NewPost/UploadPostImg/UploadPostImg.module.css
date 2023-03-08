@@ -12,6 +12,7 @@
 .new-post-add-img-text {
   font-family: "Poppins", sans-serif;
   font-size: 0.9rem;
+  color: var(--card-text);
 }
 
 @media only screen and (max-width: 650px) {

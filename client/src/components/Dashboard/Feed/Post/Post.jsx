@@ -11,6 +11,7 @@ import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import PostModal from "./PostModal/PostModal";
 import useLogout from "../../../../hooks/useLogout";
 import PostMenu from "./PostMenu/PostMenu";
+import PostDelete from "./PostMenu/PostDelete/PostDelete";
 
 const Post = React.forwardRef(({ post, postUser, posts, setPosts }, ref) => {
   const loggedInUser = useSelector((state) => state.user.user);
@@ -19,6 +20,7 @@ const Post = React.forwardRef(({ post, postUser, posts, setPosts }, ref) => {
   const [likes, setLikes] = useState(post.likes);
   const [isExpendedPost, setExpendedPost] = useState(false);
   const [isUpdatePost, setUpdatePost] = useState(false);
+  const [isDeletePost, setIsDeletePost] = useState(false);
   const [isPostMenu, setPostMenu] = useState(false);
   const [slice, setSlice] = useState(150);
   const req = useAxiosPrivate();
@@ -68,8 +70,20 @@ const Post = React.forwardRef(({ post, postUser, posts, setPosts }, ref) => {
     setUpdatePost(false);
   };
 
+  const onCloseDelete = () => {
+    setIsDeletePost(false);
+  };
+
   return (
     <>
+      {isDeletePost && (
+        <PostDelete
+          post={post}
+          posts={posts}
+          setPosts={setPosts}
+          onClose={onCloseDelete}
+        />
+      )}
       {isExpendedPost && (
         <PostModal
           post={post}
@@ -120,6 +134,7 @@ const Post = React.forwardRef(({ post, postUser, posts, setPosts }, ref) => {
                     setPosts={setPosts}
                     setUpdatePost={setUpdatePost}
                     setExpendedPost={setExpendedPost}
+                    setIsDeletePost={setIsDeletePost}
                   />
                 )}
               </div>
