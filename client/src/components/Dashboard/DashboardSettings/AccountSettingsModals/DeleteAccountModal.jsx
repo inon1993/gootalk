@@ -26,9 +26,11 @@ const DeleteAccountModal = ({ onClose }) => {
       });
       setSuccessMsg("Account was deleted successfully.");
       setTimeout(async () => {
-        await logout();
-        navigate("/login", { state: { from: location }, replace: true });
-        setDisabled(false);
+        if (navigator.onLine) {
+          await logout();
+          navigate("/login", { state: { from: location }, replace: true });
+          setDisabled(false);
+        }
       }, 2000);
     } catch (error) {
       setSuccessMsg("");

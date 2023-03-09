@@ -30,8 +30,10 @@ const useAxiosPrivate = () => {
         const prevRequest = error?.config;
         if (prevRequest.url === "/refresh" || prevRequest.url === "/logout") {
           try {
-            await logout();
-            navigate("/login", { state: { from: location }, replace: true });
+            if (navigator.onLine) {
+              await logout();
+              navigate("/login", { state: { from: location }, replace: true });
+            }
           } catch (error) {
             return Promise.reject(error);
           }

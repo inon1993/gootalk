@@ -18,6 +18,25 @@
     color: tomato;
     margin: -31px 0 10px;
 }
+
+.file-error {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 10px 0;
+  }
+  
+  .file-error-text {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+  
+  .error-text {
+    color: tomato;
+  }
+  
+  .success-text {
+    color: hsl(120, 39.3%, 54.1%);
+  }
   
 .success-update-msg {
     font-size: 0.9rem;

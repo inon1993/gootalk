@@ -29,9 +29,11 @@ const DashboardNotification = () => {
         );
         setNoti(getNotiUsers);
       } catch (error) {
-        await logout();
-        dispatch(userActions.logoutUser());
-        navigate("/login", { state: { from: location }, replace: true });
+        if (navigator.onLine) {
+          await logout();
+          dispatch(userActions.logoutUser());
+          navigate("/login", { state: { from: location }, replace: true });
+        }
       }
     };
     getNotifications();

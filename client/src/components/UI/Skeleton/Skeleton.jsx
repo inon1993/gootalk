@@ -19,5 +19,7 @@ export default function Skeleton({ type, counter }) {
       </Card>
     </div>
   );
-  if (type === "post") return Array(COUNTER).fill(<PostSkeleton />);
+  const arr = Array(COUNTER).fill(<PostSkeleton />);
+  if (type === "post")
+    return arr.map((a) => <PostSkeleton key={Math.random()} />);
 }

@@ -31,9 +31,11 @@ const RightMenu = ({ friends }) => {
       dispatch(userActions.setNotifications({ notifications: res.data }));
       dispatch(userActions.setFriends({ friends: friends.data }));
     } catch (error) {
-      await logout();
-      navigate("/login", { state: { from: location }, replace: true });
-      dispatch(userActions.logoutUser());
+      if (navigator.onLine) {
+        await logout();
+        navigate("/login", { state: { from: location }, replace: true });
+        dispatch(userActions.logoutUser());
+      }
     }
   };
 

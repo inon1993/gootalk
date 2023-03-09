@@ -47,9 +47,9 @@ const NewPost = ({
       if (img.file !== "") {
         imgUrl = await getPictureUrl(img, "post");
       }
-      if(imgUrl === "" && post.desc === "") {
-        setNewPostLoading(false)
-        return
+      if (imgUrl === "" && post.desc === "") {
+        setNewPostLoading(false);
+        return;
       }
       await req.post("/post", { ...post, image: imgUrl });
       const page = getPage;
@@ -71,9 +71,11 @@ const NewPost = ({
       }
       setNewPostLoading(false);
     } catch (error) {
-      await logout();
-      navigate("/login", { state: { from: location }, replace: true });
-      dispach(userActions.logoutUser());
+      if (navigator.onLine) {
+        await logout();
+        navigate("/login", { state: { from: location }, replace: true });
+        dispach(userActions.logoutUser());
+      }
       setNewPostLoading(false);
     }
   };

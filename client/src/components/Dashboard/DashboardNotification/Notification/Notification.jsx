@@ -27,9 +27,11 @@ const Notification = ({ notificationUser, notification, onReload }) => {
       await req.put("/notifications/response", payload);
       onReload();
     } catch (error) {
-      await logout();
-      navigate("/login", { state: { from: location }, replace: true });
-      dispatch(userActions.logoutUser());
+      if (navigator.onLine) {
+        await logout();
+        navigate("/login", { state: { from: location }, replace: true });
+        dispatch(userActions.logoutUser());
+      }
     }
   };
 

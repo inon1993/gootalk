@@ -8,7 +8,6 @@ import ppIcon from "../../../../images/pp-icon-small.png";
 import { userActions } from "../../../../store/user-slice";
 import useLogout from "../../../../hooks/useLogout";
 
-
 const RightMenuNotification = ({ notification, onReload }) => {
   const currUser = useSelector((state) => state.user.user);
   const [user, setUser] = useState();
@@ -38,9 +37,11 @@ const RightMenuNotification = ({ notification, onReload }) => {
       await req.put("/notifications/response", payload);
       onReload();
     } catch (error) {
-      await logout();
-      navigate("/login", { state: { from: location }, replace: true });
-      dispatch(userActions.logoutUser());
+      if (navigator.onLine) {
+        await logout();
+        navigate("/login", { state: { from: location }, replace: true });
+        dispatch(userActions.logoutUser());
+      }
     }
   };
 

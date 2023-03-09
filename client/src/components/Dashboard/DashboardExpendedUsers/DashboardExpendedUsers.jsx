@@ -29,9 +29,11 @@ const DashboardExpendedUsers = () => {
         const fetchedUsers = await req.get("/user/");
         isMounted && setUsers(fetchedUsers.data);
       } catch (error) {
-        await logout();
-        navigate("/login", { state: { from: location }, replace: true });
-        dispach(userActions.logoutUser());
+        if (navigator.onLine) {
+          await logout();
+          navigate("/login", { state: { from: location }, replace: true });
+          dispach(userActions.logoutUser());
+        }
       }
     };
     getUsers();

@@ -36,9 +36,11 @@ const PostComments = ({ post, comments, setComments, onClose }) => {
         };
       });
     } catch (error) {
-      await logout();
-      navigate("/login", { state: { from: location }, replace: true });
-      dispach(userActions.logoutUser());
+      if (navigator.onLine) {
+        await logout();
+        navigate("/login", { state: { from: location }, replace: true });
+        dispach(userActions.logoutUser());
+      }
     }
   };
 

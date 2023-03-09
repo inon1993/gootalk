@@ -7,6 +7,7 @@ import { userActions } from "../../../../../../../store/user-slice";
 import ppImg from "../../../../../../../images/pp-icon-small.png";
 import { format } from "timeago.js";
 import { ThumbUp } from "@mui/icons-material";
+import useLogout from "../../../../../../../hooks/useLogout";
 
 const Comment = ({ comment, commentUser, onClose }) => {
   const [likes, setLikes] = useState(comment.likes);
@@ -16,6 +17,7 @@ const Comment = ({ comment, commentUser, onClose }) => {
   const dispach = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const logout = useLogout();
 
   useEffect(() => {
     getCommentLikes();
@@ -26,8 +28,11 @@ const Comment = ({ comment, commentUser, onClose }) => {
       const likesData = await req.get(`/comment/likes/${comment._id}`);
       setLikes(likesData.data);
     } catch (error) {
-      navigate("/login", { state: { from: location }, replace: true });
-      dispach(userActions.logoutUser());
+      if (navigator.onLine) {
+        await logout();
+        navigate("/login", { state: { from: location }, replace: true });
+        dispach(userActions.logoutUser());
+      }
     }
   };
 

@@ -94,9 +94,11 @@ const DashboardUsersProfile = () => {
       await req.put("/notifications", payload);
       setDisableReqBtn(true);
     } catch (error) {
-      await logout();
-      navigate("/login", { state: { from: location }, replace: true });
-      dispatch(userActions.logoutUser());
+      if (navigator.onLine) {
+        await logout();
+        navigate("/login", { state: { from: location }, replace: true });
+        dispatch(userActions.logoutUser());
+      }
     }
   };
 
