@@ -74,6 +74,7 @@ const PostModal = ({
             />
             <span
               className={classes["post-name"]}
+              onClick={checkOnUserHandler}
             >{`${postUser.firstname} ${postUser.lastname}`}</span>
             <span className={classes["post-time"]}>
               {format(post.createdAt)}
@@ -81,21 +82,21 @@ const PostModal = ({
           </div>
           <div className={classes["post-body"]}>
             <p className={classes["post-body-text"]}>
-              {post.desc.length > 150 ? (
-                <span>{post.desc.slice(0, slice)}</span>
+              {postUpdated.desc.length > 150 ? (
+                <span>{postUpdated.desc.slice(0, slice)}</span>
               ) : (
-                post.desc
+                postUpdated.desc
               )}
             </p>
-            {slice === 150 && post.desc.length > 150 ? (
+            {slice === 150 && postUpdated.desc.length > 150 ? (
               <span
                 className={classes["post-read-more-less"]}
-                onClick={() => setSlice(post.desc.length)}
+                onClick={() => setSlice(postUpdated.desc.length)}
               >
                 ... read more
               </span>
             ) : (
-              post.desc.length > 150 && (
+              postUpdated.desc.length > 150 && (
                 <span
                   className={classes["post-read-more-less"]}
                   onClick={() => setSlice(150)}
@@ -105,19 +106,19 @@ const PostModal = ({
                 </span>
               )
             )}
-            {post.image &&
-              (post.image.includes("/image/") ? (
+            {postUpdated.image &&
+              (postUpdated.image.includes("/image/") ? (
                 <div className={classes["img-video-wrapper"]}>
                   <img
                     className={classes["post-img"]}
-                    src={post.image}
+                    src={postUpdated.image}
                     alt="post img"
                   />
                 </div>
               ) : (
                 <div className={classes["img-video-wrapper"]}>
                   <video className={classes["post-video"]} controls>
-                    <source type="video/mp4" src={post.image} />
+                    <source type="video/mp4" src={postUpdated.image} />
                   </video>
                 </div>
               ))}

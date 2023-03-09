@@ -25,6 +25,7 @@
     font-weight: 600;
     margin-right: 5px;
     color: var(--card-text);
+    cursor: pointer;
   }
   
   .post-time {

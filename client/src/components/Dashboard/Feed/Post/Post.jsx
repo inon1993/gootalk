@@ -110,6 +110,7 @@ const Post = React.forwardRef(({ post, postUser, posts, setPosts }, ref) => {
               />
               <span
                 className={classes["post-name"]}
+                onClick={checkOnUserHandler}
               >{`${postUser.firstname} ${postUser.lastname}`}</span>
               <span className={classes["post-time"]}>
                 {format(post.createdAt)}
@@ -182,10 +183,7 @@ const Post = React.forwardRef(({ post, postUser, posts, setPosts }, ref) => {
                   />
                 </div>
               ) : (
-                <div
-                  className={classes["img-video-wrapper"]}
-                  onClick={() => setExpendedPost(true)}
-                >
+                <div className={classes["img-video-wrapper"]}>
                   <video className={classes["post-video"]} controls>
                     <source type="video/mp4" src={postUpdated.image} />
                   </video>

@@ -91,6 +91,7 @@ const PostUpdate = ({
           />
           <span
             className={classes["post-name"]}
+            onClick={checkOnUserHandler}
           >{`${postUser.firstname} ${postUser.lastname}`}</span>
           <span className={classes["post-time"]}>{format(post.createdAt)}</span>
         </div>
