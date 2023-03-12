@@ -138,6 +138,7 @@ const Post = React.forwardRef(({ post, postUser, posts, setPosts }, ref) => {
                     setUpdatePost={setUpdatePost}
                     setExpendedPost={setExpendedPost}
                     setIsDeletePost={setIsDeletePost}
+                    isPostMenu={isPostMenu}
                   />
                 )}
               </div>

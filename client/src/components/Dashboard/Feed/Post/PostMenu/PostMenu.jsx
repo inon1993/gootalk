@@ -6,6 +6,7 @@ const PostMenu = ({
   setUpdatePost,
   setExpendedPost,
   setIsDeletePost,
+  isPostMenu,
 }) => {
   const postCreatedAt = new Date(post.createdAt);
 
@@ -20,7 +21,11 @@ const PostMenu = ({
 
   return (
     <>
-      <Card className={classes["post-menu-wrapper"]}>
+      <Card
+        className={`${classes["post-menu-wrapper"]} ${
+          isPostMenu && classes["post-menu-on"]
+        }`}
+      >
         <ul className={classes["post-menu-list"]}>
           <li className={classes["menu-item"]}>
             <button

@@ -1,4 +1,5 @@
 .post-menu-wrapper {
+    display: none;
     position: absolute;
     top: 0;
     right: 0;
@@ -7,12 +8,18 @@
     overflow: hidden;
     box-shadow: var(--card-shadow-darker);
     z-index: 100;
+    animation: slide-down 100ms ease-out forwards;
+}
+
+.post-menu-on {
+    display: flex;
 }
 
 .post-menu-list {
     list-style: none;
     padding: 0;
     margin: 0;
+    width: 100%;
 }
 
 .menu-item {
@@ -55,3 +62,14 @@
     color: white;
     background-color: tomato;
 }
+
+@keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
